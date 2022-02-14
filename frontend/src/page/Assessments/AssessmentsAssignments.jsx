@@ -6,12 +6,15 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import TheatersIcon from '@mui/icons-material/Theaters';
 import SchoolIcon from '@mui/icons-material/School';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
+import { Context, useContext } from '../../context';
 
 import SubNavWrapper from '../../component/SubNavWrapper';
 import makePage from '../../component/makePage';
 
 const AssessmentsAssignments = ({ }) => {
+  const { getters, setters } = useContext(Context);
+  const params = useParams();
   const menu = [
     {
       title: 'Ass1',
@@ -32,7 +35,14 @@ const AssessmentsAssignments = ({ }) => {
 
   return (
     <SubNavWrapper baseUrl={'/assessments/assignments'} menu={menu}>
-      Hey
+      <>
+        <h2>Ass1 has {params.ass !== 'ass1' ? 'not ' : ''} been released!</h2>
+        <Button variant="contained" size="large">
+          <a style={{ color: '#fff' }} target="_blank" href={`/redirect/?path=COMP6080/${getters.term}/students/_/${params.ass}/`}>
+            View on gitlab
+          </a>
+        </Button>
+      </>
     </SubNavWrapper>
   );
 };

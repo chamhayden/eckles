@@ -43,7 +43,7 @@ const TimetableTutorials = () => {
               {!isTinyMobileWidth() && <TableCell align="left">{row.stream}</TableCell>}
               {!isTinyMobileWidth() && <TableCell align="left">{row.staff ? row.staff().map(s => s.name).join(', ') : ''}</TableCell>}
               {getters.loggedIn && <TableCell align="left"><Button variant="contained" onClick={() => {
-                window.location.href = row.call_url
+                window.location.href = row.call_url_h
               }}>Watch</Button></TableCell>}
             </TableRow>
           ))}

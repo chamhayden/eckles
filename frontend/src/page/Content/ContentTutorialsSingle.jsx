@@ -23,7 +23,6 @@ const ContentTutorialsSingle = () => {
   const [ tutorial, setTutorial ] = React.useState(null);
   const params = useParams();
 
-  console.log(params);
   React.useEffect(() => {
     const candidates = getters.content.content_tutorials.filter(c => c.key === params.tutid);
     if (candidates.length === 1) {
@@ -68,7 +67,7 @@ const ContentTutorialsSingle = () => {
       </Box>
 
       <Button variant="contained" size="large">
-      	<a style={{ color: '#fff' }} target="_blank" href={`/redirect/?path=COMP6080/${getters.term}/students/_/exercises/-/tree/main/${tutorial.key}`}>
+      	<a style={{ color: '#fff' }} target="_blank" href={`/redirect/?path=COMP6080/${getters.term}/students/_/exercises/-/tree/master/${tutorial.key}`}>
       	  View activity on gitlab
       	</a>
       </Button>

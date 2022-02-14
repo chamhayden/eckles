@@ -28,7 +28,7 @@ export const generateContent = (getters, by) => {
       grouping.content_lectures().sort((a, b) => a.order - b.order).forEach(lecture => {
         if (lecture) {
           table.push([
-            { value: lecture.name, link: `/${getters.term}/content/lectures/${lecture.key}`, buttonProps: { variant: 'contained', color: 'info', sx: { textTransform: 'unset !important' } }, },
+            { value: `${lecture.name}${lecture.live ? ' (live)' : ''}`, link: `/${getters.term}/content/lectures/${lecture.key}`, buttonProps: { variant: 'contained', color: 'info', sx: { textTransform: 'unset !important' } }, },
             { value: secondColumnValue(lecture), link: `/${getters.term}/content/lectures/${opposingPageType}#${secondColumnAnchor(lecture)}` },
             { value: lecture.duration_mins ? `⏱️ ${lecture.duration_mins} mins` : 'TBD', },
             { Raw: () => {

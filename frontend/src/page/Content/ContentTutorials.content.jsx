@@ -33,7 +33,7 @@ export const generateContent = (getters, by) => {
           { value: tutorial.stream.join(', '), },
           { value: tutorial.importance, },
           { Raw: () => (
-            <a href={`/redirect/?path=COMP6080/${getters.term}/students/_/exercises/-/tree/main/${tutorial.key}`} target="_blank"><Button variant="contained" color="info">Git</Button></a>
+            <a href={`/redirect/?path=COMP6080/${getters.term}/students/_/exercises/-/tree/master/${tutorial.key}`} target="_blank"><Button variant="contained" color="info">Git</Button></a>
           )}
         ]);
       });
