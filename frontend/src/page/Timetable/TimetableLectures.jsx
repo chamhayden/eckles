@@ -55,7 +55,7 @@ const TimetableLectures = () => {
                 )}                
               </TableCell>}
               {getters.loggedIn && <TableCell align="left"><Button variant="contained" onClick={() => {
-                window.location.href = row.call_url
+                window.location.href = 'https://youtu.be/0Hl3Ox3ogfE'
               }}>Watch</Button></TableCell>}
             </TableRow>
           ))}
