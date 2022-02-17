@@ -159,6 +159,24 @@ app.post('/api/content/full', (req, res) => {
 
 });
 
+app.post('/api/istutor', (req, res) => {
+  const { eckles_jwt } = req.cookies;
+  
+  if (!eckles_jwt) {
+    res.status(400).send({ err: 'Please login' });
+    return;
+  }
+  
+  try {
+    const decoded = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET);
+    const zid = decoded.data;
+    res.json({ value: config.TERMS[config.TERM_DEFAULT].TUTOR_ID_LIST.includes(zid)});
+  } catch (err) {
+    res.status(400).send({ err: 'Go away' });
+  }
+
+});
+
 app.post('/api/content/public', (req, res) => {
   const { term } = req.body;
   if (!builtContent[term].public) {

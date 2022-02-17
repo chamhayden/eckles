@@ -17,6 +17,8 @@ const App = () => {
   const [term, setTerm] = React.useState(initialValue.term);
   const [validTerms, setValidTerms] = React.useState(initialValue.validTerms);
   const [screenWidth, setScreenWidth] = React.useState(initialValue.screenWidth);
+  const [isTutor, setIsTutor] = React.useState(initialValue.isTutor);
+
   const getters = {
     sidebarOpen,
     content,
@@ -26,6 +28,7 @@ const App = () => {
     term,
     validTerms,
     screenWidth,
+    isTutor,
   };
   const setters = {
     setSidebarOpen,
@@ -36,6 +39,7 @@ const App = () => {
     setTerm,
     setValidTerms,
     setScreenWidth,
+    setIsTutor,
   }
   return (
     <Context.Provider value={{ getters, setters, }}>

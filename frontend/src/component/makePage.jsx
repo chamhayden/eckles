@@ -24,6 +24,10 @@ const makePage = (Component, options) => {
     React.useEffect(() => {
       if (cookies.eckles_loggedin) {
         setters.setLoggedIn(cookies.eckles_loggedin);
+        apiCall('istutor', {}, 'POST')
+          .then(result => {
+            setters.setIsTutor(result.value)
+          });
       }
     }, [cookies]);
 
