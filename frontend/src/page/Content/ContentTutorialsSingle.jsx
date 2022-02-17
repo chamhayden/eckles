@@ -71,6 +71,15 @@ const ContentTutorialsSingle = () => {
       	  View activity on gitlab
       	</a>
       </Button>
+      <Accordion sx={{ marginTop: '35px !important', marginLeft: 'auto !important', marginRight: 'auto !important', minWidth: 100, background: 'rgb(0,0,0)' }} expanded={true}>
+        <AccordionDetails>
+          {tutorial.video_author && <span style={{ color: 'white'}}>Tutor who recorded: {tutorial.video_author().name}</span>}
+          {tutorial.video_url
+            ? <Youtube code={tutorial.video_url} />
+            : <div style={{ textAlign: 'center', margin: '100px 20px', fontSize: '2em', color: '#fff'}}>Recording not yet released.</div>
+          }
+        </AccordionDetails>
+      </Accordion>
 
     </>
   );

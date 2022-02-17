@@ -11,6 +11,7 @@ config.joinSchema = {
     joins: {
       week: ['weeks', true],
       topic: ['topics', true],
+      video_author: ['staff', true],
     },
   },
   schedule_lectures: {
