@@ -56,6 +56,24 @@ const ResourcesHtmlCSS = ({}) => {
           <li><a target="_blank" href="https://developer.mozilla.org/en-US/">MDN Web Docs</a>. Go-to for a lot of empirical questions about web development (source: Adrian Tan)</li>
         </ul>
       </Typography>
+
+      <Divider sx={{ mb: 3, mt: 3, }} />
+
+      <Typography variant="h5" component="div" gutterBottom>
+        FAQ
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        <p><b>Q. Why is my responsive viewer on Chrome not getting the right size?</b></p>
+        <p>Sometimes if you're using the responsive viewer in chrome you will feel like your zoom level is not matching of your page is too big/small. Try adding <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</code> in the head section. There's an explanation about that here.</p>
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        <p><b>Q. Why is there a white border around my webpage?</b></p>
+        <p>body tag by default has a 8px margin. You can remove this with CSS by setting body's properties to include <code>margin: 0</code>.</p>
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        <p><b>Q. How do I make my viewport be a specific size?</b></p>
+        <p>https://developer.chrome.com/docs/devtools/device-mode/</p>
+      </Typography>
        
     </>
   );
