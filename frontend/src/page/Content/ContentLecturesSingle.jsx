@@ -96,6 +96,9 @@ const ContentLecturesSingle = ({}) => {
         Description: {lecture.description}
       </Typography>
       <Typography variant="body1" gutterBottom>
+        <a target="_blank" href={`/raw/lectures/${lecture.key}/`}>Access the code used in the lecture here (may be blank).</a>
+      </Typography>
+      <Typography variant="body1" gutterBottom>
         Should watch no later than end of <Link to={`/${getters.term}/content/lectures/week#${lecture.week().week}`}>week {lecture.week().week}</Link>
       </Typography>
       {lecture.schedule_lectures && (
