@@ -36,7 +36,7 @@ const AssessmentsAssignments = ({ }) => {
   return (
     <SubNavWrapper baseUrl={'/assessments/assignments'} menu={menu}>
       <>
-        <h2>{params.ass} has {params.ass !== 'ass1' ? 'not ' : ''} been released!</h2>
+        <h2>{params.ass} has {params.ass === 'ass3' ? 'not ' : ''} been released!</h2>
         <Button variant="contained" size="large">
           <a style={{ color: '#fff' }} target="_blank" href={`/redirect/?path=COMP6080/${getters.term}/students/_/${params.ass}/`}>
             View on gitlab
