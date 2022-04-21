@@ -41,7 +41,7 @@ const CourseOutline22T1 = () => {
         Date, Time, and Duration
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The final exam will be a 3 hour exam that begins at 2pm (AEDT) and ends at 5pm (AEDT) on [Coming Soon].
+        The final exam will be a 3 hour exam that begins at 2pm (AEDT) and ends at 5pm (AEDT) on 10th May 2022.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         Students outside of Asia-Pacific region, or students with ELS requirements, may have their exam time altered and communicated to the lecturer in charge privately. If you have been given alternate instructions about start and finish times, they apply.
@@ -53,7 +53,7 @@ const CourseOutline22T1 = () => {
         Exam Structure
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The exam will be worth X marks. those X marks will make up the 25% value of the course. X will be determined closer to the exam.
+        The exam will be worth X marks. those X marks will make up the 20% value of the course. X will be determined closer to the exam.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         The exam will be very similar to assignment 3, with the following simplified criteria:
@@ -83,7 +83,7 @@ const CourseOutline22T1 = () => {
         The exam must be completed locally or via vlab. Regardless of where you complete the exam, you must:
         <ul>
           <li>Ensure you push the work you want submitted to your gitlab master branch</li>
-          <li>Ensure that your code works as expected in the vlab environment</li>
+          <li>Ensure that your code works as expected in the latest version of Google Chrome</li>
         </ul>
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
@@ -130,7 +130,7 @@ const CourseOutline22T1 = () => {
         Submission
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        There will be no submit command for the final exam. At the end of the exam time, whatever code is on your latest commit pushed to your master branch (on gitlab) will be what is submitted and amrked.
+        There will be no submit command for the final exam. At the end of the exam time, whatever code is on your latest commit pushed to your master branch (on gitlab) will be what is submitted and marked.
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
         Troubleshooting
@@ -148,7 +148,7 @@ const CourseOutline22T1 = () => {
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         <ul>
-          <li>Review previous tutorials, labs, and assignments to stay confident with both theory and practical elements of the course.</li>
+          <li>Review previous exercises and assignments to stay confident with both theory and practical elements of the course.</li>
           <li>A sample exam paper can be found <a target="_blank" href="https://gitlab.cse.unsw.edu.au/COMP6080/exam-sample-spec">here</a>.
             <ul><li>A solution (built file, not the source code) of the sample exam can be found <a target="_blank" href="https://cs6080.web.cse.unsw.edu.au/sample-exam/">here</a>. </li></ul>
           </li>
