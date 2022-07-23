@@ -17,6 +17,7 @@ import Avatar from '@mui/material/Avatar';
 
 import makePage from '../component/makePage';
 import CourseOutline22T1 from './CourseOutlines/CourseOutline22T1';
+import CourseOutline22T3 from './CourseOutlines/CourseOutline22T3';
 
 import { Context, useContext } from '../context';
 

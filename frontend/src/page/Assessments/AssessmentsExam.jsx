@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Exam22T1 from './Exams/Exam22T1';
+import Exam22T3 from './Exams/Exam22T3';
 import makePage from '../../component/makePage';
 import { Context, useContext } from '../../context';
 
