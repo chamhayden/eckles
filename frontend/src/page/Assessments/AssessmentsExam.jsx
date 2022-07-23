@@ -8,6 +8,8 @@ const AssessmentsExam = () => {
   const { getters } = useContext(Context);
   if (getters.term === '22T1') {
     return <Exam22T1 />
+  } else if (getters.term === '22T3') {
+    return <Exam22T3 />
   } else {
     return <>This is a sample exam page!</>;
   }
