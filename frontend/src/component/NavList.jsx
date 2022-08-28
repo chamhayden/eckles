@@ -26,7 +26,7 @@ export const primaryNavList = [
   },
   {
     title: 'Forum',
-    route: 'https://edstem.org/au/join/kJTqpW',
+    route: 'https://edstem.org/au/join/eAzdt4',
     external: true,
     loginRequired: true,
     Icon: ForumIcon,
@@ -102,13 +102,13 @@ export const primaryNavList = [
 ];
 
 export const secondaryNavList = [
-  {
+  /*{
     title: 'Grades',
     loginRequired: true,
     route: '/grades',
     Icon: GradingIcon,
     description: 'View your grades from assessment task submissions',
-  },
+  },*/
   {
     title: 'Feedback',
     loginRequired: true,
