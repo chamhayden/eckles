@@ -20,6 +20,7 @@ import { Context, useContext } from '../../context';
 import makePage from '../../component/makePage';
 import { isTinyMobileWidth } from '../../util/screen';
 import SetOfTables from '../../component/SetOfTables';
+import config from '../../config';
 
 const TimetableHelpSessions = () => {
   const { getters } = useContext(Context);

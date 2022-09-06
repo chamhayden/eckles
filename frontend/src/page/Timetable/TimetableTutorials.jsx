@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import { Context, useContext } from '../../context';
 import makePage from '../../component/makePage';
 import { isTinyMobileWidth } from '../../util/screen';
+import config from '../../config';
 
 const TimetableTutorials = () => {
   const { getters } = useContext(Context);
