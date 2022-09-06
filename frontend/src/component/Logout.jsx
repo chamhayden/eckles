@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 import { Context, useContext } from '../context';
+import config from '../config';
 
 const Logout = () => {
   const [cookies, setCookie, removeCookie] = useCookies();
@@ -16,7 +17,7 @@ const Logout = () => {
     }
   }
   const login = () => {
-    window.location.href = '/login';
+    window.location.href = `${config.BASE_NAME}login`;
   }
   return (
     <Button

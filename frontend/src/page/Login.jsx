@@ -96,7 +96,7 @@ const SignIn = (props) => {
       .then(_ => {
         localStorage.removeItem('eckles_content');
         localStorage.removeItem('eckles_expiry');
-        window.location.href = `/${term}`
+        window.location.href = `${config.BASE_NAME}${term}`
       })
       .finally(_ => setLoading(false));
   }
@@ -151,7 +151,7 @@ const SignIn = (props) => {
             variant="contained"
             color="success"
             className={classes.submit}
-            onClick={() => window.location.href = '/'}
+            onClick={() => window.location.href = config.BASE_NAME}
           >
             Back to homepage
           </Button>
