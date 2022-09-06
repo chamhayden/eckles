@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
 
+import config from './config';
 import './index.css';
 import Router from './Router';
 import reportWebVitals from './reportWebVitals';
@@ -44,7 +45,7 @@ const App = () => {
   return (
     <Context.Provider value={{ getters, setters, }}>
       <CookiesProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={config.BASE_NAME}>
           <Router />
         </BrowserRouter>
       </CookiesProvider>

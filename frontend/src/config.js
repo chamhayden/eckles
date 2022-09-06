@@ -1,6 +1,7 @@
 let config = {};
 config.DEV = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development');
-config.BASE_URL = config.DEV ? 'http://localhost:6080' : 'https://cs6080.web.cse.unsw.edu.au';
+config.BASE_URL = config.DEV ? 'http://localhost:6080' : 'https://cgi.cse.unsw.edu.au/~cs6080';
+config.BASE_NAME = config.DEV ? '/' : '/~cs6080/';
 
 config.terms = config.DEV ? ['sample'] : ['sample', '22T1'];
 config.DEFAULT_TERM = config.DEV ? 'sample' : '22T1';
