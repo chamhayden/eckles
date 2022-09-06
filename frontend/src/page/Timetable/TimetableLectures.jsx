@@ -17,6 +17,7 @@ import SubNav from '../../component/SubNav';
 
 import { Context, useContext } from '../../context';
 import makePage from '../../component/makePage';
+import config from '../../config';
 
 const TimetableLectures = () => {
   const { getters } = useContext(Context);
