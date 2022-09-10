@@ -48,16 +48,19 @@ const TimetableLectures = () => {
               {!isTinyMobileWidth() && <TableCell align="left">Hayden</TableCell>}
               {getters.loggedIn && isDesktopWidth() && <TableCell align="left">
                 {row.content_lectures && (
-                  <>{
+                  <>
+                    {
                     row.content_lectures().map(r => (
                       <div><Link to={`/${getters.term}/content/lectures/${r.key}`}>{r.name}</Link></div>
                     ))
                   }</>
                 )}                
               </TableCell>}
-              {getters.loggedIn && <TableCell align="left"><Button variant="contained" onClick={() => {
+              {getters.loggedIn && <TableCell align="left">{rowKey === 0 && <>
+                      <h4>In-person in CLB7</h4><br />
+                    </>}<Button variant="contained" onClick={() => {
                 window.location.href = `${config.BASE_NAME}${row.call_url_h}`;
-              }}>Watch</Button></TableCell>}
+              }}>Watch Live</Button></TableCell>}
             </TableRow>
           ))}
         </TableBody>
