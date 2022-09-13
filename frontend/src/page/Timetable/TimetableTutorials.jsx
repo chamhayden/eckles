@@ -43,7 +43,7 @@ const TimetableTutorials = () => {
               <TableCell align="left">{row.times}</TableCell>
               {/*!isTinyMobileWidth() && <TableCell align="left">{row.stream}</TableCell>*/}
               {!isTinyMobileWidth() && <TableCell align="left">{row.staff ? row.staff().map(s => s.name).join(', ') : ''}</TableCell>}
-              {getters.loggedIn && <TableCell align="left">
+              {getters.loggedIn && row.call_url_h && <TableCell align="left">
                 {row.call_url_h.includes('http') ? (
                   <Button variant="contained" onClick={() => {
                     window.location.href = row.call_url_h;
