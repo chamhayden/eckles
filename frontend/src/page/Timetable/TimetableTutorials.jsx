@@ -26,7 +26,7 @@ const TimetableTutorials = () => {
           <TableRow>
             <TableCell align="left"><Typography variant="h6">Day</Typography></TableCell>
             <TableCell align="left"><Typography variant="h6">Time</Typography></TableCell>
-            {!isTinyMobileWidth() && <TableCell align="left"><Typography variant="h6">Stream</Typography></TableCell>}
+            {/*!isTinyMobileWidth() && <TableCell align="left"><Typography variant="h6">Stream</Typography></TableCell>*/}
             {!isTinyMobileWidth() && <TableCell align="left"><Typography variant="h6">Tutors</Typography></TableCell>}
             {getters.loggedIn && <TableCell align="left"><Typography variant="h6">Join</Typography></TableCell>}
           </TableRow>
@@ -41,11 +41,17 @@ const TimetableTutorials = () => {
                 {row.day}
               </TableCell>
               <TableCell align="left">{row.times}</TableCell>
-              {!isTinyMobileWidth() && <TableCell align="left">{row.stream}</TableCell>}
+              {/*!isTinyMobileWidth() && <TableCell align="left">{row.stream}</TableCell>*/}
               {!isTinyMobileWidth() && <TableCell align="left">{row.staff ? row.staff().map(s => s.name).join(', ') : ''}</TableCell>}
-              {getters.loggedIn && <TableCell align="left"><Button variant="contained" onClick={() => {
-                window.location.href = `${config.BASE_NAME}${row.call_url_h}`;
-              }}>Watch</Button></TableCell>}
+              {getters.loggedIn && <TableCell align="left">
+                {row.call_url_h.includes('http') ? (
+                  <Button variant="contained" onClick={() => {
+                    window.location.href = row.call_url_h;
+                  }}>Watch</Button>
+                ) : (
+                  <b>{row.call_url_h}</b>
+                )}
+              </TableCell>}
             </TableRow>
           ))}
         </TableBody>
