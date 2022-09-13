@@ -32,7 +32,7 @@ const HelpInstallation = ({ }) => {
       <Divider sx={{ mb: 3, mt: 3, }} />
 
       <Typography variant="h5" component="div" gutterBottom>
-        Step 2.1: Install Node (includes NPM)
+        Step 2.1: Install Node (includes NPM) version 16.14.2 (though any version of Node 16.X is fine)
       </Typography>
 
       <Typography variant="body" component="div" gutterBottom>
