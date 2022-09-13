@@ -33,7 +33,7 @@ export const generateContent = (getters, by) => {
             { value: lecture.duration_mins ? `⏱️ ${lecture.duration_mins} mins` : 'TBD', },
             { Raw: () => {
                 if (lecture.visible === true) {
-                  return <a href={`/raw/lectures/${lecture.key}.pdf`} target="_blank"><Button variant="outlined" color="warning">PDF</Button></a>;
+                  return <a href={`/~cs6080/raw/lectures/${lecture.key}.pdf`} target="_blank"><Button variant="outlined" color="warning">PDF</Button></a>;
                 } else {
                   return <Button onClick={() => alert('Lecture is coming soon! Check back later')} variant="outlined" color="warning">PDF</Button>;
                 }

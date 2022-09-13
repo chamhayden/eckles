@@ -96,7 +96,7 @@ const ContentLecturesSingle = ({}) => {
         Description: {lecture.description}
       </Typography>
       <Typography variant="body1" gutterBottom>
-        <a target="_blank" href={`/raw/lectures/${lecture.key}/`}>Access the code used in the lecture here (may be blank).</a>
+        <a target="_blank" href={`/~cs6080/raw/lectures/${lecture.key}/`}>Access the code used in the lecture here (may be blank).</a>
       </Typography>
       <Typography variant="body1" gutterBottom>
         Should watch no later than end of <Link to={`/${getters.term}/content/lectures/week#${lecture.week().week}`}>week {lecture.week().week}</Link>
@@ -112,7 +112,7 @@ const ContentLecturesSingle = ({}) => {
     </Box>    
 
     {lecture.visible
-      ? <a href={`/raw/lectures/${lecture.key}.pdf`} target="_blank"><Button variant="outlined" color="warning">View/Download PDF</Button></a>
+      ? <a href={`/~cs6080/raw/lectures/${lecture.key}.pdf`} target="_blank"><Button variant="outlined" color="warning">View/Download PDF</Button></a>
       : <Button onClick={() => alert('Lecture is coming soon! Check back later')} variant="outlined" color="warning">View/Download PDF</Button>
     }
 
