@@ -59,7 +59,7 @@ const TimetableLectures = () => {
               {getters.loggedIn && <TableCell align="left">{rowKey === 0 && <>
                       <h4>In-person in CLB7</h4><br />
                     </>}<Button variant="contained" onClick={() => {
-                window.location.href = `${config.BASE_NAME}${row.call_url_h}`;
+                window.location.href = `${row.call_url_h}`;
               }}>Watch Live</Button></TableCell>}
             </TableRow>
           ))}
