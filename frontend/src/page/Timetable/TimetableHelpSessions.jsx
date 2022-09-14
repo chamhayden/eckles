@@ -44,7 +44,7 @@ const TimetableHelpSessions = () => {
             { value: help_session.times, },
             { value: help_session.staff().map(s => s.name).join(', '), },
             { Raw: () => <Button variant="contained" onClick={() => {
-                window.location.href = `${config.BASE_NAME}${help_session.call_url_h}`;
+                window.location.href = `${help_session.call_url_h}`;
               }}>Join</Button>, },
           ])),
         }
