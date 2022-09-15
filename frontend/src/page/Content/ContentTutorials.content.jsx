@@ -28,8 +28,8 @@ export const generateContent = (getters, by) => {
     if (grouping.content_tutorials) {
       grouping.content_tutorials().sort((a, b) => a.order - b.order).forEach(tutorial => {
         table.push([
-          { value: tutorial.key, link: `/${getters.term}/content/tutorials/${tutorial.key}` },
-          { value: secondColumnValue(tutorial), link: `/${getters.term}/content/tutorials/${opposingPageType}#${secondColumnAnchor(tutorial)}` },
+          { value: tutorial.key, link: `/~cs1531/${getters.term}/content/tutorials/${tutorial.key}` },
+          { value: secondColumnValue(tutorial), link: `/~cs1531/${getters.term}/content/tutorials/${opposingPageType}#${secondColumnAnchor(tutorial)}` },
           { value: tutorial.duration ? `⏱️ ${tutorial.duration} mins` : 'TBD', },
           { value: tutorial.stream.join(', '), },
           { value: tutorial.importance, },
