@@ -46,7 +46,7 @@ const ContentTutorialsSingle = () => {
       <Button variant="outlined" size="small" onClick={() => navigate(-1)}>← Back</Button>
 
       <SectionHeader>
-        {tutorial.topic().emoji} <b>{tutorial.key}</b> &nbsp; (part of <Link to={`/${getters.term}/content/tutorials/topic#${tutorial.topic().name}`}>{tutorial.topic().name}</Link> in {tutorial.topic().area().name})
+        {tutorial.topic().emoji} <b>{tutorial.key}</b> &nbsp; (part of <Link to={`/~cs6080/${getters.term}/content/tutorials/topic#${tutorial.topic().name}`}>{tutorial.topic().name}</Link> in {tutorial.topic().area().name})
       </SectionHeader>
 
       <Box sx={{ ml: 1, mb: 3 }}>
