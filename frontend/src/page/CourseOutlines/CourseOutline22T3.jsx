@@ -37,6 +37,7 @@ const CourseOutline22T3 = () => {
           <li>Schedule / Timetable</li>
           <li>Student Conduct</li>
           <li>Resources for Students</li>
+          <li>Course Evaluation and Development</li>
         </ol>
       </Typography>
 
@@ -421,6 +422,22 @@ const CourseOutline22T3 = () => {
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         There is no single text book that covers all of the material in this course at the right level of detail and using the same technology base as we are. The lectures should provide sufficient detail to introduce topics, and you will then study them in further depth in the tutorials, exercises and assignments. For some lectures, further reading material may be given for students who wish to gain a deeper understanding.
+      </Typography>
+
+      <Typography variant="h5" component="div" gutterBottom>
+        9. Course Evaluation and Development 
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+         This course is evaluated each session using the MyExperience system.
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        This is being addressed during 22T3. 
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        <ul>
+          <li>We are re-doing parts of the testing lectures to improve clarity for students</li>
+          <li>Reducing the workload of the first assignment</li>
+        </ul>
       </Typography>
     </>
   );
