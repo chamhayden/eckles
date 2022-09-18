@@ -32,8 +32,12 @@ export const generateContent = (getters, by) => {
             { value: secondColumnValue(lecture), link: `/${getters.term}/content/lectures/${opposingPageType}#${secondColumnAnchor(lecture)}` },
             { value: lecture.duration_mins ? `⏱️ ${lecture.duration_mins} mins` : 'TBD', },
             { Raw: () => {
-                if (lecture.visible === true) {
-                  return <a href={`/~cs6080/raw/lectures/${lecture.key}.pdf`} target="_blank"><Button variant="outlined" color="warning">PDF</Button></a>;
+                console.log(lecture.key, lecture.pdf_url);
+                if (lecture.pdf_url === 'null') {
+                  return <>No PDF</>;
+                } else if (lecture.visible === true) {
+                  let url = lecture.pdf_url === '' ? `/~cs6080/raw/lectures/${lecture.key}.pdf` : lecture.pdf_url;
+                  return <a href={url} target="_blank"><Button variant="outlined" color="warning">PDF</Button></a>;
                 } else {
                   return <Button onClick={() => alert('Lecture is coming soon! Check back later')} variant="outlined" color="warning">PDF</Button>;
                 }
