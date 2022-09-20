@@ -35,7 +35,8 @@ export const generateContent = (getters, by) => {
                 if (lecture.pdf_url === 'null') {
                   return <>No Slides</>;
                 } else if (lecture.visible === true) {
-                  let url = lecture.pdf_url === '' ? `https://cgi.cse.unsw.edu.au/~cs6080/raw/lectures/${lecture.key}.pdf` : lecture.pdf_url;
+                  console.log(lecture.pdf_url);
+                  let url = lecture.pdf_url === undefined ? `/~cs6080/raw/lectures/${lecture.key}.pdf` : lecture.pdf_url;
                   return <a href={url} target="_blank"><Button variant="outlined" color="warning">Slides</Button></a>;
                 } else {
                   return <Button onClick={() => alert('Lecture is coming soon! Check back later')} variant="outlined" color="warning">Slides</Button>;
