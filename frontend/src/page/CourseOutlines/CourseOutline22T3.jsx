@@ -255,7 +255,7 @@ const CourseOutline22T3 = () => {
         Help sessions are unprepared drop-in "clinics" where students and groups can go to seek help about course related matters, whether that be the project, tutorials, or exercises. Current tutors or lab assistants will supervise each help session.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        Help session will be run via Blackboard Collaborate.
+        Help sessions will be run via Zoom.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         A timetable for help sessions can be found <Link to={link('timetable/help-sessions')}>here</Link>.
