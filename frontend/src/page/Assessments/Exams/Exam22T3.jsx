@@ -41,7 +41,7 @@ const CourseOutline22T3 = () => {
         Date, Time, and Duration
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The final exam will be a 3 hour exam that begins at TBD (AEST) and ends at TBD (AEST) on TBD.
+        The final exam will be a 3 hour exam that begins at 2pm (AEDT) and ends at 5pm (AEDT) on Monday the 5th December, 2022.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         Students outside of Asia-Pacific region, or students with ELS requirements, may have their exam time altered and communicated to the lecturer in charge privately. If you have been given alternate instructions about start and finish times, they apply.
