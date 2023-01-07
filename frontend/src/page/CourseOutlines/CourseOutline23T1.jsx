@@ -26,7 +26,6 @@ const CourseOutline23T1 = () => {
         Contents
       </Typography>
 
-
       <Typography variant="body1" gutterBottom>
         <ol>
           <li>Course Details</li>
@@ -452,8 +451,9 @@ const CourseOutline23T1 = () => {
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         <ul>
-          <li>We are re-doing parts of the testing lectures to improve clarity for students</li>
-          <li>Reducing the workload of the first assignment</li>
+          <li>We re-weighting some assignments and making assignment 2 a pair assignment to assist with workload</li>
+          <li>We are updating a number of outdated pieces of content and lectures</li>
+          <li>We are integrating more recent COMP1531 materials into COMP6080</li>
         </ul>
       </Typography>
     </>
