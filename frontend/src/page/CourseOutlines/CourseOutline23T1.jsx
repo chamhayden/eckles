@@ -304,6 +304,7 @@ const CourseOutline23T1 = () => {
               <TableCell>Assess</TableCell>
               <TableCell>Weighting</TableCell>
               <TableCell>Due Date</TableCell>
+              <TableCell>Individual/Pair</TableCell>
               <TableCell>Link</TableCell>
             </TableRow>
           </TableHead>
@@ -312,6 +313,7 @@ const CourseOutline23T1 = () => {
               <TableCell component="th" scope="row">Ass 1</TableCell>
               <TableCell>20%</TableCell>
               <TableCell>Week 3</TableCell>
+              <TableCell>Individual</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass1')}>View</Button>
               </TableCell>
@@ -320,6 +322,7 @@ const CourseOutline23T1 = () => {
               <TableCell component="th" scope="row">Ass 2</TableCell>
               <TableCell>30%</TableCell>
               <TableCell>Week 7</TableCell>
+              <TableCell>Pair (see below)</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass2')}>View</Button>
               </TableCell>
@@ -328,6 +331,7 @@ const CourseOutline23T1 = () => {
               <TableCell component="th" scope="row">Ass 3</TableCell>
               <TableCell>30%</TableCell>
               <TableCell>Week 10</TableCell>
+              <TableCell>Pair (see below)</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass3')}>View</Button>
               </TableCell>
@@ -336,6 +340,7 @@ const CourseOutline23T1 = () => {
               <TableCell component="th" scope="row">Exam</TableCell>
               <TableCell>20%</TableCell>
               <TableCell>Exam Period</TableCell>
+              <TableCell>Individual</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/exam')}>View</Button>
               </TableCell>
@@ -343,6 +348,16 @@ const CourseOutline23T1 = () => {
           </TableBody>
         </Table>
       </TableContainer>
+
+      <Typography variant="body1" component="div" gutterBottom>
+        For pair assignments, you complete them a pair of your choice. If you don't have a pair, we will find one for you. You can also choose to work alone, but we strongly do not recommend this as the workload is much higher for an individual.
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        Nominations for your pair (or to work alone) must be complete by the end of week 2. Information about this will be distributed in weekly notices.
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        Pairs will be <b>required</b> to contribute regularly to gitlab and in reasonably equal contributions as we still assess contributions individually. Failure to do so may result in a loss of marks.
+      </Typography>
          
 
       <Divider sx={{ mb: 3, mt: 3, }} />
