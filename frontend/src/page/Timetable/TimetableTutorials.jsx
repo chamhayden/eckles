@@ -20,6 +20,7 @@ import config from '../../config';
 const TimetableTutorials = () => {
   const { getters } = useContext(Context);
   return <>
+    For online classes, the Zoom passcode is <b>60802023</b>.
     <TableContainer component={Paper} sx={{maxWidth: 800, margin: '0 auto 30px auto'}}>
       <Table sx={{ minWidth: 250 }} aria-label="simple table">
         <TableHead>
