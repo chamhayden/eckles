@@ -52,7 +52,10 @@ const TimetableHelpSessions = () => {
     }).filter(c => !!c));
   }, [getters.content.weeks]);
 
-  return <SetOfTables boxes={boxes} />
+  return <>
+    For help sessions, the Zoom passcode is <b>60802023</b>.
+    <SetOfTables boxes={boxes} />
+  </>
 
   {/**/}
 
