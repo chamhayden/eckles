@@ -42,7 +42,7 @@ const ContentCards = ({ data, minHeight }) => {
                 {label &&
                   <div style={{
                     position: 'absolute',
-                    width: '100px',
+                    width: '120px',
                     height: '40px',
                   }}>
                     <div style={{

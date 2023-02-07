@@ -1,6 +1,6 @@
 import { apiCall } from './api';
 
-import { joinSchema } from '../config';
+import { DEV, joinSchema } from '../config';
 
 /* Genius or madness */
 const joinContent = content => {
@@ -54,14 +54,38 @@ export const loadContent = (term, loggedIn = false) => {
     })
       .then(rawContent => {
         const expiry = (new Date()).getTime() + 1000 * 60 * 5;
-        localStorage.setItem('eckles_expiry', expiry);
-        localStorage.setItem('eckles_term', term);
-        localStorage.setItem('eckles_content', JSON.stringify(rawContent));
+        if (!DEV) {
+          localStorage.setItem('eckles_expiry', expiry);
+          localStorage.setItem('eckles_term', term);
+          localStorage.setItem('eckles_content', JSON.stringify(rawContent));
+        }
         const content = joinContent(rawContent);
         resolve(content);
       })
-      .catch(err => reject(err));
+      .catch(err => { console.log(err); reject(err) });
   });
 };
 
 export const getYoutubeCodeFromUrl = code => code.slice(code.length - 11);
+
+export const RELEVANCE = {
+  'mandatory': {
+    colour: 'rgb(200,255,200)',
+    alert: 'We re]quire that you watch this lecture.',
+    select: 'I want to do the bare minimum',
+  },
+  'catchup': {
+    colour: 'rgb(200,200,255)',
+    alert: 'These are COMP1531 lectures for postgrads who want to catch up on some core assumed content.',
+  },
+  'recommended': {
+    colour: 'rgb(255,200,255)',
+    alert: 'You will survive without watching this, but we recommend that a typical student should watch.',
+    select: 'I want to work hard but not go over the top',
+  },
+  'extension': {
+    colour: 'rgb(255,200,200)',
+    alert: 'You will be completely fine without watching this - no issues at all! This is just for the keen beans with spare time or a lot curiosity',
+    select: 'I want to learn everything',
+  },
+}

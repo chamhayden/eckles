@@ -28,5 +28,6 @@ try {
       config[key] = data[key];
     }
   }
-} catch(err) {}
+} catch(err) { console.log(err); }
+
 module.exports = config;
