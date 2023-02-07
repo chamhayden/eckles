@@ -71,7 +71,7 @@ export const getYoutubeCodeFromUrl = code => code.slice(code.length - 11);
 export const RELEVANCE = {
   'mandatory': {
     colour: 'rgb(200,255,200)',
-    alert: 'We re]quire that you watch this lecture.',
+    alert: 'We require that you watch this lecture.',
     select: 'I want to do the bare minimum',
   },
   'catchup': {
