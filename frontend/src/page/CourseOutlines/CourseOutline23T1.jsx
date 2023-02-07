@@ -311,7 +311,7 @@ const CourseOutline23T1 = () => {
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">Ass 1</TableCell>
               <TableCell>15%</TableCell>
-              <TableCell>Week 3</TableCell>
+              <TableCell>Week 3, Monday</TableCell>
               <TableCell>Individual</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass1')}>View</Button>
@@ -320,7 +320,7 @@ const CourseOutline23T1 = () => {
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">Ass 2</TableCell>
               <TableCell>5%</TableCell>
-              <TableCell>Week 3</TableCell>
+              <TableCell>Week 4, Monday</TableCell>
               <TableCell>Individual</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass2')}>View</Button>
@@ -329,7 +329,7 @@ const CourseOutline23T1 = () => {
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">Ass 3</TableCell>
               <TableCell>30%</TableCell>
-              <TableCell>Week 7</TableCell>
+              <TableCell>Week 7, Monday</TableCell>
               <TableCell>Pair (see below)</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass3')}>View</Button>
@@ -338,7 +338,7 @@ const CourseOutline23T1 = () => {
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">Ass 4</TableCell>
               <TableCell>30%</TableCell>
-              <TableCell>Week 10</TableCell>
+              <TableCell>Week 10, Wednesday</TableCell>
               <TableCell>Pair (see below)</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass4')}>View</Button>
@@ -366,7 +366,7 @@ const CourseOutline23T1 = () => {
         Nominations for your pair (or to work alone) must be complete by the end of week 2. Information about this will be distributed in weekly notices.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        Pairs will be <b>required</b> to contribute regularly to gitlab and in reasonably equal contributions as we still assess contributions individually. Failure to do so may result in a loss of marks.
+        Pairs will be <b>required</b> to contribute regularly to gitlab and in reasonably equal contributions as we still assess contributions individually (there is no blanket group mark assigned). Failure to do so may result in a loss of marks.
       </Typography>
          
 
