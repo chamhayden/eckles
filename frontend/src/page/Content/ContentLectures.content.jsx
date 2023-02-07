@@ -1,6 +1,7 @@
 import Button from '@mui/material/Button';
 
 import { isHalfScreenWidth, isTinyMobileWidth } from '../../util/screen';
+import Relevance from '../../component/Relevance';
 
 export const generateContent = (getters, by) => {
   const opposingPageType = (by === 'week') ? 'topic' : 'week';
@@ -30,12 +31,12 @@ export const generateContent = (getters, by) => {
           table.push([
             { value: `${lecture.name}${lecture.live ? ' (live)' : ''}`, link: `/${getters.term}/content/lectures/${lecture.key}`, buttonProps: { variant: 'contained', color: 'info', sx: { textTransform: 'unset !important' } }, },
             { value: secondColumnValue(lecture), link: `/${getters.term}/content/lectures/${opposingPageType}#${secondColumnAnchor(lecture)}` },
+            { value: <Relevance category={lecture.relevance} />, },
             { value: lecture.duration_mins ? `⏱️ ${lecture.duration_mins} mins` : 'TBD', },
             { Raw: () => {
                 if (lecture.pdf_url === 'null') {
                   return <>No Slides</>;
                 } else if (lecture.visible === true) {
-                  console.log(lecture.pdf_url);
                   let url = lecture.pdf_url === undefined ? `/~cs6080/raw/lectures/${lecture.key}.pdf` : lecture.pdf_url;
                   return <a href={url} target="_blank"><Button variant="outlined" color="warning">Slides</Button></a>;
                 } else {
@@ -53,9 +54,10 @@ export const generateContent = (getters, by) => {
       maxWidth: 800,
       headers: [
         { name: 'Name', width: 40, },
-        { name: secondColumnName, width: 20, },
+        { name: secondColumnName, width: 20, showFn: () => !isTinyMobileWidth(), },
+        { name: 'Importance', width: 20, },
         { name: 'Duration', width: 20, showFn: () => !isHalfScreenWidth(), },
-        { name: 'Links', width: 20, showFn: () => !isTinyMobileWidth(), },
+        { name: 'Links', width: 20, showFn: () => !isHalfScreenWidth(), },
       ],
       table,
     });

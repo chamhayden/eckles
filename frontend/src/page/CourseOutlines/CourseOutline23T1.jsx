@@ -249,7 +249,7 @@ const CourseOutline23T1 = () => {
         Tutorials will be run via Zoom.
       </Typography>
       
-      <Typography variant="body1" component="div" gutterBottom>
+      <Typography variant="h6" component="div" gutterBottom sx={{ mt: 4 }}>
         4.3. Help Sessions
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
@@ -310,7 +310,7 @@ const CourseOutline23T1 = () => {
           <TableBody>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">Ass 1</TableCell>
-              <TableCell>20%</TableCell>
+              <TableCell>15%</TableCell>
               <TableCell>Week 3</TableCell>
               <TableCell>Individual</TableCell>
               <TableCell>
@@ -319,9 +319,9 @@ const CourseOutline23T1 = () => {
             </TableRow>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">Ass 2</TableCell>
-              <TableCell>30%</TableCell>
-              <TableCell>Week 7</TableCell>
-              <TableCell>Pair (see below)</TableCell>
+              <TableCell>5%</TableCell>
+              <TableCell>Week 3</TableCell>
+              <TableCell>Individual</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass2')}>View</Button>
               </TableCell>
@@ -329,10 +329,19 @@ const CourseOutline23T1 = () => {
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">Ass 3</TableCell>
               <TableCell>30%</TableCell>
-              <TableCell>Week 10</TableCell>
+              <TableCell>Week 7</TableCell>
               <TableCell>Pair (see below)</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass3')}>View</Button>
+              </TableCell>
+            </TableRow>
+            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableCell component="th" scope="row">Ass 4</TableCell>
+              <TableCell>30%</TableCell>
+              <TableCell>Week 10</TableCell>
+              <TableCell>Pair (see below)</TableCell>
+              <TableCell>
+                <Button variant="contained" onClick={() => redirect('assessments/assignments/ass4')}>View</Button>
               </TableCell>
             </TableRow>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -347,6 +356,8 @@ const CourseOutline23T1 = () => {
           </TableBody>
         </Table>
       </TableContainer>
+
+      <br />
 
       <Typography variant="body1" component="div" gutterBottom>
         For pair assignments, you complete them a pair of your choice. If you don't have a pair, we will find one for you. You can also choose to work alone, but we strongly do not recommend this as the workload is much higher for an individual.
@@ -440,6 +451,8 @@ const CourseOutline23T1 = () => {
         There is no single text book that covers all of the material in this course at the right level of detail and using the same technology base as we are. The lectures should provide sufficient detail to introduce topics, and you will then study them in further depth in the tutorials, exercises and assignments. For some lectures, further reading material may be given for students who wish to gain a deeper understanding.
       </Typography>
 
+      <Divider sx={{ mb: 3, mt: 3, }} />
+
       <Typography variant="h5" component="div" gutterBottom>
         9. Course Evaluation and Development 
       </Typography>
@@ -454,6 +467,7 @@ const CourseOutline23T1 = () => {
           <li>We re-weighting some assignments and making assignment 2 a pair assignment to assist with workload</li>
           <li>We are updating a number of outdated pieces of content and lectures</li>
           <li>We are integrating more recent COMP1531 materials into COMP6080</li>
+          <li>We have broken the first assignment into two smaller components</li>
         </ul>
       </Typography>
     </>

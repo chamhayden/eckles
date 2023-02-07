@@ -43,7 +43,7 @@ const ContentLecturesSingle = ({}) => {
       setters.setTitle(`Lecture: ${lecture.name}`);
 
       const rl = [
-        ...(lecture.lectures_prereq ? lecture.lectures_prereq() : []).map(l => ({ ...l, label: 'Pre-req', labelBackground: 'rgb(248,139,139)' })),
+        ...(lecture.lectures_prereq ? lecture.lectures_prereq() : []).map(l => ({ ...l, label: 'Watch first', labelBackground: 'rgb(248,139,139)' })),
         ...(getters.content.content_lectures.filter(l => 
           l.lectures_prereq && l.lectures_prereq().map(lp => lp.key).includes(lecture.key)
         )).map(l => ({ ...l, label: 'Up Next', labelBackground: 'rgb(175,239,148)' }))

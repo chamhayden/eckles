@@ -53,7 +53,7 @@ const TimetableHelpSessions = () => {
   }, [getters.content.weeks]);
 
   return <>
-    For help sessions, the Zoom passcode is <b>60802023</b>.
+    <div style={{ textAlign: 'center', marginBottom: '20px', }}>For help sessions, the Zoom passcode is <b>60802023</b>.</div>
     <SetOfTables boxes={boxes} />
   </>
 

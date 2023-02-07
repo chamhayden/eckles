@@ -28,7 +28,7 @@ const HelpResources = ({ }) => {
       icon: <LoopIcon />,
       subRoute: 'reactjs',
     },
-    {
+    /*{
       title: 'Git',
       icon: <GitHubIcon />,
       subRoute: 'git',
@@ -37,7 +37,7 @@ const HelpResources = ({ }) => {
       title: 'Network',
       icon: <PodcastsIcon />,
       subRoute: 'network',
-    },
+    },*/
   ];
 
   return (

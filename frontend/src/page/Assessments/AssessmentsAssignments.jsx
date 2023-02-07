@@ -28,16 +28,21 @@ const AssessmentsAssignments = ({ }) => {
     },
     {
       title: 'Ass3',
-      icon: <SchoolIcon />,
+      icon: <FavoriteIcon />,
       subRoute: 'ass3',
+    },
+    {
+      title: 'Ass3',
+      icon: <LocalHospitalIcon />,
+      subRoute: 'ass4',
     },
   ];
 
   return (
     <SubNavWrapper baseUrl={'/assessments/assignments'} menu={menu}>
       <>
-        <h2>{params.ass} has {['ass1', 'ass2', 'ass3'].includes(params.ass) ? '' : 'not '} been released!</h2>
-        {['ass1', 'ass2', 'ass3'].includes(params.ass) && (<Button variant="contained" size="large">
+        <h2>{params.ass} has {[''].includes(params.ass) ? '' : 'not '} been released!</h2>
+        {[''].includes(params.ass) && (<Button variant="contained" size="large">
           <a style={{ color: '#fff' }} target="_blank" href={params.ass === 'ass3' ? `https://docs.google.com/spreadsheets/d/1E6uDWCg5osxfJ7KOs8qUDgEoJYqgAoJWBo3YL85tnoY/edit#gid=0` : `/~cs6080/redirect/?path=COMP6080/${getters.term}/students/_/${params.ass}/`}>
             View on gitlab
           </a>
