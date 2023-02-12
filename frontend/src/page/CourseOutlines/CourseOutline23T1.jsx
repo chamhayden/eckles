@@ -219,11 +219,11 @@ const CourseOutline23T1 = () => {
         Lectures will be used to present the theory and practice of the techniques in this course. Although the lectures will primarily focus on the key concepts of software engineering, some lectures will also include practical demonstrations. Lecture slides will be available on the course web page.
       </Typography>
       <Typography variant="body1" gutterBottom>
-        On a typical week we will only have the live Tuesday lecture (2 hours). The live Tuesday lecture will be replaced by approximately 2 hours of pre-recorded lectures to watch each week. Please note:
+        On a typical week we will only have the live Monday lecture (2 hours). The live Monday lecture will be replaced by approximately 2 hours of pre-recorded lectures to watch each week. Please note:
       </Typography>
       <Typography variant="body1" gutterBottom>
         <ul>
-          <li>It's critical that you watch the 2 hours of pre-recorded lectures each week <em>prior</em> to the Tuesday lecture</li>
+          <li>It's critical that you watch the 2 hours of pre-recorded lectures each week <em>prior</em> to the Monday lecture</li>
           <li>The length of pre-recorded and live lectures may vary week to week, but the intention is to keep the average weekly duration at 4 hours across the term.</li>
           <li>In general, industry driven lectures are more likely to be in the pre-recorded format</li>
           <li>Lecture notes for the live lectures may only be released a day or two before the lecture. This is because as part of the teaching strategy for this course the live lectures are designed to essentially "supplement" and "round-off" the pre-recorded lectures, so it's natural to wait for some feedback from students before over-planning these.</li>
