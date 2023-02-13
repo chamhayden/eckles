@@ -377,10 +377,136 @@ const CourseOutline23T1 = () => {
         6. Course Schedule / Timetable
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The schedule for this course is outlined clearly in the timetable for <Link to={link('timetable/lectures')}>lectures</Link>, <Link to={link('timetable/tutorials')}>tutorials</Link>, and <Link to={link('timetable/help-sessions')}>help sessions</Link>.
+        The timetable for this course is outlined clearly in the timetable for <Link to={link('timetable/lectures')}>lectures</Link>, <Link to={link('timetable/tutorials')}>tutorials</Link>, and <Link to={link('timetable/help-sessions')}>help sessions</Link>.
       </Typography>
 
+      <Typography variant="body1" component="div" gutterBottom>
+        The content schedule is outlined below:
+      </Typography>
 
+      <Typography variant="body1" component="div" gutterBottom>
+        <b>Week 1</b>
+        <ul>
+          <li>Course Overview</li>
+          <li>Intro to Git</li>
+          <li>HTML Fundamentals</li>
+          <li>Image Types</li>
+          <li>CSS Rules</li>
+          <li>More Tags</li>
+          <li>CSS Formatting</li>
+          <li>CSS Layouts</li>
+          <li>Flexbox</li>
+          <li>SVGs</li>
+          <li>Pre-processors</li>
+          <li>zindex</li>
+          <li>CSS Showcase</li>
+          <li>Fonts</li>
+        </ul>
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        <b>Week 2</b>
+        <ul>
+          <li>Demo: HTML/CSS Page</li>
+          <li>Mobile CSS</li>
+          <li>Using CSS Frameworks</li>
+          <li>CSS Grids</li>
+          <li>Dev Tools</li>
+          <li>Javascript Intro (compared to C)</li>
+          <li>Javascript Language Features & Syntax</li>
+          <li>Javascript Advanced Functions</li>
+          <li>The Javascript Ecosystem</li>
+          <li>Node Package Manager</li>
+          <li>NPM Advanced</li>
+        </ul>
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        <b>Week 3</b>
+        <ul>
+          <li>Demo: Javascript - NodeJS</li>
+          <li>Introduction</li>
+          <li>DOM</li>
+          <li>Events</li>
+          <li>Javascript Closures</li>
+          <li>Forms</li>
+          <li>Local Storage</li>
+        </ul>
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        <b>Week 4</b>
+        <ul>
+          <li>Demo: Javascript - Browser</li>
+          <li>Events & Callbacks</li>
+          <li>Promises</li>
+          <li>Await / Async</li>
+          <li>AJAX</li>
+          <li>XMLHttpRequest (XHR)</li>
+          <li>Fetch</li>
+          <li>JSON & Data-interchange formats</li>
+          <li>Understand HTTP Servers</li>
+        </ul>
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        <b>Week 5</b>
+        <ul>
+          <li>Demo: Ass2 - Async & Planning</li>
+          <li>UI Fundamentals</li>
+          <li>Good & Bad UI 1</li>
+          <li>Good & Bad UI 2</li>
+          <li>Perceivability</li>
+          <li>Operabilitity</li>
+          <li>Understandability</li>
+          <li>Robustness</li>
+        </ul>
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        <b>Week 7</b>
+        <ul>
+          <li>Using Git in pairs</li>
+          <li>Introduction</li>
+          <li>Basic "Global CSS" Usage</li>
+          <li>Lifescycle</li>
+          <li>Transpilation</li>
+          <li>useState hook</li>
+          <li>Demo: ReactJS Intro & A11y</li>
+          <li>useEffect hook</li>
+          <li>Using Fetch & Hooks</li>
+          <li>Working with Multiple Files</li>
+          <li>Components & Props</li>
+          <li>Before you code</li>
+        </ul>
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        <b>Week 8</b>
+        <ul>
+          <li>Demo: ReactJS in Ass3</li>
+          <li>Linting</li>
+          <li>Routing & SPAs</li>
+          <li>CSS Frameworks</li>
+          <li>useContext</li>
+          <li>State management</li>
+          <li>Class components</li>
+          <li>Usability testing</li>
+          <li>Figma & Component Libraries</li>
+          <li>Pre-rendering</li>
+        </ul>
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        <b>Week 9</b>
+        <ul>
+          <li>Demo: ReactJS Further</li>
+          <li>Introduction</li>
+          <li>Component Testing</li>
+          <li>UI Testing</li>
+          <li>UI Testing (Demo)</li>
+        </ul>
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        <b>Week 10</b>
+        <ul>
+          <li>Final Exam Overview</li>
+        </ul>
+      </Typography>
+          
       <Divider sx={{ mb: 3, mt: 3, }} />
 
 
