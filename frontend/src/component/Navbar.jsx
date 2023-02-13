@@ -118,14 +118,18 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
                 {children &&
                   <Collapse in={open[key]} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                      {children.map((child, key2) => (
-                        <ListItemButton sx={{ pl: 5 }} key={key2} onClick={() => redirect(getUrl(child.route, external))} selected={boldIfPage(child.route)}>
-                          <ListItemIcon>
-                            <child.Icon style={{fill: 'white'}} />
-                          </ListItemIcon>
-                          <ListItemText primary={child.title} /> 
-                        </ListItemButton>
-                      ))}
+                      {children.map((child, key2) => {
+                        if (getters.loggedIn || !child.loginRequired) {
+                          return (
+                            <ListItemButton sx={{ pl: 5 }} key={key2} onClick={() => redirect(getUrl(child.route, external))} selected={boldIfPage(child.route)}>
+                              <ListItemIcon>
+                                <child.Icon style={{fill: 'white'}} />
+                              </ListItemIcon>
+                              <ListItemText primary={child.title} /> 
+                            </ListItemButton>
+                          );
+                        }
+                      })}
                     </List>
                   </Collapse>
                 }

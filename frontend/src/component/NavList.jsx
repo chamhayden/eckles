@@ -48,12 +48,14 @@ export const primaryNavList = [
       {
         title: 'Lectures',
         route: '/content/lectures/week',
+        loginRequired: true,
         Icon: TheatersIcon,
         description: 'View lecture content, slides, and videos',
       },
       {
         title: 'Tutorials',
         route: '/content/tutorials/week',
+        loginRequired: true,
         Icon: SchoolIcon,
         description: 'View tutorial content, questions, and videos',
       },
