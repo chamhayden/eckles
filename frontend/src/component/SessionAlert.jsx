@@ -6,12 +6,18 @@ import HelpIcon from "@mui/icons-material/Help";
 import SchoolIcon from "@mui/icons-material/School";
 import { keyframes } from "@mui/system";
 import { Context, useContext } from "../context";
+import { utcToZonedTime } from 'date-fns-tz'
 
+// First day of the term to determine weeks. May need to be changed per term
 const start_of_term = new Date("February 13, 2023 00:00:00");
-const today = new Date('February 14, 2023 15:00:01');
+const today = utcToZonedTime(new Date("February 20, 2023 16:01:00"), "Australia/Sydney");
 const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-let tutor = "";
+let tutor = [];
 
+/**
+ * Function to calculate the current week from the today date object
+ * @returns curr_week {Number} - the current week based on today
+ */
 const calculateCurrentWeek = () => {
   const ms_between_dates = Math.abs(start_of_term.getTime() - today.getTime());
   const curr_week = Math.ceil(ms_between_dates / (24 * 60 * 60 * 1000 * 7));
@@ -21,6 +27,11 @@ const calculateCurrentWeek = () => {
   return 0;
 };
 
+/**
+ * Function to convert a string to a date object
+ * @params timeslot {String} - String denoting time in "am" or "pm"
+ * @returns curr_time {Date} - the translated date object from a given string
+ */
 const calculateHour = (timeslot) => {
   const curr_time = new Date(today.getTime());
   let hour = Number(timeslot.replace("pm", "").replace("am", ""));
@@ -30,13 +41,19 @@ const calculateHour = (timeslot) => {
   return curr_time.setHours(hour, 0, 0);
 };
 
+/**
+ * Function to determine which sessions are valid with the current date
+ * @params schedule_array {Array<Object>} - Array of sessions grabbed from the database
+ * @returns sessions {Array<Object>} - Array of sessions that have been filtered based off 
+ *                                     the current week and day
+ */
 const calculateSessions = (schedule_array) => {
   const curr_week = calculateCurrentWeek();
   if (curr_week === 0) return [];
   let sessions = schedule_array.filter((session) => 
     weekday[today.getDay()] === session.day
   );
-  if (sessions.length > 0 && sessions[0].week === 'function') {
+  if (sessions.length > 0 && typeof sessions[0].week === 'function') {
     sessions = sessions.filter((session) =>
       session.week().week === curr_week
     );
@@ -44,62 +61,69 @@ const calculateSessions = (schedule_array) => {
   return sessions;
 }
 
-const checkCurrentSession = (sessions) => {
-  for (let session of sessions) {
-    let timeslot = ""
-    if (session.time) {
-      timeslot = session.time.split("-");
-    } else {
-      timeslot = session.times.split("-");
-    }
-    const start = calculateHour(timeslot[0]);
-    const end = calculateHour(timeslot[1]);
-    if (today.getTime() > start && today.getTime() < end) {
-      return session;
-    }
+/**
+ * Function to check whether current time is within the current session
+ * @params session {Object} - A session that needs to be checked
+ * @returns session {Object | Number} - A valid session if found, otherwise return 0
+ */
+const checkCurrentSession = (session) => {
+  let timeslot = ""
+  if (session.time) {
+    timeslot = session.time.split("-");
+  } else {
+    timeslot = session.times.split("-");
   }
-  return {};
+  const start = calculateHour(timeslot[0]);
+  const end = calculateHour(timeslot[1]);
+  if (today.getTime() > start && today.getTime() < end) {
+    return session;
+  }
+  return 0;
 }
 
 const checkLectureURL = (schedule_array) => {
+  const URLs = [];
   const sessions = calculateSessions(schedule_array);
   if (sessions.length > 0) {
-    const session = checkCurrentSession(sessions);
-    return session.call_url_h;
-  }
-  return "";
-};
-
-const checkTutorialURL = (schedule_array) => {
-  const sessions = calculateSessions(schedule_array);
-  if (sessions.length > 0) {
-    const session = checkCurrentSession(sessions);
-    if (session.call_url_h && session.call_url_h.includes("http")) {
-      tutor = session.staff ? session.staff().map((s) => s.name).join(", ") : "";
-      return session.call_url_h;
-    }
-  }
-  return "";
-};
-
-const checkHelpSessionURL = (schedule_array) => {
-  for (let session of schedule_array) {
-    if (calculateCurrentWeek() === session.week) {
-      for (let helpSession of session.schedule_help_sessions()) {
-        const timeslot = helpSession.times.split("-");
-        const start = calculateHour(timeslot[0]);
-        const end = calculateHour(timeslot[1]);
-        if (
-          weekday[today.getDay()] === helpSession.day &&
-          today.getTime() > start &&
-          today.getTime() < end
-        ) {
-          return helpSession.call_url_h;
-        }
+    for (let session of sessions) {
+      const curr_session = checkCurrentSession(session);
+      if (curr_session.call_url_h) {
+        URLs.push(curr_session.call_url_h);
       }
     }
   }
-  return "";
+  return URLs;
+};
+
+const checkTutorialURL = (schedule_array) => {
+  // No tutorials during term break
+  if (calculateCurrentWeek() === 6) return "";
+  const URLs = [];
+  const sessions = calculateSessions(schedule_array);
+  if (sessions.length > 0) {
+    for (let session of sessions) {
+      const curr_session = checkCurrentSession(session);
+      if (curr_session.call_url_h && curr_session.call_url_h.includes('http')) {
+        tutor.push(session.staff ? session.staff().map((s) => s.name).join(", ") : "");
+        URLs.push(curr_session.call_url_h);
+      }
+    }
+  }
+  return URLs;
+};
+
+const checkHelpSessionURL = (schedule_array) => {
+  const URLs = [];
+  const sessions = schedule_array.filter((session) => session.week === calculateCurrentWeek());
+  if (sessions.length > 0) {
+    for (let session of sessions[0].schedule_help_sessions()) {
+      const curr_session = checkCurrentSession(session);
+      if (curr_session.call_url_h && weekday[today.getDay()] === curr_session.day) {
+        URLs.push(curr_session.call_url_h);
+      }
+    }
+  }
+  return URLs;
 };
 
 const SessionAlert = (props) => {
@@ -134,31 +158,36 @@ const SessionAlert = (props) => {
     },
   ];
   return (
-    <div
-      style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "25px", marginBottom: "25px" }}
-    >
+    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "25px", marginBottom: "25px" }}>
       {SessionCards.map((card) => {
         return (
           <>
-            {card.URL && getters.loggedIn && (
-              <Card
-                key={card.title}
-                onClick={() => props.redirect(card.URL)}
-                sx={{ backgroundColor: card.backgroundColor, color: "white", minWidth: 275, flex: 1, height: 150, cursor: "pointer", animation: `${glow} 1s infinite alternate ease`, boxShadow: `0 0 5px 5px ${card.shadow}` }}
-              >
-                <CardContent>
-                  <Typography variant="h5" component="div" sx={{ mb: 1 }}>
-                    <card.icon style={{ paddingTop: "5px" }} /> {card.title}
-                  </Typography>
-                  {card.title === "Tutorial" && (
-                    <Typography variant="body">Tutor: {tutor}</Typography>
-                  )}
-                  <Typography variant="body2">
-                    A {card.title.toLowerCase()} is currently live! Click on the
-                    card to redirect yourself to the session.
-                  </Typography>
-                </CardContent>
-              </Card>
+            {card.URL.length > 0 && getters.loggedIn && (
+              card.URL.map((URL, idx) => {
+                return (
+                  <Card
+                    key={card.title}
+                    onClick={ () => props.redirect(URL) }
+                    sx={{ backgroundColor: card.backgroundColor, color: "white", minWidth: 275, flex: 1, height: 150,
+                      cursor: "pointer", animation: `${glow} 1s infinite alternate ease`,
+                      boxShadow: `0 0 5px 5px ${card.shadow}`
+                    }}
+                  >
+                    <CardContent>
+                      <Typography variant="h5" component="div" sx={{ mb: 1 }}>
+                        <card.icon style={{ paddingTop: "5px" }} /> {card.title}
+                      </Typography>
+                      {card.title === "Tutorial" && (
+                        <Typography variant="body">Tutor: {tutor[idx]}</Typography>
+                      )}
+                      <Typography variant="body2">
+                        A {card.title.toLowerCase()} is currently live! Click on the
+                        card to redirect yourself to the session.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                )
+              })
             )}
           </>
         );

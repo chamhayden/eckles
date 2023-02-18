@@ -12,6 +12,7 @@ import SubNav from '../component/SubNav';
 import makePage from '../component/makePage';
 import { Context, useContext } from '../context';
 import { primaryNavList, secondaryNavList } from '../component/NavList';
+import SessionAlert from '../component/SessionAlert';
 
 
 const flattenedNavList = [];
@@ -49,23 +50,26 @@ const Dashboard = ({ }) => {
   };
 
   return (
-    <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '25px' }}>
-      {flattenedNavList.map((card, key) => {
-        if (card.loginRequired && !getters.loggedIn) return <></>;
-        return (
-          <Card onClick={() => redirect(getUrl(card.route, card.external))} sx={{ minWidth: 275, flex: 1, height: 150, cursor: 'pointer' }}>
-            <CardContent>
-              <Typography variant="h5" component="div" sx={{ mb: 3 }}>
-                <card.Icon style={{paddingTop: '5px' }} /> {card.title}
-              </Typography>
-              <Typography variant="body2">
-                {card.description}
-              </Typography>
-            </CardContent>
-          </Card>
-        )
-      })}
-    </div>
+    <>
+      <SessionAlert redirect={redirect}/>
+      <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '25px' }}>
+        {flattenedNavList.map((card, key) => {
+          if (card.loginRequired && !getters.loggedIn) return <></>;
+          return (
+            <Card onClick={() => redirect(getUrl(card.route, card.external))} sx={{ minWidth: 275, flex: 1, height: 150, cursor: 'pointer' }}>
+              <CardContent>
+                <Typography variant="h5" component="div" sx={{ mb: 3 }}>
+                  <card.Icon style={{paddingTop: '5px' }} /> {card.title}
+                </Typography>
+                <Typography variant="body2">
+                  {card.description}
+                </Typography>
+              </CardContent>
+            </Card>
+          )
+        })}
+      </div>
+    </>
   );
 }
 
