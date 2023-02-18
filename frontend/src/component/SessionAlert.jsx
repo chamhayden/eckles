@@ -10,7 +10,7 @@ import { utcToZonedTime } from 'date-fns-tz'
 
 // First day of the term to determine weeks. May need to be changed per term
 const start_of_term = new Date("February 13, 2023 00:00:00");
-const today = utcToZonedTime(new Date("February 20, 2023 16:01:00"), "Australia/Sydney");
+const today = utcToZonedTime(new Date(), "Australia/Sydney");
 const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 let tutor = [];
 
