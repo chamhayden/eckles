@@ -104,7 +104,7 @@ const checkTutorialURL = (schedule_array) => {
     for (let session of sessions) {
       const curr_session = checkCurrentSession(session);
       if (curr_session.call_url_h && curr_session.call_url_h.includes('http')) {
-        tutor.push(session.staff ? session.staff().map((s) => s.name).join(", ") : "");
+        tutor.push(curr_session.staff ? curr_session.staff().map((s) => s.name).join(", ") : "");
         URLs.push(curr_session.call_url_h);
       }
     }
