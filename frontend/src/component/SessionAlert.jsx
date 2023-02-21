@@ -74,6 +74,10 @@ const checkCurrentSession = (session) => {
     timeslot = session.times.split("-");
   }
   const start = calculateHour(timeslot[0]);
+  // Remove spacing at last time if additional text exists for the tutorial name e.g. "12pm-1pm (T12A)"
+  if (timeslot[1].length > 4) {
+    timeslot[1] = timeslot[1].split(" ")[0];
+  }
   const end = calculateHour(timeslot[1]);
   if (today.getTime() > start && today.getTime() < end) {
     return session;
