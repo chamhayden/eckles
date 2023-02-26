@@ -32,7 +32,7 @@ const AssessmentsAssignments = ({ }) => {
       subRoute: 'ass3',
     },
     {
-      title: 'Ass3',
+      title: 'Ass4',
       icon: <LocalHospitalIcon />,
       subRoute: 'ass4',
     },
