@@ -39,14 +39,20 @@ const TimetableHelpSessions = () => {
             { name: 'Staff', width: 40, showFn: () => !isTinyMobileWidth(), },
             { name: 'Join', width: 20 },
           ],
-          table: week.schedule_help_sessions().map(help_session => ([
-            { value: help_session.day, },
-            { value: help_session.times, },
-            { value: help_session.staff().map(s => s.name).join(', '), },
-            { Raw: () => <Button variant="contained" onClick={() => {
-                window.location.href = `${help_session.call_url_h}`;
-              }}>Join</Button>, },
-          ])),
+          table: week.schedule_help_sessions().map(help_session => {
+            let lastObject = { value: help_session.call_url_h };
+            if (help_session.call_url_h.includes('http')) {
+              lastObject = { Raw: () => <Button variant="contained" onClick={() => {
+                  window.location.href = `${help_session.call_url_h}`;
+                }}>Join</Button>, };
+            }
+            return [
+              { value: help_session.day, },
+              { value: help_session.times, },
+              { value: help_session.staff().map(s => s.name).join(', '), },
+              lastObject,
+            ];
+          }),
         }
       }
     }).filter(c => !!c));
