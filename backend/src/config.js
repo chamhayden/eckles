@@ -10,7 +10,7 @@ const config = {
   TERMS: {
     sample: {
       STUDENT_LIST_SH: 'echo "5555555\n3418003"',
-      AIRTABLE_BASE: 'appqP1rmpJiAf1wMp',
+      AIRTABLE_BASE: 'appYoRmspUPWynt68',
       TUTOR_ID_LIST: [],
       AUDIT_ID_LIST: []
     },
