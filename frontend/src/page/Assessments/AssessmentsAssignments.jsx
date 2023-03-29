@@ -46,7 +46,7 @@ const AssessmentsAssignments = ({ }) => {
           <a style={{ color: '#fff' }} target="_blank" href={
             params.ass === 'ass1' ? `/~cs6080/redirect/?path=COMP6080/${getters.term}/students/_/pictocode/` :
             params.ass === 'ass2' ? `/~cs6080/redirect/?path=COMP6080/${getters.term}/students/_/funform/` :
-            params.ass === 'ass3' ? `https://docs.google.com/spreadsheets/d/1QZ1p5HSFyZmdfyvt7kyKpA_BfQdCDWs8T24o0S08nfQ/`
+            params.ass === 'ass3' ? `https://docs.google.com/spreadsheets/d/1QZ1p5HSFyZmdfyvt7kyKpA_BfQdCDWs8T24o0S08nfQ/` :
             params.ass === 'ass4' ? `https://docs.google.com/spreadsheets/d/1QRaHRbuvlbeptyfUDw91NZjSdQcu-SrMr5wOfgeuDfk/`
             : `/~cs6080/redirect/?path=COMP6080/${getters.term}/students/_/${params.ass}/`}>
             View on gitlab
