@@ -41,8 +41,8 @@ const AssessmentsAssignments = ({ }) => {
   return (
     <SubNavWrapper baseUrl={'/assessments/assignments'} menu={menu}>
       <>
-        <h2>{params.ass} has {['ass1','ass2','ass3'].includes(params.ass) ? '' : 'not '} been released!</h2>
-        {['ass1','ass2','ass3'].includes(params.ass) && (<Button variant="contained" size="large">
+        <h2>{params.ass} has {['ass1','ass2','ass3','ass4'].includes(params.ass) ? '' : 'not '} been released!</h2>
+        {['ass1','ass2','ass3','ass4'].includes(params.ass) && (<Button variant="contained" size="large">
           <a style={{ color: '#fff' }} target="_blank" href={
             params.ass === 'ass1' ? `/~cs6080/redirect/?path=COMP6080/${getters.term}/students/_/pictocode/` :
             params.ass === 'ass2' ? `/~cs6080/redirect/?path=COMP6080/${getters.term}/students/_/funform/` :
