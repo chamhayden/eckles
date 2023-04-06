@@ -106,7 +106,7 @@ const SignIn = (props) => {
   if (loading) {
     return <AppLoad />;
   }
-  
+
   return (
     <main className={classes.main}>
       <CssBaseline />
@@ -118,7 +118,7 @@ const SignIn = (props) => {
         <form className={classes.form}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">zid</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus placeholder="z1234567" value={zid} onChange={e => setZid(e.target.value)} />
+            <Input id="username" name="username" autoComplete="username" autoFocus placeholder="z1234567" value={zid} onChange={e => setZid(e.target.value)} />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">zpass</InputLabel>
