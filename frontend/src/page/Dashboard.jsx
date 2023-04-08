@@ -11,30 +11,29 @@ import Button from '@mui/material/Button';
 import SubNav from '../component/SubNav';
 import makePage from '../component/makePage';
 import { Context, useContext } from '../context';
-import { primaryNavList, secondaryNavList } from '../component/NavList';
+import { getPrimaryNavList, getSecondaryNavList } from '../component/NavList';
 import SessionAlert from '../component/SessionAlert';
-
-
-const flattenedNavList = [];
-primaryNavList.map(i => {
-  if (i.children && i.children.length > 0) {
-    i.children.map(c => {
-      flattenedNavList.push({
-        ...c,
-        loginRequired: i.loginRequired,
-      });
-    })
-  } else {
-    flattenedNavList.push(i);
-  }
-});
-secondaryNavList.map(i => {
-  flattenedNavList.push(i);
-});
 
 const Dashboard = ({ }) => {
   const { getters, setters } = useContext(Context);
   const navigate = useNavigate();
+
+  const flattenedNavList = [];
+  getPrimaryNavList(getters.term).map(i => {
+    if (i.children && i.children.length > 0) {
+      i.children.map(c => {
+        flattenedNavList.push({
+          ...c,
+          loginRequired: i.loginRequired,
+        });
+      })
+    } else {
+      flattenedNavList.push(i);
+    }
+  });
+  getSecondaryNavList(getters.term).map(i => {
+    flattenedNavList.push(i);
+  });
 
   const getUrl = (route, external) => {
     if (external) return route;
