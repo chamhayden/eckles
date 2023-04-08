@@ -30,7 +30,7 @@ import mainlogo from '../asset/mainlogo.png';
 import { isMobileWidth } from '../util/screen';
 import { Context, useContext } from '../context';
 
-import { primaryNavList, secondaryNavList } from './NavList';
+import { getPrimaryNavList, getSecondaryNavList } from './NavList';
 
 const ExternalIcon = () => {
   return <img style={{ width: '15px' }} src={External} />;
@@ -46,11 +46,13 @@ const useStyles = makeStyles({
 });
 
 export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setSidebarOpen }) {
+
   const { getters, setters } = useContext(Context);
+  const primaryNav = getPrimaryNavList(getters.term);
   const classes = useStyles();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [open, setOpen] = React.useState(Array(primaryNavList.length).fill(true));
+  const [open, setOpen] = React.useState(Array(primaryNav.length).fill(true));
 
   const handleClick = (key) => {
     const newOpen = [...open];
@@ -100,7 +102,7 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
           </Box>
 
           <List>
-          {primaryNavList.map(({ external, title, route, Icon, children, loginRequired }, key) => {
+          {primaryNav.map(({ external, title, route, Icon, children, loginRequired }, key) => {
             if (!getters.loggedIn && loginRequired) {
               return <span key={key}></span>
             }
@@ -119,13 +121,17 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
                   <Collapse in={open[key]} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                       {children.map((child, key2) => {
+                        const external2 = child.external;
+                        const route2 = child.route;
+                        const clickFn2 = route2 ? () => redirect(getUrl(route2, external2)) : () => handleClick(key2);
                         if (getters.loggedIn || !child.loginRequired) {
                           return (
-                            <ListItemButton sx={{ pl: 5 }} key={key2} onClick={() => redirect(getUrl(child.route, external))} selected={boldIfPage(child.route)}>
+                            <ListItemButton sx={{ pl: 5 }} key={key2} onClick={clickFn2} selected={boldIfPage(child.route)}>
                               <ListItemIcon>
                                 <child.Icon style={{fill: 'white'}} />
                               </ListItemIcon>
                               <ListItemText primary={child.title} /> 
+                              {external2 && <ExternalIcon />}
                             </ListItemButton>
                           );
                         }
@@ -139,7 +145,7 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
           </List>
           {getters.loggedIn && <Divider sx={{borderColor: '#666', margin: '0 15px' }} />}
           <List>
-          {secondaryNavList.map(({ external, title, Icon, route, loginRequired }, key) => {
+          {getSecondaryNavList(getters.term).map(({ external, title, Icon, route, loginRequired }, key) => {
             if (!getters.loggedIn && loginRequired) {
               return <span key={key}></span>
             }
