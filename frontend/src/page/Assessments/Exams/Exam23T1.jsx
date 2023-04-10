@@ -41,7 +41,7 @@ const CourseOutline22T3 = () => {
         Date, Time, and Duration
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The final exam will be a 3 hour exam that begins at 2pm (AEDT) and ends at 5pm (AEDT) on Monday the 5th December, 2022.
+        The final exam will be a 3 hour exam that begins at 9am (AEST) and ends at 12pm (AEST) on Tuesday 2nd May.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         Students outside of Asia-Pacific region, or students with ELS requirements, may have their exam time altered and communicated to the lecturer in charge privately. If you have been given alternate instructions about start and finish times, they apply.
@@ -53,7 +53,7 @@ const CourseOutline22T3 = () => {
         Exam Structure
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The exam will be worth X marks. those X marks will make up the 20% value of the course. X will be determined closer to the exam.
+        Your exam will be worth a certain number of arbitrary marks, but these marks will make up 20% of the course (the size of this assessment).
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         The exam will be very similar to assignment 3, with the following simplified criteria:
