@@ -104,12 +104,15 @@ const SetOfTables = ({ boxes, lectures }) => {
                     <TableBody>
                       {table.map((tableRow, tableRowKey) => {
                         hasLectures = true
-                        const curDuration = parseInt(tableRow[3].value.replace(/^\D+/g, ''))
+                        var curDuration = parseInt(tableRow[3].value.replace(/^\D+/g, ''))
+                        if (window.location.href.includes('tutorial')) {
+                          curDuration = parseInt(tableRow[2].value.replace(/^\D+/g, ''))
+                        }
                         if (tableRowKey === 0) {
                           durationCount = curDuration
-                        } else if (shouldShowImportance(tableRow)) {
+                        } else if (!lectures || shouldShowImportance(tableRow)) {
                           durationCount += curDuration
-                        }
+                        } 
                         return (
                         <TableRow
                           key={tableRowKey}
