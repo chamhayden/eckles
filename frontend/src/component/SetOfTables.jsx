@@ -16,6 +16,7 @@ import Paper from '@mui/material/Paper';
 import { RELEVANCE } from '../util/content';
 
 const SetOfTables = ({ boxes, lectures }) => {
+  var durationCount = 0 
   const [noCatchup, setNoCatchup] = React.useState(localStorage.hasOwnProperty('eckles_noCatchup') ? parseInt(localStorage.getItem('eckles_noCatchup')) : 1);
   const [studentType, setStudentType] = React.useState(localStorage.hasOwnProperty('eckles_studentType') ? localStorage.getItem('eckles_studentType') : 'recommended');
 
@@ -44,6 +45,12 @@ const SetOfTables = ({ boxes, lectures }) => {
     return true;
   }
 
+  const parseMins = (totalMinutes) => {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    return `${hours}h${minutes > 0 ? ` ${minutes}m` : ''}`;
+  }
+
   return (
   	<>
       {lectures && <div style={{ border: '1px solid #999', padding: '10px', fontSize: '1.1em', margin: '0 auto 20px auto', minWidth: 100, maxWidth: '380px' }}>
@@ -56,7 +63,8 @@ const SetOfTables = ({ boxes, lectures }) => {
         <div style={{ height: '20px' }}></div>
         <span style={{ cursor: 'pointer' }} onClick={() => setNoCatchupFn(noCatchup === 0 ? 1 : 0)}><input type="checkbox" checked={noCatchup} />I completed COMP1531 <span onClick={(e) => { alert('If you uncheck this box, we will show all COMP1531 lectures that are relevant to this course. You won\'t necessarily need to watch every catch up lecture, because you may already have that knowledge.'); e.stopPropagation(); }}>ℹ️</span></span>
       </div>}
-  	  {boxes.map(({ title, key, headers, table, maxWidth }, boxKey) => {
+  	  {boxes.map(({ title, key, headers, table, maxWidth, totalDuration }, boxKey) => {
+        var hasLectures = false
         let totalWidth = 0;
         headers.filter(h => h.showFn === undefined || h.showFn()).map(h => h.width).forEach(w => {
           totalWidth += w;
@@ -94,7 +102,15 @@ const SetOfTables = ({ boxes, lectures }) => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {table.map((tableRow, tableRowKey) => (
+                      {table.map((tableRow, tableRowKey) => {
+                        hasLectures = true
+                        const curDuration = parseInt(tableRow[3].value.replace(/^\D+/g, ''))
+                        if (tableRowKey === 0) {
+                          durationCount = curDuration
+                        } else if (shouldShowImportance(tableRow)) {
+                          durationCount += curDuration
+                        }
+                        return (
                         <TableRow
                           key={tableRowKey}
                           sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -123,15 +139,28 @@ const SetOfTables = ({ boxes, lectures }) => {
                             	  	  return <TableCell key={cellKey}>{cell.value}</TableCell>
                                   }
                             	  }
-                            	  return <></>;
                               }
+                            } else {
                             }
                         	})}
                         </TableRow>
-                      ))}
+                      )})}
                     </TableBody>
                   </Table>
                 </TableContainer>
+                {
+                  hasLectures === true &&
+                  <Typography variant="h6"
+                    sx={{
+                      textAlign: 'end',
+                      fontSize: '0.875rem',
+                      marginTop: '10px'
+                    }}
+                  >
+                    Total duration: <strong>{parseMins(durationCount)}</strong>
+                  </Typography>
+
+                }
               </AccordionDetails>
             </Accordion>
           </>
