@@ -126,31 +126,18 @@ const CourseOutline23T3 = () => {
         Postgraduate students will need to familiarise themselves with git, specifically, if not already confident, check out the <Link to={link('help/resources')}>resources here</Link>. We have also <a href="https://nw-syd-gitlab.cseunsw.tech/"> provided a lab0 on the tutorials &amp; exercises page</a> that we encourage everyone who hasn't completed COMP1531 to complete prior to the beginning of the course. Basic competency in git is an expectation in COMP6080.
       </Typography>
       <Typography variant="h6" component="div" gutterBottom sx={{ mt: 4 }}>
-        2.2. Student Learning Outcomes
+        2.2. Course Learning Outcomes
       </Typography>
       <Typography variant="body1" gutterBottom>
           After completing this course, students will be able to:
       </Typography>
       <Typography variant="body1" gutterBottom>
         <ol>
-          <li>
-           A knowledge of fundamental Javascript semantics sufficient to design, construct, test and debug Javascript programs.
-          </li>
-          <li>
-           An understanding of the context of web-front end programming, including CSS and the DOM, sufficient to successfully construction of programs for the web-front end.
-          </li>
-          <li>
-           A knowledge of modern web front-end coding practices including Javascript frameworks and CSS framework, allowing effective and efficient integration of existing commonly-used components into a web application.
-          </li>
-          <li>
-           An ability to use modern Javascript asynchronous programming techniques for the web-front end to produce robust and maintainable code, and a basis to build on in understanding concurrency in other contexts.
-          </li>
-          <li>
-           A knowledge of basic web front-end security issues sufficient to understand and avoid common security vulnerabilities when constructing web applications.
-          </li>
-          <li>
-           An awareness of user interface design as it applies to the web, including accessibility, allowing adoption of sound practices and providing a basis to build an understanding of interface design generally.
-          </li>
+          <li>CLO1 : Able to apply Javascript semantics to design, construct, test and debug programs holistically </li>
+          <li>CLO2 : Construct programs for web-front end with HTML, CSS, and DOM manipulation</li>
+          <li>CLO3 : Use Javascript and CSS frameworks to allow more efficient integration of existing code and components into a final product</li>
+          <li>CLO4 : Build stable applications that utilise concurrent programming through use of Javascript's asynchronous programming techniques</li>
+          <li>CLO5 : Design and build interfaces that focus on best user experience and accessible design practices</li>
         </ol>
       </Typography>
 
