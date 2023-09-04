@@ -28,7 +28,7 @@ export const getPrimaryNavList = (term) => {
     },
     {
       title: 'Forum',
-      route: 'https://edstem.org/au/join/cP8yUr',
+      route: 'https://edstem.org/au/join/TfEpZm',
       external: true,
       loginRequired: true,
       Icon: ForumIcon,
