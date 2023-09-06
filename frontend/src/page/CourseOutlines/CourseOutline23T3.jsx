@@ -317,7 +317,7 @@ const CourseOutline23T3 = () => {
               <TableCell component="th" scope="row">Ass 3</TableCell>
               <TableCell>30%</TableCell>
               <TableCell>Week 7, Monday</TableCell>
-              <TableCell>Pair (see below)</TableCell>
+              <TableCell>Individual</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass3')}>View</Button>
               </TableCell>
@@ -347,7 +347,7 @@ const CourseOutline23T3 = () => {
       <br />
 
       <Typography variant="body1" component="div" gutterBottom>
-        For pair assignments, you complete them a pair of your choice. If you don't have a pair, we will find one for you. You can also choose to work alone, but we strongly do not recommend this as the workload is much higher for an individual.
+        For pair assignments, you complete them a pair of your choice. If you don't have a pair, we will find one for you. You can also choose to work alone (this is something we arguably should not offer, but we do because we know there are exceptional circumstances), but we strongly do not recommend this as the workload is much higher for an individual. If the workload is a concern, work as a pair (how it's designed).
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         Nominations for your pair (or to work alone) must be complete by the end of week 2. Information about this will be distributed in weekly notices.
