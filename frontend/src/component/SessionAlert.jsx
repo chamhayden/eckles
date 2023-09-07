@@ -9,7 +9,7 @@ import { Context, useContext } from "../context";
 import { utcToZonedTime } from 'date-fns-tz'
 
 // First day of the term to determine weeks. May need to be changed per term
-const start_of_term = new Date("February 13, 2023 00:00:00");
+const start_of_term = new Date("September 11, 2023 00:00:00");
 const today = utcToZonedTime(new Date(), "Australia/Sydney");
 const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 let tutor = [];
