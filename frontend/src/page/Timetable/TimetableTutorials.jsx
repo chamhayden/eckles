@@ -20,7 +20,7 @@ import config from '../../config';
 const TimetableTutorials = () => {
   const { getters } = useContext(Context);
   return <>
-    <div style={{ textAlign: 'center', marginBottom: '20px', }}>For tutorials, the Zoom passcode is <b>60802023</b>.</div>
+    <div style={{ textAlign: 'center', marginBottom: '20px', }}>ONLINe tutorials are run on MS teams, please join them <a href="https://teams.microsoft.com/l/team/19%3aEua1eLL2oASZienf-Bf71zTkcaG7fpw3Dd-MuCKDnSg1%40thread.tacv2/conversations?groupId=9148b9c3-73a0-4017-a114-792e39aa2d22&tenantId=3ff6cfa4-e715-48db-b8e1-0867b9f9fba3" target="_blank">here</a>.</div>
     <TableContainer component={Paper} sx={{maxWidth: 800, margin: '0 auto 30px auto'}}>
       <Table sx={{ minWidth: 250 }} aria-label="simple table">
         <TableHead>
