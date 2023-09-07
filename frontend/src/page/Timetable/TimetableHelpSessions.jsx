@@ -59,7 +59,7 @@ const TimetableHelpSessions = () => {
   }, [getters.content.weeks]);
 
   return <>
-    <div style={{ textAlign: 'center', marginBottom: '20px', }}>For help sessions, the Zoom passcode is <b>60802023</b>.</div>
+    <div style={{ textAlign: 'center', marginBottom: '20px', }}>Help Sessions run on MS teams, please join it <a href="https://teams.microsoft.com/l/team/19%3aEua1eLL2oASZienf-Bf71zTkcaG7fpw3Dd-MuCKDnSg1%40thread.tacv2/conversations?groupId=9148b9c3-73a0-4017-a114-792e39aa2d22&tenantId=3ff6cfa4-e715-48db-b8e1-0867b9f9fba3" target="_blank">here</a>.</div>
     <SetOfTables boxes={boxes} />
   </>
 
