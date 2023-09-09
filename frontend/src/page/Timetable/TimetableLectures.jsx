@@ -56,8 +56,8 @@ const TimetableLectures = () => {
                   }</>
                 )}                
               </TableCell>}
-              {getters.loggedIn && <TableCell align="left">{rowKey === 0 && <>
-                      <h4>In-person in Keith Burrows Theatre</h4><br />
+              {getters.loggedIn && <TableCell align="left">{rowKey < 4 && <>
+                      <h4>In-person in CLB7</h4><br />
                     </>}<Button variant="contained" onClick={() => {
                 window.location.href = `${row.call_url_h}`;
               }}>Watch Live</Button></TableCell>}
