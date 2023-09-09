@@ -27,6 +27,11 @@ import ContentTutorialsByWeek from './page/Content/ContentTutorialsByWeek';
 import ContentTutorialsByTopic from './page/Content/ContentTutorialsByTopic';
 import AssessmentsAssignments from './page/Assessments/AssessmentsAssignments';
 import AssessmentsExam from './page/Assessments/AssessmentsExam';
+import StyleBase from './page/Style/StyleBase';
+import StyleHtml from './page/Style/StyleHtml';
+import StyleCSS from './page/Style/StyleCSS';
+import StyleJavascript from './page/Style/StyleJavascript';
+import StyleReactJS from './page/Style/StyleReact';
 import HelpBase from './page/Help/HelpBase';
 import HelpStyle from './page/Help/HelpStyle';
 import HelpInstallation from './page/Help/HelpInstallation';
@@ -89,6 +94,12 @@ const Router = () => {
             <Route path="javascript" element={<HelpResourcesJavascript />} />
             <Route path="reactjs" element={<HelpResourcesReact />} />
           </Route>
+        </Route>
+        <Route path="style" element={<StyleBase />}>
+          <Route path="html" element={<StyleHtml />} />
+          <Route path="css" element={<StyleCSS />} />
+          <Route path="javascript" element={<StyleJavascript />} />
+          <Route path="reactjs" element={<StyleReactJS />} />
         </Route>
         <Route path="grades" element={<Grades />}></Route>
         <Route path="course-outline" element={<CourseOutline />}></Route>

@@ -103,8 +103,7 @@ export const getPrimaryNavList = (term) => {
         },
         {
           title: 'Style Guide',
-          route: `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/style`,
-          external: true,
+          route: `/style`,
           Icon: PaletteIcon,
           description: 'View our style guide for different languages in the course',
         },
