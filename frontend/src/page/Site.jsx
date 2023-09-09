@@ -46,9 +46,12 @@ const SiteWrapper = ({ children }) => {
   }, [pathname])
 
   React.useEffect(() => {
+    console.log('params');
     if (pathname === '/') {
       navigate(`/${config.DEFAULT_TERM}`);
       setters.setTerm(`${config.DEFAULT_TERM}`);
+    } else if (params.term === 'NOW') {
+      navigate(pathname.replace('NOW', config.DEFAULT_TERM));
     } else {
       setters.setTerm(`${params.term}`);
     }
