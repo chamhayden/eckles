@@ -8,7 +8,7 @@ const StyleJavascript = ({}) => {
   return (
     <>
       <Typography variant="body1" gutterBottom>
-        Test
+        Coming Soon
       </Typography>
        
     </>
