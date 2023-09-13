@@ -4,7 +4,7 @@ Hi
 `npm install`  
 `npm start`  
 
-In a new terminal:
+In a new terminal:  
 `cd frontend`  
 `npm install`  
 `npm start`  
