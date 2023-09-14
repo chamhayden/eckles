@@ -17,7 +17,7 @@ const StyleHtml = ({}) => {
       <Body>We follow the <a href="https://www.w3schools.com/html/html5_syntax.asp" target="_blank">W3 schools style guide for HTML</a> as a base. Here are a few notable guidelines that are often asked about or forgotten.</Body>
 
       <Body>
-        <ol>
+        <ul>
           <li><a href="#html-casing">1.1. Casing & Quotation</a></li>
           <li><a href="#html-indentation">1.2. Indentation</a></li>
           <li><a href="#html-repetition">1.3. Repetition</a></li>
@@ -28,7 +28,7 @@ const StyleHtml = ({}) => {
           <li><a href="#html-img">1.8. Image Attributes</a></li>
           <li><a href="#html-img-vs-bg-img">1.9. img tag VS. background-image</a></li>
           <li><a href="#html-ids">1.10. Unique IDs</a></li>
-        </ol>
+        </ul>
       </Body>
 
       <HR />

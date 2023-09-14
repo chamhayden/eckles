@@ -17,7 +17,7 @@ const StyleCSS = ({}) => {
       <Body>We follow the <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Writing_style_guide/Code_style_guide/CSS" target="_blank">MDN style guide for CSS</a> as a base. Here are a few notable guidelines that are often asked about or forgotten.</Body>
 
       <Body>
-        <ol>
+        <ul>
           <li><a href="#css-casing">2.1. Casing & Quotation</a></li>
           <li><a href="#css-indentation">2.2. Indentation</a></li>
           <li><a href="#css-avoid-repetition">2.3. Avoid Repetition</a></li>
@@ -25,7 +25,7 @@ const StyleCSS = ({}) => {
           <li><a href="#css-universal-selectors">2.5. Universal Selectors</a></li>
           <li><a href="#css-external-spreadsheet">2.6. Use External Spreadsheets</a></li>
           <li><a href="#css-names">2.7. Class/ID naming convention</a></li>
-        </ol>
+        </ul>
       </Body>
 
       <HR />
