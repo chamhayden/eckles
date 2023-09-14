@@ -28,6 +28,11 @@ const HelpResources = ({ }) => {
       icon: <LoopIcon />,
       subRoute: 'reactjs',
     },
+    {
+      title: 'Cypress',
+      icon: <PodcastsIcon />,
+      subRoute: 'cypress',
+    },
     /*{
       title: 'Git',
       icon: <GitHubIcon />,
