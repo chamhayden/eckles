@@ -40,6 +40,7 @@ import HelpResourcesGit from './page/Help/HelpResourcesGit';
 import HelpResourcesNetwork from './page/Help/HelpResourcesNetwork';
 import HelpResourcesHtmlCss from './page/Help/HelpResourcesHtmlCss';
 import HelpResourcesJavascript from './page/Help/HelpResourcesJavascript';
+import HelpResourcesCypress from './page/Help/HelpResourcesCypress';
 import HelpResourcesReact from './page/Help/HelpResourcesReact';
 import LogoutAction from './component/LogoutAction';
 
@@ -92,6 +93,7 @@ const Router = () => {
             <Route path="network" element={<HelpResourcesNetwork />} />
             <Route path="htmlcss" element={<HelpResourcesHtmlCss />} />
             <Route path="javascript" element={<HelpResourcesJavascript />} />
+            <Route path="cypress" element={<HelpResourcesCypress />} />
             <Route path="reactjs" element={<HelpResourcesReact />} />
           </Route>
         </Route>
