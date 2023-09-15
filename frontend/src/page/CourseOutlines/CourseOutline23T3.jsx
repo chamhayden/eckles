@@ -350,7 +350,7 @@ const CourseOutline23T3 = () => {
         For pair assignments, you complete them a pair of your choice. If you don't have a pair, we will find one for you. You can also choose to work alone (this is something we arguably should not offer, but we do because we know there are exceptional circumstances), but we strongly do not recommend this as the workload is much higher for an individual. If the workload is a concern, work as a pair (how it's designed).
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        Nominations for your pair (or to work alone) must be complete by the end of week 2. Information about this will be distributed in weekly notices.
+        Nominations for your pair (or to work alone) must be complete by the end of week 5. Information about this will be distributed in weekly notices.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         Pairs will be <b>required</b> to contribute regularly to gitlab and in reasonably equal contributions as we still assess contributions individually (there is no blanket group mark assigned). Failure to do so may result in a loss of marks.
