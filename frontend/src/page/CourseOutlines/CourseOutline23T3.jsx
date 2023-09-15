@@ -298,7 +298,7 @@ const CourseOutline23T3 = () => {
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">Ass 1</TableCell>
               <TableCell>15%</TableCell>
-              <TableCell>Week 3, Monday</TableCell>
+              <TableCell>Week 3, Friday</TableCell>
               <TableCell>Individual</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass1')}>View</Button>
@@ -307,7 +307,7 @@ const CourseOutline23T3 = () => {
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">Ass 2</TableCell>
               <TableCell>5%</TableCell>
-              <TableCell>Week 4, Monday</TableCell>
+              <TableCell>Week 4, Friday</TableCell>
               <TableCell>Individual</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass2')}>View</Button>
@@ -316,7 +316,7 @@ const CourseOutline23T3 = () => {
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">Ass 3</TableCell>
               <TableCell>30%</TableCell>
-              <TableCell>Week 7, Monday</TableCell>
+              <TableCell>Week 7, Friday</TableCell>
               <TableCell>Individual</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass3')}>View</Button>
@@ -325,7 +325,7 @@ const CourseOutline23T3 = () => {
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">Ass 4</TableCell>
               <TableCell>30%</TableCell>
-              <TableCell>Week 10, Wednesday</TableCell>
+              <TableCell>Week 10, Friday</TableCell>
               <TableCell>Pair (see below)</TableCell>
               <TableCell>
                 <Button variant="contained" onClick={() => redirect('assessments/assignments/ass4')}>View</Button>
