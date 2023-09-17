@@ -366,7 +366,7 @@ document.getElementById('main-btn').addEventListener('click', changeText);
       </Body>
 
       <ExampleImages
-        title="Examples of when to use the background-image style property"
+        title="Examples of when to use the image tag"
         srcArray={[
           { src: EcklesImg, caption: 'Logos like the top left image on Eckles is part of the website layout and thus should use <img />.'},
           { src: GuardianImg, caption: 'Images that are unobscured and is meant to be viewed/consumed by the user should use <img />.'},
