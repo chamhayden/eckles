@@ -16,7 +16,7 @@ const StyleHtml = ({}) => {
 
       <H3>📜 1. HTML Style Guide</H3>
 
-      <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is **highly** recommended for students to have a read through this style guide.</Body>
+      <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
       <Body>This page outlines the conventions we will be following throughout the course. It incorporates guidelines derived from standard style guides plus feedback and inquiries accumulated from previous cohorts.</Body>
       <Body>We follow the <a href="https://www.w3schools.com/html/html5_syntax.asp" target="_blank">W3 schools style guide for HTML</a> as a base. Here are a few notable guidelines that are often asked about or forgotten.</Body>
 
@@ -53,13 +53,13 @@ const StyleHtml = ({}) => {
 </button>`
         ]}
       />
-      <Body>You may use either single (') or double (") quotations as long as you're **consistent** with which you choose. Using double quotation in HTML is more commonly seen in the industry.</Body>
+      <Body>You may use either single (') or double (") quotations as long as you're <b>consistent</b> with which you choose. Using double quotation in HTML is more commonly seen in the industry.</Body>
 
       <HR />
 
       <H5 id="html-indentation">📜 1.2. Indentation</H5>
-      <Body>As long as you are **consistent**, you can use 2 or 4 space indentation. However, as there will be many levels of indentation, you should indent with **2 spaces** in HTML as opposed to the usual 4 spaces.</Body>
-      <Body>Each HTML tag should be indented **with respect to its parent tag**, with the opening and closing tag being on the same level of indentation (unless it is on the same line).</Body>
+      <Body>As long as you are <b>consistent</b>, you can use 2 or 4 space indentation. However, as there will be many levels of indentation, you should indent with <b>2 spaces</b> in HTML as opposed to the usual 4 spaces.</Body>
+      <Body>Each HTML tag should be indented <b>with respect to its parent tag</b>, with the opening and closing tag being on the same level of indentation (unless it is on the same line).</Body>
 
       <Example
         lang="html"
@@ -233,7 +233,7 @@ const StyleHtml = ({}) => {
       <HR />
 
       <H5 id="html-style">📜 1.6. The Style Attribute</H5>
-      <Body>You should always try and avoid inline/internal styling and keep all CSS styles in a separate <code>.css</code> file - **stick to external styling**. See below under the [CSS section](#css-external-spreadsheet) for reasons why.</Body>
+      <Body>You should always try and avoid inline/internal styling and keep all CSS styles in a separate <code>.css</code> file - <b>stick to external styling</b>. See below under the [CSS section](#css-external-spreadsheet) for reasons why.</Body>
 
       <Example
         lang="html"
@@ -353,9 +353,9 @@ document.getElementById('main-btn').addEventListener('click', changeText);
 
       <Body>While you can interchange <code>{'<img/>'}</code> with another tag styled with <code>background-image</code>, there's a clear distinction between the two.</Body>
 
-      <Body> <code>background-image</code> as the name implies is for setting an image in the **background** (i.e., there could be text or other elements obscuring the image). These are normally reserved for decoration and making the website visually appealing.</Body>
+      <Body> <code>background-image</code> as the name implies is for setting an image in the <b>background</b> (i.e., there could be text or other elements obscuring the image). These are normally reserved for decoration and making the website visually appealing.</Body>
 
-      <Body>On the other hand, a <code>{'<img/>'}</code> tag is for setting an image in the **foreground** and is used for salient images (i.e., nothing is obscuring it and is part of the website flow/layout). These are used for displaying content that is to be consumed by users.</Body>
+      <Body>On the other hand, a <code>{'<img/>'}</code> tag is for setting an image in the <b>foreground</b> and is used for salient images (i.e., nothing is obscuring it and is part of the website flow/layout). These are used for displaying content that is to be consumed by users.</Body>
 
       <Body>Getting these mixed up will impact:
         <ul>
@@ -376,7 +376,7 @@ document.getElementById('main-btn').addEventListener('click', changeText);
       <ExampleImages
         title="Examples of when to use the background-image style property"
         srcArray={[
-          { src: MoodleImg, caption: 'UNSW Moodle uses a image of the campus in the **background** and is not part of the website layout. As such, it uses background-image.'},
+          { src: MoodleImg, caption: 'UNSW Moodle uses a image of the campus in the background and is not part of the website layout. As such, it uses background-image.'},
           { src: ArtImg, caption: 'Images that have other elements obscuring it should use background-image.'},
         ]}
       />
