@@ -262,20 +262,27 @@ css
 
       <H5 id="css-universal-selectors">2.5. Universal Selectors</H5>
 
-      <Body>Avoid the `*` selector to prevent unintended side effects, such as unintentionally overriding the margin property of an element that you want a different margin set.</Body>
+      <Body>Avoid the <code>*</code> selector to prevent unintended side effects, such as unintentionally overriding the margin property of an element that you want a different margin set.</Body>
+      <Body>However, an exception will be made if they are solely used to modify the default settings for <code>box-sizing</code>, <code>margin</code> or <code>padding</code>.</Body>
 
       <Example
         lang="css"
         bads={[
 `* {
   background-color: red;
-  margin: 0px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   /* Any style etc. */
 }`
         ]}
+        goods={[
+`* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+`
+        ]}
       />
-
-      <Body>However, an exception will be made for <code>{'* { box-sizing: border-box }'}</code> since it allows for more consistent control over an element's size.</Body>
 
       <HR />
 
