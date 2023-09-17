@@ -3,7 +3,11 @@ import React from 'react';
 import makePage from '../../component/makePage';
 
 
-import { Body, H3, H5, HR, Code, Example } from '../../component/StyleComponents';
+import { Body, H3, H5, HR, Code, Example, ExampleImages } from '../../component/StyleComponents';
+import MoodleImg from '../../asset/style/moodle-bg-example.png';
+import ArtImg from '../../asset/style/art-bg-example.png';
+import GuardianImg from '../../asset/style/guardian-img-example.png';
+import EcklesImg from '../../asset/style/eckles-img-example.png';
 
 
 const StyleHtml = ({}) => {
@@ -96,7 +100,7 @@ const StyleHtml = ({}) => {
   <tr>
     <th>Student</th>
     <th>ID</th>
-  </tr> <!-- The closing tag is on the same indentation level as its respeective opening tag -->
+  </tr> <!-- The closing tag is on the same indentation level as its respective opening tag -->
   </thead>
   <tbody>
     <tr>
@@ -347,11 +351,11 @@ document.getElementById('main-btn').addEventListener('click', changeText);
 }`}
       </Code>
 
-      <Body>While you can interchange <code><img/></code> with another tag styled with <code>background-image</code>, there's a clear distinction between the two.</Body>
+      <Body>While you can interchange <code>{'<img/>'}</code> with another tag styled with <code>background-image</code>, there's a clear distinction between the two.</Body>
 
       <Body> <code>background-image</code> as the name implies is for setting an image in the **background** (i.e., there could be text or other elements obscuring the image). These are normally reserved for decoration and making the website visually appealing.</Body>
 
-      <Body>On the other hand, a <code><img /></code> tag is for setting an image in the **foreground** and is used for salient images (i.e., nothing is obscuring it and is part of the website flow/layout). These are used for displaying content that is to be consumed by users.</Body>
+      <Body>On the other hand, a <code>{'<img/>'}</code> tag is for setting an image in the **foreground** and is used for salient images (i.e., nothing is obscuring it and is part of the website flow/layout). These are used for displaying content that is to be consumed by users.</Body>
 
       <Body>Getting these mixed up will impact:
         <ul>
@@ -361,28 +365,20 @@ document.getElementById('main-btn').addEventListener('click', changeText);
         </ul>
       </Body>
 
-      <Example
-        lang="html"
-        title="Examples of when to use the img tag"
-        goods={[
-`<!-- Logos like the top left image on Eckles is part of the website layout and thus should use \`img\` -->
-<img src="./eckles-img-example.png" alt="Eckles Course Website" width="700px"/>`,
-`<!-- Images that are unobscured and is meant to be viewed/consumed by the user should use \`img\` -->
-<img src="./guardian-img-example.png" alt="The Guardian News Website" width="700px"/>`
+      <ExampleImages
+        title="Examples of when to use the background-image style property"
+        srcArray={[
+          { src: EcklesImg, caption: 'Logos like the top left image on Eckles is part of the website layout and thus should use <img />.'},
+          { src: GuardianImg, caption: 'Images that are unobscured and is meant to be viewed/consumed by the user should use <img />.'},
         ]}
-        medium
       />
 
-      <Example
-        lang="html"
+      <ExampleImages
         title="Examples of when to use the background-image style property"
-        goods={[
-`<!-- UNSW Moodle uses a image of the campus in the **background** and is not part of the website layout. As such, it uses \`background-image\`. -->
-<img src="./moodle-bg-example.png" alt="Moodle Website" width="700px"/>`,
-`<!-- Images that have other elements obscuring it should use \`background-image\`. -->
-<img src="./art-bg-example.png" alt="Art Website" width="700px"/>`
+        srcArray={[
+          { src: MoodleImg, caption: 'UNSW Moodle uses a image of the campus in the **background** and is not part of the website layout. As such, it uses background-image.'},
+          { src: ArtImg, caption: 'Images that have other elements obscuring it should use background-image.'},
         ]}
-        medium
       />
 
       <HR />
