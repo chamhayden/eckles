@@ -153,8 +153,9 @@ const StyleHtml = ({}) => {
       <Code lang="html">
 {`<!DOCTYPE html>
 <html>
-  <title></title>
-  <head></head>
+  <head>
+    <title></title>
+  </head>
   <body></body>
 </html>`}
       </Code>
