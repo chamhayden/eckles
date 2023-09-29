@@ -84,7 +84,7 @@ const StyleCSS = ({}) => {
 
       <H5 id="css-indentation">🎨 2.2. Indentation</H5>
 
-      <Body>As long as you're <b>consistent</b>, you may use 2-space or 4-space indentation in CSS files. We increase the indentation level everytime we use an opening brace <code>{'{'}</code> and decrease it when we use a closing brace <code>}</code>. We also go to a new line with each semicolon <code>;</code>.</Body>
+      <Body>As long as you're <b>consistent</b>, you may use 2-space or 4-space indentation in CSS files. We increase the indentation level everytime we use an opening brace <code>{'{'}</code> and decrease it when we use a closing brace <code>{'}'}</code>. We also go to a new line with each semicolon <code>;</code>.</Body>
 
       <Example lang="css"
         bads={[
@@ -262,16 +262,25 @@ css
 
       <H5 id="css-universal-selectors">2.5. Universal Selectors</H5>
 
-      <Body>Avoid the `*` selector to prevent unintended side effects, such as unintentionally overriding the margin property of an element that you want a different margin set.</Body>
+      <Body>Avoid the <code>*</code> selector to prevent unintended side effects, such as unintentionally overriding the margin property of an element that you want a different margin set.</Body>
+      <Body>However, an exception will be made if they are solely used to modify the default settings for <code>box-sizing</code>, <code>margin</code> or <code>padding</code>.</Body>
 
       <Example
         lang="css"
         bads={[
 `* {
   background-color: red;
-  margin: 0px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   /* Any style etc. */
 }`
+        ]}
+        goods={[
+`* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+`
         ]}
       />
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
@@ -52,7 +53,7 @@ export const Example = (props) => {
     <>
       <Body onClick={() => setExpand(!expand)}>
         <span style={{ cursor: 'pointer' }}>
-          {expand ? '⬇️' : '⬆️'} 💡 <b>Example: </b>
+          {expand ? '⬇️' : '⬆️'} 💡 <b>{`${(props.title ?? 'Example')}:`} </b>
         </span>
       </Body>
       {expand ? (
@@ -68,7 +69,7 @@ export const Example = (props) => {
           {props.goods && props.goods.map((good, idx) => {
             return (
               <>
-                <Body style={{paddingTop: '20px'}} key={idx}><b> 🟢 Good</b></Body>
+                <Body style={{paddingTop: '20px'}} key={idx}><b>🟢 Good</b></Body>
                 <Code lang={props.lang} large={props.large} medium={props.medium}>{good}</Code>
               </>
             )
@@ -80,3 +81,37 @@ export const Example = (props) => {
     </>
   )
 }
+
+export const ExampleImages = ({ title, srcArray = [] }) => {
+  const [expand, setExpand] = React.useState(true);
+
+  return (
+    <>
+      <Body onClick={() => setExpand(!expand)}>
+        <span style={{ cursor: 'pointer' }}>
+          {expand ? '⬇️' : '⬆️'} 💡 <b>{`${(title ?? 'Example')}:`} </b>
+        </span>
+      </Body>
+      {expand ? (
+        srcArray.map((asset, idx) => (
+          <CaptionedImage src={asset.src} alt={`Example #${idx + 1}`} caption={asset.caption} />
+        ))
+      ) : (
+        <div style={{ marginLeft: '20px' }}>...</div>
+      )}
+    </>
+  )
+}
+
+const CaptionedImage = ({ src, alt, caption }) => (
+  <Box mb={4}>
+    <Box
+      component='img'
+      src={src}
+      alt={alt}
+      maxWidth='700px'
+      width='100%'
+    />
+    <Typography><i>{caption ?? ''}</i></Typography>
+  </Box>
+)
