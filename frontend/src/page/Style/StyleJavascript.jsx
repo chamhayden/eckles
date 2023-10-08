@@ -38,7 +38,7 @@ const StyleJavascript = ({}) => {
 
       <H5 id="js-casing">🔧 3.1. Casing & Quotation</H5>
 
-      <Body>You may use camelCase, snake_case etc. As long as you are **consistent**. camelCase is what most JavaScript developers use. Do not use PascalCase, as that is normally reserved for React components.</Body>
+      <Body>You may use camelCase, snake_case etc. As long as you are <b>consistent</b>. camelCase is what most JavaScript developers use. Do not use PascalCase, as that is normally reserved for React components.</Body>
 
       <Example
         lang="javascript"
@@ -53,7 +53,8 @@ const StyleJavascript = ({}) => {
   const Range = maxInt - minInt + 1;
 
   // Generate a random number within the range
-  return Math.floor(Math.random() * Range) + minInt;`
+  return Math.floor(Math.random() * Range) + minInt;
+}`
         ]}
         goods={[
 `const randomNumberGenerator = (minInt, maxInt) => {
@@ -71,7 +72,7 @@ const StyleJavascript = ({}) => {
         ]}
       />
 
-      <Body>You may use either single (') or double (") quotations as long as you're **consistent** with which you choose.</Body>
+      <Body>You may use either single (') or double (") quotations as long as you're <b>consistent</b> with which you choose.</Body>
 
       <HR />
 
@@ -329,7 +330,7 @@ container.appendChild(buttonElement);`
 
       <H5 id="js-arrow-functions">🔧 3.7. Arrow functions over Regular functions</H5>
 
-      <Body>From week 4 and onwards, you should use <code>{'a = () => {}'}</code> function definitions over <code>function a() {}</code> in all instances. This is mainly because modern online sample code uses arrow functions instead and also looks much neater and less verbose as seen in the below examples.</Body>
+      <Body>From week 8 and onwards, you should use <code>{'a = () => {}'}</code> function definitions over <code>function a() {}</code> in all instances. This is mainly because modern online sample code uses arrow functions instead and also looks much neater and less verbose as seen in the below examples.</Body>
 
       <Example
         lang="javascript"
@@ -337,26 +338,26 @@ container.appendChild(buttonElement);`
 `// The function passed into reduce is anonymous as it does not have a name.
 // While it still works, it looks very verbose as it needs the return statement and the function keyword.
 function calcAvg(arr) {
-if (arr.length === 0) return 0;
+  if (arr.length === 0) return 0;
 
-return arr.reduce(function (accumulator, currVal) {
-  return accumulator + currVal
-}, 0) / arr.length;
+  return arr.reduce(function (accumulator, currVal) {
+    return accumulator + currVal
+  }, 0) / arr.length;
 }`
         ]}
         goods={[
 `// Using arrow functions eliminates the function keyword and the return functions through implicit return
 const calcAvg = (arr) => {
-if (arr.length === 0) return 0;
+  if (arr.length === 0) return 0;
 
-return arr.reduce((accumulator, currVal) => (accumulator + currVal), 0) / arr.length;
+  return arr.reduce((accumulator, currVal) => (accumulator + currVal), 0) / arr.length;
 }`
         ]}
       />
 
       <Body>As a side note, there is a subtle difference between the two. Regular functions has a dynamic <code>this</code> whereas Arrow functions has a lexical <code>this</code>. This distinction falls outside the scope of this course, and you should not need to worry about it in the assignments. (In other words, stick to Arrow Functions for this course).</Body>
 
-      <Body>If you wish, you may read more about it <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">here</a>.</Body>
+      <Body>If you wish, you may read more about it <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" rel="noreferrer">here</a>.</Body>
 
       <HR />
 
@@ -392,20 +393,20 @@ let clickCounter = 0;`
         lang="javascript"
         bads={[
 `var fooFunction = () => {
-var loopAmount = 10;
+  var loopAmount = 10;
 
-for (var i = 0; i < loopAmount; i++) {
-  console.log(i);
-}
+  for (var i = 0; i < loopAmount; i++) {
+    console.log(i);
+  }
 }`
         ]}
         goods={[
 `const fooFunction = () => {
-const loopAmount = 10;
+  const loopAmount = 10;
 
-for (let i = 0; i < loopAmount; i++) {
-  console.log(i);
-}
+  for (let i = 0; i < loopAmount; i++) {
+    console.log(i);
+  }
 }`
         ]}
       />
@@ -420,15 +421,15 @@ for (let i = 0; i < loopAmount; i++) {
         lang="javascript"
         bads={[
   `console.log(0 == false);  // Will print true, which might not be what you need
-  console.log(1 == '1');    // true
-  console.log(0 == '');     // true
-  console.log(42 == [42]);  // true`
+console.log(1 == '1');    // true
+console.log(0 == '');     // true
+console.log(42 == [42]);  // true`
         ]}
         goods={[
   `console.log(0 === false); // Will print false, which is correct since 0 and false are not the same.
-  console.log(1 === '1');   // false
-  console.log(0 === '');    // false
-  console.log(42 === [42]); // false`
+console.log(1 === '1');   // false
+console.log(0 === '');    // false
+console.log(42 === [42]); // false`
         ]}
       />
 
@@ -438,13 +439,13 @@ for (let i = 0; i < loopAmount; i++) {
         lang="javascript"
         bads={[
   `const foo = null;
-  console.log(foo === null)      // Prints true
-  console.log(foo === undefined) // Prints false`
+console.log(foo === null)      // Prints true
+console.log(foo === undefined) // Prints false`
         ]}
         goods={[
   `const foo = null;
-  console.log(foo == null)       // Prints true
-  console.log(foo == undefined)  // Prints true`
+console.log(foo == null)       // Prints true
+console.log(foo == undefined)  // Prints true`
         ]}
       />
 

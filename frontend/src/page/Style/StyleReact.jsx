@@ -3,7 +3,9 @@ import React from 'react';
 import makePage from '../../component/makePage';
 
 import { Body, H3, H5, HR, Code, Example } from '../../component/StyleComponents';
-
+import EslintError from '../../asset/style/eslint-error.png';
+import EslintSuccess from '../../asset/style/eslint-success.png';
+import Box from '@mui/material/Box';
 
 const StyleReact = ({}) => {
   return (
@@ -69,6 +71,7 @@ const my-component = () => {
       <Body>Use comments to explain what your components are for and what they do. This is not only for you, but also for your group partner. Additionally, they are also very important when <b>describing the test cases you have written for component and E2E testing</b>.</Body>
 
       <Example
+        title="Example for React Components"
         lang="javascript"
         bads={[
 `import React, { useState } from 'react';
@@ -125,9 +128,8 @@ export default ButtonColorChanger;`
         ]}
       />
 
-      <Body>Note that you do not need to follow the above verbatim - It is to just give a guide of good commenting habits.</Body>
-
       <Example
+        title="Example for Cypress/E2E testing"
         lang="javascript"
         bads={[
 `describe('Login functionality', () => {
@@ -169,9 +171,8 @@ describe('Login functionality', () => {
         ]}
       />
 
-      <Body>Note that you do not need to follow the above verbatim - It is to just give a guide of good commenting habits.</Body>
-
       <Example
+        title="Example for JEST/Component testing"
         lang="javascript"
         bads={[
 `import React from 'react';
@@ -236,7 +237,7 @@ describe('Button component', () => {
 
       <Body>Modularisation is an essential part of building scalable React applications (or any project). If you find your components becoming extremely bloated with loads of hooks in it with deep nesting (i.e., not shallow), chances are that it can be broken into smaller components. <b>Each component should ideally have a single responsibility</b> so it is much easier to perform component testing.</Body>
 
-      <Body>It is also best practice to limit it to **one component per file** when possible, with the filename being the component's name. This is for easier readability and easier time locating where a component is written. If you find a file housing many components and those components are being used by other components, then that is a sign to split it up.</Body>
+      <Body>It is also best practice to limit it to <b>one component per file</b> when possible, with the filename being the component's name. This is for easier readability and easier time locating where a component is written. If you find a file housing many components and those components are being used by other components, then that is a sign to split it up.</Body>
 
       <Example
         lang="javascript"
@@ -298,10 +299,10 @@ const App = () => {
       <Body>You'll be given a pre-setup ESLint with your React Assignment. <b>Do not ignore</b> the errors and warnings it outputs, as it will point out little style rules you have not followed.</Body>
 
       <b>🔴Bad</b>
-      <img src="./eslint-error.png" alt="ESLint Error" width="700px"/>
-
+      <Box component='img' display='block' src={EslintError} alt="ESLint Error" width="700px" />
+      <br />
       <b>🟢Good</b>
-      <img src="./eslint-success.png" alt="ESLint Success" width="700px"/>
+      <Box component='img' display='block' src={EslintSuccess} alt="ESLint Success" width="700px"/>
   
       <Body>Note that the ESLint compiler errors shown above was using the configuration from 22T3. Please use the configuration given to you in your Assignment.</Body>
 

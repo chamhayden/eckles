@@ -12,7 +12,7 @@ const StyleCSS = ({}) => {
 
       <H3>🎨 2. CSS Style Guide</H3>
 
-      <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is **highly** recommended for students to have a read through this style guide.</Body>
+      <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
 
       <Body>
         Below is our style guide for COMP6080 for writing good CSS. <b>For anything not mentioned here, refer to the <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Writing_style_guide/Code_style_guide/CSS" target="_blank" rel="noreferrer">MDN style guide for CSS</a>.</b>
@@ -308,7 +308,7 @@ css
 <button style="color:white;background-color:blue;text-transform:capitalize;width:50px;height:50px;">This is a card</button>`,
 `/* in <head> */
 <style>
-  .blue-card {
+  .primary-btn {
     background-color: blue;
     color: white;
     text-transform: capitalize;
@@ -318,13 +318,13 @@ css
 </style>
 
 /* in <body> */
-<button class="blue-card">Lorem Ipsum</button>
-<button class="blue-card">Muspi Merol</button>
-<button class="blue-card">This is a card</button>`
+<button class="primary-btn">Lorem Ipsum</button>
+<button class="primary-btn">Muspi Merol</button>
+<button class="primary-btn">This is a card</button>`
         ]}
         goods={[
 `/* in style.css */
-.blue-card {
+.primary-btn {
   background-color: blue;
   color: white;
   text-transform: capitalize;
@@ -337,9 +337,9 @@ css
 <link rel="stylesheet" href="styles.css">
 
 /* in index.html in <body> */
-<button class="blue-card">Lorem Ipsum</button>
-<button class="blue-card">Muspi Merol</button>
-<button class="blue-card">This is a card</button>`
+<button class="primary-btn">Lorem Ipsum</button>
+<button class="primary-btn">Muspi Merol</button>
+<button class="primary-btn">This is a card</button>`
         ]}
       />
 
@@ -357,6 +357,12 @@ css
 }
 .img-b {
   filter: grayscale(100%);
+}
+.bg-1 {
+  background-color: salmon;
+}
+.bg-2 {
+  background-color: forestgreen;
 }`
         ]}
         goods={[
@@ -365,6 +371,12 @@ css
 }
 .grayscale-img {
   filter: grayscale(100%);
+}
+.red-bg {
+  background-color: salmon;
+}
+.green-bg {
+  background-color: forestgreen;
 }`
         ]}
       />

@@ -197,6 +197,7 @@ const StyleHtml = ({}) => {
       <Body>Reserve <code>div</code> tags for grouping related page elements or for styling purposes.</Body>
 
       <Example
+        title='Example #1'
         lang="html"
         bads={[
 `<div>Welcome to my page!</div>
@@ -209,6 +210,7 @@ const StyleHtml = ({}) => {
       />
 
       <Example
+        title='Example #2'
         lang="html"
         bads={[
 `<div class="...">
@@ -231,6 +233,86 @@ const StyleHtml = ({}) => {
 </div>`
         ]}
       />
+
+      <Example
+        title='Example #3'
+        lang="html"
+        bads={[
+`<div>
+  <div>Welcome to my Awesome Website!</div>
+  <div>
+      <div>
+          <div><a href="#">Home</a></div>
+          <div><a href="#">About</a></div>
+          <div><a href="#">Services</a></div>
+          <div><a href="#">Contact</a></div>
+      </div>
+  </div>
+</div>
+
+<div>
+<div>
+    <div>About Us</div>
+    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel odio ut mi laoreet finibus.</div>
+</div>
+<div class="..." />
+<div>
+    <div>Our Services</div>
+
+    <div>
+        <div>Service 1</div>
+        <div>We can paint your car</div>
+    </div>
+    <div>
+        <div>Service 2</div>
+        <div>We can repair your car</div>
+    </div>
+</div>
+</div>
+
+<div>
+<div>© 2023 Awesome Website. Do not steal!</div>
+</div>`
+        ]}
+        goods={[
+`<header>
+  <h1>Welcome to my Awesome Website!</h1>
+  <nav>
+      <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+      </ul>
+  </nav>
+</header>
+
+<main>
+<section>
+    <h2>About Us</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel odio ut mi laoreet finibus.</p>
+</section>
+<hr />
+<section>
+    <h2>Our Services</h2>
+
+    <article>
+        <h3>Service 1</h3>
+        <p>We can paint your car</p>
+    </article>
+    <article>
+        <h3>Service 2</h3>
+        <p>We can repair your car</p>
+    </article>
+</section>
+</main>
+
+<footer>
+<p>© 2023 Awesome Website. Do not steal!</p>
+</footer>`
+        ]}
+      />
+      
 
       <HR />
 

@@ -48,7 +48,7 @@ export const Code = (props) => {
 }
 
 export const Example = (props) => {
-  const [expand, setExpand] = React.useState(true);
+  const [expand, setExpand] = React.useState(false);
   return (
     <>
       <Body onClick={() => setExpand(!expand)}>
@@ -83,7 +83,7 @@ export const Example = (props) => {
 }
 
 export const ExampleImages = ({ title, srcArray = [] }) => {
-  const [expand, setExpand] = React.useState(true);
+  const [expand, setExpand] = React.useState(false);
 
   return (
     <>
