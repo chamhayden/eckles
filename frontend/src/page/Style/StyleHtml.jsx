@@ -17,8 +17,9 @@ const StyleHtml = ({}) => {
       <H3>📜 1. HTML Style Guide</H3>
 
       <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
-      <Body>This page outlines the conventions we will be following throughout the course. It incorporates guidelines derived from standard style guides plus feedback and inquiries accumulated from previous cohorts.</Body>
-      <Body>We follow the <a href="https://www.w3schools.com/html/html5_syntax.asp" target="_blank">W3 schools style guide for HTML</a> as a base. Here are a few notable guidelines that are often asked about or forgotten.</Body>
+      <Body>
+        Below is our style guide for COMP6080 for writing good HTML. <b>For anything not mentioned here, refer to the <a href="https://www.w3schools.com/html/html5_syntax.asp" target="_blank" rel="noreferrer">W3 schools style guide</a>.</b>
+      </Body>
 
       <Body>
         <ul>

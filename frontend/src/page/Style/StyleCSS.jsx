@@ -3,7 +3,7 @@ import React from 'react';
 import makePage from '../../component/makePage';
 
 
-import { Body, H3, H5, HR, Code, Example } from '../../component/StyleComponents';
+import { Body, H3, H5, HR, Example } from '../../component/StyleComponents';
 
 
 const StyleCSS = ({}) => {
@@ -13,8 +13,10 @@ const StyleCSS = ({}) => {
       <H3>🎨 2. CSS Style Guide</H3>
 
       <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is **highly** recommended for students to have a read through this style guide.</Body>
-      <Body>This page outlines the conventions we will be following throughout the course. It incorporates guidelines derived from standard style guides plus feedback and inquiries accumulated from previous cohorts.</Body>
-      <Body>We follow the <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Writing_style_guide/Code_style_guide/CSS" target="_blank">MDN style guide for CSS</a> as a base. Here are a few notable guidelines that are often asked about or forgotten.</Body>
+
+      <Body>
+        Below is our style guide for COMP6080 for writing good CSS. <b>For anything not mentioned here, refer to the <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Writing_style_guide/Code_style_guide/CSS" target="_blank" rel="noreferrer">MDN style guide for CSS</a>.</b>
+      </Body>
 
       <Body>
         <ul>

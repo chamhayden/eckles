@@ -12,8 +12,13 @@ const StyleReact = ({}) => {
       <H3>⚛️ 4. ReactJS</H3>
 
       <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
-      <Body>This page outlines the conventions we will be following throughout the course. It incorporates guidelines derived from standard style guides plus feedback and inquiries accumulated from previous cohorts.</Body>
-      <Body>We follow the <a target="_blank" href="https://github.com/airbnb/javascript/tree/master/react">Airbnb style guide for ReactJS</a> as a <i>guideline</i>. It is a very strict style guide so we don't enforce every principle, but do take it's guidance generally.</Body>
+
+      <Body>
+        Below is our style guide for COMP6080 for writing good React code. <b>For anything not mentioned here, refer to the <a href="https://github.com/airbnb/javascript/tree/master/react" target="_blank" rel="noreferrer">Airbnb style guide for ReactJS</a>.</b>
+      </Body>
+      <Body>
+        It is a very strict style guide so we don't enforce every principle, but do take it's guidance generally.
+      </Body>
 
       <Body>
         <ul>

@@ -11,9 +11,11 @@ const StyleJavascript = ({}) => {
 
       <H3>🔧 3. JavaScript</H3>
 
-      <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is **highly** recommended for students to have a read through this style guide.</Body>
-      <Body>This page outlines the conventions we will be following throughout the course. It incorporates guidelines derived from standard style guides plus feedback and inquiries accumulated from previous cohorts.</Body>
-      <Body>JavaScript shares a lot of the style principles found in other languages. We follow the [W3 schools style guide for JavaScript](https://www.w3schools.com/js/js_conventions.asp) as a base. Here are a few notable guidelines that are often asked about or forgotten.</Body>
+      <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
+      
+      <Body>
+        Below is our style guide for COMP6080 for writing good JavaScript. <b>For anything not mentioned here, refer to the <a href="https://www.w3schools.com/js/js_conventions.asp" target="_blank" rel="noreferrer">W3 schools style guide</a>.</b>
+      </Body>
 
       <Body>
         <ul>
@@ -327,7 +329,7 @@ container.appendChild(buttonElement);`
 
       <H5 id="js-arrow-functions">🔧 3.7. Arrow functions over Regular functions</H5>
 
-      <Body>From week 4 and onwards, you should use <code>a = () => {}</code> function definitions over <code>function a() {}</code> in all instances. This is mainly because modern online sample code uses arrow functions instead and also looks much neater and less verbose as seen in the below examples.</Body>
+      <Body>From week 4 and onwards, you should use <code>{'a = () => {}'}</code> function definitions over <code>function a() {}</code> in all instances. This is mainly because modern online sample code uses arrow functions instead and also looks much neater and less verbose as seen in the below examples.</Body>
 
       <Example
         lang="javascript"
