@@ -59,8 +59,8 @@ export const Example = (props) => {
         </Body>
       </Box>
 
-      <Collapse in={expand}>
-        <hr />
+      <Collapse in={expand} unmountOnExit>
+        <Box component='hr' m={0}/>
         <div style={{ marginLeft: '20px', marginBottom: '20px', padding: '4px' }}>
           {props.bads && props.bads.map((bad, idx) => {
             return (
@@ -96,8 +96,8 @@ export const ExampleImages = ({ title, srcArray = [] }) => {
           </span>
         </Body>
       </Box>
-      <Collapse in={expand}>
-        <hr />
+      <Collapse in={expand} unmountOnExit>
+        <Box component='hr' m={0}/>
         <Box p={1}>
           {srcArray.map((asset, idx) => (
             <CaptionedImage src={asset.src} alt={`Example #${idx + 1}`} caption={asset.caption} />
