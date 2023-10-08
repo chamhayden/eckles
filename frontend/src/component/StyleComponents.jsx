@@ -2,6 +2,7 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
@@ -49,15 +50,18 @@ export const Code = (props) => {
 
 export const Example = (props) => {
   const [expand, setExpand] = React.useState(false);
+
   return (
-    <>
-      <Body onClick={() => setExpand(!expand)}>
-        <span style={{ cursor: 'pointer' }}>
-          {expand ? '⬇️' : '⬆️'} 💡 <b>{`${(props.title ?? 'Example')}:`} </b>
-        </span>
-      </Body>
-      {expand ? (
-        <div style={{ marginLeft: '20px', marginBottom: '20px'}}>
+    <Box sx={{ boxShadow: 'rgba(0, 0, 0, 0.2) 0px 5px 15px', borderRadius: '15px'}} my={2}>
+      <Box sx={{ cursor: 'pointer' }} p={1} onClick={() => setExpand(!expand)}>
+        <Body>
+          <span>{expand ? '⬇️' : '⬆️'} 💡 <b>{`${(props.title ?? 'Example')}:`} </b></span>
+        </Body>
+      </Box>
+
+      <Collapse in={expand}>
+        <hr />
+        <div style={{ marginLeft: '20px', marginBottom: '20px', padding: '4px' }}>
           {props.bads && props.bads.map((bad, idx) => {
             return (
               <>
@@ -74,11 +78,9 @@ export const Example = (props) => {
               </>
             )
           })}
-        </div>
-      ) : (
-        <div style={{ marginLeft: '20px' }}>...</div>
-      )}
-    </>
+        </div>  
+      </Collapse>
+    </Box>
   )
 }
 
@@ -86,20 +88,23 @@ export const ExampleImages = ({ title, srcArray = [] }) => {
   const [expand, setExpand] = React.useState(false);
 
   return (
-    <>
-      <Body onClick={() => setExpand(!expand)}>
-        <span style={{ cursor: 'pointer' }}>
-          {expand ? '⬇️' : '⬆️'} 💡 <b>{`${(title ?? 'Example')}:`} </b>
-        </span>
-      </Body>
-      {expand ? (
-        srcArray.map((asset, idx) => (
-          <CaptionedImage src={asset.src} alt={`Example #${idx + 1}`} caption={asset.caption} />
-        ))
-      ) : (
-        <div style={{ marginLeft: '20px' }}>...</div>
-      )}
-    </>
+    <Box sx={{ boxShadow: 'rgba(0, 0, 0, 0.2) 0px 5px 15px', borderRadius: '15px'}} my={2}>
+      <Box sx={{ cursor: 'pointer' }} p={1} onClick={() => setExpand(!expand)}>
+        <Body onClick={() => setExpand(!expand)}>
+          <span style={{ cursor: 'pointer' }}>
+            {expand ? '⬇️' : '⬆️'} 💡 <b>{`${(title ?? 'Example')}:`} </b>
+          </span>
+        </Body>
+      </Box>
+      <Collapse in={expand}>
+        <hr />
+        <Box p={1}>
+          {srcArray.map((asset, idx) => (
+            <CaptionedImage src={asset.src} alt={`Example #${idx + 1}`} caption={asset.caption} />
+          ))}
+        </Box>
+      </Collapse>
+    </Box>
   )
 }
 
