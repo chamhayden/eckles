@@ -17,6 +17,9 @@ const StyleCSS = ({}) => {
       <Body>
         Below is our style guide for COMP6080 for writing good CSS. <b>For anything not mentioned here, refer to the <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Writing_style_guide/Code_style_guide/CSS" target="_blank" rel="noreferrer">MDN style guide for CSS</a>.</b>
       </Body>
+      <Body>
+        Please also note that you should refer to the marking criteria too that's attached with each Assignment.
+      </Body>
 
       <Body>
         <ul>
@@ -27,6 +30,8 @@ const StyleCSS = ({}) => {
           <li><a href="#css-universal-selectors">2.5. Universal Selectors</a></li>
           <li><a href="#css-external-spreadsheet">2.6. Use External Spreadsheets</a></li>
           <li><a href="#css-names">2.7. Class/ID naming convention</a></li>
+          <li><a href="#css-important-spam">2.8. Overuse of !important</a></li>
+          <li><a href="#css-negative-margins">2.9. Negative margins</a></li>
         </ul>
       </Body>
 
@@ -363,6 +368,10 @@ css
 }
 .bg-2 {
   background-color: forestgreen;
+}
+.zbsd {
+  display: grid;
+  place-items: center;
 }`
         ]}
         goods={[
@@ -377,7 +386,92 @@ css
 }
 .green-bg {
   background-color: forestgreen;
+}
+.container {
+  display: grid;
+  place-items: center;
 }`
+        ]}
+      />
+
+
+      <HR />
+      <H5 id="css-important-spam">📜 2.8. Overuse of !important</H5>
+      <Body>Using <code>!important</code> in CSS should be avoided or used sparingly because it can cause the following problems:</Body>
+      <ul>
+        <li>Accessibility - Screen readers can not detect background images and background images do not have alt text.</li>
+        <li>Search Engine Optimisation - Search Engines use <code>alt</code> tags to detect images and display it in searches.</li>
+        <li>Interactions - Users can not interact with background images (i.e., copy or download the image).</li>
+      </ul>
+      
+      <Example
+        lang="html"
+        bads={[
+        ]}
+        goods={[
+        ]}
+      />
+
+      <HR />
+      <H5 id="css-negative-margins">📜 2.9. Negative margins</H5>
+      <Body>Overusing negative margins makes it difficult to debug, maintain or understand your CSS. Instead, if you want elements to overlap, you can use other methods like relative positioning.</Body>
+      <Example
+        lang="html"
+        bads={[
+          `<!-- in style.css -->
+.offset {
+  margin-top: -10px;
+}
+
+<!-- in index.html -->
+<div>
+  <p class="offset">Hello world!</p>
+</div>`
+        ]}
+        goods={[
+          `<!-- in style.css -->
+.offset {
+  position: relative;
+  top: -10px;
+}
+
+<!-- in index.html -->
+<div>
+  <p class="offset">Hello world!</p>
+</div>`
+        ]}
+      />
+      <Body>Or get rid of the margins that are in the way to get elements closer. For example, it's better to get rid of the margin on the body rather than setting negative margins to the children to close the gap.</Body>
+      <Example
+        lang="html"
+        bads={[
+          `<!-- in style.css -->
+.container {
+  margin-top: -8px;
+  margin-left: -8px;
+
+  background-color: salmon;
+}
+
+<!-- in index.html -->
+<body>
+  <div class="container">Hello world!</div>
+</body>`
+        ]}
+        goods={[
+          `<!-- in style.css -->
+body {
+  margin: 0;
+}
+
+.container {
+  background-color: salmon;
+}
+
+<!-- in index.html -->
+<body>
+  <div class="container">Hello world!</div>
+</body>`
         ]}
       />
     </>

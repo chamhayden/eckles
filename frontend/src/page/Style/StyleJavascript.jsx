@@ -16,6 +16,9 @@ const StyleJavascript = ({}) => {
       <Body>
         Below is our style guide for COMP6080 for writing good JavaScript. <b>For anything not mentioned here, refer to the <a href="https://www.w3schools.com/js/js_conventions.asp" target="_blank" rel="noreferrer">W3 schools style guide</a>.</b>
       </Body>
+      <Body>
+        Please also note that you should refer to the marking criteria too that's attached with each Assignment.
+      </Body>
 
       <Body>
         <ul>

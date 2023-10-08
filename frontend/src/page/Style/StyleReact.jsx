@@ -21,6 +21,9 @@ const StyleReact = ({}) => {
       <Body>
         It is a very strict style guide so we don't enforce every principle, but do take it's guidance generally.
       </Body>
+      <Body>
+        Please also note that you should refer to the marking criteria too that's attached with each Assignment.
+      </Body>
 
       <Body>
         <ul>
@@ -296,7 +299,7 @@ const App = () => {
 
       <H5 id="jsx-eslint">⚛️ 4.4. ESLint</H5>
 
-      <Body>You'll be given a pre-setup ESLint with your React Assignment. <b>Do not ignore</b> the errors and warnings it outputs, as it will point out little style rules you have not followed.</Body>
+      <Body>You'll be given a pre-setup ESLint with your React Assignment. <b>Do not ignore</b> the errors and warnings it outputs, as it will point out little practices you haven't followed.</Body>
 
       <b>🔴Bad</b>
       <Box component='img' display='block' src={EslintError} alt="ESLint Error" width="700px" />
