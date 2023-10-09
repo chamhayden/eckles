@@ -8,18 +8,20 @@ import EslintSuccess from '../../asset/style/eslint-success.png';
 import Box from '@mui/material/Box';
 
 const StyleReact = ({}) => {
+  const emoji = '⚛️';
+
   return (
     <>
 
-      <H3>⚛️ 4. ReactJS</H3>
+      <H3>{emoji} 4. ReactJS</H3>
 
       <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
 
       <Body>
-        Below is our style guide for COMP6080 for writing good React code. <b>For anything not mentioned here, refer to the <a href="https://github.com/airbnb/javascript/tree/master/react" target="_blank" rel="noreferrer">Airbnb style guide for ReactJS</a>.</b>
+        Below is our style guide for COMP6080 for writing good React code. <b>For anything not mentioned here, refer to the <a href="https://github.com/airbnb/javascript/tree/master/react" target="_blank" rel="noreferrer">Airbnb style guide for ReactJS</a>.</b> It is a very strict style guide so we don't enforce every principle, but do take it's guidance generally.
       </Body>
-      <Body>
-        It is a very strict style guide so we don't enforce every principle, but do take it's guidance generally.
+      <Body color='red'>
+        All guidelines mentioned in the Javascript section also applies here.
       </Body>
       <Body>
         Please also note that you should refer to the marking criteria too that's attached with each Assignment.
@@ -39,7 +41,7 @@ const StyleReact = ({}) => {
 
       <HR />
 
-      <H5 id="jsx-casing">⚛️ 4.1. Casing & Quotation </H5>
+      <H5 id="jsx-casing">{emoji} 4.1. Casing & Quotation </H5>
 
       <Body>Components that you have made should follow PascalCasing.</Body>
 
@@ -65,11 +67,11 @@ const my-component = () => {
 
       <Body>You may use either single (') or double (") quotations as long as you're <b>consistent</b> with which you choose.</Body>
 
-      <Body>JavaScript casing rules applies to other variables. See the above [JavaScript section](#js-casing) for more information.</Body>
+      <Body>Javascript casing rules applies to other variables.</Body>
 
       <HR />
 
-      <H5 id="jsx-comments">⚛️ 4.2. Comments (And examples of E2E/Component testing)</H5>
+      <H5 id="jsx-comments">{emoji} 4.2. Comments (And examples of E2E/Component testing)</H5>
 
       <Body>Use comments to explain what your components are for and what they do. This is not only for you, but also for your group partner. Additionally, they are also very important when <b>describing the test cases you have written for component and E2E testing</b>.</Body>
 
@@ -236,7 +238,7 @@ describe('Button component', () => {
 
       <HR />
 
-      <H5 id="jsx-modularisation">⚛️ 4.3. Modularisation</H5>
+      <H5 id="jsx-modularisation">{emoji} 4.3. Modularisation</H5>
 
       <Body>Modularisation is an essential part of building scalable React applications (or any project). If you find your components becoming extremely bloated with loads of hooks in it with deep nesting (i.e., not shallow), chances are that it can be broken into smaller components. <b>Each component should ideally have a single responsibility</b> so it is much easier to perform component testing.</Body>
 
@@ -297,7 +299,7 @@ const App = () => {
 
       <HR />
 
-      <H5 id="jsx-eslint">⚛️ 4.4. ESLint</H5>
+      <H5 id="jsx-eslint">{emoji} 4.4. ESLint</H5>
 
       <Body>You'll be given a pre-setup ESLint with your React Assignment. <b>Do not ignore</b> the errors and warnings it outputs, as it will point out little practices you haven't followed.</Body>
 
@@ -311,7 +313,7 @@ const App = () => {
 
       <HR />
 
-      <H5 id="jsx-document">⚛️ 4.5. The Document Keyword</H5>
+      <H5 id="jsx-document">{emoji} 4.5. The Document Keyword</H5>
 
       <Body>When you're working on a React project, it's highly recommended avoid the `document` keyword, which you may have used in previous assignments. This is because React already manages DOM manipulation for you through its virtual DOM. Using this keyword also hinders your components reusability (as seen below). By relying on the `document` keyword, you're overlooking the innovative features that make React so widely used.</Body>
 
@@ -385,7 +387,7 @@ const HoverTest = () => {
 
       <HR />
 
-      <H5 id="jsx-functional-vs-class">⚛️ 4.6. Functional VS. Class Components</H5>
+      <H5 id="jsx-functional-vs-class">{emoji} 4.6. Functional VS. Class Components</H5>
 
       <Body>Stick to <b>Functional</b> components rather than Class components. This is because, but not limited to:
         <ul>
@@ -450,7 +452,7 @@ export default ButtonClicker;`
 
       <HR />
 
-      <H5 id="jsx-css-and-react">⚛️ 4.7. CSS and React</H5>
+      <H5 id="jsx-css-and-react">{emoji} 4.7. CSS and React</H5>
 
       <Body>When it comes to CSS, <b>do not use universal CSS</b> (i.e., importing a `.css` file into a React component). Likewise, you should also avoid inline styling. See the following lectures for more information:
         <ul>
