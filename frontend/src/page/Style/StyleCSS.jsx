@@ -372,7 +372,7 @@ css
 .bg-2 {
   background-color: forestgreen;
 }
-.zbsd {
+.zsbd {
   display: grid;
   place-items: center;
 }`

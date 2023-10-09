@@ -550,9 +550,9 @@ document.getElementById('main-btn').addEventListener('click', changeText);
       <Example
         lang="html"
         bads={[
-          `<!-- These width/height/color/zbsd does not do anything on its own, so get rid of it -->
+          `<!-- These width/height/color/zsbd does not do anything on its own, so get rid of it -->
 <body width="100px" height="100px">
-  <div color="black" zbsd></div>
+  <div color="black" zsbd></div>
 </body>
 `
         ]}
