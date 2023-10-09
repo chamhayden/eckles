@@ -52,7 +52,7 @@ export const Example = (props) => {
   const [expand, setExpand] = React.useState(false);
 
   return (
-    <Box sx={{ boxShadow: 'rgba(0, 0, 0, 0.2) 0px 5px 15px', borderRadius: '15px'}} my={2}>
+    <Box sx={{ boxShadow: 'rgba(0, 0, 0, 0.2) 0px 5px 15px', borderRadius: '15px' }} my={2}>
       <Box sx={{ cursor: 'pointer' }} p={1} onClick={() => setExpand(!expand)}>
         <Body>
           <span>{expand ? '⬇️' : '⬆️'}</span>
