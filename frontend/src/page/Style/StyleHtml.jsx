@@ -14,7 +14,7 @@ const StyleHtml = ({}) => {
   const emoji = '📜';
 
   return (
-    <>
+    <section style={{ maxWidth: 'calc(100vw - 65px)', boxSizing: 'border-box' }}>
       <H3>{emoji} 1. HTML Style Guide</H3>
 
       <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
@@ -153,8 +153,6 @@ const StyleHtml = ({}) => {
 </div>`}
       </Code>
 
-      <Body>In future assignments in the course when you are introduced to better methodologies, you should not repeat your code (See the [JavaScript Modularisation](#js-modularisation) and [ReactJS Modularisation](#jsx-modularisation) section).</Body>
-
       <HR />
 
       <H5 id="html-structure">{emoji} 1.4. General HTML Structure </H5>
@@ -262,7 +260,7 @@ const StyleHtml = ({}) => {
 <div>
   <div>
       <div>About Us</div>
-      <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel odio ut mi laoreet finibus.</div>
+      <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
   </div>
   <div class="..." />
   <div>
@@ -299,7 +297,7 @@ const StyleHtml = ({}) => {
 <main>
   <section>
       <h2>About Us</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel odio ut mi laoreet finibus.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </section>
   <hr />
   <section>
@@ -691,7 +689,7 @@ to the next row when the viewport's width gets small enough -->
         ]}
       />
       
-    </>
+    </section>
   );
 };
 
