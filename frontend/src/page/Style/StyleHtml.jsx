@@ -11,10 +11,12 @@ import EcklesImg from '../../asset/style/eckles-img-example.png';
 
 
 const StyleHtml = ({}) => {
+  const emoji = '📜';
+
   return (
     <>
 
-      <H3>📜 1. HTML Style Guide</H3>
+      <H3>{emoji} 1. HTML Style Guide</H3>
 
       <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
       <Body>
@@ -45,7 +47,7 @@ const StyleHtml = ({}) => {
 
       <HR />
 
-      <H5 id="html-casing">📜 1.1. Casing & Quotation </H5>
+      <H5 id="html-casing">{emoji} 1.1. Casing & Quotation </H5>
       <Body>Unless specified otherwise, all tags and its attributes should be written in lowercase. The attribute values should always be in quotation marks, as well as no spaces between the equal sign and the value.</Body>
 
       <Example
@@ -65,7 +67,7 @@ const StyleHtml = ({}) => {
 
       <HR />
 
-      <H5 id="html-indentation">📜 1.2. Indentation</H5>
+      <H5 id="html-indentation">{emoji} 1.2. Indentation</H5>
       <Body>As long as you are <b>consistent</b>, you can use 2 or 4 space indentation. However, as there will be many levels of indentation, you should indent with <b>2 spaces</b> in HTML as opposed to the usual 4 spaces.</Body>
       <Body>Each HTML tag should be indented <b>with respect to its parent tag</b>, with the opening and closing tag being on the same level of indentation (unless it is on the same line).</Body>
 
@@ -135,7 +137,7 @@ const StyleHtml = ({}) => {
 
       <HR />
 
-      <H5 id="html-repetition">📜 1.3. Repetition</H5>
+      <H5 id="html-repetition">{emoji} 1.3. Repetition</H5>
 
       <Body>Some repetitions are okay when writing HTML for the first assignment. For example, this is okay:</Body>
 
@@ -155,7 +157,7 @@ const StyleHtml = ({}) => {
 
       <HR />
 
-      <H5 id="html-structure">📜 1.4. General HTML Structure </H5>
+      <H5 id="html-structure">{emoji} 1.4. General HTML Structure </H5>
 
       <Body>All HTML files should not be missing the following starting code</Body>
       <Code lang="html">
@@ -199,7 +201,7 @@ const StyleHtml = ({}) => {
 
       <HR />
 
-      <H5 id="html-semantic">📜 1.5. Use Appropriate Semantic Tags</H5>
+      <H5 id="html-semantic">{emoji} 1.5. Use Appropriate Semantic Tags</H5>
       <Body>When deciding on which tag to use to contain your page elements, you should use the appropriate tag whenever you can. Not only will this provide clearer structural meaning to your page, but it will make your file less complicated and give screen readers an easier time.</Body>
       <Body>Reserve <code>div</code> tags for grouping related page elements or for styling purposes.</Body>
 
@@ -322,8 +324,8 @@ const StyleHtml = ({}) => {
 
       <HR />
 
-      <H5 id="html-style">📜 1.6. The Style Attribute</H5>
-      <Body>You should always try and avoid inline/internal styling and keep all CSS styles in a separate <code>.css</code> file - <b>stick to external styling</b>. See below under the [CSS section](#css-external-spreadsheet) for reasons why.</Body>
+      <H5 id="html-style">{emoji} 1.6. The Style Attribute</H5>
+      <Body>You should always try and avoid inline/internal styling and keep all CSS styles in a separate <code>.css</code> file - <b>stick to external styling</b>. Refer to the CSS section for reasons why.</Body>
       <Example
         lang="html"
         bads={[
@@ -362,7 +364,7 @@ const StyleHtml = ({}) => {
 
       <HR />
 
-      <H5 id="html-script-tag">📜 1.7. The Script Tag</H5>
+      <H5 id="html-script-tag">{emoji} 1.7. The Script Tag</H5>
 
       <Body>Likewise to the previous guideline, you should not be writing internal JavaScript code - keep them separate. This is to keep your code modularised and prevent your html file from being extraordinarily large.</Body>
 
@@ -410,7 +412,7 @@ document.getElementById('main-btn').addEventListener('click', changeText);
 
       <HR />
 
-      <H5 id="html-img">📜 1.8. Image Attributes</H5>
+      <H5 id="html-img">{emoji} 1.8. Image Attributes</H5>
 
       <Body>All images should have alt attributes for accessibility/screen readers, search engine optimization and in case the image does not load properly.</Body>
       <Body>You also need to give good alt tags. Good alt tags have the following traits:</Body>
@@ -435,7 +437,7 @@ document.getElementById('main-btn').addEventListener('click', changeText);
 
       <HR />
 
-      <H5 id="html-img-vs-bg-img">📜 1.9. img tag VS. background-image</H5>
+      <H5 id="html-img-vs-bg-img">{emoji} 1.9. img tag VS. background-image</H5>
 
       <Body><b>Do not mix up the <code>img</code> tag and <code>background-image</code>.</b></Body>
 
@@ -482,7 +484,7 @@ document.getElementById('main-btn').addEventListener('click', changeText);
 
       <HR />
 
-      <H5 id="html-ids">📜 1.10. Unique IDs</H5>
+      <H5 id="html-ids">{emoji} 1.10. Unique IDs</H5>
       <Body>Do not use the same ID on multiple HTML tags. IDs are meant to be unique identifiers and by using it on multiple tags, the behaviour would be undefined and is up to the browser you are using.</Body>
       <Example
         lang="html"
@@ -499,7 +501,7 @@ document.getElementById('main-btn').addEventListener('click', changeText);
       />
 
       <HR />
-      <H5 id="html-space-spam">📜 1.11. Spamming line break tags and {'&nbsp;'}</H5>
+      <H5 id="html-space-spam">{emoji} 1.11. Spamming line break tags and {'&nbsp;'}</H5>
       <Body>Rather than using a bunch of <code>{'<br />'}</code> tags to create spacing, you should use margins instead. This also includes to spamming <code>{'&nbsp'}</code>.</Body>
       <Example
         lang="html"
@@ -536,7 +538,7 @@ document.getElementById('main-btn').addEventListener('click', changeText);
       />
 
       <HR />
-      <H5 id="html-redundant-attributes">📜 1.12. No redundant attributes on tags</H5>
+      <H5 id="html-redundant-attributes">{emoji} 1.12. No redundant attributes on tags</H5>
       <Body>Don't have attributes attached to tags that don't serve a purpose.</Body>
       <Example
         lang="html"
@@ -550,7 +552,7 @@ document.getElementById('main-btn').addEventListener('click', changeText);
       />
 
       <HR />
-      <H5 id="html-multiple-elements">📜 1.13. Avoid having multiple separate versions of a webpage component</H5>
+      <H5 id="html-multiple-elements">{emoji} 1.13. Avoid having multiple separate versions of a webpage component</H5>
       <Body>A lot of students for Assignment 1 Task 3 would create two or more separate variations of a webpage's component and hide/show them depending on the viewport. This is not good practice because of the following:</Body>
       
       <ul>
@@ -646,8 +648,8 @@ to the next row when the viewport's width gets small enough -->
         ]}
       />
 
-<HR />
-      <H5 id="html-commented-code">📜 1.14. Remove blocks of commented out code</H5>
+      <HR />
+      <H5 id="html-commented-code">{emoji} 1.14. Remove blocks of commented out code</H5>
       <Body>While it may be useful during debugging, having a bunch of commented out code around will make your code less readable.</Body>
       
       <Example
@@ -657,13 +659,14 @@ to the next row when the viewport's width gets small enough -->
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed enim mollis, consectetur mauris vel, auctor sem. Nulla aliquam maximus elit vel hendrerit.
   </p>
-<section>
+</section>
 <section>
   <h1>I am trying out different layouts...</h1>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu odio eu lacus scelerisque ultrices ut quis eros. Maecenas dictum fermentum mi eget congue.
   </p>
-<section>--->
+</section>-->
+
 <article>
   <h1>Hello!</h1>
   <p>I have gained sentience</p>

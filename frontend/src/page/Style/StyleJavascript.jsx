@@ -6,15 +6,16 @@ import { Body, H3, H5, HR, Code, Example } from '../../component/StyleComponents
 
 
 const StyleJavascript = ({}) => {
+  const emoji = '🔧';
+
   return (
     <>
-
-      <H3>🔧 3. JavaScript</H3>
+      <H3>{emoji} 3. JavaScript</H3>
 
       <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
       
       <Body>
-        Below is our style guide for COMP6080 for writing good JavaScript. <b>For anything not mentioned here, refer to the <a href="https://www.w3schools.com/js/js_conventions.asp" target="_blank" rel="noreferrer">W3 schools style guide</a>.</b>
+        Below is our style guide for COMP6080 for writing good Javascript. <b>For anything not mentioned here, refer to the <a href="https://www.w3schools.com/js/js_conventions.asp" target="_blank" rel="noreferrer">W3 schools style guide</a>.</b>
       </Body>
       <Body>
         Please also note that you should refer to the marking criteria too that's attached with each Assignment.
@@ -34,12 +35,13 @@ const StyleJavascript = ({}) => {
           <li><a href="#js-strict-equality">3.10. Strict Equality</a></li>
           <li><a href="#js-semicolons">3.11. Semicolons</a></li>
           <li><a href="#js-whitespace">3.12. Whitespace</a></li>
+          <li><a href="#js-commented-code">3.13. Remove blocks of commented out code</a></li>
         </ul>
       </Body>
 
       <HR />
 
-      <H5 id="js-casing">🔧 3.1. Casing & Quotation</H5>
+      <H5 id="js-casing">{emoji} 3.1. Casing & Quotation</H5>
 
       <Body>You may use camelCase, snake_case etc. As long as you are <b>consistent</b>. camelCase is what most JavaScript developers use. Do not use PascalCase, as that is normally reserved for React components.</Body>
 
@@ -79,7 +81,7 @@ const StyleJavascript = ({}) => {
 
       <HR />
 
-      <H5 id="js-indentation">🔧 3.2. Indentation</H5>
+      <H5 id="js-indentation">{emoji} 3.2. Indentation</H5>
 
       <Body>As long as you're <b>consistent</b>, you may use 2-space or 4-space indentation in JavaScript files. We recommend 2-space. Generally, we increase the indentation level everytime we use an opening brace <code>{'{'}</code> and decrease it when we use a closing brace <code>{'}'}</code>.</Body>
 
@@ -106,7 +108,7 @@ dude.age++;
 
       <HR />
 
-      <H5 id="js-comments">🔧 3.3. Comments</H5>
+      <H5 id="js-comments">{emoji} 3.3. Comments</H5>
 
       <Body>Include comments to explain the purpose, functionality, and important details of your code. Comments help you and others understand your code easily, which is especially important in the pair assignments.</Body>
 
@@ -146,11 +148,11 @@ const groupArrayElements = (array, size) => {
 
       <HR />
 
-      <H5 id="js-modularisation">🔧 3.4. Modularisation</H5>
+      <H5 id="js-modularisation">{emoji} 3.4. Modularisation</H5>
 
       <Body>If you have a function that is becoming very bloated and has multiple levels of indentation, chances are that it is not modular enough. Break down your code into smaller, modular functions to promote reusability, DRY principle and makes code maintenance more manageable.</Body>
 
-      <Body>In the below example, it is better to extract the <code>fetch</code> into separate module named appropriately named <code>api.js</code> or another appropriate name of your choosing. This module would be dedicated to handling API requests. The <code>sendReq</code> function then encapsulates the logic for making a fetch request, handling the response, and returning the parsed JSON data. This way, the logic of making API calls can be reused again and again without needing to write <code>fetch</code> and all the other logic multiple times.</Body>
+      <Body>In the below example, it is better to extract the <code>fetch</code> into separate module named <code>api.js</code> or another appropriate name of your choosing. This module would be dedicated to handling API requests. The <code>sendReq</code> function then encapsulates the logic for making a fetch request, handling the response, and returning the parsed JSON data. This way, the logic of making API calls can be reused again and again without needing to write <code>fetch</code> and all the other logic multiple times.</Body>
 
       <Example
         lang="javascript"
@@ -252,7 +254,7 @@ const onRightClick = () => {
 
       <HR />
 
-      <H5 id="js-external-files">🔧 3.5. Use External Files</H5>
+      <H5 id="js-external-files">{emoji} 3.5. Use External Files</H5>
 
       <Body>You should not be writing JavaScript in a html file. This is to keep your code modularised and prevent your html file from being extraordinarily large.</Body>
 
@@ -302,7 +304,7 @@ document.getElementById('main-btn').addEventListener('click', changeText);
 
       <HR />
 
-      <H5 id="js-text-to-dom">🔧 3.6. Avoid converting Text to DOM Nodes (innerHTML, outerHTML, DOMParser etc.)</H5>
+      <H5 id="js-text-to-dom">{emoji} 3.6. Avoid converting Text to DOM Nodes (innerHTML, outerHTML, DOMParser etc.)</H5>
 
       <Body>Do not use methods that convert text to DOM nodes (such as <code>innerHTML</code>, <code>outerHTML</code>, <code>DOMParser</code> etc.). <a target="_blank" href="https://www.dhairyashah.dev/posts/why-innerhtml-is-a-bad-idea-and-how-to-avoid-it/">(Please see this blog post as to why these methods are highly discouraged)</a>.</Body>
 
@@ -331,7 +333,7 @@ container.appendChild(buttonElement);`
 
       <HR />
 
-      <H5 id="js-arrow-functions">🔧 3.7. Arrow functions over Regular functions</H5>
+      <H5 id="js-arrow-functions">{emoji} 3.7. Arrow functions over Regular functions</H5>
 
       <Body>From week 8 and onwards, you should use <code>{'a = () => {}'}</code> function definitions over <code>function a() {}</code> in all instances. This is mainly because modern online sample code uses arrow functions instead and also looks much neater and less verbose as seen in the below examples.</Body>
 
@@ -364,7 +366,7 @@ const calcAvg = (arr) => {
 
       <HR />
 
-      <H5 id="js-names">🔧 3.8. Variable naming convention</H5>
+      <H5 id="js-names">{emoji} 3.8. Variable naming convention</H5>
 
       <Body>All variables and function names should be named appropriately. The name should be meaningful enough that it is "self-documenting" (i.e., explains what it is used for).</Body>
 
@@ -382,7 +384,7 @@ let clickCounter = 0;`
 
       <HR />
 
-      <H5 id="js-variable-declaration">🔧 3.9. Variable declaration</H5>
+      <H5 id="js-variable-declaration">{emoji} 3.9. Variable declaration</H5>
 
       <Body>Never use <code>var</code> - stick to either <code>let</code> or <code>const</code>. In most cases, <code>const</code> is enough for what you need to do in JavaScript/React web development.</Body>
 
@@ -414,7 +416,8 @@ let clickCounter = 0;`
         ]}
       />
 
-      <H5 id="js-strict-equality">🔧 3.10. Strict Equality</H5>
+      <HR/>
+      <H5 id="js-strict-equality">{emoji} 3.10. Strict Equality</H5>
 
       <Body>Stick to using <code>===</code> (strict equality) over <code>==</code> (loose/abstract equality) in almost all instances.</Body>
 
@@ -454,7 +457,7 @@ console.log(foo == undefined)  // Prints true`
 
       <HR />
 
-      <H5 id="js-semicolons">🔧 3.11. Semicolons</H5>
+      <H5 id="js-semicolons">{emoji} 3.11. Semicolons</H5>
 
       <Body>While JavaScript does not need <code>;</code> at the end of each simple statement, it is still considered the batter practice to include them for code clarity. This guideline won't be enforced strictly.</Body>
 
@@ -480,7 +483,7 @@ const fooObj = {
 
       <HR />
 
-      <H5 id="js-whitespace">🔧 3.12. Whitespace</H5>
+      <H5 id="js-whitespace">{emoji} 3.12. Whitespace</H5>
 
       <Body>Using whitespace effectively will improve your code's readability, which is especially important when working in a team. This means leaving space around operators, after commas, and between logical sections of code.</Body>
 
@@ -497,6 +500,33 @@ const fooObj = {
   let bar = 0;
 
   bar += x + y + z;
+}`
+        ]}
+      />
+
+      <HR />
+      <H5 id="js-commented-code">{emoji} 3.13. Remove blocks of commented out code</H5>
+      <Body>While it may be useful during debugging, having a bunch of commented out code around will make your code less readable.</Body>
+      
+      <Example
+        lang="javascript"
+        bads={[
+          `const isWithinBounds = (lowerBound, upperBound, target) => {
+  /*
+  if (target < lowerBound) {
+    return false;
+  } else if (target > upperBound) {
+    return false;
+  } else {
+    return true;
+  }
+  */
+  return (target > lowerBound) && (target < upperBound);
+}`
+        ]}
+        goods={[
+          `const isWithinBounds = (lowerBound, upperBound, target) => {
+  return (target > lowerBound) && (target < upperBound);
 }`
         ]}
       />

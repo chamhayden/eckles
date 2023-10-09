@@ -7,10 +7,12 @@ import { Body, H3, H5, HR, Example } from '../../component/StyleComponents';
 
 
 const StyleCSS = ({}) => {
+  const emoji = '🎨';
+
   return (
     <>
 
-      <H3>🎨 2. CSS Style Guide</H3>
+      <H3>{emoji} 2. CSS Style Guide</H3>
 
       <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
 
@@ -31,13 +33,15 @@ const StyleCSS = ({}) => {
           <li><a href="#css-external-spreadsheet">2.6. Use External Spreadsheets</a></li>
           <li><a href="#css-names">2.7. Class/ID naming convention</a></li>
           <li><a href="#css-important-spam">2.8. Overuse of !important</a></li>
-          <li><a href="#css-negative-margins">2.9. Negative margins</a></li>
+          <li><a href="#css-negative-margins">2.9. Avoid negative margins</a></li>
+          <li><a href="#css-empty-rulesets">2.10. Remove empty rulesets</a></li>
+          <li><a href="#css-commented-code">2.11. Remove blocks of commented out code</a></li>
         </ul>
       </Body>
 
       <HR />
 
-      <H5 id="css-casing">🎨 2.1. Casing & Quotation</H5>
+      <H5 id="css-casing">{emoji} 2.1. Casing & Quotation</H5>
 
       <Body>You should stick to kebab-casing when creating Classes/IDs and other things like keyframes. We won't be strict about this however - as long as you're <b>consistent</b>.</Body>
 
@@ -89,7 +93,7 @@ const StyleCSS = ({}) => {
 
       <HR />
 
-      <H5 id="css-indentation">🎨 2.2. Indentation</H5>
+      <H5 id="css-indentation">{emoji} 2.2. Indentation</H5>
 
       <Body>As long as you're <b>consistent</b>, you may use 2-space or 4-space indentation in CSS files. We increase the indentation level everytime we use an opening brace <code>{'{'}</code> and decrease it when we use a closing brace <code>{'}'}</code>. We also go to a new line with each semicolon <code>;</code>.</Body>
 
@@ -120,7 +124,7 @@ transition: background-color 0.3s ease;
 
       <HR />
 
-      <H5 id="css-avoid-repetition">🎨 2.3. Avoid Repetition</H5>
+      <H5 id="css-avoid-repetition">{emoji} 2.3. Avoid Repetition</H5>
 
       <Body>Like coding languages, you should try and follow the DRY principle here - Don't Repeat Yourself. If two classes are very similar, then you should break it up into smaller pieces.</Body>
 
@@ -245,7 +249,7 @@ css
 
       <HR />
 
-      <H5 id="css-colors">🎨 2.4. CSS Colors</H5>
+      <H5 id="css-colors">{emoji} 2.4. CSS Colors</H5>
 
       <Body>You may use any method when picking/defining CSS colors.</Body>
 
@@ -293,7 +297,7 @@ css
 
       <HR />
 
-      <H5 id="css-external-spreadsheet">🎨 2.6. Use External Spreadsheet</H5>
+      <H5 id="css-external-spreadsheet">{emoji} 2.6. Use External Spreadsheet</H5>
 
       <Body>Keep all CSS separate from the HTML file. This is for the following reasons:
         <ul>
@@ -350,7 +354,7 @@ css
 
       <HR />
 
-      <H5 id="css-names">🎨 2.7. Class/ID naming conventions</H5>
+      <H5 id="css-names">{emoji} 2.7. Class/ID naming conventions</H5>
 
       <Body>Make sure your Classes/IDs have meaningful names that describes what styles it has or what it's used for. It will make your code more accessible to your group mate. Also in the event of forgetting what a Class/ID is for, the name will remind you.</Body>
 
@@ -396,7 +400,7 @@ css
 
 
       <HR />
-      <H5 id="css-important-spam">📜 2.8. Overuse of !important</H5>
+      <H5 id="css-important-spam">{emoji} 2.8. Overuse of !important</H5>
       <Body>Using <code>!important</code> in CSS should be avoided or used sparingly because it can cause the following problems:</Body>
       <ul>
         <li>Accessibility - Screen readers can not detect background images and background images do not have alt text.</li>
@@ -413,7 +417,7 @@ css
       />
 
       <HR />
-      <H5 id="css-negative-margins">📜 2.9. Negative margins</H5>
+      <H5 id="css-negative-margins">{emoji} 2.9. Avoid negative margins</H5>
       <Body>Overusing negative margins makes it difficult to debug, maintain or understand your CSS. Instead, if you want elements to overlap, you can use other methods like relative positioning.</Body>
       <Example
         lang="html"
@@ -441,7 +445,7 @@ css
 </div>`
         ]}
       />
-      <Body>Or get rid of the margins that are in the way to get elements closer. For example, it's better to get rid of the margin on the body rather than setting negative margins to the children to close the gap.</Body>
+      <Body>If you're trying to get elements closer, remove the margins that are in the way. For example, it's better to get rid of the margin on the body rather than setting negative margins to the children to close the gap.</Body>
       <Example
         lang="html"
         bads={[
@@ -472,6 +476,49 @@ body {
 <body>
   <div class="container">Hello world!</div>
 </body>`
+        ]}
+      />
+
+      <HR />
+      <H5 id="css-empty-rulesets">{emoji} 2.10. Remove empty rulesets</H5>
+      <Body>You should not have any empty rulesets in your CSS files. They don't do anything.</Body>
+      <Example
+        lang="css"
+        bads={[
+          `/* Remove these */
+.card {
+
+}
+div {
+  
+}
+`
+        ]}
+      />
+      <HR />
+      <H5 id="css-commented-code">{emoji} 2.11. Remove blocks of commented out code</H5>
+      <Body>While it may be useful during debugging, having a bunch of commented out code around will make your code less readable.</Body>
+      
+      <Example
+        lang="css"
+        bads={[
+          `.logo-text {
+  /*
+  width: 200px;
+  height: 100px;
+  word-spacing: 10px;
+  rotate: -30deg;
+  */
+
+  font-family: Poppins;
+}
+`
+        ]}
+        goods={[
+          `.logo-text {
+  font-family: Poppins;
+}
+`
         ]}
       />
     </>
