@@ -271,7 +271,7 @@ css
 
       <HR />
 
-      <H5 id="css-universal-selectors">2.5. Universal Selectors</H5>
+      <H5 id="css-universal-selectors">{emoji} 2.5. Universal Selectors</H5>
 
       <Body>Avoid the <code>*</code> selector to prevent unintended side effects, such as unintentionally overriding the margin property of an element that you want a different margin set.</Body>
       <Body>However, an exception will be made if they are solely used to modify the default settings for <code>box-sizing</code>, <code>margin</code> or <code>padding</code>.</Body>
@@ -401,18 +401,44 @@ css
 
       <HR />
       <H5 id="css-important-spam">{emoji} 2.8. Overuse of !important</H5>
-      <Body>Using <code>!important</code> in CSS should be avoided or used sparingly because it can cause the following problems:</Body>
+      <Body>Using <code>!important</code> in CSS should be avoided or used sparingly as last resort because it can cause the following problems:</Body>
       <ul>
-        <li>Accessibility - Screen readers can not detect background images and background images do not have alt text.</li>
-        <li>Search Engine Optimisation - Search Engines use <code>alt</code> tags to detect images and display it in searches.</li>
-        <li>Interactions - Users can not interact with background images (i.e., copy or download the image).</li>
+        <li><b>Limited flexibility</b>: It will be harder to change styles of elements easily in the future as you'll need to figure out that the style you're trying to change is being overridden by an <code>!important</code> and then subsequently you need to hunt down that specific <code>!important</code>.</li>
+        <li><b>Specificity Confusion</b>: <code>!important</code> overrides the natural cascading behaviour of Cascading Stylesheets (CSS), which can lead to confusion in understanding what styles are being applied to your elements.</li>
       </ul>
       
       <Example
-        lang="html"
+        lang="css"
         bads={[
+          `.card {
+  background-color: #bbdabb !important;
+  color: black !important;
+  width: 200px !important;
+  height: 200px !important;
+  border-radius: 15px !important;
+}
+
+/* new-card won't have an effect if both of these classes are applied */
+.new-card {
+  background-color: #f7d02d;
+  color: white;
+}
+`
         ]}
         goods={[
+          `.card {
+  background-color: #bbdabb;
+  color: black;
+  width: 200px;
+  height: 200px;
+  border-radius: 15px;
+}
+
+.new-card {
+  background-color: #f7d02d;
+  color: white;
+}
+`
         ]}
       />
 
