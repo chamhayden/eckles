@@ -35,7 +35,7 @@ export const HR = () => {
 }
 
 export const Code = (props) => {
-  {/*<div style={{ maxWidth: props.large ? '100%' : props.medium ? '800px' : '500px' }}>*/}
+  /*<div style={{ maxWidth: props.large ? '100%' : props.medium ? '800px' : '500px' }}>*/
   return (
     <div style={{ maxWidth: '800px' }}>
       <SyntaxHighlighter
@@ -55,7 +55,8 @@ export const Example = (props) => {
     <Box sx={{ boxShadow: 'rgba(0, 0, 0, 0.2) 0px 5px 15px', borderRadius: '15px'}} my={2}>
       <Box sx={{ cursor: 'pointer' }} p={1} onClick={() => setExpand(!expand)}>
         <Body>
-          <span>{expand ? '⬇️' : '⬆️'} 💡 <b>{`${(props.title ?? 'Example')}:`} </b></span>
+          <span>{expand ? '⬇️' : '⬆️'}</span>
+          💡 <b>{`${(props.title ?? 'Example')}:`} </b>
         </Body>
       </Box>
 
@@ -90,10 +91,11 @@ export const ExampleImages = ({ title, srcArray = [] }) => {
   return (
     <Box sx={{ boxShadow: 'rgba(0, 0, 0, 0.2) 0px 5px 15px', borderRadius: '15px'}} my={2}>
       <Box sx={{ cursor: 'pointer' }} p={1} onClick={() => setExpand(!expand)}>
-        <Body onClick={() => setExpand(!expand)}>
-          <span style={{ cursor: 'pointer' }}>
-            {expand ? '⬇️' : '⬆️'} 💡 <b>{`${(title ?? 'Example')}:`} </b>
+        <Body>
+          <span>
+            {expand ? '⬇️' : '⬆️'}
           </span>
+          💡 <b>{`${(title ?? 'Example')}:`} </b>
         </Body>
       </Box>
       <Collapse in={expand} unmountOnExit>
