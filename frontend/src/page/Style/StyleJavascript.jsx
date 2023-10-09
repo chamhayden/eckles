@@ -335,9 +335,11 @@ container.appendChild(buttonElement);`
 
       <H5 id="js-arrow-functions">{emoji} 3.7. Arrow functions over Regular functions</H5>
 
-      <Body>From week 8 and onwards, you should use <code>{'a = () => {}'}</code> function definitions over <code>function a() {}</code> in all instances. This is mainly because modern online sample code uses arrow functions instead and also looks much neater and less verbose as seen in the below examples.</Body>
+      <Body>You should use <code>{'() => {}'}</code> function definitions over <code>{'function () {}'}</code> in most cases, especially with callbacks. This is mainly because it's syntax is shorter and sweeter than regular functions.</Body>
+      <Body>However, if you need a dynamic execution context, then you may use a traditional function.</Body>
 
       <Example
+        title="Example of when to use Arrow functions"
         lang="javascript"
         bads={[
 `// The function passed into reduce is anonymous as it does not have a name.
@@ -351,7 +353,7 @@ function calcAvg(arr) {
 }`
         ]}
         goods={[
-`// Using arrow functions eliminates the function keyword and the return functions through implicit return
+`// Using arrow functions eliminates the function keyword and the return keyword through implicit return
 const calcAvg = (arr) => {
   if (arr.length === 0) return 0;
 
@@ -360,9 +362,33 @@ const calcAvg = (arr) => {
         ]}
       />
 
-      <Body>As a side note, there is a subtle difference between the two. Regular functions has a dynamic <code>this</code> whereas Arrow functions has a lexical <code>this</code>. This distinction falls outside the scope of this course, and you should not need to worry about it in the assignments. (In other words, stick to Arrow Functions for this course).</Body>
+      <Example
+        title="Example of when to use Regular functions"
+        lang="javascript"
+        bads={[
+`const superhero = {
+  catchphrase: 'Hello!',
+  shout: () => {
+    // 'this' is inherited from the lexical context (in this case it's the global context)
+    // rather than the superhero object. Thus, this will print undefined
+    console.log(this.catchphrase);
+  },
+}
 
-      <Body>If you wish, you may read more about it <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" rel="noreferrer">here</a>.</Body>
+superhero.shout();`
+        ]}
+        goods={[
+`const superhero = {
+  catchphrase: 'Hello!',
+  shout: function () {
+    // 'this' will now refer to 'superhero' and so will log 'Hello!'
+    console.log(this.catchphrase);
+  },
+}
+
+superhero.shout();`
+        ]}
+      />
 
       <HR />
 
