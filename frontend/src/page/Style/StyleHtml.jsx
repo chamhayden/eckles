@@ -72,6 +72,7 @@ const StyleHtml = ({}) => {
       <Body>Each HTML tag should be indented <b>with respect to its parent tag</b>, with the opening and closing tag being on the same level of indentation (unless it is on the same line).</Body>
 
       <Example
+        title="Example #1"
         lang="html"
         bads={[
 `<div><p>Hello
@@ -83,8 +84,8 @@ const StyleHtml = ({}) => {
 </div>`
         ]}
       />
-
       <Example
+        title="Example #2"
         lang="html"
         bads={[
 `<table><thead>
@@ -418,7 +419,7 @@ document.getElementById('main-btn').addEventListener('click', changeText);
       <Body>You also need to give good alt tags. Good alt tags have the following traits:</Body>
       <ul>
         <li><b>Descriptive</b>: Should accurately describe the content of the image.</li>
-        <li><b>Concise</b>: All alt tags should be to the point. You also don't need to say that the image is an image again since that's a given.</li>
+        <li><b>Concise</b>: All alt tags should be to the point. You also don't need to say that the image is an image since that's a given.</li>
       </ul>
       <Body>Regarding images used for decoration and do not convey anything meaningful, you can just leave the alt tag empty so it doesn't get picked up by SEO/assistive technology. i.e., <code>alt=""</code> can be used for an image of a tiny arrow used to decorate text.</Body>
 
@@ -536,6 +537,15 @@ document.getElementById('main-btn').addEventListener('click', changeText);
 `
         ]}
       />
+      <Body><code>{'<br />'}</code> tags are okay if you need something to start on a new line.</Body>
+      <Example
+        lang="html"
+        goods={[
+          `<label for="street-input">Enter your street:</label>
+<br />
+<input id="street-input" type="text"></input>`
+        ]}
+      />
 
       <HR />
       <H5 id="html-redundant-attributes">{emoji} 1.12. No redundant attributes on tags</H5>
@@ -557,7 +567,7 @@ document.getElementById('main-btn').addEventListener('click', changeText);
       
       <ul>
         <li><b>Hard to maintain</b>: If you wanted to make an edit to that part of the website, you'd need to make changes to multiple separate places in your code.</li>
-        <li><b>Bloats DOM</b>: {'Even if one of the version\'s display is set to '}<code>none</code>{', it still exists on the DOM. As such, the DOM will have unnecessary elements in it, which can lead to several performance and memory-related issues that can negatively impact the user experience. (such as longer First Contentful Paint (FCP) times)'}</li>
+        <li><b>Bloats DOM</b>: {'Even if one of the version\'s display is set to '}<code>none</code>{', it still exists on the DOM. As such, the DOM will have unnecessary elements in it, which can lead to several performance and memory-related issues that can negatively impact the user experience (such as longer First Contentful Paint (FCP) times).'}</li>
       </ul>
 
       <Body>For the example below, we want to create two versions of a layout, one vertical and one horizontal. The layout will be vertical if the viewport becomes small enough and becomes horizontal if the viewport is big enough.</Body>
@@ -622,7 +632,7 @@ less than 640px in width. You can already see it's a lot of duplicated code.-->
         ]}
         goods={[
           `<!-- In index.css -->
-<!-- Instead, why don't we make use of flex containers and let it automatically wrap
+<!-- Instead, we make use of flex containers and let it automatically wrap
 to the next row when the viewport's width gets small enough -->
 .flex-container {
   display: flex;
