@@ -14,8 +14,7 @@ const StyleHtml = ({}) => {
   const emoji = '📜';
 
   return (
-    <section style={{ maxWidth: 'calc(100vw - 100px)' }}>
-
+    <>
       <H3>{emoji} 1. HTML Style Guide</H3>
 
       <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
@@ -692,7 +691,7 @@ to the next row when the viewport's width gets small enough -->
         ]}
       />
       
-    </section>
+    </>
   );
 };
 
