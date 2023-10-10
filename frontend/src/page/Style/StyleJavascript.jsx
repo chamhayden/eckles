@@ -21,23 +21,21 @@ const StyleJavascript = ({}) => {
         Please also note that you should refer to the marking criteria too that's attached with each Assignment.
       </Body>
 
-      <Body>
-        <ul>
-          <li><a href="#js-casing">3.1. Casing & Quotation</a></li>
-          <li><a href="#js-indentation">3.2. Indentation</a></li>
-          <li><a href="#js-comments">3.3. Comments</a></li>
-          <li><a href="#js-modularisation">3.4. Modularisation</a></li>
-          <li><a href="#js-external-files">3.5. Use External Files</a></li>
-          <li><a href="#js-text-to-dom">3.6. Avoid converting Text to DOM Nodes (innerHTML, outerHTML, DOMParser etc.)</a></li>
-          <li><a href="#js-arrow-functions">3.7. Arrow functions over Regular functions</a></li>
-          <li><a href="#js-names">3.8. Variable naming convention</a></li>
-          <li><a href="#js-variable-declaration">3.9. Variable declaration</a></li>
-          <li><a href="#js-strict-equality">3.10. Strict Equality</a></li>
-          <li><a href="#js-semicolons">3.11. Semicolons</a></li>
-          <li><a href="#js-whitespace">3.12. Whitespace</a></li>
-          <li><a href="#js-commented-code">3.13. Remove blocks of commented out code</a></li>
-        </ul>
-      </Body>
+      <ul>
+        <li><a href="#js-casing">3.1. Casing & Quotation</a></li>
+        <li><a href="#js-indentation">3.2. Indentation</a></li>
+        <li><a href="#js-comments">3.3. Comments</a></li>
+        <li><a href="#js-modularisation">3.4. Modularisation</a></li>
+        <li><a href="#js-external-files">3.5. Use External Files</a></li>
+        <li><a href="#js-text-to-dom">3.6. Avoid converting Text to DOM Nodes (innerHTML, outerHTML, DOMParser etc.)</a></li>
+        <li><a href="#js-arrow-functions">3.7. Arrow functions over Regular functions</a></li>
+        <li><a href="#js-names">3.8. Variable naming convention</a></li>
+        <li><a href="#js-variable-declaration">3.9. Variable declaration</a></li>
+        <li><a href="#js-strict-equality">3.10. Strict Equality</a></li>
+        <li><a href="#js-semicolons">3.11. Semicolons</a></li>
+        <li><a href="#js-whitespace">3.12. Whitespace</a></li>
+        <li><a href="#js-commented-code">3.13. Remove blocks of commented out code</a></li>
+      </ul>
 
       <HR />
 

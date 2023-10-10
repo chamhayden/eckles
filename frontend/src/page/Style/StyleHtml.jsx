@@ -25,24 +25,22 @@ const StyleHtml = ({}) => {
         Please also note that you should refer to the marking criteria too that's attached with each Assignment.
       </Body>
 
-      <Body>
-        <ul>
-          <li><a href="#html-casing">1.1. Casing & Quotation</a></li>
-          <li><a href="#html-indentation">1.2. Indentation</a></li>
-          <li><a href="#html-repetition">1.3. Repetition</a></li>
-          <li><a href="#html-structure">1.4. General HTML structure</a></li>
-          <li><a href="#html-semantic">1.5. Use Appropriate Semantic Tags</a></li>
-          <li><a href="#html-style">1.6. The Style Attribute</a></li>
-          <li><a href="#html-script-tag">1.7. The Script Tag</a></li>
-          <li><a href="#html-img">1.8. Image Attributes</a></li>
-          <li><a href="#html-img-vs-bg-img">1.9. img tag VS. background-image</a></li>
-          <li><a href="#html-ids">1.10. Unique IDs</a></li>
-          <li><a href="#html-space-spam">1.11. Spamming line break tags and {'&nbsp;'}</a></li>
-          <li><a href="#html-redundant-attributes">1.12. No redundant attributes on tags</a></li>
-          <li><a href="#html-multiple-elements">1.13. Avoid having multiple separate versions of a webpage component</a></li>
-          <li><a href="#html-commented-code">1.14. Remove blocks of commented out code</a></li>
-        </ul>
-      </Body>
+      <ul>
+        <li><a href="#html-casing">1.1. Casing & Quotation</a></li>
+        <li><a href="#html-indentation">1.2. Indentation</a></li>
+        <li><a href="#html-repetition">1.3. Repetition</a></li>
+        <li><a href="#html-structure">1.4. General HTML structure</a></li>
+        <li><a href="#html-semantic">1.5. Use Appropriate Semantic Tags</a></li>
+        <li><a href="#html-style">1.6. The Style Attribute</a></li>
+        <li><a href="#html-script-tag">1.7. The Script Tag</a></li>
+        <li><a href="#html-img">1.8. Image Attributes</a></li>
+        <li><a href="#html-img-vs-bg-img">1.9. img tag VS. background-image</a></li>
+        <li><a href="#html-ids">1.10. Unique IDs</a></li>
+        <li><a href="#html-space-spam">1.11. Spamming line break tags and {'&nbsp;'}</a></li>
+        <li><a href="#html-redundant-attributes">1.12. No redundant attributes on tags</a></li>
+        <li><a href="#html-multiple-elements">1.13. Avoid having multiple separate versions of a webpage component</a></li>
+        <li><a href="#html-commented-code">1.14. Remove blocks of commented out code</a></li>
+      </ul>
 
       <HR />
 
@@ -248,32 +246,32 @@ const StyleHtml = ({}) => {
 `<div>
   <div>Welcome to my Awesome Website!</div>
   <div>
-      <div>
-          <div><a href="#">Home</a></div>
-          <div><a href="#">About</a></div>
-          <div><a href="#">Services</a></div>
-          <div><a href="#">Contact</a></div>
-      </div>
+    <div>
+      <div><a href="#">Home</a></div>
+      <div><a href="#">About</a></div>
+      <div><a href="#">Services</a></div>
+      <div><a href="#">Contact</a></div>
+    </div>
   </div>
 </div>
 
 <div>
   <div>
-      <div>About Us</div>
-      <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+    <div>About Us</div>
+    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
   </div>
   <div class="..." />
   <div>
-      <div>Our Services</div>
+    <div>Our Services</div>
 
-      <div>
-          <div>Service 1</div>
-          <div>We can paint your car</div>
-      </div>
-      <div>
-          <div>Service 2</div>
-          <div>We can repair your car</div>
-      </div>
+    <div>
+      <div>Service 1</div>
+      <div>We can paint your car</div>
+    </div>
+    <div>
+      <div>Service 2</div>
+      <div>We can repair your car</div>
+    </div>
   </div>
 </div>
 
@@ -285,32 +283,32 @@ const StyleHtml = ({}) => {
 `<header>
   <h1>Welcome to my Awesome Website!</h1>
   <nav>
-      <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
-      </ul>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
   </nav>
 </header>
 
 <main>
   <section>
-      <h2>About Us</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <h2>About Us</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </section>
   <hr />
   <section>
-      <h2>Our Services</h2>
+    <h2>Our Services</h2>
 
-      <article>
-          <h3>Service 1</h3>
-          <p>We can paint your car</p>
-      </article>
-      <article>
-          <h3>Service 2</h3>
-          <p>We can repair your car</p>
-      </article>
+    <article>
+      <h3>Service 1</h3>
+      <p>We can paint your car</p>
+    </article>
+    <article>
+      <h3>Service 2</h3>
+      <p>We can repair your car</p>
+    </article>
   </section>
 </main>
 

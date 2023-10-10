@@ -22,21 +22,19 @@ const StyleCSS = ({}) => {
         Please also note that you should refer to the marking criteria too that's attached with each Assignment.
       </Body>
 
-      <Body>
-        <ul>
-          <li><a href="#css-casing">2.1. Casing & Quotation</a></li>
-          <li><a href="#css-indentation">2.2. Indentation</a></li>
-          <li><a href="#css-avoid-repetition">2.3. Avoid Repetition</a></li>
-          <li><a href="#css-colors">2.4. CSS Colors</a></li>
-          <li><a href="#css-universal-selectors">2.5. Universal Selectors</a></li>
-          <li><a href="#css-external-spreadsheet">2.6. Use External Spreadsheets</a></li>
-          <li><a href="#css-names">2.7. Class/ID naming convention</a></li>
-          <li><a href="#css-important-spam">2.8. Overuse of !important</a></li>
-          <li><a href="#css-negative-margins">2.9. Avoid negative margins</a></li>
-          <li><a href="#css-empty-rulesets">2.10. Remove empty rulesets</a></li>
-          <li><a href="#css-commented-code">2.11. Remove blocks of commented out code</a></li>
-        </ul>
-      </Body>
+      <ul>
+        <li><a href="#css-casing">2.1. Casing & Quotation</a></li>
+        <li><a href="#css-indentation">2.2. Indentation</a></li>
+        <li><a href="#css-avoid-repetition">2.3. Avoid Repetition</a></li>
+        <li><a href="#css-colors">2.4. CSS Colors</a></li>
+        <li><a href="#css-universal-selectors">2.5. Universal Selectors</a></li>
+        <li><a href="#css-external-spreadsheet">2.6. Use External Spreadsheets</a></li>
+        <li><a href="#css-names">2.7. Class/ID naming convention</a></li>
+        <li><a href="#css-important-spam">2.8. Overuse of !important</a></li>
+        <li><a href="#css-negative-margins">2.9. Avoid negative margins</a></li>
+        <li><a href="#css-empty-rulesets">2.10. Remove empty rulesets</a></li>
+        <li><a href="#css-commented-code">2.11. Remove blocks of commented out code</a></li>
+      </ul>
 
       <HR />
 
@@ -298,13 +296,12 @@ css
 
       <H5 id="css-external-spreadsheet">{emoji} 2.6. Use External Spreadsheet</H5>
 
-      <Body>Keep all CSS separate from the HTML file. This is for the following reasons:
-        <ul>
-          <li><b>Separation of Concerns</b>: Mixing CSS and HTML together makes it harder to maintain and update the code.</li>
-          <li><b>Code Reusability</b>: Can reuse the same CSS file across multiple web pages.</li>
-          <li><b>Prevents Cascading issues</b>: Inline styles take priority over external stylesheets and other CSS rules. This means as your codebase grows, it becomes more difficult to understand the styling hierarchy of your element.</li>
-        </ul>
-      </Body>
+      <Body>Keep all CSS separate from the HTML file. This is for the following reasons:</Body>
+      <ul>
+        <li><b>Separation of Concerns</b>: Mixing CSS and HTML together makes it harder to maintain and update the code.</li>
+        <li><b>Code Reusability</b>: Can reuse the same CSS file across multiple web pages.</li>
+        <li><b>Prevents Cascading issues</b>: Inline styles take priority over external stylesheets and other CSS rules. This means as your codebase grows, it becomes more difficult to understand the styling hierarchy of your element.</li>
+      </ul>
 
       <Body>Do not be afraid to create multiple stylesheets to keep things more organised.</Body>
 
@@ -396,7 +393,6 @@ css
 }`
         ]}
       />
-
 
       <HR />
       <H5 id="css-important-spam">{emoji} 2.8. Overuse of !important</H5>
