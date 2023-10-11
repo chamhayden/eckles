@@ -37,15 +37,17 @@ export const HR = () => {
 
 export const Code = (props) => {
   /*<div style={{ maxWidth: props.large ? '100%' : props.medium ? '800px' : '500px' }}>*/
+
+  // All code elements in this div will have a background color of transparent
   return (
-    <div style={{ maxWidth: '800px' }}>
+    <Box sx={{ maxWidth: '800px', 'code': { bgcolor: 'transparent' } }}> 
       <SyntaxHighlighter
         style={a11yDark}
         language={props.lang}
       >
         {props.children}
       </SyntaxHighlighter>
-    </div>
+    </Box>
   )
 }
 
