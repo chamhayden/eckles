@@ -1,6 +1,6 @@
 import config from '../config';
 
-export const apiCall = (path, data, type) => {
+export const apiCall = (path, data, type, callback) => {
   return new Promise((resolve, reject) => {
     fetch(`${config.BASE_URL}/api/${path}`, {
       method: type ?? 'POST',
@@ -15,7 +15,8 @@ export const apiCall = (path, data, type) => {
         return response.json().then(resolve);
       } else if (response.status === 400) {
         return response.json().then(obj => {
-          alert(obj.err);
+          // alert(obj.err);
+          callback(obj.err);
           reject(obj.err);
         });
       } else {
