@@ -1,9 +1,7 @@
 import React from 'react';
-import { render } from "react-dom";
 import {
   Routes,
   Route,
-  useNavigate,
 } from 'react-router-dom';
 
 import Site from './page/Site';

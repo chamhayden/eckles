@@ -1,20 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions} from '@mui/material';
 import FormLabel from '@mui/material/FormLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -25,7 +20,6 @@ import { useCookies } from 'react-cookie';
 import AppLoad from '../component/AppLoad';
 import { apiCall } from '../util/api';
 import config from '../config';
-import makePage from '../component/makePage';
 import { Context, useContext } from '../context';
 
 /* Sourced https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/sign-in/SignIn.js */
@@ -72,13 +66,25 @@ const styles = theme => ({
 });
 
 const SignIn = (props) => {
-  const { getters, setters } = useContext(Context);
+  // dialog state
+  const [open, setOpen] = React.useState(false);
+  const { getters } = useContext(Context);
   const [zid, setZid] = React.useState('');
   const [zpass, setZpass] = React.useState('');
   const [term, setTerm] = React.useState(['sample']);
-  const [cookies, setCookie] = useCookies();
+  const [cookies] = useCookies();
   const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = React.useState('');
+
+  const handleClickOpen = (message) => {
+    setErrorMessage(message); // Set the error message
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   React.useEffect(() => {
     if (cookies.eckles_loggedin) {
@@ -92,7 +98,7 @@ const SignIn = (props) => {
 
   const login = (zid, zpass, term) => {
     setLoading(true);
-    apiCall('login', { term, zid, zpass })
+    apiCall('login', { term, zid, zpass }, 'POST', handleClickOpen)
       .then(_ => {
         localStorage.removeItem('eckles_content');
         localStorage.removeItem('eckles_expiry');
@@ -106,12 +112,12 @@ const SignIn = (props) => {
   if (loading) {
     return <AppLoad />;
   }
-
+  
   return (
     <main className={classes.main}>
       <CssBaseline />
       <Paper className={classes.paper}>
-        <img className={classes.logo} src={mainlogo} />
+        <img className={classes.logo} src={mainlogo} alt='mainlogo'/>
         <Typography component="h1" variant="h5">
           Sign in to COMP6080
         </Typography>
@@ -157,6 +163,19 @@ const SignIn = (props) => {
           </Button>
         </form>
       </Paper>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>{"Error"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+              {errorMessage}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </main>
   );
 }
