@@ -37,15 +37,17 @@ export const HR = () => {
 
 export const Code = (props) => {
   /*<div style={{ maxWidth: props.large ? '100%' : props.medium ? '800px' : '500px' }}>*/
+
+  // All code elements in this div will have a background color of transparent
   return (
-    <div style={{ maxWidth: '800px' }}>
+    <Box sx={{ maxWidth: '800px', 'code': { bgcolor: 'transparent' } }}> 
       <SyntaxHighlighter
         style={a11yDark}
         language={props.lang}
       >
         {props.children}
       </SyntaxHighlighter>
-    </div>
+    </Box>
   )
 }
 
@@ -86,7 +88,7 @@ const ExampleAccordionWrapper = ({ children, title = 'Example' }) => {
       <Box sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }} p={1} onClick={() => setExpand(!expand)}>
         <ExpandLessIcon style={{ rotate: (expand) ? '180deg' : '0deg', transition: 'rotate 0.1s ease-in-out' }} />
         <Body>
-          <b>{`${(title)}:`} </b>
+          <b>{`💡 ${(title)}:`} </b>
         </Body>
       </Box>
       <Collapse in={expand} unmountOnExit>
