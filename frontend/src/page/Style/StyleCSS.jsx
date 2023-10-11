@@ -3,34 +3,42 @@ import React from 'react';
 import makePage from '../../component/makePage';
 
 
-import { Body, H3, H5, HR, Code, Example } from '../../component/StyleComponents';
+import { Body, H3, H5, HR, Example } from '../../component/StyleComponents';
 
 
 const StyleCSS = ({}) => {
+  const emoji = '🎨';
+
   return (
     <>
+      <H3>{emoji} 2. CSS Style Guide</H3>
 
-      <H3>🎨 2. CSS Style Guide</H3>
-
-      <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is **highly** recommended for students to have a read through this style guide.</Body>
-      <Body>This page outlines the conventions we will be following throughout the course. It incorporates guidelines derived from standard style guides plus feedback and inquiries accumulated from previous cohorts.</Body>
-      <Body>We follow the <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Writing_style_guide/Code_style_guide/CSS" target="_blank">MDN style guide for CSS</a> as a base. Here are a few notable guidelines that are often asked about or forgotten.</Body>
+      <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
 
       <Body>
-        <ul>
-          <li><a href="#css-casing">2.1. Casing & Quotation</a></li>
-          <li><a href="#css-indentation">2.2. Indentation</a></li>
-          <li><a href="#css-avoid-repetition">2.3. Avoid Repetition</a></li>
-          <li><a href="#css-colors">2.4. CSS Colors</a></li>
-          <li><a href="#css-universal-selectors">2.5. Universal Selectors</a></li>
-          <li><a href="#css-external-spreadsheet">2.6. Use External Spreadsheets</a></li>
-          <li><a href="#css-names">2.7. Class/ID naming convention</a></li>
-        </ul>
+        Below is our style guide for COMP6080 for writing good CSS. <b>For anything not mentioned here, refer to the <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Writing_style_guide/Code_style_guide/CSS" target="_blank" rel="noreferrer">MDN style guide for CSS</a>.</b>
       </Body>
+      <Body>
+        Please also note that you should refer to the marking criteria too that's attached with each Assignment.
+      </Body>
+
+      <ul>
+        <li><a href="#css-casing">2.1. Casing & Quotation</a></li>
+        <li><a href="#css-indentation">2.2. Indentation</a></li>
+        <li><a href="#css-avoid-repetition">2.3. Avoid Repetition</a></li>
+        <li><a href="#css-colors">2.4. CSS Colors</a></li>
+        <li><a href="#css-universal-selectors">2.5. Universal Selectors</a></li>
+        <li><a href="#css-external-spreadsheet">2.6. Use External Spreadsheets</a></li>
+        <li><a href="#css-names">2.7. Class/ID naming convention</a></li>
+        <li><a href="#css-important-spam">2.8. Overuse of !important</a></li>
+        <li><a href="#css-negative-margins">2.9. Avoid negative margins</a></li>
+        <li><a href="#css-empty-rulesets">2.10. Remove empty rulesets</a></li>
+        <li><a href="#css-commented-code">2.11. Remove blocks of commented out code</a></li>
+      </ul>
 
       <HR />
 
-      <H5 id="css-casing">🎨 2.1. Casing & Quotation</H5>
+      <H5 id="css-casing">{emoji} 2.1. Casing & Quotation</H5>
 
       <Body>You should stick to kebab-casing when creating Classes/IDs and other things like keyframes. We won't be strict about this however - as long as you're <b>consistent</b>.</Body>
 
@@ -82,7 +90,7 @@ const StyleCSS = ({}) => {
 
       <HR />
 
-      <H5 id="css-indentation">🎨 2.2. Indentation</H5>
+      <H5 id="css-indentation">{emoji} 2.2. Indentation</H5>
 
       <Body>As long as you're <b>consistent</b>, you may use 2-space or 4-space indentation in CSS files. We increase the indentation level everytime we use an opening brace <code>{'{'}</code> and decrease it when we use a closing brace <code>{'}'}</code>. We also go to a new line with each semicolon <code>;</code>.</Body>
 
@@ -113,7 +121,7 @@ transition: background-color 0.3s ease;
 
       <HR />
 
-      <H5 id="css-avoid-repetition">🎨 2.3. Avoid Repetition</H5>
+      <H5 id="css-avoid-repetition">{emoji} 2.3. Avoid Repetition</H5>
 
       <Body>Like coding languages, you should try and follow the DRY principle here - Don't Repeat Yourself. If two classes are very similar, then you should break it up into smaller pieces.</Body>
 
@@ -238,7 +246,7 @@ css
 
       <HR />
 
-      <H5 id="css-colors">🎨 2.4. CSS Colors</H5>
+      <H5 id="css-colors">{emoji} 2.4. CSS Colors</H5>
 
       <Body>You may use any method when picking/defining CSS colors.</Body>
 
@@ -260,7 +268,7 @@ css
 
       <HR />
 
-      <H5 id="css-universal-selectors">2.5. Universal Selectors</H5>
+      <H5 id="css-universal-selectors">{emoji} 2.5. Universal Selectors</H5>
 
       <Body>Avoid the <code>*</code> selector to prevent unintended side effects, such as unintentionally overriding the margin property of an element that you want a different margin set.</Body>
       <Body>However, an exception will be made if they are solely used to modify the default settings for <code>box-sizing</code>, <code>margin</code> or <code>padding</code>.</Body>
@@ -286,15 +294,14 @@ css
 
       <HR />
 
-      <H5 id="css-external-spreadsheet">🎨 2.6. Use External Spreadsheet</H5>
+      <H5 id="css-external-spreadsheet">{emoji} 2.6. Use External Spreadsheet</H5>
 
-      <Body>Keep all CSS separate from the HTML file. This is for the following reasons:
-        <ul>
-          <li><b>Separation of Concerns</b>: Mixing CSS and HTML together makes it harder to maintain and update the code.</li>
-          <li><b>Code Reusability</b>: Can reuse the same CSS file across multiple web pages.</li>
-          <li><b>Prevents Cascading issues</b>: Inline styles take priority over external stylesheets and other CSS rules. This means as your codebase grows, it becomes more difficult to understand the styling hierarchy of your element.</li>
-        </ul>
-      </Body>
+      <Body>Keep all CSS separate from the HTML file. This is for the following reasons:</Body>
+      <ul>
+        <li><b>Separation of Concerns</b>: Mixing CSS and HTML together makes it harder to maintain and update the code.</li>
+        <li><b>Code Reusability</b>: Can reuse the same CSS file across multiple web pages.</li>
+        <li><b>Prevents Cascading issues</b>: Inline styles take priority over external stylesheets and other CSS rules. This means as your codebase grows, it becomes more difficult to understand the styling hierarchy of your element.</li>
+      </ul>
 
       <Body>Do not be afraid to create multiple stylesheets to keep things more organised.</Body>
 
@@ -306,7 +313,7 @@ css
 <button style="color:white;background-color:blue;text-transform:capitalize;width:50px;height:50px;">This is a card</button>`,
 `/* in <head> */
 <style>
-  .blue-card {
+  .primary-btn {
     background-color: blue;
     color: white;
     text-transform: capitalize;
@@ -316,13 +323,13 @@ css
 </style>
 
 /* in <body> */
-<button class="blue-card">Lorem Ipsum</button>
-<button class="blue-card">Muspi Merol</button>
-<button class="blue-card">This is a card</button>`
+<button class="primary-btn">Lorem Ipsum</button>
+<button class="primary-btn">Muspi Merol</button>
+<button class="primary-btn">This is a card</button>`
         ]}
         goods={[
 `/* in style.css */
-.blue-card {
+.primary-btn {
   background-color: blue;
   color: white;
   text-transform: capitalize;
@@ -335,15 +342,15 @@ css
 <link rel="stylesheet" href="styles.css">
 
 /* in index.html in <body> */
-<button class="blue-card">Lorem Ipsum</button>
-<button class="blue-card">Muspi Merol</button>
-<button class="blue-card">This is a card</button>`
+<button class="primary-btn">Lorem Ipsum</button>
+<button class="primary-btn">Muspi Merol</button>
+<button class="primary-btn">This is a card</button>`
         ]}
       />
 
       <HR />
 
-      <H5 id="css-names">🎨 2.7. Class/ID naming conventions</H5>
+      <H5 id="css-names">{emoji} 2.7. Class/ID naming conventions</H5>
 
       <Body>Make sure your Classes/IDs have meaningful names that describes what styles it has or what it's used for. It will make your code more accessible to your group mate. Also in the event of forgetting what a Class/ID is for, the name will remind you.</Body>
 
@@ -355,6 +362,16 @@ css
 }
 .img-b {
   filter: grayscale(100%);
+}
+.bg-1 {
+  background-color: salmon;
+}
+.bg-2 {
+  background-color: forestgreen;
+}
+.zsbd {
+  display: grid;
+  place-items: center;
 }`
         ]}
         goods={[
@@ -363,7 +380,166 @@ css
 }
 .grayscale-img {
   filter: grayscale(100%);
+}
+.red-bg {
+  background-color: salmon;
+}
+.green-bg {
+  background-color: forestgreen;
+}
+.container {
+  display: grid;
+  place-items: center;
 }`
+        ]}
+      />
+
+      <HR />
+      <H5 id="css-important-spam">{emoji} 2.8. Overuse of !important</H5>
+      <Body>Using <code>!important</code> in CSS should be avoided or used sparingly as last resort because it can cause the following problems:</Body>
+      <ul>
+        <li><b>Limited flexibility</b>: It will be harder to change styles of elements easily in the future as you'll need to figure out that the style you're trying to change is being overridden by an <code>!important</code> and then subsequently you need to hunt down that specific <code>!important</code>.</li>
+        <li><b>Specificity Confusion</b>: <code>!important</code> overrides the natural cascading behaviour of Cascading Stylesheets (CSS), which can lead to confusion in understanding what styles are being applied to your elements.</li>
+      </ul>
+      
+      <Example
+        lang="css"
+        bads={[
+          `.card {
+  background-color: #bbdabb !important;
+  color: black !important;
+  width: 200px !important;
+  height: 200px !important;
+  border-radius: 15px !important;
+}
+
+/* new-card won't have an effect if both of these classes are applied */
+.new-card {
+  background-color: #f7d02d;
+  color: white;
+}
+`
+        ]}
+        goods={[
+          `.card {
+  background-color: #bbdabb;
+  color: black;
+  width: 200px;
+  height: 200px;
+  border-radius: 15px;
+}
+
+.new-card {
+  background-color: #f7d02d;
+  color: white;
+}
+`
+        ]}
+      />
+
+      <HR />
+      <H5 id="css-negative-margins">{emoji} 2.9. Avoid negative margins</H5>
+      <Body>Overusing negative margins makes it difficult to debug, maintain or understand your CSS. Instead, if you want elements to overlap, you can use other methods like relative positioning.</Body>
+      <Example
+        lang="html"
+        bads={[
+          `<!-- in style.css -->
+.offset {
+  margin-top: -10px;
+}
+
+<!-- in index.html -->
+<div>
+  <p class="offset">Hello world!</p>
+</div>`
+        ]}
+        goods={[
+          `<!-- in style.css -->
+.offset {
+  position: relative;
+  top: -10px;
+}
+
+<!-- in index.html -->
+<div>
+  <p class="offset">Hello world!</p>
+</div>`
+        ]}
+      />
+      <Body>If you're trying to get elements closer, remove the margins that are in the way. For example, it's better to get rid of the margin on the body rather than setting negative margins to the children to close the gap.</Body>
+      <Example
+        lang="html"
+        bads={[
+          `<!-- in style.css -->
+.container {
+  margin-top: -8px;
+  margin-left: -8px;
+
+  background-color: salmon;
+}
+
+<!-- in index.html -->
+<body>
+  <div class="container">Hello world!</div>
+</body>`
+        ]}
+        goods={[
+          `<!-- in style.css -->
+body {
+  margin: 0;
+}
+
+.container {
+  background-color: salmon;
+}
+
+<!-- in index.html -->
+<body>
+  <div class="container">Hello world!</div>
+</body>`
+        ]}
+      />
+
+      <HR />
+      <H5 id="css-empty-rulesets">{emoji} 2.10. Remove empty rulesets</H5>
+      <Body>You should not have any empty rulesets in your CSS files. They don't do anything.</Body>
+      <Example
+        lang="css"
+        bads={[
+          `/* Remove these */
+.card {
+
+}
+div {
+  
+}
+`
+        ]}
+      />
+      <HR />
+      <H5 id="css-commented-code">{emoji} 2.11. Remove blocks of commented out code</H5>
+      <Body>While it may be useful during debugging, having a bunch of commented out code around will make your code less readable.</Body>
+      
+      <Example
+        lang="css"
+        bads={[
+          `.logo-text {
+  /*
+  width: 200px;
+  height: 100px;
+  word-spacing: 10px;
+  rotate: -30deg;
+  */
+
+  font-family: Poppins;
+}
+`
+        ]}
+        goods={[
+          `.logo-text {
+  font-family: Poppins;
+}
+`
         ]}
       />
     </>
