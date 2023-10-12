@@ -8,8 +8,17 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Logout from './Logout';
+import { Switch } from '@mui/material';
+import { Context, useContext } from '../context';
 
 const Header = ({ pageTitle, menuToggle, sidebarWidth}) => {
+  const { getters, setters } = useContext(Context);
+
+  const handleChange = (e) => {
+    setters.setDark(e.target.checked)
+  }
+
+
   return (
     <AppBar
       position="fixed"
@@ -29,6 +38,11 @@ const Header = ({ pageTitle, menuToggle, sidebarWidth}) => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {pageTitle}
         </Typography>
+        <Switch
+          defaultChecked={getters.dark}
+          onChange={handleChange}
+          inputProps={{ 'aria-label': 'controlled' }}
+        />
         <Logout />
       </Toolbar>
     </AppBar>

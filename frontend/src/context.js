@@ -11,6 +11,7 @@ export const initialValue = {
   validTerms: [],
   screenWidth: 1000,
   istutor: false,
+  dark: false,
 };
 
 export const Context = createContext(initialValue);

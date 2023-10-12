@@ -13,10 +13,13 @@ hotjar.initialize(2818386, 6);
 ReactGA.initialize('UA-219634058-1');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+  ,
+
   document.getElementById('root')
 );
 

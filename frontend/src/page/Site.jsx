@@ -60,12 +60,12 @@ const SiteWrapper = ({ children }) => {
 
   return (
     <>
+      <CssBaseline/>
       <Helmet>
         <title>{getters.title}</title>
         <link rel="icon" type="image/x-icon" href="/favicon.png" />
       </Helmet>
       <Box sx={{ display: 'flex', minWidth: '400px' }}>
-        <CssBaseline />
         <Header pageTitle={getters.title} sidebarWidth={sidebarRealTimeWidth} menuToggle={() => setters.setSidebarOpen(!getters.sidebarOpen)} />
         <Navbar drawerWidth={drawerWidth} />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
