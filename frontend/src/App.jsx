@@ -60,7 +60,7 @@ const App = () => {
       mode: 'dark',
       background: {
         'default': '#121212',
-        'paper': '#121212'
+        'paper': '#191919'
       },
       primary: {
         main: '#2998f2'
