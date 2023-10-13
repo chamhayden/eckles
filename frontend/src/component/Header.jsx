@@ -1,19 +1,24 @@
-import React from 'react';
-import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import Logout from './Logout';
+import React from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import Logout from "./Logout";
 
-const Header = ({ pageTitle, menuToggle, sidebarWidth}) => {
+const Header = ({ pageTitle, menuToggle, sidebarWidth }) => {
   return (
     <AppBar
       position="fixed"
-      sx={{ width: `calc(100% - ${sidebarWidth}px)`, left: 0, minWidth: '400px', ml: `${sidebarWidth}px`, height: '60px' }}
+      sx={{
+        width: `calc(100% - ${sidebarWidth}px)`,
+        left: 0,
+        ml: `${sidebarWidth}px`,
+        height: "60px",
+      }}
     >
       <Toolbar>
         <IconButton
@@ -22,7 +27,7 @@ const Header = ({ pageTitle, menuToggle, sidebarWidth}) => {
           color="inherit"
           aria-label="menu"
           sx={{ mr: 2 }}
-          onClick={menuToggle} 
+          onClick={menuToggle}
         >
           <MenuIcon />
         </IconButton>
@@ -33,6 +38,6 @@ const Header = ({ pageTitle, menuToggle, sidebarWidth}) => {
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 export default Header;
