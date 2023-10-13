@@ -28,7 +28,7 @@ export const generateContent = (getters, by) => {
     if (grouping.content_tutorials) {
       grouping.content_tutorials().sort((a, b) => a.order - b.order).forEach(tutorial => {
         table.push([
-          { value: tutorial.key, link: `/${getters.term}/content/tutorials/${tutorial.key}` },
+          { value: tutorial.key, link: `/${getters.term}/content/tutorials/${tutorial.key}`, buttonProps: { variant: 'contained', color: 'info', sx: { textTransform: 'unset !important' } },},
           { value: secondColumnValue(tutorial), link: `/${getters.term}/content/tutorials/${opposingPageType}#${secondColumnAnchor(tutorial)}` },
           { value: tutorial.duration ? `⏱️ ${tutorial.duration} mins` : 'TBD', },
           { value: tutorial.stream.join(', '), },

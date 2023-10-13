@@ -67,6 +67,9 @@ const App = () => {
       },
       info: {
         main: '#0868e4'
+      },
+      text: {
+        primary: '#f9f9f9',
       }
     }
   })
