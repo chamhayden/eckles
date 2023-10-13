@@ -21,6 +21,7 @@ import AppLoad from '../component/AppLoad';
 import { apiCall } from '../util/api';
 import config from '../config';
 import { Context, useContext } from '../context';
+import Modal from '../component/Modal';
 
 /* Sourced https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/sign-in/SignIn.js */
 const styles = theme => ({
@@ -163,7 +164,7 @@ const SignIn = (props) => {
           </Button>
         </form>
       </Paper>
-      <Dialog open={open} onClose={handleClose}>
+      {/* <Dialog open={open} onClose={handleClose}>
         <DialogTitle>{"Error"}</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -175,7 +176,13 @@ const SignIn = (props) => {
             Close
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
+      <Modal open={open} onClose={handleClose} 
+      message={errorMessage}
+      confirmText="Close"
+      cancelText="Cancel"
+      onConfirm={handleClose}
+      />
     </main>
   );
 }
