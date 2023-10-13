@@ -60,7 +60,6 @@ const SiteWrapper = ({ children }) => {
 
   return (
     <>
-      <CssBaseline/>
       <Helmet>
         <title>{getters.title}</title>
         <link rel="icon" type="image/x-icon" href="/favicon.png" />
