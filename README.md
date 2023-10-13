@@ -9,4 +9,6 @@ In a new terminal:
 `npm install`  
 `npm start`  
 
-Use Login: z3418003
+## How to login
+zid: z3418003
+password: Not required
