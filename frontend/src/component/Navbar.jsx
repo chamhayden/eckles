@@ -26,7 +26,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import External from '../asset/external.png';
 import Logout from './Logout';
 import Header from './Header';
-import mainlogo from '../asset/mainlogo.png';
+import mainlogo from '../asset/mainlogo.webp';
 import { isMobileWidth } from '../util/screen';
 import { Context, useContext } from '../context';
 
