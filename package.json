@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "format": "prettier --loglevel warn --write \"**/*.{js,jsx,css,md}\"",
+    "posttest": "npm run format"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3"
+  }
+}

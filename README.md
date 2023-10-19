@@ -1,12 +1,14 @@
 Hi
+
 ## Set up:
+
 `cd backend`  
 `npm install`  
-`npm start`  
+`npm start`
 
 In a new terminal:  
 `cd frontend`  
 `npm install`  
-`npm start`  
+`npm start`
 
 Use Login: z3418003
