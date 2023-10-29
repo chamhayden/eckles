@@ -72,7 +72,7 @@ const ResourcesHtmlCSS = ({}) => {
       </Typography>
       <Typography variant="body1" gutterBottom>
         <p><b>Q. How do I make my viewport be a specific size?</b></p>
-        <p>https://developer.chrome.com/docs/devtools/device-mode/</p>
+        <a href="https://developer.chrome.com/docs/devtools/device-mode/" >https://developer.chrome.com/docs/devtools/device-mode/</a>
       </Typography>
        
     </>
