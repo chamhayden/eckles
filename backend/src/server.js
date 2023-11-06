@@ -35,6 +35,7 @@ const buildContent = (term) => {
  ******************************/
 
 const validUserCheck = (zid, zpass, term) => {
+    zid = zid.replace(/\s/g, '');
   return new Promise((resolve, reject) => {
     if (config.DEV || term === 'sample') {
       if (zid === '5555555' || zid === '3418003') {
