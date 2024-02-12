@@ -233,7 +233,7 @@ const CourseOutline24T1 = () => {
         Tutorial activities can be found by going to the <Link to={link('content/tutorials/week')}>tutorials page</Link>. Tutorial solutions are available on the solution branch of the exercises gitlab repo. Tutorials do not contribute to your final mark.
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Tutorials will be run via Zoom.
+        Tutorials will be run mostly in person, but sometimes over MS teams.
       </Typography>
       
       <Typography variant="h6" component="div" gutterBottom sx={{ mt: 4 }}>
@@ -243,7 +243,7 @@ const CourseOutline24T1 = () => {
         Help sessions are unprepared drop-in "clinics" where students and groups can go to seek help about course related matters, whether that be the project, tutorials, or exercises. Current tutors or lab assistants will supervise each help session.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        Help sessions will be run via Zoom.
+        Help sessions will be run via MS teams.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         A timetable for help sessions can be found <Link to={link('timetable/help-sessions')}>here</Link>.
