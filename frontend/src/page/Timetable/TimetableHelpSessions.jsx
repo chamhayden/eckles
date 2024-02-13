@@ -59,7 +59,6 @@ const TimetableHelpSessions = () => {
   }, [getters.content.weeks]);
 
   return <>
-    <div style={{ textAlign: 'center', marginBottom: '20px', }}>Help Sessions run on MS teams, please join it <a href="https://teams.microsoft.com/l/team/19%3ajnwNzhilzFqQ3cWkiLZS0wlcKiBinmUyDNnkLrGgIr81%40thread.tacv2/conversations?groupId=aa37a6a5-843b-48a3-9a5f-3c325a6ef94f&tenantId=3ff6cfa4-e715-48db-b8e1-0867b9f9fba3" target="_blank">here</a>.</div>
     <div style={{ textAlign: 'center', marginBottom: '20px', }}>Please be aware that help sessions with less tutors may result in longer wait times.</div>
     <SetOfTables boxes={boxes} />
   </>
