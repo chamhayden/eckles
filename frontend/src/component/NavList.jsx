@@ -16,6 +16,8 @@ import StyleIcon from '@mui/icons-material/Style';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import PaletteIcon from '@mui/icons-material/Palette';
+import BadgeIcon from  '@mui/icons-material/Badge';
+import GradeIcon from  '@mui/icons-material/Grade';
 
 export const getPrimaryNavList = (term) => {
   return [
@@ -129,6 +131,21 @@ export const getSecondaryNavList = (term) => {
       external: true,
       Icon: CodeIcon,
       description: 'View the source code for this platform you\'re using',
+    },
+    {
+      title: 'Grades',
+      loginRequired: true,
+      route: 'https://cgi.cse.unsw.edu.au/~give/Student/sturec.php',
+      external: true,
+      Icon: GradeIcon,
+      description: '',
+    },
+    {
+      title: 'Staff',
+      loginRequired: true,
+      route: '/staff',
+      Icon: BadgeIcon,
+      description: 'Staff',
     },
   ];
 }

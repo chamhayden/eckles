@@ -11,6 +11,7 @@ import { Context, useContext } from '../../context';
 
 import SubNavWrapper from '../../component/SubNavWrapper';
 import makePage from '../../component/makePage';
+import config from '../../config';
 
 const AssessmentsAssignments = ({ }) => {
   const { getters, setters } = useContext(Context);
@@ -41,18 +42,9 @@ const AssessmentsAssignments = ({ }) => {
   return (
     <SubNavWrapper baseUrl={'/assessments/assignments'} menu={menu}>
       <>
-        To find your assignments, please navigate to <a href="https://nw-syd-gitlab.cseunsw.tech/" target="_blank">gitlab</a>. Post on the forum if you have questions or issues
-        {/*<h2>{params.ass} has {['ass1', 'ass2', 'ass3', 'ass4'].includes(params.ass) ? '' : 'not '} been released!</h2>
-        {['ass1', 'ass2', 'ass3', 'ass4'].includes(params.ass) && (<Button variant="contained" size="large">
-          <a style={{ color: '#fff' }} target="_blank" href={
-            params.ass === 'ass1' ? `/~cs6080/redirect/?path=COMP6080/${getters.term}/students/_/pictocode/` :
-            params.ass === 'ass2' ? `/~cs6080/redirect/?path=COMP6080/${getters.term}/students/_/funform/` :
-            params.ass === 'ass3' ? `/~cs6080/redirect/?path=COMP6080/${getters.term}/students/_/slackr/` :
-            params.ass === 'ass4' ? `https://nw-syd-gitlab.cseunsw.tech/`
-            : ``}>
-            View on gitlab
-          </a>
-        </Button>)}*/}
+        <h2>You can find a link to {params.ass} <a target="_blank" href={`${config.BASE_URL}/gitlabredir/${getters.term}/${params.ass}`}>here</a>.</h2>
+
+        <h3>Please note: This URL will return a gitlab 404 error until the lecturer announces that the assignment is released.</h3>
       </>
     </SubNavWrapper>
   );

@@ -16,7 +16,7 @@ import Youtube from '../../component/Youtube';
 import { getYoutubeCodeFromUrl } from '../../util/content';
 import TitleCard from '../../component/TitleCard';
 import SectionHeader from '../../component/SectionHeader';
-import { tutorialUrl } from '../../util/values';
+import config from '../../config';
 
 const ContentTutorialsSingle = () => {
   const { getters, setters } = useContext(Context);
@@ -68,7 +68,7 @@ const ContentTutorialsSingle = () => {
       </Box>
 
       <Button variant="contained" size="large">
-      	<a style={{ color: '#fff' }} target="_blank" href={tutorialUrl(getters.isTutor, getters.term, tutorial.key)}>
+      	<a style={{ color: '#fff' }} target="_blank" href={`${config.BASE_URL}/gitlabredir/${getters.term}/exercises/${tutorial.key}`}>
       	  View activity on gitlab
       	</a>
       </Button>
