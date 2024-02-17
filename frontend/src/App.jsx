@@ -16,6 +16,7 @@ const App = () => {
   const [loggedIn, setLoggedIn] = React.useState(initialValue.loggedIn);
   const [title, setTitle] = React.useState(initialValue.title);
   const [term, setTerm] = React.useState(initialValue.term);
+  const [zid, setZid] = React.useState(initialValue.zid);
   const [validTerms, setValidTerms] = React.useState(initialValue.validTerms);
   const [screenWidth, setScreenWidth] = React.useState(initialValue.screenWidth);
   const [isTutor, setIsTutor] = React.useState(initialValue.isTutor);
@@ -27,6 +28,7 @@ const App = () => {
     loggedIn,
     title,
     term,
+    zid,
     validTerms,
     screenWidth,
     isTutor,
@@ -38,6 +40,7 @@ const App = () => {
     setLoggedIn,
     setTitle,
     setTerm,
+    setZid,
     setValidTerms,
     setScreenWidth,
     setIsTutor,
