@@ -20,22 +20,22 @@ const AssessmentsAssignments = ({ }) => {
     {
       title: 'Ass1',
       icon: <TheatersIcon />,
-      subRoute: 'ass1',
+      subRoute: 'pictocode',
     },
     {
       title: 'Ass2',
       icon: <SchoolIcon />,
-      subRoute: 'ass2',
+      subRoute: 'funform',
     },
     {
       title: 'Ass3',
       icon: <FavoriteIcon />,
-      subRoute: 'ass3',
+      subRoute: 'qanda',
     },
     {
       title: 'Ass4',
       icon: <LocalHospitalIcon />,
-      subRoute: 'ass4',
+      subRoute: 'presto',
     },
   ];
 
