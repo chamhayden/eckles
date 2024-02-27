@@ -261,7 +261,7 @@ app.get('/gitlabredir/:term/:repo/:path?', (req, res) => {
   try {
     const zid  = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET).data;
     const { term, repo, path } = req.params;
-    let repoPath = 'https://google.com';
+    let repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/students/z${zid}/${repo}`;
     if (isTutor(zid)) {
       repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/STAFF/repos/${repo}`
     } else if (['ass1', 'ass2', 'ass3'].includes(repo)) {
