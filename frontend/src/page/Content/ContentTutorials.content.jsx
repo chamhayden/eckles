@@ -1,4 +1,5 @@
 import Button from '@mui/material/Button';
+import config from '../../config';
 
 import { isHalfScreenWidth, isTinyMobileWidth, isMobileWidth, isBigDesktopWidth, isDesktopWidth } from '../../util/screen';
 
@@ -33,7 +34,7 @@ export const generateContent = (getters, by) => {
           { value: tutorial.stream.join(', '), },
           { value: tutorial.importance, },
           { Raw: () => (
-            <a href={`$ {config.BASE_URL}/gitlabredir/${getters.term}/exercises/${tutorial.key}`} target="_blank"><Button variant="contained" color="info">Git</Button></a>
+            <a href={`${config.BASE_URL}/gitlabredir/${getters.term}/exercises/${tutorial.key}`} target="_blank"><Button variant="contained" color="info">Git</Button></a>
           )}
         ]);
       });
