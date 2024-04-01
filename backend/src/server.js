@@ -87,7 +87,7 @@ const parseGroups = (raw) => {
 const buildGroups = (term) => {
   return ((innerTerm) => {
     return new Promise((resolve, reject) => {
-      const { stdout } = shell.exec(`rm -rf /tmp/gl && git clone git@nw-syd-gitlab.cseunsw.tech:COMP6080/23T3/STAFF/administration.git /tmp/gl && cd /tmp/gl && cat groups.csv`)
+      const { stdout } = shell.exec(`rm -rf /tmp/gl && git clone git@nw-syd-gitlab.cseunsw.tech:COMP6080/${term}/STAFF/administration.git /tmp/gl && cd /tmp/gl && cat groups.csv`)
       setTimeout(() => buildGroups(innerTerm), 1000 * 60 * 10); // 10 minutes
       lock.acquire('data', (done) => {
         builtData[innerTerm].groups = parseGroups(stdout);
