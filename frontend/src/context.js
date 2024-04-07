@@ -11,6 +11,7 @@ export const initialValue = {
   validTerms: [],
   screenWidth: 1000,
   istutor: false,
+  dark: window.localStorage.getItem('dark') !== null ? window.localStorage.getItem('dark') === "true" : false,
 };
 
 export const Context = createContext(initialValue);
