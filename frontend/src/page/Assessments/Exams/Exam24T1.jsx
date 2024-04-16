@@ -41,10 +41,7 @@ const CourseOutline24T1 = () => {
         Date, Time, and Duration
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The final exam will be a 3 hour exam that begins at TBD and ends at TBD.
-      </Typography>
-      <Typography variant="body1" component="div" gutterBottom>
-        Students outside of Asia-Pacific region, or students with ELS requirements, may have their exam time altered and communicated to the lecturer in charge privately. If you have been given alternate instructions about start and finish times, they apply.
+        The final exam will be a 3 hour exam. The time is posted on the exam timetable.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         Only submissions made during your exam time window will be counted as valid.
@@ -128,9 +125,6 @@ const CourseOutline24T1 = () => {
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
         Submission
-      </Typography>
-      <Typography variant="body1" component="div" gutterBottom>
-        There will be no submit command for the final exam. At the end of the exam time, whatever code is on your latest commit pushed to your master branch (on gitlab) will be what is submitted and marked.
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
         Troubleshooting
