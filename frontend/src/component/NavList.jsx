@@ -141,6 +141,13 @@ export const getSecondaryNavList = (term) => {
       description: '',
     },
     {
+      title: 'Spec Con / ELS',
+      loginRequired: true,
+      route: '/due-date-adjustments',
+      Icon: BadgeIcon,
+      description: 'Spec Con / ELS',
+    },
+    {
       title: 'Staff',
       loginRequired: true,
       route: '/staff',

@@ -39,6 +39,7 @@ import HelpResourcesNetwork from './page/Help/HelpResourcesNetwork';
 import HelpResourcesHtmlCss from './page/Help/HelpResourcesHtmlCss';
 import HelpResourcesJavascript from './page/Help/HelpResourcesJavascript';
 import HelpResourcesCypress from './page/Help/HelpResourcesCypress';
+import DueDateAdjustments from './page/DueDateAdjustments';
 import HelpResourcesReact from './page/Help/HelpResourcesReact';
 import LogoutAction from './component/LogoutAction';
 
@@ -102,6 +103,7 @@ const Router = () => {
           <Route path="reactjs" element={<StyleReactJS />} />
         </Route>
         <Route path="course-outline" element={<CourseOutline />}></Route>
+        <Route path="due-date-adjustments" element={<DueDateAdjustments />}></Route>
         <Route path="staff" element={<Staff />}></Route>
       </Route>
     </Routes>
