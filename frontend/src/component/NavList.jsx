@@ -135,8 +135,7 @@ export const getSecondaryNavList = (term) => {
     {
       title: 'Grades',
       loginRequired: true,
-      route: 'https://cgi.cse.unsw.edu.au/~give/Student/sturec.php',
-      external: true,
+      route: '/grades',
       Icon: GradeIcon,
       description: '',
     },
