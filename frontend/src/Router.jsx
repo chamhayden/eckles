@@ -43,6 +43,8 @@ import DueDateAdjustments from './page/DueDateAdjustments';
 import HelpResourcesReact from './page/Help/HelpResourcesReact';
 import LogoutAction from './component/LogoutAction';
 
+import Grades from './page/Grades';
+
 import { apiCall } from './util/api';
 import { Context, useContext } from './context';
 
@@ -104,6 +106,7 @@ const Router = () => {
         </Route>
         <Route path="course-outline" element={<CourseOutline />}></Route>
         <Route path="due-date-adjustments" element={<DueDateAdjustments />}></Route>
+        <Route path="grades" element={<Grades />} />
         <Route path="staff" element={<Staff />}></Route>
       </Route>
     </Routes>
