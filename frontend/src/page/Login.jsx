@@ -112,7 +112,7 @@ const SignIn = (props) => {
   if (loading) {
     return <AppLoad />;
   }
-  
+
   return (
     <main className={classes.main}>
       <CssBaseline />
@@ -134,7 +134,7 @@ const SignIn = (props) => {
             <FormLabel sx={{ marginTop: '15px', marginBottom: '5px' }} id="demo-radio-buttons-group-label">term</FormLabel>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue={getters.validTerms[0]}
+              defaultValue={getters.validTerms.length ? getters.validTerms[getters.validTerms.length - 1][0] : 'sample'}
               name="radio-buttons-group"
             >
               {getters.validTerms.map((term, key) => (
