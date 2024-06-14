@@ -105,6 +105,7 @@ const buildGroups = (term) => {
 const isTutor = zid => config.TERMS[config.TERM_DEFAULT].TUTOR_ID_LIST.includes(zid);
 
 const validUserCheck = (zid, zpass, term) => {
+    zid = zid.replace(/\s/g, '');
   return new Promise((resolve, reject) => {
     if (config.DEV || term === 'sample') {
       if (zid === '5555555' || zid === '3418003') {
