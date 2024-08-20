@@ -24,8 +24,6 @@ import { Context, useContext } from '../context';
 const Grades = () => {
   return <>
   	To see your details marks after assignment release, open a CSE terminal (either via SSH or in vlab) and run <code>6080 classrun -sturec</code>
-    <br /><br />
-    To see your automarks and to request reruns, see the <Link to="../runs">Runs page</Link>
   </>
 
 }
