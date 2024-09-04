@@ -58,7 +58,7 @@ const TimetableLectures = () => {
               </TableCell>}
               {getters.loggedIn &&
                 <TableCell align="left">
-                  <h4>In-person in CLB7</h4><br />
+                  <h4>In-person in {rowKey < 2 ? 'Ainsworth G03' : 'Keith Burrows Theatre'}</h4><br />
                   <Button variant="contained" onClick={() => {
                     window.location.href = `${row.call_url_h}`;
                   }}>Watch Live</Button>
