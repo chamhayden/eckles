@@ -20,6 +20,9 @@ const CourseOutline24T3 = () => {
   return (
     <>
       <Typography variant="h5" component="div" gutterBottom>
+        The final exam will be an 3 hour open-book, invigilated in-person exam at UNSW during the exam period. More information about this will be made available throughout the term.
+      </Typography>     
+      {/*<Typography variant="h5" component="div" gutterBottom>
         Requirements to sit the exam
       </Typography>     
       <Typography variant="body1" component="div" gutterBottom>
@@ -147,7 +150,7 @@ const CourseOutline24T3 = () => {
             <ul><li>A solution (built file, not the source code) of the sample exam can be found <a target="_blank" href="https://cs6080.web.cse.unsw.edu.au/sample-exam/">here</a>. Please note, this solution may be incomplete, but it is mostly complete.</li></ul>
           </li>
         </ul>
-      </Typography>
+      </Typography>*/}
     </>
   );
 }
