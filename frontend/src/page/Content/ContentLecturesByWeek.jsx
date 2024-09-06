@@ -17,7 +17,7 @@ const ContentLecturesByWeek = ({ }) => {
   return (
     <>
       <YoutubePlaylistButton />
-      <SetOfTables boxes={boxes} lectures />
+      <SetOfTables boxes={boxes} />
     </>
   );
 };

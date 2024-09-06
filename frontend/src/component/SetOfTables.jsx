@@ -16,6 +16,7 @@ import Paper from '@mui/material/Paper';
 import { RELEVANCE } from '../util/content';
 
 const SetOfTables = ({ boxes, lectures }) => {
+  console.log(boxes[0].table)
   var durationCount = 0 
   const [noCatchup, setNoCatchup] = React.useState(localStorage.hasOwnProperty('eckles_noCatchup') ? parseInt(localStorage.getItem('eckles_noCatchup')) : 1);
   const [studentType, setStudentType] = React.useState(localStorage.hasOwnProperty('eckles_studentType') ? localStorage.getItem('eckles_studentType') : 'recommended');

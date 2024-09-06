@@ -11,6 +11,7 @@ import { Outlet } from 'react-router-dom';
 import SubNavWrapper from '../../component/SubNavWrapper';
 
 import makePage from '../../component/makePage';
+import TutLecContentCard from '../../component/TutLecContentCard';
 
 const ContentLectures = ({ }) => {
   const menu = [

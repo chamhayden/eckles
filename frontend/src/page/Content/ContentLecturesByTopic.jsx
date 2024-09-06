@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-
+import TutLecContentCard from '../../component/TutLecContentCard';
 import SetOfTables from '../../component/SetOfTables';
 import { Context, useContext } from '../../context';
 import { isTinyMobileWidth } from '../../util/screen';
@@ -14,8 +14,9 @@ const ContentLecturesByTopic = ({ }) => {
   const boxes = generateContent(getters, 'topic');
   return (
     <>
+      <TutLecContentCard/>
       <YoutubePlaylistButton />
-      <SetOfTables boxes={boxes} lectures />
+      <SetOfTables boxes={boxes} />
     </>
   );
 };

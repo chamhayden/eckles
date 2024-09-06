@@ -9,7 +9,6 @@ import { generateContent } from './ContentTutorials.content';
 const ContentTutorialsByTopic = ({ }) => {
   const { getters } = useContext(Context);
   const boxes = generateContent(getters, 'topic');
-
   return <SetOfTables boxes={boxes} />;
 };
 
