@@ -47,7 +47,7 @@ const TimetableTutorials = () => {
                 {row.call_url_h.includes('http') ? (
                   <Button variant="contained" onClick={() => {
                     window.location.href = row.call_url_h;
-                  }}>Watch</Button>
+                  }}>Join</Button>
                 ) : (
                   <b>{row.call_url_h}</b>
                 )}
