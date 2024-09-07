@@ -9,28 +9,13 @@ import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import { Outlet } from 'react-router-dom';
 
 import SubNavWrapper from '../../component/SubNavWrapper';
-
 import makePage from '../../component/makePage';
 
-const ContentLectures = ({ }) => {
-  const menu = [
-    {
-      title: 'By Week',
-      icon: <TheatersIcon />,
-      subRoute: 'week',
-    },
-    {
-      title: 'By Topic',
-      icon: <SchoolIcon />,
-      subRoute: 'topic',
-    },
-  ];
-
-  return (
-    <SubNavWrapper baseUrl={'/content/lectures'} menu={menu}>
-      <Outlet />
-    </SubNavWrapper>
-  );
+const ContentTutorialsSearch = ({ }) => {
+  return <>hi</>
 };
 
-export default ContentLectures;
+export default makePage(ContentTutorialsSearch, {
+  loginRequired: true,
+  title: '',
+});;

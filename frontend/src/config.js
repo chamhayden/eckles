@@ -13,6 +13,7 @@ config.joinSchema = {
       week: ['weeks', true],
       topic: ['topics', true],
       video_author: ['staff', true],
+      content_lectures: ['content_lectures', false],
     },
   },
   schedule_lectures: {
