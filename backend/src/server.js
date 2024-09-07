@@ -167,7 +167,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use(cors({
-  origin : config.DEV ? "http://localhost:3000" : 'https://cs6080.web.cse.unsw.edu.au',
+  origin : config.DEV ? ["http://localhost:3000","http://localhost:3001"] : 'https://cs6080.web.cse.unsw.edu.au',
   credentials: true,
 }));
 
@@ -262,21 +262,23 @@ app.get('/gitlabredir/:term/:repo/:path?', (req, res) => {
     return;
   }
 
+
   try {
     const zid  = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET).data;
     const { term, repo, path } = req.params;
-    let repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/students/z${zid}/${repo}`;
+    let newRepo = '';
+    if (repo === 'ass1') newRepo = config.TERMS[term].ASS_MAP[0];
+    if (repo === 'ass2') newRepo = config.TERMS[term].ASS_MAP[1];
+    if (repo === 'ass3') newRepo = config.TERMS[term].ASS_MAP[2];
+    if (repo === 'ass4') newRepo = config.TERMS[term].ASS_MAP[3];
+    let repoPath = ``;
     if (isTutor(zid)) {
-      repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/STAFF/repos/${repo}`
+      repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/STAFF/repos/${newRepo}`
     } else if (['ass1', 'ass2', 'ass3'].includes(repo)) {
-      let newRepo = '';
-      if (repo === 'ass1') newRepo = config.TERMS[term].ASS_MAP[0];
-      if (repo === 'ass2') newRepo = config.TERMS[term].ASS_MAP[1];
-      if (repo === 'ass3') newRepo = config.TERMS[term].ASS_MAP[2];
       repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/students/z${zid}/${newRepo}`
     } else if (['ass4'].includes(repo)) {
       const group = builtData[term].groups[zid];
-      repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/groups/${group}/${config.TERMS[term].ASS_MAP[3]}`
+      repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/groups/${group}/${newRepo}`
     }
     if (path) {
       repoPath += `/-/tree/master/${path}`

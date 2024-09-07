@@ -137,7 +137,7 @@ const SignIn = (props) => {
               defaultValue={getters.validTerms.length ? getters.validTerms[getters.validTerms.length - 1][0] : 'sample'}
               name="radio-buttons-group"
             >
-              {getters.validTerms.map((term, key) => (
+              {getters.validTerms.sort().reverse().map((term, key) => (
                 <FormControlLabel sx={{padding: '0px 10px' }} onClick={() => setTerm(term)} key={key}  value={term} control={<Radio />} label={term} />
               ))}
             </RadioGroup>

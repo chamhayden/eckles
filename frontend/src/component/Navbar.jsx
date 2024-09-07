@@ -36,12 +36,12 @@ const ExternalIcon = () => {
   return <img style={{ width: '15px' }} src={External} />;
 }
 
-const background = 'rgb(22,27,37)';
+const background = 'rgb(22,27,37) !important';
 
 const useStyles = makeStyles({
   paper: {
     background,
-    color: '#fff',
+    color: '#fff !important',
   }
 });
 
