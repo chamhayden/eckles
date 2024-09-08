@@ -12,7 +12,8 @@ import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { withStyles } from '@mui/styles';
+import { withStyles, } from '@mui/styles';
+import { createTheme } from '@mui/material/styles';
 import mainlogo from '../asset/mainlogo.png';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
@@ -22,25 +23,29 @@ import { apiCall } from '../util/api';
 import config from '../config';
 import { Context, useContext } from '../context';
 
+const theme = createTheme();
 /* Sourced https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/sign-in/SignIn.js */
-const styles = theme => ({
+const styles = ({
   main: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    [theme.breakpoints.up(400 + theme.spacing(3) * 2)]: {
       width: 400,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
   },
   paper: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: theme.spacing(8),
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: '400px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    padding: `20px 20px 20px`,
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -51,7 +56,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
   },
   submit: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
   },
   logo: {
     width: '100%',
