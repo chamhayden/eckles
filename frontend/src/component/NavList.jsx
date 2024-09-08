@@ -51,14 +51,14 @@ export const getPrimaryNavList = (term) => {
       children: [
         {
           title: 'Lectures',
-          route: '/content/lectures/week',
+          route: '/content/lectures/search',
           loginRequired: true,
           Icon: TheatersIcon,
           description: 'View lecture content, slides, and videos',
         },
         {
           title: 'Tutorials',
-          route: '/content/tutorials/week',
+          route: '/content/tutorials/search',
           loginRequired: true,
           Icon: SchoolIcon,
           description: 'View tutorial content, questions, and videos',
