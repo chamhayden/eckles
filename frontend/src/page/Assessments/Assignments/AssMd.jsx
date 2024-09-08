@@ -134,9 +134,7 @@ It is your responsibility to ensure that your code can run successfully when clo
 
 ## 9. Late Submission Policy
 
-No late submission are accepted
-
-## 10. The Task 🔥.`;
+No late submission are accepted`;
 
 export const ass2a = `
 

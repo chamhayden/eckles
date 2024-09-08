@@ -10,7 +10,7 @@ const AssPrint = ({ mda, mdb, assNumber, startWeek }) => {
   const { getters } = useContext(Context);
   const readyFromWeek = (week) => {
     const thisWeek = getters.content.weeks.filter(w => w.week === week)[0];
-    return new Date() > new Date(thisWeek.starts_on);
+    return new Date() >= new Date(thisWeek.starts_on);
   }
   return (
     <>
