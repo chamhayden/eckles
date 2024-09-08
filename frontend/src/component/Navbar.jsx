@@ -21,7 +21,7 @@ import Collapse from '@mui/material/Collapse';
 import { useLocation } from "react-router-dom"
 
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 
 import External from '../asset/external.png';
 import Logout from './Logout';
