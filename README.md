@@ -6,7 +6,7 @@ Hi
 
 In a new terminal:  
 `cd frontend`  
-`npm install`  
+`npm install --legacy-peer-deps`  
 `npm start`  
 
 Use Login: z3418003
