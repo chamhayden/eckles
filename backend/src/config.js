@@ -12,7 +12,8 @@ const config = {
       AIRTABLE_BASE: 'app7CNZud3QDy1IP5',
       AIRTABLE_API_KEY: 'patMWMSzpWIIw4ygQ.8905a12dae8ee6ecd484ea4dc3f1f2961f587b9c87a4682407063345298bd802',
       TUTOR_ID_LIST: [],
-      AUDIT_ID_LIST: []
+      AUDIT_ID_LIST: [],
+      ASS_MAP: ["pictocode", "funform", "qanda", "presto"]
     },
   },
   TERM_DEFAULT: 'sample',
