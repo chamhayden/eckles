@@ -32,7 +32,8 @@ export const ass1b = `
 
 Two things will want to seek external help for are:
 1) Determining the particular colour (RGB or HEX) of various pixels (we recommend the use of [a chrome extension](https://chrome.google.com/webstore/detail/eye-dropper/hmdcmlfkchdmnmnmheododdhjedfccka/), though other alternatives may be appropriate for you)
-2) Determining the size of particular elements (we recommend the use of [photopea](https://www.photopea.com/)). An screenshot example of it's usage can be found in \`./help/photopea.png\`
+2) Determining the size of particular elements (we recommend the use of [photopea](https://www.photopea.com/)). An screenshot example of it's usage is below
+![](/~cs6080/assets/photopea.png)
 
 ### 3.2. Font Sizes
 
