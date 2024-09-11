@@ -266,7 +266,7 @@ app.get('/gitlabredir/:term/:repo/:path?', (req, res) => {
   try {
     const zid  = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET).data;
     const { term, repo, path } = req.params;
-    let newRepo = '';
+    let newRepo = repo;
     if (repo === 'ass1') newRepo = config.TERMS[term].ASS_MAP[0];
     if (repo === 'ass2') newRepo = config.TERMS[term].ASS_MAP[1];
     if (repo === 'ass3') newRepo = config.TERMS[term].ASS_MAP[2];
