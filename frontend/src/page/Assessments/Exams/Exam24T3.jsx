@@ -20,7 +20,7 @@ const CourseOutline24T3 = () => {
   return (
     <>
       <Typography variant="h5" component="div" gutterBottom>
-        The final exam will be an 3 hour open-book, invigilated in-person exam at UNSW during the exam period. More information about this will be made available throughout the term.
+        The final exam will be an 3 hour open-book, invigilated in-person exam at UNSW during the exam period. The exam will contain a hurdle. More information about this will be made available throughout the term.
       </Typography>     
       {/*<Typography variant="h5" component="div" gutterBottom>
         Requirements to sit the exam
