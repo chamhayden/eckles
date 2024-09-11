@@ -273,7 +273,7 @@ const CourseOutline24T3 = () => {
         If you cannot attend the final exam because of illness or misadventure, then you must submit a Special Consideration request, with documentation, through MyUNSW within 72 hours of the start of the exam exam. If your request is reasonable, then you will be awarded a Supplementary Exam. No supplementary exams will be provided for students who score marks 49 or below on grounds of being "close" to a pass.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        Information on the final exam can be found in the links in section 5 (Assessment).
+        Information on the final exam can be found in the link in the sidebar.
       </Typography>
 
 
