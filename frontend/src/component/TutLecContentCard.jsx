@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import { Stack } from "@mui/material";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 
 export default function TutLecContentCard({
   name,
@@ -15,6 +16,7 @@ export default function TutLecContentCard({
   topicName,
   lecture,
 }) {
+  const navigate = useNavigate();
   const getRelevanceChip = (relevance) => {
     if (lecture) {
       switch (relevance) {
@@ -69,12 +71,17 @@ export default function TutLecContentCard({
           flex: "1 0 auto",
         }}
       >
-        <Typography variant="h6" component="div">
-          {lecture ? (
+        <Typography
+          variant="h6"
+          component="div"
+          onClick={() => navigate(`/NOW/content/lectures/${contentKey}`)}
+        >
+          {/* {lecture ? (
             <a href={`/~cs6080/NOW/content/lectures/${contentKey}`}>{name}</a>
           ) : (
             <a href={`/~cs6080/NOW/content/tutorials/${contentKey}`}>{name}</a>
-          )}
+          )} */}
+          {name}
         </Typography>
         <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
           {duration_mins} minutes
