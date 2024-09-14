@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
+
 
 import config from './config';
 import './index.css';
@@ -20,6 +23,7 @@ const App = () => {
   const [validTerms, setValidTerms] = React.useState(initialValue.validTerms);
   const [screenWidth, setScreenWidth] = React.useState(initialValue.screenWidth);
   const [isTutor, setIsTutor] = React.useState(initialValue.isTutor);
+  const [isDark, setDark] = React.useState(initialValue.dark)
 
   const getters = {
     sidebarOpen,
@@ -32,6 +36,7 @@ const App = () => {
     validTerms,
     screenWidth,
     isTutor,
+    isDark
   };
   const setters = {
     setSidebarOpen,
@@ -44,15 +49,48 @@ const App = () => {
     setValidTerms,
     setScreenWidth,
     setIsTutor,
+    setDark
   }
+
+  const lightTheme = createTheme({
+    palette: {
+      mode: 'light'
+    }
+  })
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+      background: {
+        'default': '#121212',
+        'paper': '#191919'
+      },
+      primary: {
+        main: '#2998f2'
+      },
+      info: {
+        main: '#0868e4'
+      },
+      text: {
+        primary: '#f9f9f9',
+      }
+    }
+  })
+
   return (
-    <Context.Provider value={{ getters, setters, }}>
-      <CookiesProvider>
-        <BrowserRouter basename={config.BASE_NAME}>
-          <Router />
-        </BrowserRouter>
-      </CookiesProvider>
-    </Context.Provider>
+  <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+    <ScopedCssBaseline sx={{
+      minHeight:'100%'
+    }}>
+      <Context.Provider value={{ getters, setters, }}>
+        <CookiesProvider>
+          <BrowserRouter basename={config.BASE_NAME}>
+            <Router />
+          </BrowserRouter>
+        </CookiesProvider>
+      </Context.Provider>
+    </ScopedCssBaseline>
+  </ThemeProvider>
   );
 };
 

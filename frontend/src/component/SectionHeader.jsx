@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 const TitleCard = ({ children }) => {
   return (
     <Box sx={{ margin: '45px 2px 20px 2px' }}>
-      <Typography sx={{ color: '#333' }} variant="h5">{children}</Typography>
+      <Typography variant="h5">{children}</Typography>
     </Box>
   );
 };

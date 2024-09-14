@@ -36,6 +36,7 @@ const styles = ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
+    paddingTop: theme.spacing.unit * 8,
   },
   paper: {
     marginTop: theme.spacing(8),
@@ -120,7 +121,6 @@ const SignIn = (props) => {
 
   return (
     <main className={classes.main}>
-      <CssBaseline />
       <Paper className={classes.paper}>
         <img className={classes.logo} src={mainlogo} alt='mainlogo'/>
         <Typography component="h1" variant="h5">
