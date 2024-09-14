@@ -111,7 +111,7 @@ const validUserCheck = (zid, zpass, term) => {
       if (zid === '5555555' || zid === '3418003') {
         resolve(zid);
       } else {
-        reject('Incorrect test login. Use z5555555 for sampling');
+        reject('Incorrect test login. Use z3418003 for sampling');
       }
       return;
     }
