@@ -1,18 +1,18 @@
-import React from 'react';
-import { useCookies } from 'react-cookie';
-import { useNavigate, useLocation } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import TheatersIcon from '@mui/icons-material/Theaters';
-import SchoolIcon from '@mui/icons-material/School';
-import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
-import { Outlet } from 'react-router-dom';
-import { Context, useContext } from '../../context';
-import TutLecContentCard from '../../component/TutLecContentCard';
-import SubNavWrapper from '../../component/SubNavWrapper';
-import makePage from '../../component/makePage';
+import React from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate, useLocation } from "react-router-dom";
+import Button from "@mui/material/Button";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import TheatersIcon from "@mui/icons-material/Theaters";
+import SchoolIcon from "@mui/icons-material/School";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+import { Outlet } from "react-router-dom";
+import { Context, useContext } from "../../context";
+import TutLecContentCard from "../../component/TutLecContentCard";
+import SubNavWrapper from "../../component/SubNavWrapper";
+import makePage from "../../component/makePage";
 
-const ContentLecturesSearch = ({ }) => {
+const ContentLecturesSearch = ({}) => {
   const { getters, setters } = useContext(Context);
   const {
     content_lectures,
@@ -49,12 +49,18 @@ const ContentLecturesSearch = ({ }) => {
   // console.log('content tutorials first one relevant lectures', week1.content_tutorials()[0].content_lectures()[0].name);
   // console.log('All lectures', content_lectures[1]);
 
-  return <>
-    <TutLecContentCard name={content_lectures[1].name} duration_mins={content_lectures[1].duration_mins} relevance={content_lectures[1].relevance} />
-  </>
+  return (
+    <>
+      <TutLecContentCard
+        name={content_lectures[1].name}
+        duration_mins={content_lectures[1].duration_mins}
+        relevance={content_lectures[1].relevance}
+      />
+    </>
+  );
 };
 
 export default makePage(ContentLecturesSearch, {
   loginRequired: true,
-  title: '',
+  title: "",
 });

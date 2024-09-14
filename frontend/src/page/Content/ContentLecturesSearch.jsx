@@ -173,7 +173,6 @@ const ContentLecturesSearch = ({}) => {
                 onChange={(event) => setSelectedWeek(event.target.value)}
                 label="Week"
               >
-                <MenuItem value="">None</MenuItem>
                 {weeks.map((week) => (
                   <MenuItem key={week.week} value={week.week}>
                     {week.week}
@@ -189,7 +188,6 @@ const ContentLecturesSearch = ({}) => {
                 onChange={(event) => setSelectedTopic(event.target.value)}
                 label="Topic"
               >
-                <MenuItem value="">None</MenuItem>
                 {topics.map((topic) => (
                   <MenuItem key={topic.name} value={topic.name}>
                     {topic.name}
@@ -205,7 +203,6 @@ const ContentLecturesSearch = ({}) => {
                 onChange={(event) => setSelectedRelevance(event.target.value)}
                 label="Relevance"
               >
-                <MenuItem value="">None</MenuItem>
                 <MenuItem value="Mandatory">Mandatory</MenuItem>
                 <MenuItem value="Catchup">Catchup</MenuItem>
                 <MenuItem value="Recommended">Recommended</MenuItem>
@@ -231,6 +228,7 @@ const ContentLecturesSearch = ({}) => {
             xs: "repeat(1, 1fr)",
             sm: "repeat(2, 1fr)",
             lg: "repeat(3, 1fr)",
+            xl: "repeat(4, 1fr)",
           },
           gap: 2,
           mt: 3,

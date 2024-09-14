@@ -12,9 +12,8 @@ export default function TutLecContentCard({
   relevance,
   week,
   topicEmoji,
-  topicName
+  topicName,
 }) {
-
   // Function to get chip label and color based on relevance
   const getRelevanceChip = (relevance) => {
     switch (relevance) {
@@ -23,17 +22,17 @@ export default function TutLecContentCard({
       case "Catchup":
         return { label: "Catchup", color: "secondary" };
       case "Recommended":
-        return { label: "Recommended", color: "info" }; 
+        return { label: "Recommended", color: "info" };
       case "Extension":
-        return { label: "Extension", color: "warning" }; 
+        return { label: "Extension", color: "warning" };
       default:
-        return { label: "Unknown", color: "default" }; 
+        return { label: "Unknown", color: "default" };
     }
   };
 
   const relevanceChip = getRelevanceChip(relevance);
-  const fullWeek = "Week " + week
-  const topic = topicEmoji + " " + topicName
+  const fullWeek = "Week " + week;
+  const topic = topicEmoji + " " + topicName;
   return (
     <Card
       sx={{
@@ -45,14 +44,14 @@ export default function TutLecContentCard({
         boxShadow: "lg",
         paddingBottom: "10px",
         "&:hover": {
-          transform: "scale(1.02)",
+          transform: "scale(1.05)",
           transition: "all .2s ease-in-out;",
         },
       }}
     >
       <CardContent>
         <Typography variant="h6" component="div">
-          <a href={`/~cs6080/24T3/content/lectures/${contentKey}`}>{name}</a>
+          <a href={`/~cs6080/NOW/content/lectures/${contentKey}`}>{name}</a>
         </Typography>
         <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
           {duration_mins} minutes
