@@ -9,7 +9,8 @@ const tables = Object.keys(joinSchema);
 
 const generateContent = (term) => {
   const basename = config.TERMS[term].AIRTABLE_BASE;
-  const base = new Airtable({ apiKey: config.AIRTABLE_API_KEY }).base(basename);
+  const base = new Airtable({ apiKey: config.TERMS[term].AIRTABLE_API_KEY }).base(basename);
+  console.log(basename, base);
   return new Promise((resolve, reject) => {
     const obj = {};
     Promise.all(tables.map(table => {

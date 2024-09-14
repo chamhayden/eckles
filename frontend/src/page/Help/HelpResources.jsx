@@ -47,7 +47,7 @@ const HelpResources = ({ }) => {
 
   return (
     <SubNavWrapper baseUrl={'/help/resources'} menu={menu}>
-      If you have resources you think are useful, please don't hestitate to share them by putting in a <a target="_blank" href="https://github.com/chamhayden/eckles">pull request!</a>
+      If you have resources you think are useful, please don't hesitate to share them by putting in a <a target="_blank" href="https://github.com/chamhayden/eckles">pull request!</a>
       <Divider sx={{ mb: 3, mt: 3, }} />
       <Outlet />
     </SubNavWrapper>

@@ -9,8 +9,12 @@ import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import { Outlet, useParams } from 'react-router-dom';
 import { Context, useContext } from '../../context';
 
+import AssPrint from '../../component/AssPrint';
+import { ass1a, ass1b, ass2a, ass2b, ass3a, ass3b, ass4a, ass4b } from './Assignments/AssMd';
+
 import SubNavWrapper from '../../component/SubNavWrapper';
 import makePage from '../../component/makePage';
+import config from '../../config';
 
 const AssessmentsAssignments = ({ }) => {
   const { getters, setters } = useContext(Context);
@@ -41,17 +45,18 @@ const AssessmentsAssignments = ({ }) => {
   return (
     <SubNavWrapper baseUrl={'/assessments/assignments'} menu={menu}>
       <>
-        <h2>{params.ass} has {['ass1', 'ass2', 'ass3'].includes(params.ass) ? '' : 'not '} been released!</h2>
-        {['ass1', 'ass2', 'ass3'].includes(params.ass) && (<Button variant="contained" size="large">
-          <a style={{ color: '#fff' }} target="_blank" href={
-            params.ass === 'ass1' ? `/~cs6080/redirect/?path=COMP6080/${getters.term}/students/_/pictocode/` :
-            params.ass === 'ass2' ? `/~cs6080/redirect/?path=COMP6080/${getters.term}/students/_/funform/` :
-            params.ass === 'ass3' ? `/~cs6080/redirect/?path=COMP6080/${getters.term}/students/_/slackr/` :
-            params.ass === 'ass4' ? `https://docs.google.com/spreadsheets/d/1QRaHRbuvlbeptyfUDw91NZjSdQcu-SrMr5wOfgeuDfk/`
-            : `/~cs6080/redirect/?path=COMP6080/${getters.term}/students/_/${params.ass}/`}>
-            View on gitlab
-          </a>
-        </Button>)}
+        {getters.term === '24T3' || getters.term.indexOf('25') !== -1 ? <>
+          {
+            params.ass === 'ass1' ? <AssPrint mda={ass1a} mdb={ass1b} assNumber={1} startWeek={1} /> :
+            params.ass === 'ass2' ? <AssPrint mda={ass2a} mdb={ass2b} assNumber={2} startWeek={3} /> :
+            params.ass === 'ass3' ? <AssPrint mda={ass3a} mdb={ass3b} assNumber={3} startWeek={4} /> :
+            params.ass === 'ass4' ? <AssPrint mda={ass4a} mdb={ass4b} assNumber={4} startWeek={6} /> :
+            <></>
+          }
+        </> : <>
+          <h2>You can find a link to {params.ass} <a target="_blank" href={`${config.BASE_URL}/gitlabredir/${getters.term}/${params.ass}`}>here</a>.</h2>
+          <h3>Please note: This URL will return a gitlab 404 error until the lecturer announces that the assignment is released.</h3>
+        </>}
       </>
     </SubNavWrapper>
   );

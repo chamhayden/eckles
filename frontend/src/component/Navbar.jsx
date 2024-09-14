@@ -14,9 +14,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Collapse from '@mui/material/Collapse';
 
 
-import {makeStyles} from "@material-ui/core/styles";
-import mainlogo from '../asset/mainlogo.webp';
+import mainlogo from '../asset/mainlogo.png';
 import {Context, useContext} from '../context';
+import { makeStyles } from "@mui/styles";
 
 import {getPrimaryNavList, getSecondaryNavList} from './NavList';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -25,12 +25,12 @@ const ExternalIcon = () => {
   return <OpenInNewIcon/>;
 }
 
-const background = 'rgb(22,27,37)';
+const background = 'rgb(22,27,37) !important';
 
 const useStyles = makeStyles({
   paper: {
     background,
-    color: '#fff',
+    color: '#fff !important',
   }
 });
 

@@ -20,14 +20,14 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/checkout@v2
     - run: ls
-    - run: cd frontend && npm install && npm run build && rm -rf node_modules && cd ..
+    - run: cd frontend && npm install --legacy-peer-deps && npm run build && rm -rf node_modules && cd ..
     - name: Publish
       uses: nogsantos/scp-deploy@master
       with:
