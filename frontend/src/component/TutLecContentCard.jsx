@@ -70,7 +70,11 @@ export default function TutLecContentCard({
         }}
       >
         <Typography variant="h6" component="div">
-          <a href={`/~cs6080/NOW/content/lectures/${contentKey}`}>{name}</a>
+          {lecture ? (
+            <a href={`/~cs6080/NOW/content/lectures/${contentKey}`}>{name}</a>
+          ) : (
+            <a href={`/~cs6080/NOW/content/tutorials/${contentKey}`}>{name}</a>
+          )}
         </Typography>
         <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
           {duration_mins} minutes
