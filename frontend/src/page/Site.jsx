@@ -65,7 +65,7 @@ const SiteWrapper = ({ children }) => {
         <CssBaseline />
         <Header pageTitle={getters.title} sidebarWidth={sidebarRealTimeWidth} menuToggle={() => setters.setSidebarOpen(!getters.sidebarOpen)} />
         <Navbar drawerWidth={drawerWidth} />
-        <Box component="main" sx={{ flexGrow: 1}}>
+        <Box component="main" sx={{ flexGrow: 1, padding: '20px'}}>
           <Toolbar />
           <Outlet />
         </Box>
