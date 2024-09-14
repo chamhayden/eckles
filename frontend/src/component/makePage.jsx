@@ -35,6 +35,7 @@ const makePage = (Component, options) => {
       if (options.loginRequired && !cookies.eckles_loggedin) {
         window.location.href = `${config.BASE_NAME}login`;
       }
+      
       if (getters.term && getters.validTerms.includes(getters.term)) {
         loadContent(getters.term, getters.loggedIn)
           .then(content => {

@@ -4,6 +4,7 @@ import {
   Route,
 } from 'react-router-dom';
 
+import Staff from './page/Staff';
 import Site from './page/Site';
 import Login from './page/Login';
 import Dashboard from './page/Dashboard';
@@ -11,7 +12,6 @@ import TimetableBase from './page/Timetable/TimetableBase';
 import TimetableLectures from './page/Timetable/TimetableLectures';
 import TimetableTutorials from './page/Timetable/TimetableTutorials';
 import TimetableHelpSessions from './page/Timetable/TimetableHelpSessions';
-import Grades from './page/Grades';
 import CourseOutline from './page/CourseOutline';
 import ContentBase from './page/Content/ContentBase';
 import AssessmentsBase from './page/Assessments/AssessmentsBase';
@@ -39,8 +39,11 @@ import HelpResourcesNetwork from './page/Help/HelpResourcesNetwork';
 import HelpResourcesHtmlCss from './page/Help/HelpResourcesHtmlCss';
 import HelpResourcesJavascript from './page/Help/HelpResourcesJavascript';
 import HelpResourcesCypress from './page/Help/HelpResourcesCypress';
+import DueDateAdjustments from './page/DueDateAdjustments';
 import HelpResourcesReact from './page/Help/HelpResourcesReact';
 import LogoutAction from './component/LogoutAction';
+
+import Grades from './page/Grades';
 
 import { apiCall } from './util/api';
 import { Context, useContext } from './context';
@@ -101,8 +104,10 @@ const Router = () => {
           <Route path="javascript" element={<StyleJavascript />} />
           <Route path="reactjs" element={<StyleReactJS />} />
         </Route>
-        <Route path="grades" element={<Grades />}></Route>
         <Route path="course-outline" element={<CourseOutline />}></Route>
+        <Route path="due-date-adjustments" element={<DueDateAdjustments />}></Route>
+        <Route path="grades" element={<Grades />} />
+        <Route path="staff" element={<Staff />}></Route>
       </Route>
     </Routes>
   );

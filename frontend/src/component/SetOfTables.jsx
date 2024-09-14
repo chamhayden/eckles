@@ -104,7 +104,6 @@ const SetOfTables = ({ boxes, lectures }) => {
                     <TableBody>
                       {table.map((tableRow, tableRowKey) => {
                         hasLectures = true
-                        console.log('tableRow', tableRow);
                         if (!window.location.href.includes('help-session')) {
                           var curDuration = parseInt(tableRow[3].value.replace(/^\D+/g, ''))
                           if (window.location.href.includes('tutorial')) {

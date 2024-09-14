@@ -1,6 +1,5 @@
 import SubNav from '../component/SubNav';
 
-import { Link } from 'react-router-dom';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -21,14 +20,32 @@ import Table from '../component/Table';
 
 import { Context, useContext } from '../context';
 
-const Grades = () => {
-  return <>
-  	To see your details marks after assignment release, open a CSE terminal (either via SSH or in vlab) and run <code>6080 classrun -sturec</code>
-  </>
+const Staff = () => {
+  const { getters } = useContext(Context);
+  const staff = getters.content.staff.filter(s => s.active);
+  staff.sort((a,b) => a.name.localeCompare(b.name));
+  const data = staff.map((staff, idx) => (
+    [
+      {
+        key: 'name',
+        data: staff.name,
+        flex: 1,
+      },
+      {
+        key: 'email',
+        data: `z${staff.zid}@unsw.edu.au`,
+        flex: 1,
+        editable: true,
+      },
+    ]
+  ));
+
+  return <Table data={data} maxWidth={600} />
+  return <></>;
 
 }
 
-export default makePage(Grades, {
+export default makePage(Staff, {
   loginRequired: true,
-  title: '💯 Grades',
+  title: '⚽️ Our Staff',
 });

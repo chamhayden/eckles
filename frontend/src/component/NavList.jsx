@@ -16,6 +16,8 @@ import StyleIcon from '@mui/icons-material/Style';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import PaletteIcon from '@mui/icons-material/Palette';
+import BadgeIcon from  '@mui/icons-material/Badge';
+import GradeIcon from  '@mui/icons-material/Grade';
 
 export const getPrimaryNavList = (term) => {
   return [
@@ -28,7 +30,7 @@ export const getPrimaryNavList = (term) => {
     },
     {
       title: 'Forum',
-      route: 'https://edstem.org/au/join/TfEpZm',
+      route: 'https://edstem.org/au/join/zDzXXH',
       external: true,
       loginRequired: true,
       Icon: ForumIcon,
@@ -129,6 +131,27 @@ export const getSecondaryNavList = (term) => {
       external: true,
       Icon: CodeIcon,
       description: 'View the source code for this platform you\'re using',
+    },
+    {
+      title: 'Grades',
+      loginRequired: true,
+      route: '/grades',
+      Icon: GradeIcon,
+      description: '',
+    },
+    {
+      title: 'Spec Con / ELS',
+      loginRequired: true,
+      route: '/due-date-adjustments',
+      Icon: BadgeIcon,
+      description: 'Spec Con / ELS',
+    },
+    {
+      title: 'Staff',
+      loginRequired: true,
+      route: '/staff',
+      Icon: BadgeIcon,
+      description: 'Staff',
     },
   ];
 }

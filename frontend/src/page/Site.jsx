@@ -47,7 +47,7 @@ const SiteWrapper = ({ children }) => {
       navigate(`/${config.DEFAULT_TERM}`);
       setters.setTerm(`${config.DEFAULT_TERM}`);
     } else if (params.term === 'NOW') {
-      navigate(pathname.replace('NOW', config.DEFAULT_TERM));
+      navigate(pathname.replace('NOW', config.DEFAULT_TERM), { replace: true });
     } else {
       setters.setTerm(`${params.term}`);
     }
