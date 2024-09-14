@@ -1,23 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions} from '@mui/material';
 import FormLabel from '@mui/material/FormLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Input from '@material-ui/core/Input';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import { withStyles, } from '@mui/styles';
+import { createTheme } from '@mui/material/styles';
 import mainlogo from '../asset/mainlogo.png';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
@@ -25,17 +21,17 @@ import { useCookies } from 'react-cookie';
 import AppLoad from '../component/AppLoad';
 import { apiCall } from '../util/api';
 import config from '../config';
-import makePage from '../component/makePage';
 import { Context, useContext } from '../context';
 
+const theme = createTheme();
 /* Sourced https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/sign-in/SignIn.js */
-const styles = theme => ({
+const styles = ({
   main: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(3),
+    [theme.breakpoints.up(400 + theme.spacing(3) * 2)]: {
       width: 400,
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -43,10 +39,14 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 8,
   },
   paper: {
+    marginTop: theme.spacing(8),
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    maxWidth: '400px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    padding: `20px 20px 20px`,
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -57,7 +57,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
   },
   submit: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
   },
   logo: {
     width: '100%',
@@ -72,13 +72,25 @@ const styles = theme => ({
 });
 
 const SignIn = (props) => {
-  const { getters, setters } = useContext(Context);
+  // dialog state
+  const [open, setOpen] = React.useState(false);
+  const { getters } = useContext(Context);
   const [zid, setZid] = React.useState('');
   const [zpass, setZpass] = React.useState('');
   const [term, setTerm] = React.useState(['sample']);
-  const [cookies, setCookie] = useCookies();
+  const [cookies] = useCookies();
   const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = React.useState('');
+
+  const handleClickOpen = (message) => {
+    setErrorMessage(message); // Set the error message
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   React.useEffect(() => {
     if (cookies.eckles_loggedin) {
@@ -92,7 +104,7 @@ const SignIn = (props) => {
 
   const login = (zid, zpass, term) => {
     setLoading(true);
-    apiCall('login', { term, zid, zpass })
+    apiCall('login', { term, zid, zpass }, 'POST', handleClickOpen)
       .then(_ => {
         localStorage.removeItem('eckles_content');
         localStorage.removeItem('eckles_expiry');
@@ -110,7 +122,7 @@ const SignIn = (props) => {
   return (
     <main className={classes.main}>
       <Paper className={classes.paper}>
-        <img className={classes.logo} src={mainlogo} />
+        <img className={classes.logo} src={mainlogo} alt='mainlogo'/>
         <Typography component="h1" variant="h5">
           Sign in to COMP6080
         </Typography>
@@ -127,10 +139,10 @@ const SignIn = (props) => {
             <FormLabel sx={{ marginTop: '15px', marginBottom: '5px' }} id="demo-radio-buttons-group-label">term</FormLabel>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue={getters.validTerms[0]}
+              defaultValue={getters.validTerms.length ? getters.validTerms[getters.validTerms.length - 1][0] : 'sample'}
               name="radio-buttons-group"
             >
-              {getters.validTerms.map((term, key) => (
+              {getters.validTerms.sort().reverse().map((term, key) => (
                 <FormControlLabel sx={{padding: '0px 10px' }} onClick={() => setTerm(term)} key={key}  value={term} control={<Radio />} label={term} />
               ))}
             </RadioGroup>
@@ -156,6 +168,19 @@ const SignIn = (props) => {
           </Button>
         </form>
       </Paper>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>{"Error"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+              {errorMessage}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </main>
   );
 }

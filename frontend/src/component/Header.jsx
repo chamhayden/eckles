@@ -68,11 +68,15 @@ const Header = ({ pageTitle, menuToggle, sidebarWidth}) => {
     window.localStorage.setItem('dark', e.target.checked)
   }
 
-
   return (
     <AppBar
       position="fixed"
-      sx={{ width: `calc(100% - ${sidebarWidth}px)`, left: 0, minWidth: '400px', ml: `${sidebarWidth}px`, height: '60px' }}
+      sx={{
+        width: `calc(100% - ${sidebarWidth}px)`,
+        left: 0,
+        ml: `${sidebarWidth}px`,
+        height: "60px",
+      }}
     >
       <Toolbar>
         <IconButton
@@ -81,7 +85,7 @@ const Header = ({ pageTitle, menuToggle, sidebarWidth}) => {
           color="inherit"
           aria-label="menu"
           sx={{ mr: 2 }}
-          onClick={menuToggle} 
+          onClick={menuToggle}
         >
           <MenuIcon />
         </IconButton>
@@ -97,6 +101,6 @@ const Header = ({ pageTitle, menuToggle, sidebarWidth}) => {
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 export default Header;

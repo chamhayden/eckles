@@ -4,6 +4,8 @@ import { DEV, joinSchema } from '../config';
 
 /* Genius or madness */
 const joinContent = content => {
+  const forum = content.forum; // HACK
+  content.forum = undefined;
   const newContent = {};
   for (const table in content) {
     newContent[table] = [];
@@ -29,41 +31,16 @@ const joinContent = content => {
     }
   }
   newContent.weeks = newContent.weeks.sort((a,b) => (parseInt(a.week) > parseInt(b.week)) ? 1 : (parseInt(b.week) > parseInt(a.week) ? -1 : 0));
-  return newContent;
+  return {
+    ...newContent,
+    forum: forum,
+  };
 };
 
 export const loadContent = (term, loggedIn = false) => {
-  return new Promise((resolve, reject) => {
-    // Check if we stored it locally
-    const expiry = localStorage.getItem('eckles_expiry');
-    if (expiry) {
-      if ((new Date()).getTime() < JSON.parse(expiry)) {
-        const storedTerm = localStorage.getItem('eckles_term');
-        if (storedTerm === term) {
-          const eckles_content = localStorage.getItem('eckles_content');
-          if (eckles_content) {
-            const content = JSON.parse(eckles_content);
-            resolve(joinContent(content));
-            return;
-          }
-        }
-      }
-    }
-    apiCall('content/' + (loggedIn ? 'full' : 'public'), {
-      term,
-    })
-      .then(rawContent => {
-        const expiry = (new Date()).getTime() + 1000 * 60 * 5;
-        if (!DEV) {
-          localStorage.setItem('eckles_expiry', expiry);
-          localStorage.setItem('eckles_term', term);
-          localStorage.setItem('eckles_content', JSON.stringify(rawContent));
-        }
-        const content = joinContent(rawContent);
-        resolve(content);
-      })
-      .catch(err => { console.log(err); reject(err) });
-  });
+  return apiCall('content/' + (loggedIn ? 'full' : 'public'), { term, })
+    .then(rawContent => joinContent(rawContent))
+    .catch(err => { console.log(err); });
 };
 
 export const getYoutubeCodeFromUrl = code => code.slice(code.length - 11);

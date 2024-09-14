@@ -25,14 +25,14 @@ const HelpInstallation = ({ }) => {
         If you don't already have these installed, we recommend you download:
         <ul>
           <li><a target="_blank" href="https://www.google.com/intl/en_au/chrome/">Google Chrome</a> (browser)</li>
-          <li><a target="_blank" href="https://code.visualstudio.com/download">VSCode</a> (or any <a target="_blank" href="https://www.sublimetext.com/3">alternative</a> on older or slower machines)</li>
+          <li><a target="_blank" href="https://code.visualstudio.com/download">VSCode</a> (or any alternative on older or slower machines)</li>
         </ul>
       </Typography>
 
       <Divider sx={{ mb: 3, mt: 3, }} />
 
       <Typography variant="h5" component="div" gutterBottom>
-        Step 2.1: Install Node (includes NPM) version 16.14.2 (though any version of Node 16.X is fine)
+        Step 2.1: Install Node (includes NPM) version v18.19.0 (though any version of Node 18.X is fine)
       </Typography>
 
       <Typography variant="body" component="div" gutterBottom>

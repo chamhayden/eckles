@@ -18,6 +18,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 0.2em;
 }
 
 a {
