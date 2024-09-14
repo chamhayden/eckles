@@ -1,39 +1,28 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import AppBar from '@mui/material/AppBar';
-import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import StarBorder from '@mui/icons-material/StarBorder';
-import { useNavigate } from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ListItemButton from '@mui/material/ListItemButton';
 import Collapse from '@mui/material/Collapse';
-import { useLocation } from "react-router-dom"
 
 
+import mainlogo from '../asset/mainlogo.png';
+import {Context, useContext} from '../context';
 import { makeStyles } from "@mui/styles";
 
-import External from '../asset/external.png';
-import Logout from './Logout';
-import Header from './Header';
-import mainlogo from '../asset/mainlogo.png';
-import { isMobileWidth } from '../util/screen';
-import { Context, useContext } from '../context';
-
-import { getPrimaryNavList, getSecondaryNavList } from './NavList';
+import {getPrimaryNavList, getSecondaryNavList} from './NavList';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 const ExternalIcon = () => {
-  return <img style={{ width: '15px' }} src={External} />;
+  return <OpenInNewIcon/>;
 }
 
 const background = 'rgb(22,27,37) !important';
@@ -95,7 +84,7 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
       >
         <Box sx={{ overflow: 'auto', paddingTop: '60px' }}>
           <Box sx={{ cursor: 'pointer', position: 'fixed', top: 0, height: '60px', width: drawerWidth, backgroundColor: background, zIndex: 999, borderBottom: '1px solid #333' }} onClick={() => navigate(`/${getters.term}`)}>
-            <img src={mainlogo} style={{ height: '59px', marginBottom: '10px', float: 'left' }} />
+            <img src={mainlogo} style={{ height: '59px', marginBottom: '10px', float: 'left' }} alt={'main-logo'}/>
             <Typography sx={{ float: 'left ',fontSize: '1.3em', paddingTop: '15px', paddingLeft: '15px' }}>
               COMP6080
             </Typography>
