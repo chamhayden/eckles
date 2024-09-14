@@ -66,3 +66,18 @@ export const RELEVANCE = {
     select: 'I want to learn everything',
   },
 }
+
+export const DARK_RELEVANCE = {
+  'mandatory': {
+    colour: 'rgb(85,148,85)',
+  },
+  'catchup': {
+    colour: 'rgb(123, 123, 181)',
+  },
+  'recommended': {
+    colour: 'rgb(142, 82, 142)',
+  },
+  'extension': {
+    colour: 'rgb(187,129,129)',
+  },
+}
