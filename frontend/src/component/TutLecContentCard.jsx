@@ -15,7 +15,6 @@ export default function TutLecContentCard({
   topicName,
   lecture,
 }) {
-  // Function to get chip label and color based on relevance
   const getRelevanceChip = (relevance) => {
     if (lecture) {
       switch (relevance) {

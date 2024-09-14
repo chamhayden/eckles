@@ -23,8 +23,7 @@ import InfoIcon from "@mui/icons-material/Info";
 
 const ContentLecturesSearch = ({}) => {
   const { getters, setters } = useContext(Context);
-  const { content_lectures, weeks, topics } =
-    getters.content;
+  const { content_lectures, weeks, topics } = getters.content;
 
   const [searchQuery, setSearchQuery] = useState("");
   const [isFiltered, setIsFiltered] = useState(false);
