@@ -1,13 +1,10 @@
 import React, { useState, useMemo } from "react";
-import { useCookies } from "react-cookie";
-import { useNavigate, useLocation } from "react-router-dom";
 import { Context, useContext } from "../../context";
 import TutLecContentCard from "../../component/TutLecContentCard";
 import makePage from "../../component/makePage";
 import {
   Box,
   Button,
-  FormControlLabel,
   Modal,
   Input,
   FormControl,
@@ -234,11 +231,11 @@ const ContentTutorialsSearch = ({}) => {
                 contentKey={tutorial.key}
                 name={tutorial.name}
                 duration_mins={tutorial.duration}
-                relevance={tutorial.importance.split(' ')[1]} // Ensure this is correctly passed if needed
+                relevance={tutorial.importance.split(' ')[1]}
                 week={tutorial.week().week}
                 topicEmoji={tutorial.topic().emoji}
                 topicName={tutorial.topic().name}
-                lecture={false} // Set to false if this is for tutorials
+                lecture={false}
               />
             </div>
           ))}

@@ -1,6 +1,4 @@
 import React, { useState, useMemo } from "react";
-import { useCookies } from "react-cookie";
-import { useNavigate, useLocation } from "react-router-dom";
 import { Context, useContext } from "../../context";
 import TutLecContentCard from "../../component/TutLecContentCard";
 import makePage from "../../component/makePage";
@@ -25,7 +23,7 @@ import InfoIcon from "@mui/icons-material/Info";
 
 const ContentLecturesSearch = ({}) => {
   const { getters, setters } = useContext(Context);
-  const { content_lectures, content_tutorials, weeks, topics } =
+  const { content_lectures, weeks, topics } =
     getters.content;
 
   const [searchQuery, setSearchQuery] = useState("");
