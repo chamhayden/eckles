@@ -275,7 +275,7 @@ app.get('/gitlabredir/:term/:repo/:path?', (req, res) => {
     let repoPath = ``;
     if (isTutor(zid)) {
       repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/STAFF/repos/${newRepo}`
-    } else if (['ass1', 'ass2', 'ass3'].includes(repo)) {
+    } else if (['ass1', 'ass2', 'ass3', 'exercises'].includes(repo)) {
       repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/students/z${zid}/${newRepo}`
     } else if (['ass4'].includes(repo)) {
       const group = builtData[term].groups[zid];
