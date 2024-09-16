@@ -272,11 +272,9 @@ app.get('/gitlabredir/:term/:repo/:path?', (req, res) => {
     if (repo === 'ass2') newRepo = config.TERMS[term].ASS_MAP[1];
     if (repo === 'ass3') newRepo = config.TERMS[term].ASS_MAP[2];
     if (repo === 'ass4') newRepo = config.TERMS[term].ASS_MAP[3];
-    let repoPath = ``;
+    repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/students/z${zid}/${newRepo}`
     if (isTutor(zid)) {
       repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/STAFF/repos/${newRepo}`
-    } else if (['ass1', 'ass2', 'ass3', 'exercises'].includes(repo)) {
-      repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/students/z${zid}/${newRepo}`
     } else if (['ass4'].includes(repo)) {
       const group = builtData[term].groups[zid];
       repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/groups/${group}/${newRepo}`
