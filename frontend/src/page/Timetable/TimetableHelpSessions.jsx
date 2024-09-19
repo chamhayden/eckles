@@ -59,7 +59,11 @@ const TimetableHelpSessions = () => {
   }, [getters.content.weeks]);
 
   return <>
-    <div style={{ textAlign: 'center', marginBottom: '20px', }}>Please be aware that help sessions with less tutors may result in longer wait times.</div>
+    <div style={{ border: '1px solid #999', padding: '10px', margin: '0 auto 20px auto', minWidth: 100, maxWidth: '44rem' }}>
+      <p style={{ fontSize: '1.2rem' }}>1. Join the <a href="https://unsw.to/hopper" target="_blank">Hopper Queue</a><br/>
+      2. Stay online on <a href="https://teams.microsoft.com/l/chat/0/0" target="_blank">MS Teams</a></p>
+      <p>Please be aware that help sessions with less tutors may result in longer wait times.</p>
+    </div>
     <SetOfTables boxes={boxes} />
   </>
 
