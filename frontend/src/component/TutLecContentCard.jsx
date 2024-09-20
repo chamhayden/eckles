@@ -43,7 +43,6 @@ export default function TutLecContentCard({
       }
     }
   };
-  console.log(live);
   const isLive = live === "🔴 NEW";
   const relevanceChip = getRelevanceChip(relevance);
   const fullWeek = "Week " + week;

@@ -33,13 +33,14 @@ const ContentLecturesSearch = () => {
     selectedTopic: "All",
     selectedRelevance: "workHard",
     completedCOMP1531: true,
+    showLiveLectures: false,
   });
   const [tempFilters, setTempFilters] = useState({
     selectedTopic: "All",
     selectedRelevance: "workHard",
     completedCOMP1531: true,
+    showLiveLectures: false,
   });
-  console.log(content_lectures);
   useEffect(() => {
     const storedFilters = localStorage.getItem("filters");
     if (storedFilters) {
@@ -48,8 +49,13 @@ const ContentLecturesSearch = () => {
       setTempFilters(parsedFilters);
       setIsFiltered(
         parsedFilters.selectedRelevance !== "workHard" ||
-          parsedFilters.selectedTopic !== "All"
+          parsedFilters.selectedTopic !== "All" ||
+          parsedFilters.showLiveLectures
       );
+    }
+    const storedWeek = localStorage.getItem("lecWeek");
+    if (storedWeek) {
+      setWeek(storedWeek === "All" ? "All" : parseInt(storedWeek, 10));
     }
   }, []);
 
@@ -62,11 +68,13 @@ const ContentLecturesSearch = () => {
       selectedTopic: "All",
       selectedRelevance: "workHard",
       completedCOMP1531: true,
+      showLiveLectures: false,
     });
     setTempFilters({
       selectedTopic: "All",
       selectedRelevance: "workHard",
       completedCOMP1531: true,
+      showLiveLectures: false,
     });
     setIsFiltered(false);
     setFiltersOpen(false);
@@ -78,7 +86,8 @@ const ContentLecturesSearch = () => {
     setFiltersOpen(false);
     setIsFiltered(
       tempFilters.selectedRelevance !== "workHard" ||
-        tempFilters.selectedTopic !== "All"
+        tempFilters.selectedTopic !== "All" ||
+        tempFilters.showLiveLectures
     );
     localStorage.setItem("filters", JSON.stringify(tempFilters));
   };
@@ -112,13 +121,21 @@ const ContentLecturesSearch = () => {
       const topicMatch =
         !selectedTopic || lecture.topic().name === selectedTopic;
       const relevanceMatch = relevanceOptions.includes(lecture.relevance);
+      const liveLectureMatch =
+        !filters.showLiveLectures || lecture.status === "🔴 NEW";
 
       setIsFiltered(
         filters.selectedRelevance !== "workHard" ||
           filters.selectedTopic !== "All"
       );
 
-      return nameMatch && weekMatch && topicMatch && relevanceMatch;
+      return (
+        nameMatch &&
+        weekMatch &&
+        topicMatch &&
+        relevanceMatch &&
+        liveLectureMatch
+      );
     });
   }, [content_lectures, filters, searchQuery, week]);
 
@@ -148,7 +165,10 @@ const ContentLecturesSearch = () => {
           <Select
             labelId="week-select-label"
             value={week}
-            onChange={(event) => setWeek(event.target.value)}
+            onChange={(event) => {
+              setWeek(event.target.value);
+              localStorage.setItem("lecWeek", event.target.value);
+            }}
             label="Week"
           >
             <MenuItem value="All">All</MenuItem>
@@ -271,6 +291,23 @@ const ContentLecturesSearch = () => {
                   <InfoIcon />
                 </IconButton>
               </Tooltip>
+            </Stack>
+            <Stack>
+              <FormControlLabel
+                sx={{ mr: 0 }}
+                control={
+                  <Checkbox
+                    checked={tempFilters.showLiveLectures}
+                    onChange={(event) =>
+                      setTempFilters((prevFilters) => ({
+                        ...prevFilters,
+                        showLiveLectures: event.target.checked,
+                      }))
+                    }
+                  />
+                }
+                label="Show only live lectures"
+              />
             </Stack>
             <Stack direction="row" justifyContent="flex-end" spacing={1}>
               <Button variant="outlined" onClick={toggleFilters}>

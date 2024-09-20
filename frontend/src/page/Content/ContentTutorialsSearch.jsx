@@ -33,7 +33,6 @@ const ContentTutorialsSearch = () => {
     selectedRelevance: "workHard",
   });
 
-  // Load filters from localStorage on component mount
   useEffect(() => {
     const storedFilters = localStorage.getItem("tutFilters");
     if (storedFilters) {
@@ -44,6 +43,10 @@ const ContentTutorialsSearch = () => {
         parsedFilters.selectedRelevance !== "workHard" ||
           parsedFilters.selectedTopic !== "All"
       );
+    }
+    const storedWeek = localStorage.getItem("tutWeek");
+    if (storedWeek) {
+      setTutWeek(storedWeek === "All" ? "All" : parseInt(storedWeek, 10));
     }
   }, []);
 
@@ -104,7 +107,7 @@ const ContentTutorialsSearch = () => {
 
       setIsTutFiltered(
         tutFilters.selectedRelevance !== "workHard" ||
-        tutFilters.selectedTopic !== "All"
+          tutFilters.selectedTopic !== "All"
       );
 
       return nameMatch && weekMatch && topicMatch && relevanceMatch;
@@ -137,7 +140,10 @@ const ContentTutorialsSearch = () => {
           <Select
             labelId="week-select-label2"
             value={tutWeek}
-            onChange={(event) => setTutWeek(event.target.value)}
+            onChange={(event) => {
+              setTutWeek(event.target.value);
+              localStorage.setItem("tutWeek", event.target.value);
+            }}
             label="Week"
           >
             <MenuItem value="All">All</MenuItem>
