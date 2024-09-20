@@ -16,7 +16,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 
-const ContentTutorialsSearch = ({}) => {
+const ContentTutorialsSearch = () => {
   const { getters, setters } = useContext(Context);
   const { content_tutorials, weeks, topics } = getters.content;
 
@@ -265,6 +265,7 @@ const ContentTutorialsSearch = ({}) => {
               week={tutorial.week().week}
               topicEmoji={tutorial.topic().emoji}
               topicName={tutorial.topic().name}
+              live={""}
               lecture={false}
             />
           </div>

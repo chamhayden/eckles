@@ -21,7 +21,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import InfoIcon from "@mui/icons-material/Info";
 
-const ContentLecturesSearch = ({}) => {
+const ContentLecturesSearch = () => {
   const { getters, setters } = useContext(Context);
   const { content_lectures, weeks, topics } = getters.content;
 
@@ -39,7 +39,7 @@ const ContentLecturesSearch = ({}) => {
     selectedRelevance: "workHard",
     completedCOMP1531: true,
   });
-
+  console.log(content_lectures);
   useEffect(() => {
     const storedFilters = localStorage.getItem("filters");
     if (storedFilters) {
@@ -47,7 +47,8 @@ const ContentLecturesSearch = ({}) => {
       setFilters(parsedFilters);
       setTempFilters(parsedFilters);
       setIsFiltered(
-        parsedFilters.selectedRelevance !== "workHard" || parsedFilters.selectedTopic !== "All"
+        parsedFilters.selectedRelevance !== "workHard" ||
+          parsedFilters.selectedTopic !== "All"
       );
     }
   }, []);
@@ -70,13 +71,14 @@ const ContentLecturesSearch = ({}) => {
     setIsFiltered(false);
     setFiltersOpen(false);
     localStorage.removeItem("filters");
-  }
+  };
 
   const applyFilters = () => {
     setFilters(tempFilters);
     setFiltersOpen(false);
     setIsFiltered(
-      tempFilters.selectedRelevance !== "workHard" || tempFilters.selectedTopic !== "All" 
+      tempFilters.selectedRelevance !== "workHard" ||
+        tempFilters.selectedTopic !== "All"
     );
     localStorage.setItem("filters", JSON.stringify(tempFilters));
   };
@@ -99,7 +101,7 @@ const ContentLecturesSearch = ({}) => {
     };
 
     const relevanceOptions = getRelevanceOptions();
-    return content_lectures.slice(1).filter((lecture) => {
+    return content_lectures.filter((lecture) => {
       const nameMatch = lecture.name
         ? lecture.name.toLowerCase().includes(searchQuery.toLowerCase())
         : false;
@@ -112,7 +114,8 @@ const ContentLecturesSearch = ({}) => {
       const relevanceMatch = relevanceOptions.includes(lecture.relevance);
 
       setIsFiltered(
-        filters.selectedRelevance !== "workHard" || filters.selectedTopic !== "All"
+        filters.selectedRelevance !== "workHard" ||
+          filters.selectedTopic !== "All"
       );
 
       return nameMatch && weekMatch && topicMatch && relevanceMatch;
@@ -273,7 +276,7 @@ const ContentLecturesSearch = ({}) => {
               <Button variant="outlined" onClick={toggleFilters}>
                 Cancel
               </Button>
-            <Button variant="outlined" onClick={resetFilters}>
+              <Button variant="outlined" onClick={resetFilters}>
                 Reset
               </Button>
               <Button variant="contained" onClick={applyFilters}>
@@ -307,6 +310,7 @@ const ContentLecturesSearch = ({}) => {
               week={lecture.week().week}
               topicEmoji={lecture.topic().emoji}
               topicName={lecture.topic().name}
+              live={lecture.status}
               lecture={true}
             />
           </div>

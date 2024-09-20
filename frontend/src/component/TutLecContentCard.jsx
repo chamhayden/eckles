@@ -4,8 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import { Stack } from "@mui/material";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
-
+import { Link, useLocation, useParams } from "react-router-dom";
 export default function TutLecContentCard({
   name,
   contentKey,
@@ -14,9 +13,9 @@ export default function TutLecContentCard({
   week,
   topicEmoji,
   topicName,
+  live,
   lecture,
 }) {
-  const navigate = useNavigate();
   const getRelevanceChip = (relevance) => {
     if (lecture) {
       switch (relevance) {
@@ -44,7 +43,8 @@ export default function TutLecContentCard({
       }
     }
   };
-
+  console.log(live);
+  const isLive = live === "🔴 NEW";
   const relevanceChip = getRelevanceChip(relevance);
   const fullWeek = "Week " + week;
   const topic = topicEmoji + " " + topicName;
@@ -71,17 +71,12 @@ export default function TutLecContentCard({
           flex: "1 0 auto",
         }}
       >
-        <Typography
-          variant="h6"
-          component="div"
-          onClick={() => navigate(`/NOW/content/lectures/${contentKey}`)}
-        >
-          {/* {lecture ? (
-            <a href={`/~cs6080/NOW/content/lectures/${contentKey}`}>{name}</a>
+        <Typography variant="h6" component="div">
+          {lecture ? (
+            <Link to={`/NOW/content/lectures/${contentKey}`}>{name}</Link>
           ) : (
-            <a href={`/~cs6080/NOW/content/tutorials/${contentKey}`}>{name}</a>
-          )} */}
-          {name}
+            <Link to={`/NOW/content/tutorials/${contentKey}`}>{name}</Link>
+          )}
         </Typography>
         <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
           {duration_mins} minutes
@@ -94,12 +89,12 @@ export default function TutLecContentCard({
         flexWrap="wrap"
         sx={{
           padding: 1,
-          backgroundColor: "background.paper",
         }}
       >
         <Chip label={topic} />
         <Chip label={fullWeek} />
         <Chip color={relevanceChip.color} label={relevanceChip.label} />
+        {isLive && <Chip color="secondary"  label={"Live"}/>}
       </Stack>
     </Card>
   );
