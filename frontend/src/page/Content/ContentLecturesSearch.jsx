@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Context, useContext } from "../../context";
 import TutLecContentCard from "../../component/TutLecContentCard";
 import makePage from "../../component/makePage";
@@ -26,33 +26,59 @@ const ContentLecturesSearch = ({}) => {
   const { content_lectures, weeks, topics } = getters.content;
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [week, setWeek] = useState("All");
   const [isFiltered, setIsFiltered] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [filters, setFilters] = useState({
-    selectedWeek: "",
-    selectedTopic: "",
+    selectedTopic: "All",
     selectedRelevance: "workHard",
     completedCOMP1531: true,
   });
   const [tempFilters, setTempFilters] = useState({
-    selectedWeek: "",
-    selectedTopic: "",
+    selectedTopic: "All",
     selectedRelevance: "workHard",
     completedCOMP1531: true,
   });
+
+  useEffect(() => {
+    const storedFilters = localStorage.getItem("filters");
+    if (storedFilters) {
+      const parsedFilters = JSON.parse(storedFilters);
+      setFilters(parsedFilters);
+      setTempFilters(parsedFilters);
+      setIsFiltered(
+        parsedFilters.selectedRelevance !== "workHard" || parsedFilters.selectedTopic !== "All"
+      );
+    }
+  }, []);
 
   const toggleFilters = () => {
     setFiltersOpen(!filtersOpen);
   };
 
+  const resetFilters = () => {
+    setFilters({
+      selectedTopic: "All",
+      selectedRelevance: "workHard",
+      completedCOMP1531: true,
+    });
+    setTempFilters({
+      selectedTopic: "All",
+      selectedRelevance: "workHard",
+      completedCOMP1531: true,
+    });
+    setIsFiltered(false);
+    setFiltersOpen(false);
+    localStorage.removeItem("filters");
+  }
+
   const applyFilters = () => {
     setFilters(tempFilters);
     setFiltersOpen(false);
     setIsFiltered(
-      tempFilters.selectedRelevance !== "" ||
-        tempFilters.selectedTopic !== "" ||
-        tempFilters.selectedWeek !== ""
+      tempFilters.selectedRelevance !== "workHard" || tempFilters.selectedTopic !== "All" 
     );
+    localStorage.setItem("filters", JSON.stringify(tempFilters));
   };
 
   const filteredLectures = useMemo(() => {
@@ -77,16 +103,21 @@ const ContentLecturesSearch = ({}) => {
       const nameMatch = lecture.name
         ? lecture.name.toLowerCase().includes(searchQuery.toLowerCase())
         : false;
-      const weekMatch =
-        !filters.selectedWeek || lecture.week().week === filters.selectedWeek;
+      let selectedWeek = week === "All" ? "" : week;
+      const weekMatch = !selectedWeek || lecture.week().week === selectedWeek;
+      let selectedTopic =
+        filters.selectedTopic === "All" ? "" : filters.selectedTopic;
       const topicMatch =
-        !filters.selectedTopic ||
-        lecture.topic().name === filters.selectedTopic;
+        !selectedTopic || lecture.topic().name === selectedTopic;
       const relevanceMatch = relevanceOptions.includes(lecture.relevance);
+
+      setIsFiltered(
+        filters.selectedRelevance !== "workHard" || filters.selectedTopic !== "All"
+      );
 
       return nameMatch && weekMatch && topicMatch && relevanceMatch;
     });
-  }, [content_lectures, filters, searchQuery]);
+  }, [content_lectures, filters, searchQuery, week]);
 
   return (
     <>
@@ -108,6 +139,22 @@ const ContentLecturesSearch = ({}) => {
               startAdornment: <SearchIcon />,
             }}
           />
+        </FormControl>
+        <FormControl variant="standard" sx={{ minWidth: 80 }}>
+          <InputLabel id="week-select-label2">Week</InputLabel>
+          <Select
+            labelId="week-select-label"
+            value={week}
+            onChange={(event) => setWeek(event.target.value)}
+            label="Week"
+          >
+            <MenuItem value="All">All</MenuItem>
+            {weeks.map((week) => (
+              <MenuItem key={week.week} value={week.week}>
+                {week.week}
+              </MenuItem>
+            ))}
+          </Select>
         </FormControl>
         <FormControl>
           <Button
@@ -156,27 +203,6 @@ const ContentLecturesSearch = ({}) => {
           <h2>Filter Content</h2>
           <Stack spacing={2}>
             <FormControl fullWidth>
-              <InputLabel id="week-select-label">Week</InputLabel>
-              <Select
-                labelId="week-select-label"
-                value={tempFilters.selectedWeek}
-                onChange={(event) =>
-                  setTempFilters((prevFilters) => ({
-                    ...prevFilters,
-                    selectedWeek: event.target.value,
-                  }))
-                }
-                label="Week"
-              >
-                <MenuItem value="">All</MenuItem>
-                {weeks.map((week) => (
-                  <MenuItem key={week.week} value={week.week}>
-                    {week.week}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl fullWidth>
               <InputLabel id="topic-select-label">Topic</InputLabel>
               <Select
                 labelId="topic-select-label"
@@ -189,7 +215,7 @@ const ContentLecturesSearch = ({}) => {
                 }
                 label="Topic"
               >
-                <MenuItem value="">All</MenuItem>
+                <MenuItem value="All">All</MenuItem>
                 {topics.map((topic) => (
                   <MenuItem key={topic.name} value={topic.name}>
                     {topic.name}
@@ -246,6 +272,9 @@ const ContentLecturesSearch = ({}) => {
             <Stack direction="row" justifyContent="flex-end" spacing={1}>
               <Button variant="outlined" onClick={toggleFilters}>
                 Cancel
+              </Button>
+            <Button variant="outlined" onClick={resetFilters}>
+                Reset
               </Button>
               <Button variant="contained" onClick={applyFilters}>
                 Apply

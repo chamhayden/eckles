@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Context, useContext } from "../../context";
 import TutLecContentCard from "../../component/TutLecContentCard";
 import makePage from "../../component/makePage";
@@ -21,36 +21,63 @@ const ContentTutorialsSearch = ({}) => {
   const { content_tutorials, weeks, topics } = getters.content;
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [isFiltered, setIsFiltered] = useState(false);
-  const [filtersOpen, setFiltersOpen] = useState(false);
-  const [filters, setFilters] = useState({
-    selectedWeek: "",
-    selectedTopic: "",
+  const [tutWeek, setTutWeek] = useState("All");
+  const [isTutFiltered, setIsTutFiltered] = useState(false);
+  const [filtersTutOpen, setFiltersTutOpen] = useState(false);
+  const [tutFilters, setTutFilters] = useState({
+    selectedTopic: "All",
     selectedRelevance: "workHard",
   });
   const [tempFilters, setTempFilters] = useState({
-    selectedWeek: "",
-    selectedTopic: "",
+    selectedTopic: "All",
     selectedRelevance: "workHard",
   });
 
+  // Load filters from localStorage on component mount
+  useEffect(() => {
+    const storedFilters = localStorage.getItem("tutFilters");
+    if (storedFilters) {
+      const parsedFilters = JSON.parse(storedFilters);
+      setTutFilters(parsedFilters);
+      setTempFilters(parsedFilters);
+      setIsTutFiltered(
+        parsedFilters.selectedRelevance !== "workHard" ||
+          parsedFilters.selectedTopic !== "All"
+      );
+    }
+  }, []);
+
   const toggleFilters = () => {
-    setFiltersOpen(!filtersOpen);
+    setFiltersTutOpen(!filtersTutOpen);
+  };
+
+  const resetFilters = () => {
+    setTutFilters({
+      selectedTopic: "All",
+      selectedRelevance: "workHard",
+    });
+    setTempFilters({
+      selectedTopic: "All",
+      selectedRelevance: "workHard",
+    });
+    setIsTutFiltered(false);
+    setFiltersTutOpen(false);
+    localStorage.removeItem("tutFilters");
   };
 
   const applyFilters = () => {
-    setFilters(tempFilters);
-    setFiltersOpen(false);
-    setIsFiltered(
-      tempFilters.selectedRelevance !== "" ||
-        tempFilters.selectedTopic !== "" ||
-        tempFilters.selectedWeek !== ""
+    const newFilters = { ...tutFilters, ...tempFilters };
+    setTutFilters(newFilters);
+    setFiltersTutOpen(false);
+    setIsTutFiltered(
+      newFilters.selectedRelevance !== "" || newFilters.selectedTopic !== "All"
     );
+    localStorage.setItem("tutFilters", JSON.stringify(newFilters));
   };
 
   const filteredTutorials = useMemo(() => {
     const getRelevanceOptions = () => {
-      switch (filters.selectedRelevance) {
+      switch (tutFilters.selectedRelevance) {
         case "bareMinimum":
           return ["🟢 COMPULSORY"];
         case "workHard":
@@ -67,16 +94,22 @@ const ContentTutorialsSearch = ({}) => {
       const nameMatch = tutorial.name
         ? tutorial.name.toLowerCase().includes(searchQuery.toLowerCase())
         : false;
-      const weekMatch =
-        !filters.selectedWeek || tutorial.week().week === filters.selectedWeek;
-      const topicMatch =
-        !filters.selectedTopic ||
-        tutorial.topic().name === filters.selectedTopic;
+      const topic =
+        tutFilters.selectedTopic === "All" ? "" : tutFilters.selectedTopic;
+      let selectedWeek = tutWeek === "All" ? "" : tutWeek;
+
+      const weekMatch = !selectedWeek || tutorial.week().week === selectedWeek;
+      const topicMatch = !topic || tutorial.topic().name === topic;
       const relevanceMatch = relevanceOptions.includes(tutorial.importance);
+
+      setIsTutFiltered(
+        tutFilters.selectedRelevance !== "workHard" ||
+        tutFilters.selectedTopic !== "All"
+      );
 
       return nameMatch && weekMatch && topicMatch && relevanceMatch;
     });
-  }, [content_tutorials, filters, searchQuery]);
+  }, [content_tutorials, tutFilters, searchQuery, tutWeek]);
 
   return (
     <>
@@ -99,10 +132,26 @@ const ContentTutorialsSearch = ({}) => {
             }}
           />
         </FormControl>
+        <FormControl variant="standard" sx={{ minWidth: 80 }}>
+          <InputLabel id="week-select-label2">Week</InputLabel>
+          <Select
+            labelId="week-select-label2"
+            value={tutWeek}
+            onChange={(event) => setTutWeek(event.target.value)}
+            label="Week"
+          >
+            <MenuItem value="All">All</MenuItem>
+            {weeks.map((week) => (
+              <MenuItem key={week.week} value={week.week}>
+                {week.week}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <FormControl>
           <Button
             startIcon={<FilterListIcon />}
-            variant={isFiltered ? "contained" : "outlined"}
+            variant={isTutFiltered ? "contained" : "outlined"}
             size="small"
             onClick={toggleFilters}
           >
@@ -112,7 +161,7 @@ const ContentTutorialsSearch = ({}) => {
       </Stack>
 
       <Modal
-        open={filtersOpen}
+        open={filtersTutOpen}
         onClose={toggleFilters}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -134,27 +183,6 @@ const ContentTutorialsSearch = ({}) => {
           <h2>Filter Content</h2>
           <Stack spacing={2}>
             <FormControl fullWidth>
-              <InputLabel id="week-select-label">Week</InputLabel>
-              <Select
-                labelId="week-select-label"
-                value={tempFilters.selectedWeek}
-                onChange={(event) =>
-                  setTempFilters((prevFilters) => ({
-                    ...prevFilters,
-                    selectedWeek: event.target.value,
-                  }))
-                }
-                label="Week"
-              >
-                <MenuItem value="">All</MenuItem>
-                {weeks.map((week) => (
-                  <MenuItem key={week.week} value={week.week}>
-                    {week.week}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl fullWidth>
               <InputLabel id="topic-select-label">Topic</InputLabel>
               <Select
                 labelId="topic-select-label"
@@ -167,7 +195,7 @@ const ContentTutorialsSearch = ({}) => {
                 }
                 label="Topic"
               >
-                <MenuItem value="">All</MenuItem>
+                <MenuItem value="All">All</MenuItem>
                 {topics.map((topic) => (
                   <MenuItem key={topic.name} value={topic.name}>
                     {topic.name}
@@ -202,6 +230,9 @@ const ContentTutorialsSearch = ({}) => {
             <Stack direction="row" justifyContent="flex-end" spacing={1}>
               <Button variant="outlined" onClick={toggleFilters}>
                 Cancel
+              </Button>
+              <Button variant="outlined" onClick={resetFilters}>
+                Reset
               </Button>
               <Button variant="contained" onClick={applyFilters}>
                 Apply
