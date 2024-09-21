@@ -97,8 +97,6 @@ There are some requirements for us to track your ongoing progress:
 
 Failure to adhere to these guidelines in their entirety may result in a penalty up to 50%. Any moderate or significant failure may result in a 0 grade.
 
-Please note: If you choose to work on separate branches before merging into master, you must squash your commits when merging back in. This means that you can make many commits on other branches fine, it's just whatever comes back to master needs to be a single commit that compiles with no more than the line addition limit.
-
 ## 7. Originality of Work
 
 The work you submit must be your own work.  Submission of work partially or completely derived from
@@ -198,8 +196,6 @@ There are some requirements for us to track your ongoing progress:
 3. Each commit include no more than 50 lines additions of code (this may differ in future assignments). You are given no exceptions.
 
 Failure to adhere to these guidelines in their entirety may result in a penalty up to 50%. Any moderate or significant failure may result in a 0 grade.
-
-Please note: If you choose to work on separate branches before merging into master, you must squash your commits when merging back in. This means that you can make many commits on other branches fine, it's just whatever comes back to master needs to be a single commit that compiles with no more than 50 line additions.
 
 ## 5. Originality of Work
 
@@ -464,8 +460,6 @@ There are some requirements for us to track your ongoing progress:
 3. Each commit include no more than 100 lines additions of code (this may differ in future assignments). You are given no exceptions.
 
 Failure to adhere to these guidelines in their entirety may result in a penalty up to 50%. Any moderate or significant failure may result in a 0 grade.
-
-Please note: If you choose to work on separate branches before merging into master, you must squash your commits when merging back in. This means that you can make many commits on other branches fine, it's just whatever comes back to master needs to be a single commit that compiles with no more than 100 line additions.
 
 ## 7. Originality of Work
 
