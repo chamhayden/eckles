@@ -186,6 +186,11 @@ const setCookie = (res, zid) => {
   });
 };
 
+const removeCookies = (res) => {
+  res.clearCookie('eckles_jwt');
+  res.clearCookie('eckles_loggedin');
+}
+
 app.post('/api/login', (req, res, next) => {
   const { zid, zpass, term } = req.body;
   const zidsimple = zid.replace('z', '');
@@ -203,6 +208,11 @@ app.post('/api/login', (req, res, next) => {
       });
       next();
     });
+});
+
+app.post('/api/logout', (req, res, next) => {
+  removeCookies(res);
+  res.json({});
 });
 
 app.post('/api/content/full', (req, res) => {
