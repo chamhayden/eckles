@@ -77,7 +77,7 @@ const SignIn = (props) => {
   const { getters } = useContext(Context);
   const [zid, setZid] = React.useState('');
   const [zpass, setZpass] = React.useState('');
-  const [term, setTerm] = React.useState(['sample']);
+  const [term, setTerm] = React.useState('');
   const [cookies] = useCookies();
   const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();

@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 
 import { Context, useContext } from '../context';
 import config from '../config';
+import { apiCall } from '../util/api';
 
 const Logout = () => {
   const [cookies, setCookie, removeCookie] = useCookies();
@@ -13,9 +14,13 @@ const Logout = () => {
 
   const logoutFn = () => {
     if (window.confirm('Are you sure you want to log out?')) {
-      navigate('/logout');
+      apiCall('logout', {}, 'POST')
+      .then(_ => {
+        navigate('/login');
+      })
     }
   }
+
   const login = () => {
     window.location.href = `${config.BASE_NAME}login`;
   }
