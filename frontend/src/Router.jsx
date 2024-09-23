@@ -41,7 +41,6 @@ import HelpResourcesJavascript from './page/Help/HelpResourcesJavascript';
 import HelpResourcesCypress from './page/Help/HelpResourcesCypress';
 import DueDateAdjustments from './page/DueDateAdjustments';
 import HelpResourcesReact from './page/Help/HelpResourcesReact';
-import LogoutAction from './component/LogoutAction';
 
 import Grades from './page/Grades';
 
@@ -59,7 +58,6 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      <Route path="/logout" element={<LogoutAction />} />
       <Route path="/" element={<Site />} />
       <Route path="/:term" element={<Site />}>
         <Route index element={<Dashboard />} />
