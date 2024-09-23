@@ -66,7 +66,7 @@ const Router = () => {
         </Route>
         <Route path="content" element={<ContentBase />}>
           <Route path="lectures" element={<ContentBase />}>
-            <Route path=":search" element={<ContentLecturesSearch />} />
+            <Route path="search" element={<ContentLecturesSearch />} />
             <Route path=":lecid" element={<ContentLecturesSingle />} />
           </Route>
           <Route path="tutorials" element={<ContentBase />}>
