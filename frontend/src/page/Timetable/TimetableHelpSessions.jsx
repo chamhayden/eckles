@@ -61,7 +61,7 @@ const TimetableHelpSessions = () => {
   return <>
     <div style={{ border: '1px solid #999', padding: '10px', margin: '0 auto 20px auto', minWidth: 100, maxWidth: '44rem' }}>
       <p style={{ fontSize: '1.2rem' }}>1. Join the <a href="https://unsw.to/hopper" target="_blank">Hopper Queue</a><br/>
-      2. Join the Team's help session meeting on the table below</a></p>
+      2. Join the Team's help session meeting on the table below</p>
       <p>Please be aware that help sessions with less tutors may result in longer wait times.</p>
     </div>
     <SetOfTables boxes={boxes} />
