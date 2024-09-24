@@ -190,8 +190,8 @@ It's imperative that we are able to track your progress when marking.
 
 There are some requirements for us to track your ongoing progress:
 
-1. You must make commits on at least 4 unique days prior to due date.
-1. You must make at least 20 commits across the course of your assignment.
+1. You must make commits on at least 2 unique days prior to due date.
+1. You must make at least 5 commits across the course of your assignment.
 2. Your commits must be meaningful in description (e.g. "Add validation check to full name input field")
 3. Each commit include no more than 50 lines additions of code (this may differ in future assignments). You are given no exceptions.
 
