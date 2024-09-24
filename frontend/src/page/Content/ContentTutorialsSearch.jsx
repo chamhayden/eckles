@@ -19,7 +19,6 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 const ContentTutorialsSearch = () => {
   const { getters, setters } = useContext(Context);
   const { content_tutorials, weeks, topics } = getters.content;
-
   const [searchQuery, setSearchQuery] = useState("");
   const [tutWeek, setTutWeek] = useState("All");
   const [isTutFiltered, setIsTutFiltered] = useState(false);

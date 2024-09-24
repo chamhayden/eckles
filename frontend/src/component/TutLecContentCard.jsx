@@ -4,7 +4,8 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import { Stack } from "@mui/material";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 export default function TutLecContentCard({
   name,
   contentKey,
@@ -15,6 +16,7 @@ export default function TutLecContentCard({
   topicName,
   live,
   lecture,
+  thumbnail,
 }) {
   const getRelevanceChip = (relevance) => {
     if (lecture) {
@@ -43,6 +45,7 @@ export default function TutLecContentCard({
       }
     }
   };
+
   const isLive = live === "🔴 NEW";
   const relevanceChip = getRelevanceChip(relevance);
   const fullWeek = "Week " + week;
@@ -54,9 +57,7 @@ export default function TutLecContentCard({
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        maxHeight: "220px",
         width: "100%",
-        maxWidth: "100%",
         boxShadow: "lg",
         paddingBottom: "10px",
         "&:hover": {
@@ -81,6 +82,19 @@ export default function TutLecContentCard({
           {duration_mins} minutes
         </Typography>
       </CardContent>
+
+      {thumbnail && (
+        <img
+          src={thumbnail.url}
+          alt={name}
+          style={{
+            width: "100%",
+            height: "150px",
+            objectFit: "cover",
+          }}
+        />
+      )}
+
       <Stack
         direction="row"
         gap={1}
@@ -88,12 +102,13 @@ export default function TutLecContentCard({
         flexWrap="wrap"
         sx={{
           padding: 1,
+          height: lecture ? "80px" : "auto",
         }}
       >
         <Chip label={topic} />
         <Chip label={fullWeek} />
         <Chip color={relevanceChip.color} label={relevanceChip.label} />
-        {isLive && <Chip color="secondary"  label={"Live"}/>}
+        {isLive && <Chip color="secondary" label={"Live"} />}
       </Stack>
     </Card>
   );
