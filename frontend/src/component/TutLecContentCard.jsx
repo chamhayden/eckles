@@ -77,22 +77,27 @@ export default function TutLecContentCard({
           alignItems="center"
           justifyContent="space-between"
         >
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{
-              "&:hover": {
-                textDecoration: "underline",
-                color: "#5b7edb"
-              },
-            }}
-          >
-            {lecture ? (
-              <Link to={`/NOW/content/lectures/${contentKey}`}>{name}</Link>
-            ) : (
-              <Link to={`/NOW/content/tutorials/${contentKey}`}>{name}</Link>
-            )}
-          </Typography>
+          <Stack>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{
+                "&:hover": {
+                  textDecoration: "underline",
+                  color: "#5b7edb",
+                },
+              }}
+            >
+              {lecture ? (
+                <Link to={`/NOW/content/lectures/${contentKey}`}>{name}</Link>
+              ) : (
+                <Link to={`/NOW/content/tutorials/${contentKey}`}>{name}</Link>
+              )}
+            </Typography>
+            <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
+              {duration_mins} minutes
+            </Typography>
+          </Stack>
 
           {thumbnail && (
             <Avatar
@@ -105,10 +110,6 @@ export default function TutLecContentCard({
             />
           )}
         </Stack>
-
-        <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-          {duration_mins} minutes
-        </Typography>
       </CardContent>
 
       <Stack
