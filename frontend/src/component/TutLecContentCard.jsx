@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
-import { Stack } from "@mui/material";
+import { Stack, Box, Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function TutLecContentCard({
@@ -64,6 +64,7 @@ export default function TutLecContentCard({
           transform: "scale(1.05)",
           transition: "all .2s ease-in-out;",
         },
+        border: "1px solid #dcdcdc",
       }}
     >
       <CardContent
@@ -71,29 +72,44 @@ export default function TutLecContentCard({
           flex: "1 0 auto",
         }}
       >
-        <Typography variant="h6" component="div">
-          {lecture ? (
-            <Link to={`/NOW/content/lectures/${contentKey}`}>{name}</Link>
-          ) : (
-            <Link to={`/NOW/content/tutorials/${contentKey}`}>{name}</Link>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              "&:hover": {
+                textDecoration: "underline",
+                color: "#5b7edb"
+              },
+            }}
+          >
+            {lecture ? (
+              <Link to={`/NOW/content/lectures/${contentKey}`}>{name}</Link>
+            ) : (
+              <Link to={`/NOW/content/tutorials/${contentKey}`}>{name}</Link>
+            )}
+          </Typography>
+
+          {thumbnail && (
+            <Avatar
+              src={thumbnail.url}
+              alt={name}
+              sx={{
+                width: 100,
+                height: 100,
+              }}
+            />
           )}
-        </Typography>
+        </Stack>
+
         <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
           {duration_mins} minutes
         </Typography>
       </CardContent>
-
-      {thumbnail && (
-        <img
-          src={thumbnail.url}
-          alt={name}
-          style={{
-            width: "100%",
-            height: "150px",
-            objectFit: "cover",
-          }}
-        />
-      )}
 
       <Stack
         direction="row"
@@ -102,7 +118,6 @@ export default function TutLecContentCard({
         flexWrap="wrap"
         sx={{
           padding: 1,
-          height: lecture ? "80px" : "auto",
         }}
       >
         <Chip label={topic} />

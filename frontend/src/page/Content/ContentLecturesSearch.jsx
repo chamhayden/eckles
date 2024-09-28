@@ -350,7 +350,7 @@ const ContentLecturesSearch = () => {
               topicName={lecture.topic().name}
               live={lecture.status}
               lecture={true}
-              thumbnail={lecture.thumbnail[0]}
+              thumbnail={lecture.thumbnail && lecture.thumbnail.length > 0 ? lecture.thumbnail[0] : null}
             />
           </div>
         ))}
