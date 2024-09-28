@@ -17,6 +17,7 @@ import { createTheme } from '@mui/material/styles';
 import mainlogo from '../asset/mainlogo.png';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import Stack from '@mui/material/Stack';
 
 import AppLoad from '../component/AppLoad';
 import { apiCall } from '../util/api';
@@ -148,6 +149,7 @@ const SignIn = (props) => {
             </RadioGroup>
           </FormControl>
           <p className={classes.disclaimer}>Your password and credentials are not stored by either this software or by teaching staff. If you change your UNSW password due to suspected compromise, please email cs6080@cse.unsw.edu.au to inform us as well.</p>
+          <Stack spacing={2}>
           <Button
             fullWidth
             variant="contained"
@@ -166,6 +168,7 @@ const SignIn = (props) => {
           >
             Back to homepage
           </Button>
+          </Stack>
         </form>
       </Paper>
       <Dialog open={open} onClose={handleClose}>
