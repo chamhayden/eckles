@@ -6,6 +6,21 @@ import Chip from "@mui/material/Chip";
 import { Stack, Box, Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 
+// https://stackoverflow.com/questions/40958727/javascript-generate-unique-number-based-on-string
+const hashCode = (str) => {
+  var hash = 0,
+    i,
+    chr,
+    len;
+  if (str.length === 0) return hash;
+  for (i = 0, len = str.length; i < len; i++) {
+    chr = str.charCodeAt(i);
+    hash = (hash << 5) - hash + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return Math.abs(hash);
+};
+
 export default function TutLecContentCard({
   name,
   contentKey,
@@ -50,6 +65,7 @@ export default function TutLecContentCard({
   const relevanceChip = getRelevanceChip(relevance);
   const fullWeek = "Week " + week;
   const topic = topicEmoji + " " + topicName;
+  const hash = hashCode(contentKey) % 400;
 
   return (
     <Card
@@ -99,16 +115,18 @@ export default function TutLecContentCard({
             </Typography>
           </Stack>
 
-          {thumbnail && (
-            <Avatar
-              src={thumbnail.url}
-              alt={name}
-              sx={{
-                width: 100,
-                height: 100,
-              }}
-            />
-          )}
+          <Avatar
+            src={
+              thumbnail
+                ? thumbnail.url
+                : `https://picsum.photos/id/${hash}/400/300`
+            }
+            alt={name}
+            sx={{
+              width: 100,
+              height: 100,
+            }}
+          />
         </Stack>
       </CardContent>
 

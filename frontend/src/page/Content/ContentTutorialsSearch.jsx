@@ -302,6 +302,11 @@ const ContentTutorialsSearch = () => {
                     topicName={tutorial.topic().name}
                     live={""}
                     lecture={false}
+                    thumbnail={
+                      tutorial.thumbnail && tutorial.thumbnail.length > 0
+                        ? tutorial.thumbnail[0]
+                        : null
+                    }
                   />
                 ))}
               </Box>
