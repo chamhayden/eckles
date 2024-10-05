@@ -24,7 +24,6 @@ import InfoIcon from "@mui/icons-material/Info";
 const ContentLecturesSearch = () => {
   const { getters, setters } = useContext(Context);
   const { content_lectures, weeks, topics } = getters.content;
-  console.log(content_lectures);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [week, setWeek] = useState("All");
