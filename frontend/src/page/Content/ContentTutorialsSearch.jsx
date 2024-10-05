@@ -146,11 +146,13 @@ const ContentTutorialsSearch = () => {
             label="Week"
           >
             <MenuItem value="All">All</MenuItem>
-            {weeks.map((week) => (
-              <MenuItem key={week.week} value={week.week}>
-                {week.week}
-              </MenuItem>
-            ))}
+            {weeks
+              .filter((week) => week.week !== 6)
+              .map((week) => (
+                <MenuItem key={week.week} value={week.week}>
+                  {week.week}
+                </MenuItem>
+              ))}
           </Select>
         </FormControl>
         <FormControl>
@@ -247,34 +249,65 @@ const ContentTutorialsSearch = () => {
         </Box>
       </Modal>
 
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: {
-            xs: "repeat(1, 1fr)",
-            sm: "repeat(2, 1fr)",
-            lg: "repeat(3, 1fr)",
-            xl: "repeat(4, 1fr)",
-          },
-          gap: 2,
-          mt: 3,
-        }}
-      >
-        {filteredTutorials.map((tutorial, index) => (
-          <div key={index}>
-            <TutLecContentCard
-              contentKey={tutorial.key}
-              name={tutorial.name}
-              duration_mins={tutorial.duration}
-              relevance={tutorial.importance.split(" ")[1]}
-              week={tutorial.week().week}
-              topicEmoji={tutorial.topic().emoji}
-              topicName={tutorial.topic().name}
-              live={""}
-              lecture={false}
-            />
-          </div>
-        ))}
+      <Box sx={{ mt: 3 }}>
+        {weeks.map((weekObj) => {
+          const tutorialsForWeek = filteredTutorials.filter(
+            (tutorial) => tutorial.week().week === weekObj.week
+          );
+
+          if (tutorialsForWeek.length === 0) return null;
+
+          return (
+            <React.Fragment key={weekObj.week}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100%",
+                  mt: 4,
+                  mb: 2,
+                }}
+              >
+                <hr
+                  style={{
+                    flexGrow: 1,
+                    borderTop: "1px solid #ccc",
+                    margin: 0,
+                  }}
+                />
+                <Box sx={{ px: 2, whiteSpace: "nowrap", fontWeight: "bold" }}>
+                  Week {weekObj.week}
+                </Box>
+                <hr
+                  style={{
+                    flexGrow: 1,
+                    borderTop: "1px solid #ccc",
+                    margin: 0,
+                  }}
+                />
+              </Box>
+              <Box
+                display="grid"
+                gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+                gap={3}
+              >
+                {tutorialsForWeek.map((tutorial) => (
+                  <TutLecContentCard
+                    contentKey={tutorial.key}
+                    name={tutorial.name}
+                    duration_mins={tutorial.duration}
+                    relevance={tutorial.importance.split(" ")[1]}
+                    week={tutorial.week().week}
+                    topicEmoji={tutorial.topic().emoji}
+                    topicName={tutorial.topic().name}
+                    live={""}
+                    lecture={false}
+                  />
+                ))}
+              </Box>
+            </React.Fragment>
+          );
+        })}
       </Box>
     </>
   );

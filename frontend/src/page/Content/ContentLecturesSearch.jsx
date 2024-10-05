@@ -24,7 +24,7 @@ import InfoIcon from "@mui/icons-material/Info";
 const ContentLecturesSearch = () => {
   const { getters, setters } = useContext(Context);
   const { content_lectures, weeks, topics } = getters.content;
-  console.log(content_lectures)
+  console.log(content_lectures);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [week, setWeek] = useState("All");
@@ -173,11 +173,13 @@ const ContentLecturesSearch = () => {
             label="Week"
           >
             <MenuItem value="All">All</MenuItem>
-            {weeks.map((week) => (
-              <MenuItem key={week.week} value={week.week}>
-                {week.week}
-              </MenuItem>
-            ))}
+            {weeks
+              .filter((week) => week.week !== 6) 
+              .map((week) => (
+                <MenuItem key={week.week} value={week.week}>
+                  {week.week}
+                </MenuItem>
+              ))}
           </Select>
         </FormControl>
         <FormControl>
@@ -325,35 +327,79 @@ const ContentLecturesSearch = () => {
         </Box>
       </Modal>
 
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: {
-            xs: "repeat(1, 1fr)",
-            sm: "repeat(2, 1fr)",
-            lg: "repeat(3, 1fr)",
-            xl: "repeat(4, 1fr)",
-          },
-          gap: 2,
-          mt: 3,
-        }}
-      >
-        {filteredLectures.map((lecture, index) => (
-          <div key={index}>
-            <TutLecContentCard
-              contentKey={lecture.key}
-              name={lecture.name}
-              duration_mins={lecture.duration_mins}
-              relevance={lecture.relevance}
-              week={lecture.week().week}
-              topicEmoji={lecture.topic().emoji}
-              topicName={lecture.topic().name}
-              live={lecture.status}
-              lecture={true}
-              thumbnail={lecture.thumbnail && lecture.thumbnail.length > 0 ? lecture.thumbnail[0] : null}
-            />
-          </div>
-        ))}
+      <Box sx={{ mt: 3 }}>
+        {weeks.map((weekObj) => {
+          const lecturesForWeek = filteredLectures.filter(
+            (lecture) => lecture.week().week === weekObj.week
+          );
+
+          if (lecturesForWeek.length === 0) return null;
+
+          return (
+            <React.Fragment key={weekObj.week}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100%",
+                  mt: 4,
+                  mb: 2,
+                }}
+              >
+                <hr
+                  style={{
+                    flexGrow: 1,
+                    borderTop: "1px solid #ccc",
+                    margin: 0,
+                  }}
+                />
+                <Box sx={{ px: 2, whiteSpace: "nowrap", fontWeight: "bold" }}>
+                  Week {weekObj.week}
+                </Box>
+                <hr
+                  style={{
+                    flexGrow: 1,
+                    borderTop: "1px solid #ccc",
+                    margin: 0,
+                  }}
+                />
+              </Box>
+
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: {
+                    xs: "repeat(1, 1fr)",
+                    sm: "repeat(2, 1fr)",
+                    lg: "repeat(3, 1fr)",
+                    xl: "repeat(4, 1fr)",
+                  },
+                  gap: 2,
+                }}
+              >
+                {lecturesForWeek.map((lecture) => (
+                  <TutLecContentCard
+                    key={lecture.key}
+                    contentKey={lecture.key}
+                    name={lecture.name}
+                    duration_mins={lecture.duration_mins}
+                    relevance={lecture.relevance}
+                    week={lecture.week().week}
+                    topicEmoji={lecture.topic().emoji}
+                    topicName={lecture.topic().name}
+                    live={lecture.status}
+                    lecture={true}
+                    thumbnail={
+                      lecture.thumbnail && lecture.thumbnail.length > 0
+                        ? lecture.thumbnail[0]
+                        : null
+                    }
+                  />
+                ))}
+              </Box>
+            </React.Fragment>
+          );
+        })}
       </Box>
     </>
   );
