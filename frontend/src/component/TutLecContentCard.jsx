@@ -119,7 +119,7 @@ export default function TutLecContentCard({
             src={
               thumbnail
                 ? thumbnail.url
-                : `https://picsum.photos/id/${hash}/400/300`
+                : `https://picsum.photos/id/${hash}/200`
             }
             alt={name}
             sx={{
