@@ -352,7 +352,7 @@ const apiCall = (path, body) => {
         if (data.error) {
           alert(data.error);
         } else {
-          resolve(data);
+          Promise.resolve(data);
         }
       });
 };
@@ -374,7 +374,7 @@ const apiCall = (path, token, queryString) => {
         if (data.error) {
           alert(data.error);
         } else {
-          resolve(data);
+          Promise.resolve(data);
         }
       });
 };
