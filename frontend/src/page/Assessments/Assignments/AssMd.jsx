@@ -331,7 +331,7 @@ This is how we recommend you start the assignment:
  1. Read the entire spec, including a thorough read of section 2 so you know what is ahead of you!
  2. Try to load up the \`index.html\` on your browser with a simple "Hello world" text just to sanity check you know what page you're trying to load.
  3. Plan out your UI by thinking about all of the key screens and what information they rely on
- 4. Try to load up the backend and verify you've got it working by making a simple API call to \`/feed\` (which should return you an empty list)
+ 4. Try to load up the backend and verify you've got it working by navigating to the API documentation - Swagger \`http://localhost:5005\` and testing some of the routes.
  5. Good luck!
 
 ### 3.4. Making a fetch request
@@ -340,21 +340,21 @@ Here is some helpful starter code to make a POST request (for non-authenticated 
 
 ~~~js
 const apiCall = (path, body) => {
-    fetch('http://localhost:5005/' + path, {
+  fetch('http://localhost:5005/' + path, {
     method: 'POST',
     headers: {
-        'Content-type': 'application/json',
-      },
+      'Content-type': 'application/json',
+    },
     body: JSON.stringify(body)
   })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          alert(data.error);
-        } else {
-          Promise.resolve(data);
-        }
-      });
+  .then((response) => response.json())
+  .then((data) => {
+    if (data.error) {
+      alert(data.error);
+    } else {
+      Promise.resolve(data);
+    }
+  });
 };
 ~~~
 
@@ -362,21 +362,21 @@ Here is some helpful starter code to make a GET request (for authenticated route
 
 ~~~js
 const apiCall = (path, token, queryString) => {
-    fetch('http://localhost:5005/' + path + '?' + queryString, {
+  fetch('http://localhost:5005/' + path + '?' + queryString, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',
       'Authorization': \`Bearer \${token}\`
     },
   })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          alert(data.error);
-        } else {
-          Promise.resolve(data);
-        }
-      });
+  .then((response) => response.json())
+  .then((data) => {
+    if (data.error) {
+      alert(data.error);
+    } else {
+      Promise.resolve(data);
+    }
+  });
 };
 ~~~
 
