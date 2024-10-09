@@ -14,7 +14,7 @@ const getStudentIds = (term) => {
           resolve([]);
           return;
       } else {
-        const zids = stdout.trim().slice(1).split('\n');
+        const zids = stdout.trim().split('\n');
         resolve([...zids, ...config.TERMS[term].TUTOR_ID_LIST, ...config.TERMS[term].AUDIT_ID_LIST]);
         return;
       }
