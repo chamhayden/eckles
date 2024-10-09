@@ -1,29 +1,43 @@
-import Button from '@mui/material/Button';
-import config from '../../config';
+import Button from "@mui/material/Button";
+import config from "../../config";
 
-import { isHalfScreenWidth, isTinyMobileWidth, isMobileWidth, isBigDesktopWidth, isDesktopWidth } from '../../util/screen';
+import {
+  isHalfScreenWidth,
+  isTinyMobileWidth,
+  isMobileWidth,
+  isBigDesktopWidth,
+  isDesktopWidth,
+} from "../../util/screen";
 
 export const generateContent = (getters, by) => {
-  const opposingPageType = (by === 'week') ? 'topic' : 'week';
-  const secondColumnName = (by === 'week') ? 'Topic' : 'Week';
-  const boxName = (by === 'week')
-    ? grouping => `Week ${grouping.week}`
-    : grouping => `${grouping.emoji} ${grouping.area().name}: ${grouping.name}`;
-  const boxKey = (by === 'week')
-    ? grouping => grouping.week
-    : grouping => grouping.name;
-  const secondColumnValue = (by === 'week')
-    ? tutorial => tutorial.topic ? `${tutorial.topic().emoji} ${tutorial.topic().name}` : ''
-    : tutorial => `📅 ${tutorial.week().week === 11 ? 'Extra' : tutorial.week().week}`;
-  const outerList = (by === 'week')
-    ? getters.content.weeks.filter(w => w.week != 6 && w.week <= 10)
-    : getters.content.topics.filter(t => t.name !== 'Admin');
-  const secondColumnAnchor = (by === 'week')
-    ? tutorial => tutorial.topic().name
-    : tutorial => tutorial.week().week;
+  const opposingPageType = by === "week" ? "topic" : "week";
+  const secondColumnName = by === "week" ? "Topic" : "Week";
+  const boxName =
+    by === "week"
+      ? (grouping) => `Week ${grouping.week}`
+      : (grouping) =>
+          `${grouping.emoji} ${grouping.area().name}: ${grouping.name}`;
+  const boxKey =
+    by === "week" ? (grouping) => grouping.week : (grouping) => grouping.name;
+  const secondColumnValue =
+    by === "week"
+      ? (tutorial) =>
+          tutorial.topic
+            ? `${tutorial.topic().emoji} ${tutorial.topic().name}`
+            : ""
+      : (tutorial) =>
+          `📅 ${tutorial.week().week === 11 ? "Extra" : tutorial.week().week}`;
+  const outerList =
+    by === "week"
+      ? getters.content.weeks.filter((w) => w.week != 6 && w.week <= 10)
+      : getters.content.topics.filter((t) => t.name !== "Admin");
+  const secondColumnAnchor =
+    by === "week"
+      ? (tutorial) => tutorial.topic().name
+      : (tutorial) => tutorial.week().week;
 
   const boxes = [];
-  outerList.forEach(grouping => {
+  outerList.forEach((grouping) => {
     const table = [];
     if (grouping.content_tutorials) {
       grouping.content_tutorials().sort((a, b) => a.order - b.order).forEach(tutorial => {
@@ -44,12 +58,12 @@ export const generateContent = (getters, by) => {
       key: boxKey(grouping),
       maxWidth: 1100,
       headers: [
-        { name: 'Name', width: 32, },
-        { name: secondColumnName, width: 15, },
-        { name: 'Duration', width: 11, showFn: () => isDesktopWidth(), },
-        { name: 'Stream', width: 10, showFn: () => isBigDesktopWidth(), },
-        { name: 'Importance', width: 22, showFn: () => !isMobileWidth(), },
-        { name: 'Activity', width: 10, },
+        { name: "Name", width: 32 },
+        { name: secondColumnName, width: 15 },
+        { name: "Duration", width: 11, showFn: () => isDesktopWidth() },
+        { name: "Stream", width: 10, showFn: () => isBigDesktopWidth() },
+        { name: "Importance", width: 22, showFn: () => !isMobileWidth() },
+        { name: "Activity", width: 10 },
       ],
       table,
     });
@@ -57,8 +71,7 @@ export const generateContent = (getters, by) => {
   return boxes;
 };
 
-
-  /*const boxes = [];
+/*const boxes = [];
   getters.content.topics.filter(t => t.name !== 'Admin').forEach(topic => {
     const table = [];
     if (topic.content_tutorials) {
