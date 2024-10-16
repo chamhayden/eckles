@@ -340,7 +340,7 @@ Here is some helpful starter code to make a POST request (for non-authenticated 
 
 ~~~js
 const apiCall = (path, body) => {
-  fetch('http://localhost:5005/' + path, {
+  return fetch('http://localhost:5005/' + path, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
@@ -352,8 +352,8 @@ const apiCall = (path, body) => {
     if (data.error) {
       alert(data.error);
     } else {
-      // handle the data here
-      console.log(data);
+      return Promise.resolve(data);
+      // or handle the data here
     }
   });
 };
@@ -363,7 +363,7 @@ Here is some helpful starter code to make a GET request (for authenticated route
 
 ~~~js
 const apiCall = (path, token, queryString) => {
-  return fetch('http://localhost:5005/' + path + '?' + queryString, {
+  fetch('http://localhost:5005/' + path + '?' + queryString, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',
@@ -375,8 +375,8 @@ const apiCall = (path, token, queryString) => {
     if (data.error) {
       alert(data.error);
     } else {
-      // handle the data here
-      console.log(data);
+      return Promise.resolve(data);
+      // or handle the data here
     }
   });
 };
