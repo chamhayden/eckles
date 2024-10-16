@@ -352,7 +352,8 @@ const apiCall = (path, body) => {
     if (data.error) {
       alert(data.error);
     } else {
-      Promise.resolve(data);
+      // handle the data here
+      console.log(data);
     }
   });
 };
@@ -362,7 +363,7 @@ Here is some helpful starter code to make a GET request (for authenticated route
 
 ~~~js
 const apiCall = (path, token, queryString) => {
-  fetch('http://localhost:5005/' + path + '?' + queryString, {
+  return fetch('http://localhost:5005/' + path + '?' + queryString, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',
@@ -374,7 +375,8 @@ const apiCall = (path, token, queryString) => {
     if (data.error) {
       alert(data.error);
     } else {
-      Promise.resolve(data);
+      // handle the data here
+      console.log(data);
     }
   });
 };
@@ -403,7 +405,7 @@ You should ensure that your programs have been tested on one of the following tw
  * The specification is intentionally vague to allow you to build frontend components however you think are visually appropriate. Their size, positioning, colour, layout, is in virtually all cases completely up to you. We require some basic criteria, but it's mainly dictating elements and behaviour.
  * This is not a design assignment. You are expected to show common sense and critical thinking when it comes to basic user experience and visual layout, but you are not required to be creative to achieve full marks.
  * Your web app must be a single page app. This means that there is only one initial browser load of content on one html page, and all subsequent dynamic changes to the page are based on Javascript DOM manipulation, and not through any page refreshes. If you do not build a single page app (e.g. using links to multiple HTML pages), you will receive a 50% penalty of your mark.
- > **What is non-SPA?**<br>
+ > **What is non-SPA?**
  > Non-SPA is a multi-page application where each new page is loaded from the server, causing a full page reload with each navigation. This contrasts with SPAs, which handle navigation on the client side for faster interactions.
 
 ### 4.5. Static HTML, innerHTML, DOM manipulation
