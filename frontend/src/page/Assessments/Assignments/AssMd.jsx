@@ -363,7 +363,7 @@ Here is some helpful starter code to make a GET request (for authenticated route
 
 ~~~js
 const apiCall = (path, token, queryString) => {
-  fetch('http://localhost:5005/' + path + '?' + queryString, {
+  return fetch('http://localhost:5005/' + path + '?' + queryString, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',
