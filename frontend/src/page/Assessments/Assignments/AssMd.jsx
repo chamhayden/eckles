@@ -331,7 +331,7 @@ This is how we recommend you start the assignment:
  1. Read the entire spec, including a thorough read of section 2 so you know what is ahead of you!
  2. Try to load up the \`index.html\` on your browser with a simple "Hello world" text just to sanity check you know what page you're trying to load.
  3. Plan out your UI by thinking about all of the key screens and what information they rely on
- 4. Try to load up the backend and verify you've got it working by making a simple API call to \`/feed\` (which should return you an empty list)
+ 4. Try to load up the backend and verify you've got it working by navigating to the API documentation - Swagger \`http://localhost:5005\` and testing some of the routes.
  5. Good luck!
 
 ### 3.4. Making a fetch request
@@ -340,21 +340,22 @@ Here is some helpful starter code to make a POST request (for non-authenticated 
 
 ~~~js
 const apiCall = (path, body) => {
-    fetch('http://localhost:5005/' + path, {
+  return fetch('http://localhost:5005/' + path, {
     method: 'POST',
     headers: {
-        'Content-type': 'application/json',
-      },
+      'Content-type': 'application/json',
+    },
     body: JSON.stringify(body)
   })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          alert(data.error);
-        } else {
-          resolve(data);
-        }
-      });
+  .then((response) => response.json())
+  .then((data) => {
+    if (data.error) {
+      alert(data.error);
+    } else {
+      return Promise.resolve(data);
+      // or handle the data here
+    }
+  });
 };
 ~~~
 
@@ -362,21 +363,22 @@ Here is some helpful starter code to make a GET request (for authenticated route
 
 ~~~js
 const apiCall = (path, token, queryString) => {
-    fetch('http://localhost:5005/' + path + '?' + queryString, {
+  return fetch('http://localhost:5005/' + path + '?' + queryString, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json',
       'Authorization': \`Bearer \${token}\`
     },
   })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          alert(data.error);
-        } else {
-          resolve(data);
-        }
-      });
+  .then((response) => response.json())
+  .then((data) => {
+    if (data.error) {
+      alert(data.error);
+    } else {
+      return Promise.resolve(data);
+      // or handle the data here
+    }
+  });
 };
 ~~~
 
@@ -403,7 +405,7 @@ You should ensure that your programs have been tested on one of the following tw
  * The specification is intentionally vague to allow you to build frontend components however you think are visually appropriate. Their size, positioning, colour, layout, is in virtually all cases completely up to you. We require some basic criteria, but it's mainly dictating elements and behaviour.
  * This is not a design assignment. You are expected to show common sense and critical thinking when it comes to basic user experience and visual layout, but you are not required to be creative to achieve full marks.
  * Your web app must be a single page app. This means that there is only one initial browser load of content on one html page, and all subsequent dynamic changes to the page are based on Javascript DOM manipulation, and not through any page refreshes. If you do not build a single page app (e.g. using links to multiple HTML pages), you will receive a 50% penalty of your mark.
- > **What is non-SPA?**<br>
+ > **What is non-SPA?**
  > Non-SPA is a multi-page application where each new page is loaded from the server, causing a full page reload with each navigation. This contrasts with SPAs, which handle navigation on the client side for faster interactions.
 
 ### 4.5. Static HTML, innerHTML, DOM manipulation
