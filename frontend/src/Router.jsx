@@ -15,14 +15,10 @@ import TimetableHelpSessions from './page/Timetable/TimetableHelpSessions';
 import CourseOutline from './page/CourseOutline';
 import ContentBase from './page/Content/ContentBase';
 import AssessmentsBase from './page/Assessments/AssessmentsBase';
-import ContentLectures from './page/Content/ContentLectures';
 import ContentLecturesSingle from './page/Content/ContentLecturesSingle';
-import ContentLecturesByWeek from './page/Content/ContentLecturesByWeek';
-import ContentLecturesByTopic from './page/Content/ContentLecturesByTopic';
-import ContentTutorials from './page/Content/ContentTutorials';
+import ContentLecturesSearch from './page/Content/ContentLecturesSearch';
 import ContentTutorialsSingle from './page/Content/ContentTutorialsSingle';
-import ContentTutorialsByWeek from './page/Content/ContentTutorialsByWeek';
-import ContentTutorialsByTopic from './page/Content/ContentTutorialsByTopic';
+import ContentTutorialsSearch from './page/Content/ContentTutorialsSearch';
 import AssessmentsAssignments from './page/Assessments/AssessmentsAssignments';
 import AssessmentsExam from './page/Assessments/AssessmentsExam';
 import StyleBase from './page/Style/StyleBase';
@@ -67,14 +63,12 @@ const Router = () => {
           <Route path="help-sessions" element={<TimetableHelpSessions />} />
         </Route>
         <Route path="content" element={<ContentBase />}>
-          <Route path="lectures" element={<ContentLectures />}>
-            <Route path="week" element={<ContentLecturesByWeek />} />
-            <Route path="topic" element={<ContentLecturesByTopic />} />
+          <Route path="lectures" element={<ContentBase />}>
+            <Route path="search" element={<ContentLecturesSearch />} />
             <Route path=":lecid" element={<ContentLecturesSingle />} />
           </Route>
-          <Route path="tutorials" element={<ContentTutorials />}>
-            <Route path="week" element={<ContentTutorialsByWeek />} />
-            <Route path="topic" element={<ContentTutorialsByTopic />} />
+          <Route path="tutorials" element={<ContentBase />}>
+            <Route path="search" element={<ContentTutorialsSearch />} />
             <Route path=":tutid" element={<ContentTutorialsSingle />} />
           </Route>
         </Route>
