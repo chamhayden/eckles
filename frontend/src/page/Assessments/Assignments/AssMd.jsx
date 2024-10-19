@@ -624,7 +624,7 @@ Your assignment will be hand-marked by tutor(s) in the course according to the c
  * Features implemented that satisfy requirements as outlined in section 2.
  * You <b>MUST</b> update the <code>progress.csv</code> file in the root folder of this repository as you complete things partially or fully. The valid values are "NO", "PARTIAL", and "YES". Updating this is necessary so that your tutor knows what to focus on and what to avoid - giving them the best understanding of your work and provide you with marks you have earned. Failure to correctly fill in this file will result in a 5% penalty.
 
-### 6.2. Responsiveness (15%)
+### 6.2. Responsiveness (10%)
  * Features implemented in a mobile responsive way that work on screens as small as 400px wide, 700px high
  * Responsive design will contribute up to one quarter of the marks of this section
 
@@ -649,7 +649,10 @@ Your assignment will be hand-marked by tutor(s) in the course according to the c
  * Your application follows standard accessibility lessons covered in lectures.
  * Describe any attempts you've made to improve the Accessibility in \`A11Y.md\`. This section will ONLY be marked on things described in that file.
 
-### 6.8. Bonus Mark (5%)
+### 6.8 Deployment (5%)
+ * You need to follow the instructions given in \`deployment.md\` to deploy your web app onto Vercel.
+
+### 6.9. Bonus Mark (5%)
  * Implementation of extra features that are not included in the spec.
  * Extra features should be non-trivial, have a clear justification for existing, and show either a form of technical, product, or creative flare.
  * Any extra features written down in \`BONUS.md\` in the project folder
