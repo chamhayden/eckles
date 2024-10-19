@@ -547,7 +547,7 @@ You are to build a web app using a provided backend. This app shall be built wit
 
 You are to build a web app using a provided backend. This app shall be built with React.js. It must be a SPA (Single Page Application), which means navigation between different views or "pages" should not require full page reloads and you should not add/modify \`.html\` files in \`frontend\` folder. Failure to align with this requirement will result in a 50% penalty of the mark.
 
-2. We strongly recommend you to use [\`nvm\`](https://github.com/nvm-sh/nvm) to manage node version, once you have \`nvm\` installed, you can run \`nvm use\` in this repo to switch to \`v20.17.0\`.
+2. We strongly recommend you to use [\`nvm\`](https://github.com/nvm-sh/nvm) to manage node version, once you have \`nvm\` installed, you can run \`nvm use\` in frontend directory to switch to \`v20.17.0\`, and note that for the backend we are using a different node version specified in a different \`.nvmrc\`.
 
 #### 1.3.1 Languages
 
@@ -581,11 +581,11 @@ Don't forget to check out our helpful resources about [React.js](https://cgi.cse
 
 ### 3.2. The Backend (provided)
 
-You are **PROHIBITED** from modifying the backend. No work needs to be done on the backend. It's provided to you simply to power your frontend.
+You are **PROHIBITED** from modifying the backend unless it's specifically required in [\`deployment.md\`](deployment.md). No extra work needs to be done on the backend. It's provided to you simply to power your frontend.
 
-The backend server exists in your individual repository. After you clone this repo, you must run \`npm install\` in \`backend\` directory once.
+The backend server exists in your individual repository. After you clone this repo, you will note that there's a [\`.nvmrc\`](.nvmrc) file inside the backend directory, it's strongly recommended to run \`nvm use\` to use the specified node.js version to avoid potential issues for running the server, then you must run \`npm install\` in \`backend\` directory once.
 
-To run the backend server, simply run \`npm start\` in the \`backend\` directory. This will start the backend.
+To run the backend server, simply run \`nvm use\` each time you reopen your repo, then \`npm start\` in the \`backend\` directory. This will start the backend.
 
 To view the API interface for the backend you can navigate to the base URL of the backend (e.g. \`http://localhost:5005\`). This will list all of the HTTP routes that you can interact with.
 
