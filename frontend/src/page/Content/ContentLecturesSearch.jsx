@@ -358,12 +358,10 @@ const ContentLecturesSearch = () => {
                     whiteSpace: "nowrap",
                     fontWeight: "bold",
                     borderRadius: 2,
-                    // bgcolor: "primary.main",
                     border: 1,
                     borderColor: 'primary.main',
                     padding: "5px 20px",
                     color:  "primary.main",
-                    boxShadow: 1,
                   }}
                 >
                   Week {weekObj.week}
