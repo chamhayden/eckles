@@ -173,7 +173,7 @@ const ContentLecturesSearch = () => {
           >
             <MenuItem value="All">All</MenuItem>
             {weeks
-              .filter((week) => week.week !== 6) 
+              .filter((week) => week.week !== 6)
               .map((week) => (
                 <MenuItem key={week.week} value={week.week}>
                   {week.week}
@@ -352,7 +352,20 @@ const ContentLecturesSearch = () => {
                     margin: 0,
                   }}
                 />
-                <Box sx={{ px: 2, whiteSpace: "nowrap", fontWeight: "bold" }}>
+                <Box
+                  sx={{
+                    px: 2,
+                    whiteSpace: "nowrap",
+                    fontWeight: "bold",
+                    borderRadius: 2,
+                    // bgcolor: "primary.main",
+                    border: 1,
+                    borderColor: 'primary.main',
+                    padding: "5px 20px",
+                    color:  "primary.main",
+                    boxShadow: 1,
+                  }}
+                >
                   Week {weekObj.week}
                 </Box>
                 <hr
