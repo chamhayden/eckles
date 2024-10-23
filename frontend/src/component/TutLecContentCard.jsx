@@ -66,84 +66,85 @@ export default function TutLecContentCard({
   const fullWeek = "Week " + week;
   const topic = topicEmoji + " " + topicName;
   const hash = hashCode(contentKey) % 400;
+  const cardLink = lecture
+  ? `/NOW/content/lectures/${contentKey}`
+  : `/NOW/content/tutorials/${contentKey}`;
 
   return (
-    <Card
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
-        width: "100%",
-        boxShadow: "lg",
-        paddingBottom: "10px",
-        "&:hover": {
-          transform: "scale(1.05)",
-          transition: "all .2s ease-in-out;",
-        },
-        border: "1px solid #dcdcdc",
-      }}
-    >
-      <CardContent
+    <Link to={cardLink}>
+        <Card
         sx={{
-          flex: "1 0 auto",
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+            width: "100%",
+            boxShadow: "lg",
+            paddingBottom: "10px",
+            "&:hover": {
+            transform: "scale(1.05)",
+            transition: "all .2s ease-in-out;",
+            },
+            border: "1px solid #dcdcdc",
         }}
-      >
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
         >
-          <Stack>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                "&:hover": {
-                  textDecoration: "underline",
-                  color: "#5b7edb",
-                },
-              }}
-            >
-              {lecture ? (
-                <Link to={`/NOW/content/lectures/${contentKey}`}>{name}</Link>
-              ) : (
-                <Link to={`/NOW/content/tutorials/${contentKey}`}>{name}</Link>
-              )}
-            </Typography>
-            <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-              {duration_mins} minutes
-            </Typography>
-          </Stack>
-
-          <Avatar
-            src={
-              thumbnail
-                ? thumbnail.url
-                : `https://picsum.photos/id/${hash}/200`
-            }
-            alt={name}
+        <CardContent
             sx={{
-              width: 100,
-              height: 100,
+            flex: "1 0 auto",
             }}
-          />
-        </Stack>
-      </CardContent>
+        >
+            <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            >
+            <Stack>
+                <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                    "&:hover": {
+                    textDecoration: "underline",
+                    color: "#5b7edb",
+                    },
+                }}
+                >
+                {name}
+                </Typography>
+                <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
+                {duration_mins} minutes
+                </Typography>
+            </Stack>
 
-      <Stack
-        direction="row"
-        gap={1}
-        rowGap={1}
-        flexWrap="wrap"
-        sx={{
-          padding: 1,
-        }}
-      >
-        <Chip label={topic} />
-        <Chip label={fullWeek} />
-        <Chip color={relevanceChip.color} label={relevanceChip.label} />
-        {isLive && <Chip color="secondary" label={"Live"} />}
-      </Stack>
-    </Card>
+            <Avatar
+                src={
+                thumbnail
+                    ? thumbnail.url
+                    : `https://picsum.photos/id/${hash}/200`
+                }
+                alt={name}
+                sx={{
+                width: 100,
+                height: 100,
+                }}
+            />
+            </Stack>
+        </CardContent>
+
+        <Stack
+            direction="row"
+            gap={1}
+            rowGap={1}
+            flexWrap="wrap"
+            sx={{
+            padding: 1,
+            }}
+        >
+            <Chip label={topic} />
+            <Chip label={fullWeek} />
+            <Chip color={relevanceChip.color} label={relevanceChip.label} />
+            {isLive && <Chip color="secondary" label={"Live"} />}
+        </Stack>
+        </Card>
+    </Link>
   );
 }

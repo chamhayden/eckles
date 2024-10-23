@@ -275,7 +275,19 @@ const ContentTutorialsSearch = () => {
                     margin: 0,
                   }}
                 />
-                <Box sx={{ px: 2, whiteSpace: "nowrap", fontWeight: "bold" }}>
+                <Box
+                  sx={{
+                    px: 2,
+                    whiteSpace: "nowrap",
+                    fontWeight: "bold",
+                    borderRadius: 2,
+                    border: 1,
+                    borderColor: "primary.main",
+                    padding: "5px 20px",
+                    color: "primary.main",
+                  }}
+                >
+                  {" "}
                   Week {weekObj.week}
                 </Box>
                 <hr
