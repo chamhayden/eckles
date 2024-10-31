@@ -66,6 +66,7 @@ export default function TutLecContentCard({
   const fullWeek = "Week " + week;
   const topic = topicEmoji + " " + topicName;
   const hash = hashCode(contentKey) % 400;
+
   const cardLink = lecture
   ? `/NOW/content/lectures/${contentKey}`
   : `/NOW/content/tutorials/${contentKey}`;

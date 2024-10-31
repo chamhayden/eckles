@@ -95,7 +95,16 @@ const ContentLecturesSearch = () => {
   const filteredLectures = useMemo(() => {
     const getRelevanceOptions = () => {
       if (!filters.completedCOMP1531) {
-        return ["Mandatory", "Catchup"];
+        switch (filters.selectedRelevance) {
+          case "bareMinimum":
+            return ["Catchup", "Mandatory"];
+          case "workHard":
+            return ["Catchup", "Mandatory", "Recommended"];
+          case "learnEverything":
+            return ["Catchup", "Mandatory", "Recommended", "Extension"];
+          default:
+            return ["Catchup", "Mandatory", "Recommended", "Extension"];
+        }
       }
       switch (filters.selectedRelevance) {
         case "bareMinimum":
@@ -105,7 +114,7 @@ const ContentLecturesSearch = () => {
         case "learnEverything":
           return ["Mandatory", "Recommended", "Extension"];
         default:
-          return [];
+            return ["Catchup", "Mandatory", "Recommended", "Extension"];
       }
     };
 
@@ -126,7 +135,9 @@ const ContentLecturesSearch = () => {
 
       setIsFiltered(
         filters.selectedRelevance !== "workHard" ||
-          filters.selectedTopic !== "All"
+          filters.selectedTopic !== "All" ||
+          filters.showLiveLectures !== false || 
+          filters.completedCOMP1531 !== true
       );
 
       return (
