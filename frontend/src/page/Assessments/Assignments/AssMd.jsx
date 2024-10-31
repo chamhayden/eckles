@@ -553,7 +553,7 @@ You are to build a web app using a provided backend. This app shall be built wit
 
 - You must implement this assignment in React.js. You **cannot** use other declarative frameworks, such as Angular, or Vue.
 - You must use React.js solutions wherever possible, and avoid doing any direct DOM manipulation unless completely unavoidable (check with course staff).
-- You are strictly **NOT** allowed to use universal css for styling, this applies to any usage of \`.css\`, \`.scss\`, \`.sass\` or \`.less\` files to style your work. You should use css-in-js techniques such as [styled components](https://styled-components.com/) and [Tailwind CSS](https://tailwindcss.com/) etc.
+- You are strictly **NOT** allowed to use universal css for styling, this applies to any usage of \`.css\`, \`.scss\`, \`.sass\` or \`.less\` files to style your work. You should use css-in-js techniques such as [styled components](https://styled-components.com/) and [Tailwind CSS](https://tailwindcss.com/) etc. It's fine to have **ONLY** setup CSS files for Tailwind CSS or any UI library you chose to work with.
 - You can use any UI libraries that you would like, such as material-UI, Radix UI or any other library that you would like.
 - Besides those described to avoid, you can install and use any package that is available on [npm](https://www.npmjs.com/). You **MUST** commit \`package.json\` changes.
 
@@ -595,7 +595,7 @@ You can also run \`npm run test\` in the backend directory to run the tests, the
 
 Once the backend has started, you can view the API documentation by navigating to \`http://localhost:[port]\` in a web browser.
 
-The port that the backend runs on (and that the frontend can use) is specified in \`frontend/src/config.js\`. You can change the port in this file. This file exists so that your frontend knows what port to use when talking to the backend.
+The port that the backend runs on (and that the frontend can use) is specified in \`frontend/src/backend.config.json\`. You can change the port in this file. This file exists so that your frontend knows what port to use when talking to the backend.
 
 Please note: You **CANNOT** modify the backend for bonus marks.
 
@@ -670,6 +670,7 @@ There are some requirements for us to track your ongoing progress:
 1. You must make at least 20 commits across the course of your assignment.
 2. Your commits must be meaningful in description (e.g. "Continued work on loop speed")
 3. Each commit include no more than 200 lines additions of code (this may differ in future assignments). You are given no exceptions.
+4. Dependency updates are not counted through lines of additions per commit, however you should commit dependency changes in separate commit each time you introduced new packages/tools into your work.
 
 Failure to adhere to these guidelines in their entirety may result in a penalty up to 50%. Any moderate or significant failure may result in a 0 grade.
 
