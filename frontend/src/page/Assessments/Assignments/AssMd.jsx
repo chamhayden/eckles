@@ -553,7 +553,7 @@ You are to build a web app using a provided backend. This app shall be built wit
 
 - You must implement this assignment in React.js. You **cannot** use other declarative frameworks, such as Angular, or Vue.
 - You must use React.js solutions wherever possible, and avoid doing any direct DOM manipulation unless completely unavoidable (check with course staff).
-- You are strictly **NOT** allowed to use universal css for styling, this applies to any usage of \`.css\`, \`.scss\`, \`.sass\` or \`.less\` files to style your work. You should use css-in-js techniques such as [styled components](https://styled-components.com/) and [Tailwind CSS](https://tailwindcss.com/) etc. It's fine to have **ONLY** setup CSS files for Tailwind CSS or any UI library you chose to work with.
+- You are strictly **NOT** allowed to use universal css for styling, this applies to any usage of \`.css\`, \`.scss\`, \`.sass\` or \`.less\` files to style your work. You should use css-in-js techniques such as [styled components](https://styled-components.com/) and [Tailwind CSS](https://tailwindcss.com/) etc. It's fine to have **ONLY** setup CSS files for Tailwind CSS, any UI library you chose to work with and global setup to overwrite \`body\`'s style.
 - You can use any UI libraries that you would like, such as material-UI, Radix UI or any other library that you would like.
 - Besides those described to avoid, you can install and use any package that is available on [npm](https://www.npmjs.com/). You **MUST** commit \`package.json\` changes.
 
@@ -673,8 +673,6 @@ There are some requirements for us to track your ongoing progress:
 4. Dependency updates are not counted through lines of additions per commit, however you should commit dependency changes in separate commit each time you introduced new packages/tools into your work.
 
 Failure to adhere to these guidelines in their entirety may result in a penalty up to 50%. Any moderate or significant failure may result in a 0 grade.
-
-Please note: If you choose to work on separate branches before merging into master, you must squash your commits when merging back in. This means that you can make many commits on other branches fine, it's just whatever comes back to master needs to be a single commit that compiles with no more than 200 line additions.
 
 ## 8. Originality of Work
 
