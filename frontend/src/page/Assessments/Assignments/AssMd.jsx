@@ -651,6 +651,7 @@ Your assignment will be hand-marked by tutor(s) in the course according to the c
 
 ### 6.8 Deployment (5%)
  * You need to follow the instructions given in \`deployment.md\` to deploy your web app onto Vercel.
+ * When tutors mark this section, they will navigate to the \`FE_DEPLOYED_URL\` you provided in \`progress.csv\`, as long as your web app (frontend) is live on that url, you will gain full mark for this. :) 
 
 ### 6.9. Bonus Mark (5%)
  * Implementation of extra features that are not included in the spec.
