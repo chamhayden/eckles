@@ -19,6 +19,11 @@ const CourseOutline24T1 = () => {
 
   return (
     <>
+      <Typography variant="body" component="div" gutterBottom>
+        <b>COMP6080 is an open-book, invigilated, in-person exam completed at UNSW.</b>
+        <br />
+        <br />
+      </Typography>     
       <Typography variant="h5" component="div" gutterBottom>
         Requirements to sit the exam
       </Typography>     
@@ -94,10 +99,13 @@ const CourseOutline24T1 = () => {
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         <ul>
-          <li>This exam is an open book exam, meaning you are able to use the internet and other resources.</li>
-          <li>Whilst you can use resources on the internet, you cannot copy or plagiarise those resources.</li>
-          <li>You are prohibited from seeking help from other students during the exam. Any communications (physical, digital) after you or another person has started the exam time is not allowed.</li>
-          <li>Even after you finish the exam, on the day of the exam,on the day of the exam do not communicate your exam answers to anyone. Some students have extended time to complete the exam.</li>
+          <li>This exam is an open book exam, meaning you are able to use the internet and other resources, with a few exceptions.
+          <ul>
+            <li>You are prohibited from seeking help from other students during the exam. Any communications (physical, digital) after you or another person has started the exam time is not allowed.</li>
+            <li>You cannot use code generation tools such as LLMs, including but not limited to, ChatGPT, Gemini</li>
+            <li>Whilst you can use resources on the internet, you cannot copy or plagiarise those resources. The only material you can copy is any of your own assignment work, any work you've prepared in advance, or any course materials</li>
+          </ul>
+          </li>
           <li>Do not place your exam work in any location, including file sharing services such as Dropbox or GitHub, accessible to any other person. Ensure during the exam no other person in your household can access your work.</li>
           <li>Your zpass should not be disclosed to any other person. If you have disclosed your zpass , you should change it immediately.</li>
         </ul>
@@ -121,10 +129,13 @@ const CourseOutline24T1 = () => {
         Failure to comply may result in delays in responding to your queries.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        Clarifications made during the exam will be made at the top of this page. After each clarification, an email will be sent to all students in the course notifying them that a clarification has been made.
+        Clarifications made during the exam will be made at the top of the exam paper page. After each clarification, invigilators will notify students to refresh the exam paper page.
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
         Submission
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        Push to master regularly throughout your exam. Once the exam is complete, we will take the last commit you have pushed to your master branch up on gitlab. Please check the gitlab site directly before the completion of the exam.
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
         Troubleshooting

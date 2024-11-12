@@ -20,9 +20,6 @@ const CourseOutline24T3 = () => {
   return (
     <>
       <Typography variant="h5" component="div" gutterBottom>
-        The final exam will be an 3 hour open-book, invigilated in-person exam at UNSW during the exam period. The exam will contain a hurdle. More information about this will be made available throughout the term.
-      </Typography>     
-      {/*<Typography variant="h5" component="div" gutterBottom>
         Requirements to sit the exam
       </Typography>     
       <Typography variant="body1" component="div" gutterBottom>
@@ -44,7 +41,7 @@ const CourseOutline24T3 = () => {
         Date, Time, and Duration
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The final exam will be a 3 hour exam. The time is posted on the exam timetable.
+        The final exam will be a 3 hour exam. The exam will run in the morning session on the 4th of December 2024.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         Only submissions made during your exam time window will be counted as valid.
@@ -87,7 +84,7 @@ const CourseOutline24T3 = () => {
         </ul>
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        Technical issues relating to your local environment are not grounds for special consideration.
+        Technical issues relating to your local environment that could have reasonably been managed prior to the beginning of the exam are not grounds for special consideration.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         Do not leave it to the deadline to push your code to master. Submit each question when you finish working on it.
@@ -150,7 +147,7 @@ const CourseOutline24T3 = () => {
             <ul><li>A solution (built file, not the source code) of the sample exam can be found <a target="_blank" href="https://cs6080.web.cse.unsw.edu.au/sample-exam/">here</a>. Please note, this solution may be incomplete, but it is mostly complete.</li></ul>
           </li>
         </ul>
-      </Typography>*/}
+      </Typography>
     </>
   );
 }
