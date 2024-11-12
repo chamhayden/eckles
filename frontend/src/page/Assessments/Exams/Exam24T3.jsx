@@ -13,14 +13,19 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import { Context, useContext } from '../../../context';
 
-const CourseOutline24T3 = () => {
+const CourseOutline24T1 = () => {
   const { getters } = useContext(Context);
   const navigate = useNavigate();
 
   return (
     <>
+      <Typography variant="body" component="div" gutterBottom>
+        <b>COMP6080 is an open-book, invigilated, hurdle-based in-person exam completed at UNSW.</b>
+        <br />
+        <br />
+      </Typography>     
       <Typography variant="h5" component="div" gutterBottom>
-        Requirements to sit the exam
+        1. Requirements to sit the exam
       </Typography>     
       <Typography variant="body1" component="div" gutterBottom>
         During the duration you sit the exam, you must have access to a stable internet connection for pushing to gitlab and receiving emails.
@@ -38,7 +43,7 @@ const CourseOutline24T3 = () => {
         </ol>
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
-        Date, Time, and Duration
+        2. Date, Time, and Duration
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         The final exam will be a 3 hour exam. The exam will run in the morning session on the 4th of December 2024.
@@ -47,10 +52,10 @@ const CourseOutline24T3 = () => {
         Only submissions made during your exam time window will be counted as valid.
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
-        Exam Structure
+        3. Exam Structure
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        Your exam will be worth a certain number of arbitrary marks, but these marks will make up 20% of the course (the size of this assessment).
+        Your exam will be worth 20% of the course.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         The exam will be very similar to assignment 4, with the following simplified criteria:
@@ -71,10 +76,10 @@ const CourseOutline24T3 = () => {
         You are allowed to your code code from other assessments in the exam (or in the case of assignment 4, your group's code).
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
-        Platform to complete exam
+        4. Platform to complete exam
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The exam will be distributed via gitlab, and operationally be very similar to the release and submission of a single lab repo.
+        The exam will be distributed via gitlab, and operationally be very similar to the release and submission of a single assignment repo.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         The exam must be completed locally or via vlab. Regardless of where you complete the exam, you must:
@@ -84,20 +89,20 @@ const CourseOutline24T3 = () => {
         </ul>
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        Technical issues relating to your local environment that could have reasonably been managed prior to the beginning of the exam are not grounds for special consideration.
-      </Typography>
-      <Typography variant="body1" component="div" gutterBottom>
-        Do not leave it to the deadline to push your code to master. Submit each question when you finish working on it.
+        Technical issues relating to your local environment that are reasonably solvable prior to the exam are not grounds for special consideration.
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
-        Communication & Help during the exam
+        5. Communication & Help during the exam
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         <ul>
-          <li>This exam is an open book exam, meaning you are able to use the internet and other resources.</li>
-          <li>Whilst you can use resources on the internet, you cannot copy or plagiarise those resources.</li>
-          <li>You are prohibited from seeking help from other students during the exam. Any communications (physical, digital) after you or another person has started the exam time is not allowed.</li>
-          <li>Even after you finish the exam, on the day of the exam,on the day of the exam do not communicate your exam answers to anyone. Some students have extended time to complete the exam.</li>
+          <li>This exam is an open book exam, meaning you are able to use the internet and other resources, with a few exceptions.
+          <ul>
+            <li>You are prohibited from seeking help from other students during the exam. Any communications (physical, digital) after you or another person has started the exam time is not allowed.</li>
+            <li>You cannot use code generation tools such as LLMs, including but not limited to, ChatGPT, Gemini</li>
+            <li>Whilst you can use resources on the internet, you cannot copy or plagiarise those resources. The only material you can copy is any of your own assignment work, any work you've prepared in advance, or any course materials</li>
+          </ul>
+          </li>
           <li>Do not place your exam work in any location, including file sharing services such as Dropbox or GitHub, accessible to any other person. Ensure during the exam no other person in your household can access your work.</li>
           <li>Your zpass should not be disclosed to any other person. If you have disclosed your zpass , you should change it immediately.</li>
         </ul>
@@ -121,13 +126,35 @@ const CourseOutline24T3 = () => {
         Failure to comply may result in delays in responding to your queries.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        Clarifications made during the exam will be made at the top of this page. After each clarification, an email will be sent to all students in the course notifying them that a clarification has been made.
+        Clarifications made during the exam will be made at the top of the exam paper page. After each clarification, invigilators will notify students to refresh the exam paper page.
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
-        Submission
+        6. Git Commit Requirements
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        To avoid being penalised in the final exam we require that you:
+        <ul>
+         <li>Make commits no more than 100 lines of code</li>
+         <li>Have meaningful commit names</li>
+        </ul>
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
-        Troubleshooting
+        Hurdle Requirements
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        This exam has a hurdle component - which means if you don't achieve a <i>scaled</i> pass mark then you will not pass the course.
+      </Typography>
+      <Typography variant="h5" component="div" gutterBottom>
+        7. Submission
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        Push to master regularly throughout your exam. Once the exam is complete, we will take the last commit you have pushed to your master branch up on gitlab. Please check the gitlab site directly before the completion of the exam.
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        Do not leave it to the deadline to push your code to master. Submit each question when you finish working on it.
+      </Typography>
+      <Typography variant="h5" component="div" gutterBottom>
+        8. Troubleshooting
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         If you are having issues working on the exam at CSE, please follow these steps
@@ -138,7 +165,7 @@ const CourseOutline24T3 = () => {
         </ul>
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
-        Preparation
+        9. Preparation
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         <ul>
@@ -152,4 +179,4 @@ const CourseOutline24T3 = () => {
   );
 }
 
-export default CourseOutline24T3;
+export default CourseOutline24T1;
