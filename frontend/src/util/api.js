@@ -15,8 +15,9 @@ export const apiCall = (path, data, type, callback) => {
         return response.json().then(resolve);
       } else if (response.status === 400) {
         return response.json().then(obj => {
-          // alert(obj.err);
-          callback(obj.err);
+          if (callback) {
+            callback(obj.err);
+          }
           reject(obj.err);
         });
       } else {

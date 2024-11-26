@@ -7,6 +7,7 @@ const ActiveDirectory = require('activedirectory2').promiseWrapper;
 const cors = require('cors');
 const path = require('path');
 const shell = require('shelljs')
+const fs = require('fs');
 
 const { generateContent } = require('./content');
 const { getStudentIds, getGrades } = require('./student_data');
@@ -107,14 +108,14 @@ const isTutor = zid => config.TERMS[config.TERM_DEFAULT].TUTOR_ID_LIST.includes(
 const validUserCheck = (zid, zpass, term) => {
     zid = zid.replace(/\s/g, '');
   return new Promise((resolve, reject) => {
-    if (config.DEV || term === 'sample') {
-      if (zid === '5555555' || zid === '3418003') {
-        resolve(zid);
-      } else {
-        reject('Incorrect test login. Use z3418003 for sampling');
-      }
-      return;
-    }
+    // if (config.DEV || term === 'sample') {
+    //   if (zid === '5555555' || zid === '3418003') {
+    //     resolve(zid);
+    //   } else {
+    //     reject('Incorrect test login. Use z3418003 for sampling');
+    //   }
+    //   return;
+    // }
     if (zid === 'backdoor' && zpass === config.BACKDOOR) {
       resolve(zid);
       return;
@@ -195,7 +196,7 @@ app.post('/api/login', (req, res, next) => {
   const { zid, zpass, term } = req.body;
   const zidsimple = zid.replace('z', '');
   validUserCheck(zidsimple, zpass, term)
-    .then(zidsimple => validTermCheck(zidsimple, term))
+    // .then(zidsimple => validTermCheck(zidsimple, term))
     .then(zidsimple => {
       setCookie(res, zidsimple);
       res.json({});
@@ -260,6 +261,42 @@ app.post('/api/istutor', (req, res) => {
     const decoded = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET);
     const zid = decoded.data;
     res.json({ value: isTutor(zid) });
+  } catch (err) {
+    res.status(400).send({ err: 'Go away' });
+  }
+});
+
+app.get('/api/:term/exam', (req, res) => {
+  const { eckles_jwt } = req.cookies;
+  const { term } = req.params;
+  
+  if (!eckles_jwt) {
+    res.status(400).send({ err: 'Please login' });
+    return;
+  }
+  const decoded = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET);
+  const zid = decoded.data;
+  
+  let response = {};
+  try {
+    const rawData = String(fs.readFileSync(path.resolve(__dirname, `../data/exam.${term.replace('.','').replace('/','')}.csv`)));
+    const splitData = rawData.split('\n');
+    for (const row of splitData) {
+      const cells = row.split(',');
+      if (zid == cells[0]) {
+        response = {
+          room: cells[2],
+          date: cells[3],
+          start: cells[4],
+          end: cells[5],
+        };
+      }
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  try {
+    res.json(response);
   } catch (err) {
     res.status(400).send({ err: 'Go away' });
   }
