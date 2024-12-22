@@ -3,8 +3,8 @@ config.DEV = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development');
 config.BASE_URL = config.DEV ? 'http://localhost:6080' : 'https://cgi.cse.unsw.edu.au/~cs6080';
 config.BASE_NAME = config.DEV ? '/~cs6080/' : '/~cs6080/';
 
-config.terms = config.DEV ? ['sample', '24T1', '24T3'] : ['sample', '24T1', '24T3'];
-config.DEFAULT_TERM = '24T3'; //config.DEV ? 'sample' : '24T1';
+config.terms = config.DEV ? ['sample', '24T1', '24T3', '25T1'] : ['sample', '24T1', '24T3'];
+config.DEFAULT_TERM = '25T1'; //config.DEV ? 'sample' : '24T1';
 
 config.joinSchema = {
   content_tutorials: {
