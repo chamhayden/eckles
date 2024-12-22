@@ -19,11 +19,40 @@ import Avatar from '@mui/material/Avatar';
 import makePage from '../component/makePage';
 import Table from '../component/Table';
 
+import { apiCall } from '../util/api';
 import { Context, useContext } from '../context';
 
 const Grades = () => {
+
+  const { getters, setters } = useContext(Context);
+  const [grades, setGrades] = React.useState([]);
+
+  React.useEffect(() => {
+    apiCall(`grades?term=${getters.term}`, { }, 'GET')
+      .then(data => {
+        setGrades(data);
+      });
+  }, []);
+
+  console.log(grades);
+
   return <>
-  	To see your details marks after assignment release, open a CSE terminal (either via SSH or in vlab) and run <code>6080 classrun -sturec</code>
+  	{grades.length === 0 ? (
+      <>Loading...</>
+    ) : (
+      <table border="1" cellPadding="5">
+        <tr>
+          <th>Field</th>
+          <th>Value</th>
+        </tr>
+        {grades.map((value, key) => (
+          <tr>
+            <td>{value[0]}</td>
+            <td>{value[1]}</td>
+          </tr>
+        ))}
+      </table>
+    )}
   </>
 
 }

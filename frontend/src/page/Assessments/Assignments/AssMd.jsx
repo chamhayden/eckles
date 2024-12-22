@@ -95,7 +95,7 @@ There are some requirements for us to track your ongoing progress:
 2. Your commits must be meaningful in description (e.g. "Continued work on loop speed")
 3. Each commit include no more than 100 lines additions of code (this may differ in future assignments). You are given 3 exceptions.
 
-Failure to adhere to these guidelines in their entirety may result in a penalty up to 50%. Any moderate or significant failure may result in a 0 grade.
+You will receive a git score out of 4 marks for your compliance. Anything lower than 3.5/4 will start resulting in a penalty to your mark that is applied up to 50% of your gross mark.
 
 ## 7. Originality of Work
 
@@ -195,7 +195,7 @@ There are some requirements for us to track your ongoing progress:
 2. Your commits must be meaningful in description (e.g. "Add validation check to full name input field")
 3. Each commit include no more than 50 lines additions of code (this may differ in future assignments). You are given no exceptions.
 
-Failure to adhere to these guidelines in their entirety may result in a penalty up to 50%. Any moderate or significant failure may result in a 0 grade.
+You will receive a git score out of 4 marks for your compliance. Anything lower than 3.5/4 will start resulting in a penalty to your mark that is applied up to 50% of your gross mark.
 
 ## 5. Originality of Work
 
@@ -461,7 +461,7 @@ There are some requirements for us to track your ongoing progress:
 2. Your commits must be meaningful in description (e.g. "Continued work on loop speed")
 3. Each commit include no more than 100 lines additions of code (this may differ in future assignments). You are given no exceptions.
 
-Failure to adhere to these guidelines in their entirety may result in a penalty up to 50%. Any moderate or significant failure may result in a 0 grade.
+You will receive a git score out of 4 marks for your compliance. Anything lower than 3.5/4 will start resulting in a penalty to your mark that is applied up to 50% of your gross mark.
 
 ## 7. Originality of Work
 
@@ -579,6 +579,8 @@ Navigate to the \`frontend\` folder and run \`npm install\` in that folder to in
 
 Don't forget to check out our helpful resources about [React.js](https://cgi.cse.unsw.edu.au/~cs6080/NOW/help/resources/reactjs).
 
+Failure to include all of the relevant packages required to run your assignment on another computer will result in a 5% penalty.
+
 ### 3.2. The Backend (provided)
 
 You are **PROHIBITED** from modifying the backend unless it's specifically required in [\`deployment.md\`](deployment.md). No extra work needs to be done on the backend. It's provided to you simply to power your frontend.
@@ -673,7 +675,7 @@ There are some requirements for us to track your ongoing progress:
 3. Each commit include no more than 200 lines additions of code (this may differ in future assignments). You are given no exceptions.
 4. Dependency updates are not counted through lines of additions per commit, however you should commit dependency changes in separate commit each time you introduced new packages/tools into your work.
 
-Failure to adhere to these guidelines in their entirety may result in a penalty up to 50%. Any moderate or significant failure may result in a 0 grade.
+You will receive a git score out of 4 marks for your compliance. Anything lower than 3.5/4 will start resulting in a penalty to your mark that is applied up to 50% of your gross mark.
 
 ## 8. Originality of Work
 

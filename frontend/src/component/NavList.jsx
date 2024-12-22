@@ -30,7 +30,7 @@ export const getPrimaryNavList = (term) => {
     },
     {
       title: 'Forum',
-      route: 'https://edstem.org/au/join/zDzXXH',
+      route: 'https://edstem.org/au/join/JzR6ZW',
       external: true,
       loginRequired: true,
       Icon: ForumIcon,
@@ -124,6 +124,15 @@ export const getSecondaryNavList = (term) => {
       Icon: HearingIcon,
       description: 'Provide feedback to course staff if you have any comments to share',
     },
+    {
+      title: 'Content Request',
+      loginRequired: true,
+      route: 'https://comp6080.canny.io/',
+      external: true,
+      Icon: HearingIcon,
+      description: 'Make content requests',
+    },
+    
     {
       title: 'Source Code',
       loginRequired: true,

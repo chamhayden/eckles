@@ -346,6 +346,74 @@ app.post('/api/content/public', (req, res) => {
   }
 });
 
+app.get('/api/grades', (req, res) => {
+  const { eckles_jwt } = req.cookies;
+  const { term } = req.query;
+  
+  if (!eckles_jwt) {
+    res.status(400).send({ err: 'Please login' });
+    return;
+  }
+
+  const zid  = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET).data;
+
+  if (!Object.keys(config.TERMS).includes(term)) {
+    res.status(400).send({ err: 'Bad term' });
+  }
+
+  let giverc = '~/.giverc';
+  if (term != config.DEFAULT_TERM) {
+    giverc += term;
+  }
+
+  console.log(`. ssh cs6080@cse.unsw.edu.au "${giverc} && sms_show ${zid}"`);
+  const { stdout } = shell.exec(`ssh cs6080@cse.unsw.edu.au ". ${giverc} && sms_show ${zid}"`)
+
+  const splitOnFirstSpace = (str) => {
+    const index = str.indexOf(' ');
+    if (index === -1) {
+        return [str, ''];
+    }
+    return [str.slice(0, index), str.slice(index + 1)];
+  }
+
+  const avoid = [
+    'ClassKey',
+    'StudentID',
+    'Name',
+    'Program',
+    'Plans',
+    'tut',
+    'Login',
+    'SpecialFlags',
+    'Comment',
+    'ASS1',
+    'ASS2',
+    'ASS3',
+    'ASS4',
+    'EXAM',
+    'ass1_remaining_space',
+    'ass2_remaining_space',
+    'ass3_remaining_space',
+    'ass4_remaining_space',
+    'ass1_bonus_adjust',
+    'ass2_bonus_adjust',
+    'ass3_bonus_adjust',
+    'ass4_bonus_adjust',
+    'exam_raw',
+    'test1',
+    'test2',
+  ];
+  let eachLine = stdout.trim().split('\n')
+  eachLine.sort();
+  const results = eachLine.map(splitOnFirstSpace);
+  const filteredResults = results.filter(r => !avoid.includes(r[0]));
+  console.log('filteredResults', filteredResults);
+
+  res.json(filteredResults)
+
+});
+
 app.get('/api/validterms', (req, res) => {
   res.json(Object.keys(config.TERMS));
 });
