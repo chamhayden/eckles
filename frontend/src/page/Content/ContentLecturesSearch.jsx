@@ -410,34 +410,67 @@ const ContentLecturesSearch = () => {
                   }}
                 />
               </Box>
-
-              <Box
-                sx={{
-                  display: "grid",
-
-                  gap: 2,
-                }}
-              >
-                {lecturesForWeek.map((lecture) => (
-                  <TutLecContentListItem
-                    key={lecture.key}
-                    contentKey={lecture.key}
-                    name={lecture.name}
-                    duration_mins={lecture.duration_mins}
-                    relevance={lecture.relevance}
-                    week={lecture.week().week}
-                    topicEmoji={lecture.topic().emoji}
-                    topicName={lecture.topic().name}
-                    live={lecture.status}
-                    lecture={true}
-                    thumbnail={
-                      lecture.thumbnail && lecture.thumbnail.length > 0
-                        ? lecture.thumbnail[0]
-                        : null
-                    }
-                  />
-                ))}
-              </Box>
+              {viewMode === "grid" ? (
+                <Box
+                  sx={{
+                    display: "grid",
+                    gridTemplateColumns: {
+                      xs: "repeat(1, 1fr)",
+                      sm: "repeat(2, 1fr)",
+                      lg: "repeat(3, 1fr)",
+                      xl: "repeat(4, 1fr)",
+                    },
+                    gap: 2,
+                  }}
+                >
+                  {lecturesForWeek.map((lecture) => (
+                    <TutLecContentCard
+                      key={lecture.key}
+                      contentKey={lecture.key}
+                      name={lecture.name}
+                      duration_mins={lecture.duration_mins}
+                      relevance={lecture.relevance}
+                      week={lecture.week().week}
+                      topicEmoji={lecture.topic().emoji}
+                      topicName={lecture.topic().name}
+                      live={lecture.status}
+                      lecture={true}
+                      thumbnail={
+                        lecture.thumbnail && lecture.thumbnail.length > 0
+                          ? lecture.thumbnail[0]
+                          : null
+                      }
+                    />
+                  ))}
+                </Box>
+              ) : (
+                <Box
+                  sx={{
+                    display: "grid",
+                    gap: 2,
+                  }}
+                >
+                  {lecturesForWeek.map((lecture) => (
+                    <TutLecContentListItem
+                      key={lecture.key}
+                      contentKey={lecture.key}
+                      name={lecture.name}
+                      duration_mins={lecture.duration_mins}
+                      relevance={lecture.relevance}
+                      week={lecture.week().week}
+                      topicEmoji={lecture.topic().emoji}
+                      topicName={lecture.topic().name}
+                      live={lecture.status}
+                      lecture={true}
+                      thumbnail={
+                        lecture.thumbnail && lecture.thumbnail.length > 0
+                          ? lecture.thumbnail[0]
+                          : null
+                      }
+                    />
+                  ))}
+                </Box>
+              )}
             </React.Fragment>
           );
         })}

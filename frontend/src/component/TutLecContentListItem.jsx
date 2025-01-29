@@ -3,10 +3,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
-import { Stack, Box, Avatar } from "@mui/material";
+import { Stack, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 
-// https://stackoverflow.com/questions/40958727/javascript-generate-unique-number-based-on-string
 const hashCode = (str) => {
   var hash = 0,
     i,
@@ -16,12 +15,12 @@ const hashCode = (str) => {
   for (i = 0, len = str.length; i < len; i++) {
     chr = str.charCodeAt(i);
     hash = (hash << 5) - hash + chr;
-    hash |= 0; // Convert to 32bit integer
+    hash |= 0;
   }
   return Math.abs(hash);
 };
 
-export default function TutLecContentListItem({
+export default function TutLecContentCard({
   name,
   contentKey,
   duration_mins,
@@ -66,72 +65,65 @@ export default function TutLecContentListItem({
   const fullWeek = "Week " + week;
   const topic = topicEmoji + " " + topicName;
   const hash = hashCode(contentKey) % 400;
-
   const cardLink = lecture
     ? `/NOW/content/lectures/${contentKey}`
     : `/NOW/content/tutorials/${contentKey}`;
 
   return (
-    <Link to={cardLink}>
+    <Link to={cardLink} style={{ textDecoration: "none" }}>
       <Card
         sx={{
           display: "flex",
           flexDirection: "column",
-          maxHeight: "110px",
           width: "100%",
-          "&:hover": {
-            transform: "scale(1.025)",
-            transition: "all .2s ease-in-out;",
-          },
-          boxShadow: "none", 
+          border: "none",
+          boxShadow: "none",
+          padding: "0px",
           borderBottom: "1px solid #ddd",
-          borderRadius: "0px",
-          paddingBottom: "10px",
+          maxHeight: "100px",
+          "&:hover": {
+            backgroundColor: "#f5f5f5",
+          },
         }}
       >
-        <CardContent sx={{ padding: "0px !important" }}>
-          <Stack direction="row" alignItems="left">
-            <img
-              src={
-                thumbnail
-                  ? thumbnail.url
-                  : `https://picsum.photos/id/${hash}/200`
-              }
-              alt={name}
-              style={{
-                width: "150px",
-                height: "auto",
-                display: "block",
-              }}
-            />
-            <Stack
-              direction="column"
-              alignItems="left"
-              sx={{
-                paddingLeft: 1,
-              }}
-            >
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  "&:hover": {
-                    textDecoration: "underline",
-                    color: "#5b7edb",
-                  },
-                }}
-              >
-                {name}
-              </Typography>
-              <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-                {duration_mins} minutes
-              </Typography>
-              <Stack direction="row" gap={1} rowGap={1} flexWrap="wrap">
-                <Chip label={topic} />
-                <Chip label={fullWeek} />
-                <Chip color={relevanceChip.color} label={relevanceChip.label} />
-                {isLive && <Chip color="secondary" label={"Live"} />}
+        <CardContent sx={{ padding: "10px 0px" }}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Stack direction="row" alignItems="center">
+              <img
+                src={
+                  thumbnail
+                    ? thumbnail.url
+                    : `https://picsum.photos/id/${hash}/200`
+                }
+                alt={name}
+                style={{ width: "auto", height: "100px", display: "block" }}
+              />
+              <Stack direction="column" sx={{ paddingLeft: 2 }}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    "&:hover": {
+                      textDecoration: "underline",
+                      color: "#5b7edb",
+                    },
+                  }}
+                >
+                  {name}
+                </Typography>
+                <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
+                  {duration_mins} minutes
+                </Typography>
               </Stack>
+            </Stack>
+            <Stack direction="row" gap={1} flexWrap="wrap">
+              <Chip label={topic} />
+              <Chip label={fullWeek} />
+              <Chip color={relevanceChip.color} label={relevanceChip.label} />
+              {isLive && <Chip color="secondary" label={"Live"} />}
             </Stack>
           </Stack>
         </CardContent>
