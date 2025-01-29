@@ -412,16 +412,9 @@ const ContentLecturesSearch = () => {
               </Box>
               {viewMode === "grid" ? (
                 <Box
-                  sx={{
-                    display: "grid",
-                    gridTemplateColumns: {
-                      xs: "repeat(1, 1fr)",
-                      sm: "repeat(2, 1fr)",
-                      lg: "repeat(3, 1fr)",
-                      xl: "repeat(4, 1fr)",
-                    },
-                    gap: 2,
-                  }}
+                  display="grid"
+                  gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+                  gap={2}
                 >
                   {lecturesForWeek.map((lecture) => (
                     <TutLecContentCard
