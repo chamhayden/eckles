@@ -301,7 +301,7 @@ const ContentTutorialsSearch = () => {
               <Box
                 display="grid"
                 gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))"
-                gap={3}
+                gap={2}
               >
                 {tutorialsForWeek.map((tutorial) => (
                   <TutLecContentCard
