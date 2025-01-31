@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Context, useContext } from "../../context";
 import TutLecContentCard from "../../component/TutLecContentCard";
+import TutLecContentListItem from "../../component/TutLecContentListItem";
 import makePage from "../../component/makePage";
 import {
   Box,
@@ -20,6 +21,8 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import InfoIcon from "@mui/icons-material/Info";
+import GridViewIcon from "@mui/icons-material/GridView";
+import ReorderIcon from "@mui/icons-material/Reorder";
 
 const ContentLecturesSearch = () => {
   const { getters, setters } = useContext(Context);
@@ -29,6 +32,7 @@ const ContentLecturesSearch = () => {
   const [week, setWeek] = useState("All");
   const [isFiltered, setIsFiltered] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [viewMode, setViewMode] = useState("list");
   const [filters, setFilters] = useState({
     selectedTopic: "All",
     selectedRelevance: "workHard",
@@ -42,6 +46,8 @@ const ContentLecturesSearch = () => {
     showLiveLectures: false,
   });
   useEffect(() => {
+    localStorage.getItem("viewMode") &&
+      setViewMode(localStorage.getItem("viewMode"));
     const storedFilters = localStorage.getItem("filters");
     if (storedFilters) {
       const parsedFilters = JSON.parse(storedFilters);
@@ -114,7 +120,7 @@ const ContentLecturesSearch = () => {
         case "learnEverything":
           return ["Mandatory", "Recommended", "Extension"];
         default:
-            return ["Catchup", "Mandatory", "Recommended", "Extension"];
+          return ["Catchup", "Mandatory", "Recommended", "Extension"];
       }
     };
 
@@ -136,7 +142,7 @@ const ContentLecturesSearch = () => {
       setIsFiltered(
         filters.selectedRelevance !== "workHard" ||
           filters.selectedTopic !== "All" ||
-          filters.showLiveLectures !== false || 
+          filters.showLiveLectures !== false ||
           filters.completedCOMP1531 !== true
       );
 
@@ -213,6 +219,25 @@ const ContentLecturesSearch = () => {
           >
             View all on YouTube
           </Button>
+        </FormControl>
+        <FormControl>
+          <IconButton color="primary">
+            {viewMode === "grid" ? (
+              <GridViewIcon
+                onClick={() => {
+                  setViewMode("list");
+                  localStorage.setItem("viewMode", "list");
+                }}
+              />
+            ) : (
+              <ReorderIcon
+                onClick={() => {
+                  setViewMode("grid");
+                  localStorage.setItem("viewMode", "grid");
+                }}
+              />
+            )}
+          </IconButton>
         </FormControl>
       </Stack>
 
@@ -370,9 +395,9 @@ const ContentLecturesSearch = () => {
                     fontWeight: "bold",
                     borderRadius: 2,
                     border: 1,
-                    borderColor: 'primary.main',
+                    borderColor: "primary.main",
                     padding: "5px 20px",
-                    color:  "primary.main",
+                    color: "primary.main",
                   }}
                 >
                   Week {weekObj.week}
@@ -385,39 +410,60 @@ const ContentLecturesSearch = () => {
                   }}
                 />
               </Box>
-
-              <Box
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: {
-                    xs: "repeat(1, 1fr)",
-                    sm: "repeat(2, 1fr)",
-                    lg: "repeat(3, 1fr)",
-                    xl: "repeat(4, 1fr)",
-                  },
-                  gap: 2,
-                }}
-              >
-                {lecturesForWeek.map((lecture) => (
-                  <TutLecContentCard
-                    key={lecture.key}
-                    contentKey={lecture.key}
-                    name={lecture.name}
-                    duration_mins={lecture.duration_mins}
-                    relevance={lecture.relevance}
-                    week={lecture.week().week}
-                    topicEmoji={lecture.topic().emoji}
-                    topicName={lecture.topic().name}
-                    live={lecture.status}
-                    lecture={true}
-                    thumbnail={
-                      lecture.thumbnail && lecture.thumbnail.length > 0
-                        ? lecture.thumbnail[0]
-                        : null
-                    }
-                  />
-                ))}
-              </Box>
+              {viewMode === "grid" ? (
+                <Box
+                display="grid"
+                gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+                gap={2}
+                >
+                  {lecturesForWeek.map((lecture) => (
+                    <TutLecContentCard
+                      key={lecture.key}
+                      contentKey={lecture.key}
+                      name={lecture.name}
+                      duration_mins={lecture.duration_mins}
+                      relevance={lecture.relevance}
+                      week={lecture.week().week}
+                      topicEmoji={lecture.topic().emoji}
+                      topicName={lecture.topic().name}
+                      live={lecture.status}
+                      lecture={true}
+                      thumbnail={
+                        lecture.thumbnail && lecture.thumbnail.length > 0
+                          ? lecture.thumbnail[0]
+                          : null
+                      }
+                    />
+                  ))}
+                </Box>
+              ) : (
+                <Box
+                  sx={{
+                    display: "grid",
+                    gap: 2,
+                  }}
+                >
+                  {lecturesForWeek.map((lecture) => (
+                    <TutLecContentListItem
+                      key={lecture.key}
+                      contentKey={lecture.key}
+                      name={lecture.name}
+                      duration_mins={lecture.duration_mins}
+                      relevance={lecture.relevance}
+                      week={lecture.week().week}
+                      topicEmoji={lecture.topic().emoji}
+                      topicName={lecture.topic().name}
+                      live={lecture.status}
+                      lecture={true}
+                      thumbnail={
+                        lecture.thumbnail && lecture.thumbnail.length > 0
+                          ? lecture.thumbnail[0]
+                          : null
+                      }
+                    />
+                  ))}
+                </Box>
+              )}
             </React.Fragment>
           );
         })}
