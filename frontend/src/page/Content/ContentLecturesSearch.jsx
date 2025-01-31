@@ -32,7 +32,7 @@ const ContentLecturesSearch = () => {
   const [week, setWeek] = useState("All");
   const [isFiltered, setIsFiltered] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [viewMode, setViewMode] = useState("grid");
+  const [viewMode, setViewMode] = useState("list");
   const [filters, setFilters] = useState({
     selectedTopic: "All",
     selectedRelevance: "workHard",

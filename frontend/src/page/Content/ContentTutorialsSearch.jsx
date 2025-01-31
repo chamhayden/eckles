@@ -27,7 +27,7 @@ const ContentTutorialsSearch = () => {
   const [tutWeek, setTutWeek] = useState("All");
   const [isTutFiltered, setIsTutFiltered] = useState(false);
   const [filtersTutOpen, setFiltersTutOpen] = useState(false);
-  const [viewMode, setViewMode] = useState("grid");
+  const [viewMode, setViewMode] = useState("list");
   const [tutFilters, setTutFilters] = useState({
     selectedTopic: "All",
     selectedRelevance: "workHard",
