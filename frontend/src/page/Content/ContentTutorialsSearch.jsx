@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { Context, useContext } from "../../context";
 import TutLecContentCard from "../../component/TutLecContentCard";
+import TutLecContentListItem from "../../component/TutLecContentListItem";
 import makePage from "../../component/makePage";
 import {
   Box,
@@ -8,6 +9,7 @@ import {
   Modal,
   Input,
   FormControl,
+  IconButton,
   InputLabel,
   Select,
   Stack,
@@ -15,6 +17,8 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
+import GridViewIcon from "@mui/icons-material/GridView";
+import ReorderIcon from "@mui/icons-material/Reorder";
 
 const ContentTutorialsSearch = () => {
   const { getters, setters } = useContext(Context);
@@ -23,6 +27,7 @@ const ContentTutorialsSearch = () => {
   const [tutWeek, setTutWeek] = useState("All");
   const [isTutFiltered, setIsTutFiltered] = useState(false);
   const [filtersTutOpen, setFiltersTutOpen] = useState(false);
+  const [viewMode, setViewMode] = useState("list");
   const [tutFilters, setTutFilters] = useState({
     selectedTopic: "All",
     selectedRelevance: "workHard",
@@ -33,6 +38,8 @@ const ContentTutorialsSearch = () => {
   });
 
   useEffect(() => {
+    localStorage.getItem("viewMode") &&
+      setViewMode(localStorage.getItem("viewMode"));
     const storedFilters = localStorage.getItem("tutFilters");
     if (storedFilters) {
       const parsedFilters = JSON.parse(storedFilters);
@@ -164,6 +171,25 @@ const ContentTutorialsSearch = () => {
           >
             Filter
           </Button>
+        </FormControl>
+        <FormControl>
+          <IconButton color="primary">
+            {viewMode === "grid" ? (
+              <GridViewIcon
+                onClick={() => {
+                  setViewMode("list");
+                  localStorage.setItem("viewMode", "list");
+                }}
+              />
+            ) : (
+              <ReorderIcon
+                onClick={() => {
+                  setViewMode("grid");
+                  localStorage.setItem("viewMode", "grid");
+                }}
+              />
+            )}
+          </IconButton>
         </FormControl>
       </Stack>
 
@@ -298,13 +324,40 @@ const ContentTutorialsSearch = () => {
                   }}
                 />
               </Box>
-              <Box
-                display="grid"
-                gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))"
-                gap={3}
-              >
-                {tutorialsForWeek.map((tutorial) => (
-                  <TutLecContentCard
+              {viewMode === "grid" ? (
+                <Box
+                  display="grid"
+                  gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+                  gap={2}
+                >
+                  {tutorialsForWeek.map((tutorial) => (
+                    <TutLecContentCard
+                      contentKey={tutorial.key}
+                      name={tutorial.name}
+                      duration_mins={tutorial.duration}
+                      relevance={tutorial.importance.split(" ")[1]}
+                      week={tutorial.week().week}
+                      topicEmoji={tutorial.topic().emoji}
+                      topicName={tutorial.topic().name}
+                      live={""}
+                      lecture={false}
+                      thumbnail={
+                        tutorial.thumbnail && tutorial.thumbnail.length > 0
+                          ? tutorial.thumbnail[0]
+                          : null
+                      }
+                    />
+                  ))}
+                </Box>
+              ) : (
+                <Box
+                  sx={{
+                    display: "grid",
+                    gap: 2,
+                  }}
+                >
+                  {tutorialsForWeek.map((tutorial) => (
+                    <TutLecContentListItem
                     contentKey={tutorial.key}
                     name={tutorial.name}
                     duration_mins={tutorial.duration}
@@ -319,9 +372,10 @@ const ContentTutorialsSearch = () => {
                         ? tutorial.thumbnail[0]
                         : null
                     }
-                  />
-                ))}
-              </Box>
+                    />
+                  ))}
+                </Box>
+              )}
             </React.Fragment>
           );
         })}
