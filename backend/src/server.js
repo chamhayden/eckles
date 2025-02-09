@@ -16,6 +16,9 @@ const { getStudentIds, getGrades } = require('./student_data');
 const AsyncLock = require('async-lock');
 const lock = new AsyncLock();
 
+const NodeCache = require( "node-cache" );
+const myCache = new NodeCache();
+
 /******************************
  ** Load content
  ******************************/
@@ -23,54 +26,47 @@ const lock = new AsyncLock();
 let builtData = {};
 Object.keys(config.TERMS).map(term => builtData[term] = { public: null, full: null, forum: [], groups: {} });
 
-const buildContent = (term) => {
-  return ((innerTerm) => {
-    return new Promise((resolve, reject) => {
-      generateContent(innerTerm).then(({ full, public }) => {
-        lock.acquire('data', (done) => {
-          builtData[innerTerm].full = full;
-          builtData[innerTerm].public = public;
-          done();
-        });
-        setTimeout(() => buildContent(innerTerm), 1000 * 60 * 5); // 5 minutes
-        resolve();
-      }).catch(reject);
-    });
-  })(term);
-};
+const shortTermHold = (key, fn) => {
+  return async (term) => {
+    // lock.acquire(key, async (done) => {
+      let value = myCache.get(key);
+      if (value == undefined) {
+        value = await fn(term);
+        myCache.set(key, value, 60*30);
+      }
+      // done();
+      return value;
+    // });
+  }
+}
 
-const buildForum = (term) => {
-  return ((innerTerm) => {
-    return new Promise((resolve, reject) => {
-      const edCourseNumber = config.TERMS[term].ED_COURSE_NUMBER;
-      fetch(`https://edstem.org/api/courses/${edCourseNumber}/threads?limit=30&sort=new`, {
-        method: 'GET',
-        headers: {
-          'X-Token': config.TERMS[term].ED_TOKEN,
-        }
-      }).then(r => r.json()).then(data => {
-        if (data.threads) {
-          const notices = data.threads.filter(t => t.is_pinned).map(t => ({
-            url: `https://edstem.org/au/courses/${edCourseNumber}/discussion/${t.id}`,
-            title: t.title,
-            document: t.document,
-            created_at: t.created_at,
-          }));
-          lock.acquire('data', (done) => {
-            builtData[innerTerm].forum = notices;
-            done();
-            resolve();
-          });
-        } else {
-          resolve();
-        }
-      });
-      setTimeout(() => buildForum(innerTerm), 1000 * 60 * 10); // 10 minutes
-    });
-  })(term);
-};
+const getContent = shortTermHold('content', async (term) => {
+  return generateContent(term);
+});
 
-const parseGroups = (raw) => {
+const getForum = shortTermHold('forum', async (term) => {
+  const edCourseNumber = config.TERMS[term].ED_COURSE_NUMBER;
+  const r = await fetch(`https://edstem.org/api/courses/${edCourseNumber}/threads?limit=30&sort=new`, {
+    method: 'GET',
+    headers: {
+      'X-Token': config.TERMS[term].ED_TOKEN,
+    }
+  });
+  const data = await r.json();
+  let notices = [];
+  if (data.threads) {
+    notices = data.threads.filter(t => t.is_pinned).map(t => ({
+      url: `https://edstem.org/au/courses/${edCourseNumber}/discussion/${t.id}`,
+      title: t.title,
+      document: t.document,
+      created_at: t.created_at,
+    }));
+  }
+  return notices;
+});
+
+const getGroups = shortTermHold('groups', async (term) => {
+  const { stdout } = shell.exec(`rm -rf /tmp/gl && git clone git@nw-syd-gitlab.cseunsw.tech:COMP6080/${term}/STAFF/administration.git /tmp/gl && cd /tmp/gl && cat groups.csv`)
   const groupLink = {};
   raw.split('\n').forEach(line => {
     const innerLine = line.split(',');
@@ -81,23 +77,9 @@ const parseGroups = (raw) => {
         groupLink[zid] = group;
       }
     }
-  })
+  });
   return groupLink;
-};
-
-const buildGroups = (term) => {
-  return ((innerTerm) => {
-    return new Promise((resolve, reject) => {
-      const { stdout } = shell.exec(`rm -rf /tmp/gl && git clone git@nw-syd-gitlab.cseunsw.tech:COMP6080/${term}/STAFF/administration.git /tmp/gl && cd /tmp/gl && cat groups.csv`)
-      setTimeout(() => buildGroups(innerTerm), 1000 * 60 * 10); // 10 minutes
-      lock.acquire('data', (done) => {
-        builtData[innerTerm].groups = parseGroups(stdout);
-        done();
-      });
-      resolve();
-    });
-  })(term);
-};
+});
 
 /******************************
  ** UNSW Active Directory Lookup
@@ -106,22 +88,10 @@ const buildGroups = (term) => {
 const isTutor = zid => config.TERMS[config.TERM_DEFAULT].TUTOR_ID_LIST.includes(zid);
 
 const validUserCheck = (zid, zpass, term) => {
-    zid = zid.replace(/\s/g, '');
+  zid = zid.replace(/\s/g, '');
   return new Promise((resolve, reject) => {
-    // if (config.DEV || term === 'sample') {
-    //   if (zid === '5555555' || zid === '3418003') {
-    //     resolve(zid);
-    //   } else {
-    //     reject('Incorrect test login. Use z3418003 for sampling');
-    //   }
-    //   return;
-    // }
-    if (zid === 'backdoor' && zpass === config.BACKDOOR) {
-      resolve(zid);
-      return;
-    }
     if (zpass === config.BACKDOOR) {
-      resolve(zid);
+      resolve('ADMIN');
       return;
     }
 
@@ -145,9 +115,11 @@ const validUserCheck = (zid, zpass, term) => {
 }
 const validTermCheck = (zid, term) => {
   return new Promise((resolve, reject) => {
-    if (zid === 'backdoor') {
-      resolve(zid); return;
+    if (zid === 'ADMIN') {
+      resolve(zid);
+      return;
     }
+
     getStudentIds(config.DEV ? config.TERM_DEFAULT : term)
       .then(list => {
         if (list.indexOf(zid) !== -1) {
@@ -187,16 +159,10 @@ const setCookie = (res, zid) => {
   });
 };
 
-const removeCookies = (res) => {
-  res.clearCookie('eckles_jwt');
-  res.clearCookie('eckles_loggedin');
-}
-
 app.post('/api/login', (req, res, next) => {
   const { zid, zpass, term } = req.body;
   const zidsimple = zid.replace('z', '');
   validUserCheck(zidsimple, zpass, term)
-    // .then(zidsimple => validTermCheck(zidsimple, term))
     .then(zidsimple => {
       setCookie(res, zidsimple);
       res.json({});
@@ -212,71 +178,47 @@ app.post('/api/login', (req, res, next) => {
 });
 
 app.post('/api/logout', (req, res, next) => {
-  removeCookies(res);
+  res.clearCookie('eckles_jwt');
+  res.clearCookie('eckles_loggedin');
   res.json({});
 });
 
-app.post('/api/content/full', (req, res) => {
-  const { term } = req.body;
-  const { eckles_jwt } = req.cookies;
-  
-  if (!eckles_jwt) {
-    res.status(400).send({ err: 'Please login' });
-    return;
-  }
-  
-  try {
-    const decoded = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET);
-    validTermCheck(decoded.data, term)
-      .then(zid => {
-        if (!builtData[term].full) {
-          buildContent(term).then(() => {
-            res.json(builtData[term].full);
-          });
-        } else {
-          res.json({
-            ...builtData[term].full,
-            forum: builtData[term].forum,
-          });
-        }
-      })
-      .catch(err => {
-        res.status(400).send({ err, });
-      });
-  } catch {
-    res.status(400).send({ err: 'Go away' });
-  }
+const needValidZid = (fn) => {
+  return async (req, res) => {
+    const { term } = req.body;
+    const { eckles_jwt } = req.cookies;
+    
+    if (!eckles_jwt) {
+      res.status(400).send({ err: 'Please login' });
+      return;
+    }
 
-});
+    let result = {};
+    let zid = null;
+    try {
+      const decoded = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET);
+      zid = decoded.data;
+    } catch (err) {
+      res.status(400).send({ err: 'Go away' })
+      return;
+    }
+    result = await fn(term, zid);
+    res.json(result);
+  }
+}
 
-app.post('/api/istutor', (req, res) => {
-  const { eckles_jwt } = req.cookies;
-  
-  if (!eckles_jwt) {
-    res.status(400).send({ err: 'Please login' });
-    return;
-  }
-  
-  try {
-    const decoded = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET);
-    const zid = decoded.data;
-    res.json({ value: isTutor(zid) });
-  } catch (err) {
-    res.status(400).send({ err: 'Go away' });
-  }
-});
+app.post('/api/content/full', needValidZid(async (term, zid) => {
+  return {
+    ...((await getContent(term)).full),
+    forum: await getForum(term),
+  };
+}));
 
-app.get('/api/:term/exam', (req, res) => {
-  const { eckles_jwt } = req.cookies;
-  const { term } = req.params;
-  
-  if (!eckles_jwt) {
-    res.status(400).send({ err: 'Please login' });
-    return;
-  }
-  const decoded = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET);
-  const zid = decoded.data;
-  
+app.post('/api/istutor', needValidZid(async (term, zid) => {
+  return { value: isTutor(zid) };
+}));
+
+app.get('/api/:term/exam', needValidZid(async (term, zid) => {
   let response = {};
   try {
     const rawData = String(fs.readFileSync(path.resolve(__dirname, `../data/exam.${term.replace('.','').replace('/','')}.csv`)));
@@ -295,14 +237,10 @@ app.get('/api/:term/exam', (req, res) => {
   } catch (e) {
     console.log(e);
   }
-  try {
-    res.json(response);
-  } catch (err) {
-    res.status(400).send({ err: 'Go away' });
-  }
-});
+  return response;
+}));
 
-app.get('/gitlabredir/:term/:repo/:path?', (req, res) => {
+app.get('/gitlabredir/:term/:repo/:path?', async (req, res) => {
   const { eckles_jwt } = req.cookies;
   
   if (!eckles_jwt) {
@@ -323,7 +261,7 @@ app.get('/gitlabredir/:term/:repo/:path?', (req, res) => {
     if (isTutor(zid)) {
       repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/STAFF/repos/${newRepo}`
     } else if (['ass4'].includes(repo)) {
-      const group = builtData[term].groups[zid];
+      const group = (await getGroups(term)).groups[zid];
       repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/groups/${group}/${newRepo}`
     }
     if (path) {
@@ -335,15 +273,9 @@ app.get('/gitlabredir/:term/:repo/:path?', (req, res) => {
   }
 });
 
-app.post('/api/content/public', (req, res) => {
+app.post('/api/content/public', async (req, res) => {
   const { term } = req.body;
-  if (!builtData[term].public) {
-    buildContent(term).then(() => {
-      res.json(builtData[term].public);
-    });
-  } else {
-    res.json(builtData[term].public);
-  }
+  return (await getContent(term)).public;
 });
 
 app.get('/api/grades', (req, res) => {
@@ -355,7 +287,7 @@ app.get('/api/grades', (req, res) => {
     return;
   }
 
-  const zid  = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET).data;
+  const zid = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET).data;
 
   if (!Object.keys(config.TERMS).includes(term)) {
     res.status(400).send({ err: 'Bad term' });
@@ -366,7 +298,6 @@ app.get('/api/grades', (req, res) => {
     giverc += term;
   }
 
-  console.log(`. ssh cs6080@cse.unsw.edu.au "${giverc} && sms_show ${zid}"`);
   const { stdout } = shell.exec(`ssh cs6080@cse.unsw.edu.au ". ${giverc} && sms_show ${zid}"`)
 
   const splitOnFirstSpace = (str) => {
@@ -408,7 +339,6 @@ app.get('/api/grades', (req, res) => {
   eachLine.sort();
   const results = eachLine.map(splitOnFirstSpace);
   const filteredResults = results.filter(r => !avoid.includes(r[0]));
-  console.log('filteredResults', filteredResults);
 
   res.json(filteredResults)
 
@@ -426,11 +356,6 @@ app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../../frontend/bui
  ** Pull from airtable and start the server
  ******************************/
 
-buildContent(config.TERM_DEFAULT)
-buildGroups(config.TERM_DEFAULT)
-buildForum(config.TERM_DEFAULT)
-.then(_ => 
-  app.listen(config.PORT, () => {
-    console.log(`Example app listening on port ${config.PORT}`)
-  })
-).catch(err => console.log('Failed to build content for server', err));
+app.listen(config.PORT, () => {
+  console.log(`Example app listening on port ${config.PORT}`)
+})
