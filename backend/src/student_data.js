@@ -4,7 +4,7 @@ const { exec } = require('child_process');
 const getStudentIds = (term) => {
   const command = config.TERMS[term].STUDENT_LIST_SH;
   return new Promise((resolve, reject) => {
-    exec(command, (error, stdout, stderr) => {
+    exec(`ssh cs6080@cse.unsw.edu.au "${command}"`, (error, stdout, stderr) => {
       if (error) {
           console.log(`Error loading student list, error: ${error.message}`);
           resolve([]);
