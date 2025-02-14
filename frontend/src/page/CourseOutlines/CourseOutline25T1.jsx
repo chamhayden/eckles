@@ -123,7 +123,7 @@ const CourseOutline25T1 = () => {
          </ul>
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Postgraduate students will need to familiarise themselves with git, specifically, if not already confident, check out the <Link to={link('help/resources')}>resources here</Link>. We have also <a href="https://nw-syd-gitlab.cseunsw.tech/"> provided a lab0 on the tutorials &amp; exercises page</a> that we encourage everyone who hasn't completed COMP1531 to complete prior to the beginning of the course. Basic competency in git is an expectation in COMP6080.
+        Postgraduate students will need to familiarise themselves with git, specifically, if not already confident, check out the <Link to={link('help/resources')}>resources here</Link>. We have also <a target="_blank" href={`${config.BASE_URL}/gitlabredir/${getters.term}/gitintro`}>provided a git-intro exercise</a> that we encourage everyone who hasn't completed COMP1531 to complete prior to the beginning of the course. Basic competency in git is an expectation in COMP6080.
       </Typography>
       <Typography variant="h6" component="div" gutterBottom sx={{ mt: 4 }}>
         2.2. Course Learning Outcomes
