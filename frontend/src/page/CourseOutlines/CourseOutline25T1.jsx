@@ -13,6 +13,8 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import { Context, useContext } from '../../context';
 
+import config from '../../config';
+
 const CourseOutline25T1 = () => {
   const { getters } = useContext(Context);
   const navigate = useNavigate();
