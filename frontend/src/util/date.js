@@ -9,20 +9,17 @@ export const isHappeningNow = (event) => {
     Sat: "Saturday",
   };
 
-  const now = new Date("2025-02-18 20:00");
-
-  // const now = new Date(
-  //   new Date().toLocaleString("en-US", { timeZone: "Australia/Sydney" })
-  // );
+  const now = new Date(
+    new Date().toLocaleString("en-US", { timeZone: "Australia/Sydney" })
+  );
 
   const currentDay = now.toLocaleString("en-US", { weekday: "long" });
   const eventDay = dayMap[event.day] || event.day;
-  
+
   if (eventDay !== currentDay) return false;
 
-  // Handle different time field names
-  const timeStr = event.time || event.times; // Use correct key
-  if (!timeStr) return false; // Safety check
+  const timeStr = event.time || event.times;
+  if (!timeStr) return false;
 
   const [startStr, endStr] = timeStr.split("-");
 
@@ -30,7 +27,7 @@ export const isHappeningNow = (event) => {
   const startTime = new Date(now);
   startTime.setHours(startHour, startMin, 0, 0);
 
-  const { hour: endHour, min: endMin } = parseTime(endStr.split(" ")[0]); // Remove extra session code (e.g., (T20A))
+  const { hour: endHour, min: endMin } = parseTime(endStr.split(" ")[0]);
   const endTime = new Date(now);
   endTime.setHours(endHour, endMin, 0, 0);
 
@@ -38,10 +35,10 @@ export const isHappeningNow = (event) => {
 };
 
 export const getCurrentWeek = (startOfTermDate) => {
-  //   const today = new Date(
-  //     new Date().toLocaleString("en-US", { timeZone: "Australia/Sydney" })
-  //   );
-  const today = new Date("2025-02-20");
+  const today = new Date(
+    new Date().toLocaleString("en-US", { timeZone: "Australia/Sydney" })
+  );
+
   const startOfTerm = new Date(startOfTermDate);
   const diffInDays = Math.floor((today - startOfTerm) / (1000 * 60 * 60 * 24));
   return Math.floor(diffInDays / 7) + 1;

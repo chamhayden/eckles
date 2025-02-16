@@ -28,7 +28,7 @@ const Dashboard = ({}) => {
     meta,
   } = getters.content;
   console.log(getters.content);
-  
+
   const currentWeek = getCurrentWeek(meta[0].value);
   const weeklyLectures = schedule_lectures.filter(
     (schedule_lectures) => schedule_lectures.week().week === currentWeek
@@ -42,8 +42,6 @@ const Dashboard = ({}) => {
   const ongoingLectures = weeklyLectures.filter(isHappeningNow);
   const ongoingHelpSessions = weeklyHelpSessions.filter(isHappeningNow);
   const ongoingTutorials = schedule_tutorials.filter(isHappeningNow);
-
-    console.log(ongoingHelpSessions);
 
   return (
     <>
