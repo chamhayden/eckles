@@ -28,10 +28,12 @@ const Dashboard = ({}) => {
     meta,
   } = getters.content;
   console.log(getters.content);
+  
   const currentWeek = getCurrentWeek(meta[0].value);
   const weeklyLectures = schedule_lectures.filter(
     (schedule_lectures) => schedule_lectures.week().week === currentWeek
   );
+
   const weeklyHelpSessions = schedule_help_sessions.filter(
     (schedule_help_sessions) =>
       schedule_help_sessions.weeks().week === currentWeek
@@ -41,9 +43,7 @@ const Dashboard = ({}) => {
   const ongoingHelpSessions = weeklyHelpSessions.filter(isHappeningNow);
   const ongoingTutorials = schedule_tutorials.filter(isHappeningNow);
 
-  console.log(ongoingLectures);
-  console.log(ongoingHelpSessions);
-  console.log(ongoingTutorials);
+    console.log(ongoingHelpSessions);
 
   return (
     <>
