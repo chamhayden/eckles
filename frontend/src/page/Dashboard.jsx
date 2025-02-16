@@ -48,7 +48,7 @@ const Dashboard = ({}) => {
   return (
     <>
       <div style={{ lineHeight: "150%", fontSize: "1.5em" }}>
-        Welcome to COMP6080 for {getters.term}.<br />
+        Welcome to COMP6080 for {getters.term}.
         <br />
         {cookies.eckles_loggedin && getters.content ? (
           <>
@@ -61,8 +61,6 @@ const Dashboard = ({}) => {
                   ongoingHelpSessions={ongoingHelpSessions}
                   ongoingTutorials={ongoingTutorials}
                 />
-
-                <br />
               </>
             )}
             Check out some recent notices!
