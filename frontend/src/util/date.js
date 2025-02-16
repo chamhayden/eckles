@@ -1,4 +1,14 @@
 export const isHappeningNow = (event) => {
+  const dayMap = {
+    Sun: "Sunday",
+    Mon: "Monday",
+    Tue: "Tuesday",
+    Wed: "Wednesday",
+    Thu: "Thursday",
+    Fri: "Friday",
+    Sat: "Saturday",
+  };
+
   const now = new Date("2025-02-18 20:00");
 
   // const now = new Date(
@@ -6,7 +16,9 @@ export const isHappeningNow = (event) => {
   // );
 
   const currentDay = now.toLocaleString("en-US", { weekday: "long" });
-  if (event.day !== currentDay) return false;
+  const eventDay = dayMap[event.day] || event.day;
+  
+  if (eventDay !== currentDay) return false;
 
   // Handle different time field names
   const timeStr = event.time || event.times; // Use correct key
@@ -23,14 +35,13 @@ export const isHappeningNow = (event) => {
   endTime.setHours(endHour, endMin, 0, 0);
 
   return now >= startTime && now <= endTime;
-
 };
 
 export const getCurrentWeek = (startOfTermDate) => {
   //   const today = new Date(
   //     new Date().toLocaleString("en-US", { timeZone: "Australia/Sydney" })
   //   );
-  const today = new Date("2025-02-17");
+  const today = new Date("2025-02-20");
   const startOfTerm = new Date(startOfTermDate);
   const diffInDays = Math.floor((today - startOfTerm) / (1000 * 60 * 60 * 24));
   return Math.floor(diffInDays / 7) + 1;
