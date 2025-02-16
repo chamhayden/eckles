@@ -23,7 +23,6 @@ function LiveSession({ title, sessions, getDetails }) {
             {callUrl && (
               <Button
                 variant="contained"
-                color="primary"
                 href={callUrl.includes("http") ? callUrl : undefined}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -31,9 +30,12 @@ function LiveSession({ title, sessions, getDetails }) {
                 sx={{
                   width: "100%",
                   marginTop: "5px",
-                  color: "#FFF !important",
+                  backgroundColor: "#2f7d31",
+                  color: "white",
+                  border: "3px solid white",
                   "&:hover": {
-                    backgroundColor: "primary.dark",
+                    backgroundColor: "#1b5e20",
+                    color: "white",
                   },
                 }}
               >
@@ -44,11 +46,21 @@ function LiveSession({ title, sessions, getDetails }) {
         );
 
         return sessions.length > 1 ? (
-          <Card key={index} sx={{ marginBottom: "15px" }}>
+          <Card
+            key={index}
+            sx={{
+              marginBottom: "15px",
+              backgroundColor: "#4daf50",
+              border: "1px solid white",
+            }}
+          >
             <CardContent>{content}</CardContent>
           </Card>
         ) : (
-          <Box key={index} sx={{ marginBottom: "10px" }}>
+          <Box
+            key={index}
+            sx={{ marginBottom: "10px", backgroundColor: "#4daf50" }}
+          >
             {content}
           </Box>
         );
@@ -74,10 +86,9 @@ export default function HappeningNow({
       sx={{
         width: "100%",
         borderRadius: 1,
-        border: (theme) => `3px solid ${theme.palette.primary.main}`,
         padding: "20px",
         margin: "20px 0",
-        backgroundColor: (theme) => theme.palette.background.paper,
+        backgroundColor: "#4daf50",
       }}
     >
       <LiveSession
