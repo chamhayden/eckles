@@ -38,14 +38,15 @@ const TimetableLectures = () => {
           {getters.content.schedule_lectures.map((row, rowKey) => (
             <TableRow
               key={rowKey}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 }, 'background': row.important ? 'rgb(255,220,220)' : '#ccc'  }}
             >
+              {console.log(row.important)}
               <TableCell component="th" scope="row">
                 <Typography variant="h6">{row.week().week}</Typography>
               </TableCell>
               <TableCell align="left">{row.day}</TableCell>
               <TableCell align="left">{row.time}</TableCell>
-              {!isTinyMobileWidth() && <TableCell align="left">Hayden</TableCell>}
+              {!isTinyMobileWidth() && <TableCell align="left">{row.content_lectures && row.content_lectures().map(cl => cl.staff().map(s => s.name))}</TableCell>}
               {getters.loggedIn && isDesktopWidth() && <TableCell align="left">
                 {row.content_lectures && (
                   <>
@@ -58,10 +59,10 @@ const TimetableLectures = () => {
               </TableCell>}
               {getters.loggedIn &&
                 <TableCell align="left">
-                  <h4>{row.location}</h4><br />
-                  <Button variant="contained" onClick={() => {
-                    window.location.href = `${row.call_url_h}`;
-                  }}>Watch Live</Button>
+                  <h4>
+                    {row.location} &nbsp;
+                    <a href={row.call_url_h} target="_blank">(watch)</a>
+                  </h4>
                 </TableCell>}
             </TableRow>
           ))}

@@ -275,7 +275,8 @@ app.get('/gitlabredir/:term/:repo/:path?', async (req, res) => {
 
 app.post('/api/content/public', async (req, res) => {
   const { term } = req.body;
-  return (await getContent(term)).public;
+  const content = await getContent(term);
+  res.json(content.public);
 });
 
 app.get('/api/grades', (req, res) => {
