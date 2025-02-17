@@ -165,28 +165,35 @@ const ContentLecturesSingle = ({}) => {
         )}
       </Box>
 
-      {lecture.visible ? (
-        <a
-          href={
-            lecture.pdf_url === undefined
-              ? `/~cs6080/raw/lectures/${lecture.key}.pdf`
-              : lecture.pdf_url
-          }
-          target="_blank"
-        >
-          <Button variant="outlined" color="warning">
-            View/Download PDF
-          </Button>
-        </a>
+      {lecture.pdf_url !== 'null' ? (
+        <>
+          {lecture.visible ? (
+            <a
+              href={
+                lecture.pdf_url === undefined
+                  ? `/~cs6080/raw/lectures/${lecture.key}.pdf`
+                  : lecture.pdf_url
+              }
+              target="_blank"
+            >
+              <Button variant="outlined" color="warning">
+                View/Download PDF
+              </Button>
+            </a>
+          ) : (
+            <Button
+              onClick={() => alert("Lecture is coming soon! Check back later")}
+              variant="outlined"
+              color="warning"
+            >
+              View/Download PDF
+            </Button>
+          )}
+        </>
       ) : (
-        <Button
-          onClick={() => alert("Lecture is coming soon! Check back later")}
-          variant="outlined"
-          color="warning"
-        >
-          View/Download PDF
-        </Button>
+        <>There are no slides for this lecture</>
       )}
+
 
       <Accordion
         sx={{
