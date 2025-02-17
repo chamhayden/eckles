@@ -22,14 +22,15 @@ const makePage = (Component, options) => {
     }, [options.title]);
 
     React.useEffect(() => {
-      if (cookies.eckles_loggedin) {
+      if (cookies.eckles_loggedin && getters.term !== '') {
         setters.setLoggedIn(cookies.eckles_loggedin);
-        apiCall('istutor', {}, 'POST')
+        apiCall('istutor', { term: getters.term }, 'POST')
           .then(result => {
+            console.log('hello', result);
             setters.setIsTutor(result.value)
           });
       }
-    }, [cookies]);
+    }, [cookies, getters.term]);
 
     React.useEffect(() => {
       if (options.loginRequired && !cookies.eckles_loggedin) {

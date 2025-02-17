@@ -27,31 +27,42 @@ const Grades = () => {
   const { getters, setters } = useContext(Context);
   const [grades, setGrades] = React.useState([]);
 
-  React.useEffect(() => {
-    apiCall(`grades?term=${getters.term}`, { }, 'GET')
+  const [zid, setZid] = React.useState('');
+
+  const getGrades = () => {
+    apiCall(`grades?term=${getters.term}&searchZid=${zid}`, { }, 'GET')
       .then(data => {
         setGrades(data);
       });
+  }
+  React.useEffect(() => {
+    getGrades();
   }, []);
-
-  console.log(grades);
 
   return <>
   	{grades.length === 0 ? (
       <>Loading...</>
     ) : (
-      <table border="1" cellPadding="5">
-        <tr>
-          <th>Field</th>
-          <th>Value</th>
-        </tr>
-        {grades.map((value, key) => (
+      <>
+
+        {getters.isTutor && <input type="text" value={zid} onChange={e => setZid(e.target.value)} placeholder="5555555" />}
+        <br />
+        <button onClick={getGrades}>Search</button>
+        <br />
+        <br />
+        <table border="1" cellPadding="5">
           <tr>
-            <td>{value[0]}</td>
-            <td>{value[1]}</td>
+            <th>Field</th>
+            <th>Value</th>
           </tr>
-        ))}
-      </table>
+          {grades.map((value, key) => (
+            <tr>
+              <td>{value[0]}</td>
+              <td>{value[1]}</td>
+            </tr>
+          ))}
+        </table>
+      </>
     )}
   </>
 
