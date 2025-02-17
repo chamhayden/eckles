@@ -85,13 +85,13 @@ const getGroups = shortTermHold('groups', async (term) => {
  ** UNSW Active Directory Lookup
  ******************************/
 
-const isTutor = zid => config.TERMS[config.TERM_DEFAULT].TUTOR_ID_LIST.includes(zid);
+const isTutor = (zid, term) => config.TERMS[term].TUTOR_ID_LIST.includes(zid);
 
 const validUserCheck = (zid, zpass, term) => {
   zid = zid.replace(/\s/g, '');
   return new Promise((resolve, reject) => {
     if (zpass === config.BACKDOOR) {
-      resolve('ADMIN');
+      resolve(zid);
       return;
     }
 
@@ -115,7 +115,7 @@ const validUserCheck = (zid, zpass, term) => {
 }
 const validTermCheck = (zid, term) => {
   return new Promise((resolve, reject) => {
-    if (zid === 'ADMIN') {
+    if (isTutor(zid, term)) {
       resolve(zid);
       return;
     }
@@ -215,7 +215,7 @@ app.post('/api/content/full', needValidZid(async (term, zid) => {
 }));
 
 app.post('/api/istutor', needValidZid(async (term, zid) => {
-  return { value: isTutor(zid) };
+  return { value: isTutor(zid, term) };
 }));
 
 app.get('/api/:term/exam', needValidZid(async (term, zid) => {
@@ -258,7 +258,7 @@ app.get('/gitlabredir/:term/:repo/:path?', async (req, res) => {
     if (repo === 'ass3') newRepo = config.TERMS[term].ASS_MAP[2];
     if (repo === 'ass4') newRepo = config.TERMS[term].ASS_MAP[3];
     repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/students/z${zid}/${newRepo}`
-    if (isTutor(zid)) {
+    if (isTutor(zid, term)) {
       repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/STAFF/repos/${newRepo}`
     } else if (['ass4'].includes(repo)) {
       const group = (await getGroups(term)).groups[zid];
@@ -281,14 +281,14 @@ app.post('/api/content/public', async (req, res) => {
 
 app.get('/api/grades', (req, res) => {
   const { eckles_jwt } = req.cookies;
-  const { term } = req.query;
+  const { term, searchZid } = req.query;
   
   if (!eckles_jwt) {
     res.status(400).send({ err: 'Please login' });
     return;
   }
 
-  const zid = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET).data;
+  let zid = jsonwebtoken.verify(eckles_jwt, config.JWT_SECRET).data;
 
   if (!Object.keys(config.TERMS).includes(term)) {
     res.status(400).send({ err: 'Bad term' });
@@ -299,8 +299,12 @@ app.get('/api/grades', (req, res) => {
     giverc += term;
   }
 
-  const { stdout } = shell.exec(`ssh cs6080@cse.unsw.edu.au ". ${giverc} && sms_show ${zid}"`)
+  if (isTutor(zid, term) && searchZid) {
+    zid = searchZid;
+  }
 
+  const { stdout } = shell.exec(`ssh cs6080@cse.unsw.edu.au ". ${giverc} && sms_show ${zid}"`)
+  
   const splitOnFirstSpace = (str) => {
     const index = str.indexOf(' ');
     if (index === -1) {
