@@ -40,7 +40,6 @@ const TimetableLectures = () => {
               key={rowKey}
               sx={{ '&:last-child td, &:last-child th': { border: 0 }, 'background': row.important ? 'rgb(255,220,220)' : '#ccc'  }}
             >
-              {console.log(row.important)}
               <TableCell component="th" scope="row">
                 <Typography variant="h6">{row.week().week}</Typography>
               </TableCell>
