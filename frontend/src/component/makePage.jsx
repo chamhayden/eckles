@@ -26,7 +26,6 @@ const makePage = (Component, options) => {
         setters.setLoggedIn(cookies.eckles_loggedin);
         apiCall('istutor', { term: getters.term }, 'POST')
           .then(result => {
-            console.log('hello', result);
             setters.setIsTutor(result.value)
           });
       }
