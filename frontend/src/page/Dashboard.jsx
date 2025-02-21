@@ -27,7 +27,6 @@ const Dashboard = ({}) => {
     schedule_tutorials,
     meta,
   } = getters.content;
-  console.log(getters.content);
 
   const currentWeek = getCurrentWeek(meta[0].value);
   const weeklyLectures = schedule_lectures.filter(
