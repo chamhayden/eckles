@@ -95,6 +95,8 @@ There are some requirements for us to track your ongoing progress:
 2. Your commits must be meaningful in description (e.g. "Continued work on loop speed")
 3. Each commit include no more than 100 lines additions of code (this may differ in future assignments). You are given 3 exceptions.
 
+Note: The only exception to these requirements is uploading font files as shown in lectures. Commits containing only font files can exceed the 100-line limit but must not include any other changes.
+
 You will receive a git score out of 4 marks for your compliance. Anything lower than 3.5/4 will start resulting in a penalty to your mark that is applied up to 50% of your gross mark.
 
 ## 7. Originality of Work
