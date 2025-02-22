@@ -7,10 +7,6 @@ config.terms = config.DEV ? ['sample', '24T1', '24T3', '25T1'] : ['sample', '24T
 config.DEFAULT_TERM = '25T1'; //config.DEV ? 'sample' : '24T1';
 
 config.joinSchema = {
-  meta: {
-    public: true,
-    joins: {},
-  },
   content_tutorials: {
     public: false,
     joins: {
