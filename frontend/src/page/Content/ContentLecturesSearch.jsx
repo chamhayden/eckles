@@ -23,10 +23,12 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import InfoIcon from "@mui/icons-material/Info";
 import GridViewIcon from "@mui/icons-material/GridView";
 import ReorderIcon from "@mui/icons-material/Reorder";
+import { getCurrentWeek } from "../../util/date";
 
 const ContentLecturesSearch = () => {
   const { getters, setters } = useContext(Context);
-  const { content_lectures, weeks, topics } = getters.content;
+  const { content_lectures, weeks, topics, meta } = getters.content;
+  const currentWeek = getCurrentWeek(meta[0].value);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [week, setWeek] = useState("All");
@@ -38,12 +40,14 @@ const ContentLecturesSearch = () => {
     selectedRelevance: "workHard",
     completedCOMP1531: true,
     showLiveLectures: false,
+    showPastWeeks: false,
   });
   const [tempFilters, setTempFilters] = useState({
     selectedTopic: "All",
     selectedRelevance: "workHard",
     completedCOMP1531: true,
     showLiveLectures: false,
+    showPastWeeks: false,
   });
   useEffect(() => {
     localStorage.getItem("viewMode") &&
@@ -75,12 +79,14 @@ const ContentLecturesSearch = () => {
       selectedRelevance: "workHard",
       completedCOMP1531: true,
       showLiveLectures: false,
+      showPastWeeks: false,
     });
     setTempFilters({
       selectedTopic: "All",
       selectedRelevance: "workHard",
       completedCOMP1531: true,
       showLiveLectures: false,
+      showPastWeeks: false,
     });
     setIsFiltered(false);
     setFiltersOpen(false);
@@ -130,7 +136,11 @@ const ContentLecturesSearch = () => {
         ? lecture.name.toLowerCase().includes(searchQuery.toLowerCase())
         : false;
       let selectedWeek = week === "All" ? "" : week;
-      const weekMatch = !selectedWeek || lecture.week().week === selectedWeek;
+      const lectureWeek = lecture.week().week;
+
+      const weekMatch =
+        selectedWeek || filters.showPastWeeks || lectureWeek >= currentWeek;
+
       let selectedTopic =
         filters.selectedTopic === "All" ? "" : filters.selectedTopic;
       const topicMatch =
@@ -143,7 +153,8 @@ const ContentLecturesSearch = () => {
         filters.selectedRelevance !== "workHard" ||
           filters.selectedTopic !== "All" ||
           filters.showLiveLectures !== false ||
-          filters.completedCOMP1531 !== true
+          filters.completedCOMP1531 !== true ||
+          filters.showPastWeeks !== false
       );
 
       return (
@@ -154,7 +165,7 @@ const ContentLecturesSearch = () => {
         liveLectureMatch
       );
     });
-  }, [content_lectures, filters, searchQuery, week]);
+  }, [content_lectures, filters, searchQuery, week, currentWeek]);
 
   return (
     <>
@@ -347,6 +358,23 @@ const ContentLecturesSearch = () => {
                 label="Show only live lectures"
               />
             </Stack>
+            <Stack>
+              <FormControlLabel
+                sx={{ mr: 0 }}
+                control={
+                  <Checkbox
+                    checked={tempFilters.showPastWeeks}
+                    onChange={(event) =>
+                      setTempFilters((prevFilters) => ({
+                        ...prevFilters,
+                        showPastWeeks: event.target.checked,
+                      }))
+                    }
+                  />
+                }
+                label="Show past weeks"
+              />
+            </Stack>
             <Stack direction="row" justifyContent="flex-end" spacing={1}>
               <Button variant="outlined" onClick={toggleFilters}>
                 Cancel
@@ -412,9 +440,9 @@ const ContentLecturesSearch = () => {
               </Box>
               {viewMode === "grid" ? (
                 <Box
-                display="grid"
-                gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))"
-                gap={2}
+                  display="grid"
+                  gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))"
+                  gap={2}
                 >
                   {lecturesForWeek.map((lecture) => (
                     <TutLecContentCard
