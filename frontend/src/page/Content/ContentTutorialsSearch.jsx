@@ -14,15 +14,19 @@ import {
   Select,
   Stack,
   MenuItem,
+  FormControlLabel,
+  Checkbox,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import GridViewIcon from "@mui/icons-material/GridView";
 import ReorderIcon from "@mui/icons-material/Reorder";
+import { getCurrentWeek } from "../../util/date";
 
 const ContentTutorialsSearch = () => {
   const { getters, setters } = useContext(Context);
-  const { content_tutorials, weeks, topics } = getters.content;
+  const { content_tutorials, weeks, topics, meta } = getters.content;
+  const currentWeek = getCurrentWeek(meta[0].value);
   const [searchQuery, setSearchQuery] = useState("");
   const [tutWeek, setTutWeek] = useState("All");
   const [isTutFiltered, setIsTutFiltered] = useState(false);
@@ -31,10 +35,12 @@ const ContentTutorialsSearch = () => {
   const [tutFilters, setTutFilters] = useState({
     selectedTopic: "All",
     selectedRelevance: "workHard",
+    showPastWeeks: false,
   });
   const [tempFilters, setTempFilters] = useState({
     selectedTopic: "All",
     selectedRelevance: "workHard",
+    showPastWeeks: false,
   });
 
   useEffect(() => {
@@ -64,10 +70,12 @@ const ContentTutorialsSearch = () => {
     setTutFilters({
       selectedTopic: "All",
       selectedRelevance: "workHard",
+      showPastWeeks: false,
     });
     setTempFilters({
       selectedTopic: "All",
       selectedRelevance: "workHard",
+      showPastWeeks: false,
     });
     setIsTutFiltered(false);
     setFiltersTutOpen(false);
@@ -79,7 +87,9 @@ const ContentTutorialsSearch = () => {
     setTutFilters(newFilters);
     setFiltersTutOpen(false);
     setIsTutFiltered(
-      newFilters.selectedRelevance !== "" || newFilters.selectedTopic !== "All"
+      newFilters.selectedRelevance !== "" ||
+        newFilters.selectedTopic !== "All" ||
+        newFilters.showPastWeeks !== false
     );
     localStorage.setItem("tutFilters", JSON.stringify(newFilters));
   };
@@ -105,20 +115,27 @@ const ContentTutorialsSearch = () => {
         : false;
       const topic =
         tutFilters.selectedTopic === "All" ? "" : tutFilters.selectedTopic;
-      let selectedWeek = tutWeek === "All" ? "" : tutWeek;
+      const tutorialWeek = tutorial.week().week;
+      const selectedWeek = tutWeek === "All" ? null : parseInt(tutWeek, 10);
 
-      const weekMatch = !selectedWeek || tutorial.week().week === selectedWeek;
+      const weekMatch =
+        tutFilters.showPastWeeks ||
+        (selectedWeek !== null
+          ? tutorialWeek === selectedWeek
+          : tutorialWeek >= currentWeek);
+
       const topicMatch = !topic || tutorial.topic().name === topic;
       const relevanceMatch = relevanceOptions.includes(tutorial.importance);
 
       setIsTutFiltered(
         tutFilters.selectedRelevance !== "workHard" ||
-          tutFilters.selectedTopic !== "All"
+          tutFilters.selectedTopic !== "All" ||
+          tutFilters.showPastWeeks !== false
       );
 
       return nameMatch && weekMatch && topicMatch && relevanceMatch;
     });
-  }, [content_tutorials, tutFilters, searchQuery, tutWeek]);
+  }, [content_tutorials, tutFilters, searchQuery, tutWeek, currentWeek]);
 
   return (
     <>
@@ -260,6 +277,23 @@ const ContentTutorialsSearch = () => {
                 </MenuItem>
               </Select>
             </FormControl>
+            <FormControl fullWidth>
+              <FormControlLabel
+                sx={{ mr: 0 }}
+                control={
+                  <Checkbox
+                    checked={tempFilters.showPastWeeks}
+                    onChange={(event) =>
+                      setTempFilters((prevFilters) => ({
+                        ...prevFilters,
+                        showPastWeeks: event.target.checked,
+                      }))
+                    }
+                  />
+                }
+                label="Show past weeks"
+              />
+            </FormControl>
             <Stack direction="row" justifyContent="flex-end" spacing={1}>
               <Button variant="outlined" onClick={toggleFilters}>
                 Cancel
@@ -358,20 +392,20 @@ const ContentTutorialsSearch = () => {
                 >
                   {tutorialsForWeek.map((tutorial) => (
                     <TutLecContentListItem
-                    contentKey={tutorial.key}
-                    name={tutorial.name}
-                    duration_mins={tutorial.duration}
-                    relevance={tutorial.importance.split(" ")[1]}
-                    week={tutorial.week().week}
-                    topicEmoji={tutorial.topic().emoji}
-                    topicName={tutorial.topic().name}
-                    live={""}
-                    lecture={false}
-                    thumbnail={
-                      tutorial.thumbnail && tutorial.thumbnail.length > 0
-                        ? tutorial.thumbnail[0]
-                        : null
-                    }
+                      contentKey={tutorial.key}
+                      name={tutorial.name}
+                      duration_mins={tutorial.duration}
+                      relevance={tutorial.importance.split(" ")[1]}
+                      week={tutorial.week().week}
+                      topicEmoji={tutorial.topic().emoji}
+                      topicName={tutorial.topic().name}
+                      live={""}
+                      lecture={false}
+                      thumbnail={
+                        tutorial.thumbnail && tutorial.thumbnail.length > 0
+                          ? tutorial.thumbnail[0]
+                          : null
+                      }
                     />
                   ))}
                 </Box>
