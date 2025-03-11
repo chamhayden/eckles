@@ -153,7 +153,7 @@ You will _need_ to watch at least the following lectures before starting (it wil
 - [Javascript Language & Syntax](https://cgi.cse.unsw.edu.au/~cs6080/NOW/content/lectures/javascript-syntax-intro)
 - [WebJS Intro](https://cgi.cse.unsw.edu.au/~cs6080/NOW/content/lectures/javascript-browser-intro)
 - [DOM](https://cgi.cse.unsw.edu.au/~cs6080/NOW/content/lectures/javascript-browser-dom)
-- [Events](https://cgi.cse.unsw.edu.au/~cs6080/NOW/content/lectures/javascript-browser-dom)
+- [Events](https://cgi.cse.unsw.edu.au/~cs6080/25T1/content/lectures/javascript-browser-events)
 
 You will _need_ to watch at least the following lectures to finish the assessment completely:
 
