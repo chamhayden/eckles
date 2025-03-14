@@ -45,10 +45,14 @@ const Grades = () => {
     ) : (
       <>
 
-        {getters.isTutor && <input type="text" value={zid} onChange={e => setZid(e.target.value)} placeholder="5555555" />}
-        <br />
-        <button onClick={getGrades}>Search</button>
-        <br />
+        {getters.isTutor &&
+          <>
+           <input type="text" value={zid} onChange={e => setZid(e.target.value)} placeholder="5555555" />
+           <br />
+           <button onClick={getGrades}>Search</button>
+           <br />
+          </>
+        }
         <br />
         <table border="1" cellPadding="5">
           <tr>
