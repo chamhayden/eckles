@@ -295,7 +295,7 @@ app.get('/api/grades', (req, res) => {
   }
 
   let giverc = '~/.giverc';
-  if (term != config.DEFAULT_TERM) {
+  if (term != config.TERM_DEFAULT) {
     giverc += term;
   }
 
@@ -304,7 +304,7 @@ app.get('/api/grades', (req, res) => {
   }
 
   const { stdout } = shell.exec(`ssh cs6080@cse.unsw.edu.au ". ${giverc} && sms_show ${zid}"`)
-  
+  console.log(stdout);
   const splitOnFirstSpace = (str) => {
     const index = str.indexOf(' ');
     if (index === -1) {
