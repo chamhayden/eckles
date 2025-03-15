@@ -279,7 +279,7 @@ app.post('/api/content/public', async (req, res) => {
   res.json(content.public);
 });
 
-app.get('/api/grades', (req, res) => {
+app.get('/api/gradesearch', (req, res) => {
   const { eckles_jwt } = req.cookies;
   const { term, searchZid } = req.query;
   
