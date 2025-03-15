@@ -30,7 +30,7 @@ const Grades = () => {
   const [zid, setZid] = React.useState('');
 
   const getGrades = () => {
-    apiCall(`grades?term=${getters.term}&searchZid=${zid}`, { }, 'GET')
+    apiCall(`gradesearch?term=${getters.term}&searchZid=${zid}`, { }, 'GET')
       .then(data => {
         setGrades(data);
       });
