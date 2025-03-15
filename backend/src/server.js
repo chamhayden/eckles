@@ -303,8 +303,15 @@ app.get('/api/gradesearch', (req, res) => {
     zid = searchZid;
   }
 
-  const { stdout } = shell.exec(`ssh cs6080@cse.unsw.edu.au ". ${giverc} && sms_show ${zid}"`)
-  console.log(stdout);
+  let shellresult = '';
+  if (config.DEV) {
+    const { stdout } = shell.exec(`ssh cs6080@cse.unsw.edu.au ". ${giverc} && sms_show ${zid}"`)
+    shellresult = stdout;
+  } else {
+    const { stdout } = shell.exec(`. ${giverc} && sms_show ${zid}`)
+    shellresult = stdout;
+  }
+  
   const splitOnFirstSpace = (str) => {
     const index = str.indexOf(' ');
     if (index === -1) {
