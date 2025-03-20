@@ -410,9 +410,9 @@ You should ensure that your programs have been tested on one of the following tw
  > **What is non-SPA?**
  > Non-SPA is a multi-page application where each new page is loaded from the server, causing a full page reload with each navigation. This contrasts with SPAs, which handle navigation on the client side for faster interactions.
 
-### 4.5. Static HTML, innerHTML, DOM manipulation
+### 4.5. Allowed Usages
 
-In this assignment, you are:
+In this assignment, you are allowed to:
  * Add static HTML/CSS to the stub website provided (i.e. you can put raw HTML/CSS as if it's a static page, even if you then later manipulate it with JavaScript).
  * Build HTML elements and add CSS properties to the DOM via JavaScript.
  * Use \`innerText\` properties/functions
