@@ -68,7 +68,7 @@ const getForum = shortTermHold('forum', async (term) => {
 const getGroups = shortTermHold('groups', async (term) => {
   const { stdout } = shell.exec(`rm -rf /tmp/gl && git clone git@nw-syd-gitlab.cseunsw.tech:COMP6080/${term}/STAFF/administration.git /tmp/gl && cd /tmp/gl && cat groups.csv`)
   const groupLink = {};
-  raw.split('\n').forEach(line => {
+  stdout.split('\n').forEach(line => {
     const innerLine = line.split(',');
     if (innerLine[0] !== 'id' && innerLine[0] !== '') {
       const zid = innerLine[0].replace('z', '');
@@ -261,7 +261,7 @@ app.get('/gitlabredir/:term/:repo/:path?', async (req, res) => {
     if (isTutor(zid, term)) {
       repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/STAFF/repos/${newRepo}`
     } else if (['ass4'].includes(repo)) {
-      const group = (await getGroups(term)).groups[zid];
+      const group = (await getGroups(term))[zid];
       repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/groups/${group}/${newRepo}`
     }
     if (path) {
@@ -269,6 +269,7 @@ app.get('/gitlabredir/:term/:repo/:path?', async (req, res) => {
     }
     res.redirect(repoPath);
   } catch (err) {
+    console.log('err', err);
     res.status(400).send({ err: 'Go away' });
   }
 });
