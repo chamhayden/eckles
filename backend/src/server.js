@@ -348,7 +348,7 @@ app.get('/api/gradesearch', (req, res) => {
     'test1',
     'test2',
   ];
-  let eachLine = stdout.trim().split('\n')
+  let eachLine = shellresult.trim().split('\n')
   eachLine.sort();
   const results = eachLine.map(splitOnFirstSpace);
   const filteredResults = results.filter(r => !avoid.includes(r[0]));
