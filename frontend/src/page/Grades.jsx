@@ -62,7 +62,11 @@ const Grades = () => {
           {grades.map((value, key) => (
             <tr>
               <td>{value[0]}</td>
-              <td>{value[1]}</td>
+              {(value[1] === '.' || value[1] === '') ? (
+                <td><small><small><small>Unreleased</small></small></small></td>
+              ) : (
+                <td>{value[1].replace('{', '').replace('}', '')}{value[2] && ` / ${value[2]}`}</td>
+              )}
             </tr>
           ))}
         </table>

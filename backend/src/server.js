@@ -305,20 +305,36 @@ app.get('/api/gradesearch', (req, res) => {
   }
 
   let shellresult = '';
+  let fieldMaxesRaw = '';
+  let fieldMaxes = {};
   if (config.DEV) {
-    const { stdout } = shell.exec(`ssh cs6080@cse.unsw.edu.au ". ${giverc} && sms_show ${zid}"`)
-    shellresult = stdout;
+    shellresult = shell.exec(`ssh cs6080@cse.unsw.edu.au ". ${giverc} && sms_show ${zid}"`).stdout;
+    fieldMaxesRaw = shell.exec(`ssh cs6080@cse.unsw.edu.au ". ${giverc} && smsfield | cut -d' ' -f1,4"`).stdout;
   } else {
-    const { stdout } = shell.exec(`. ${giverc} && sms_show ${zid}`)
-    shellresult = stdout;
+    shellresult = shell.exec(`. ${giverc} && sms_show ${zid}`).stdout;
+    fieldMaxesRaw = shell.exec(`. ${giverc} && smsfield | cut -d' ' -f1,4`).stdout;
   }
-  
+  const rows = fieldMaxesRaw.split('\n');
+  for (const row of rows) {
+    rowSplit = row.split(' ');
+    if (rowSplit.length > 1) {
+      const key = rowSplit[0];
+      const val = rowSplit[1];
+      if (!isNaN(val)) {
+        fieldMaxes[key] = val;
+      }
+    }
+  }
+
   const splitOnFirstSpace = (str) => {
     const index = str.indexOf(' ');
     if (index === -1) {
         return [str, ''];
     }
-    return [str.slice(0, index), str.slice(index + 1)];
+    const field = str.slice(0, index);
+    const value = str.slice(index + 1);
+    const maximum = fieldMaxes[field];
+    return [field, value, maximum];
   }
 
   const avoid = [
