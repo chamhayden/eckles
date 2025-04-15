@@ -202,7 +202,7 @@ const needValidZid = (fn) => {
       res.status(400).send({ err: 'Go away' })
       return;
     }
-    result = await fn(term, zid);
+    result = await fn(term, zid, req, res);
     res.json(result);
   }
 }
@@ -216,6 +216,30 @@ app.post('/api/content/full', needValidZid(async (term, zid) => {
 
 app.post('/api/istutor', needValidZid(async (term, zid) => {
   return { value: isTutor(zid, term) };
+}));
+
+app.get('/api/:term/groupinfo', needValidZid(async (_, zid, req) => {
+  const { term } = req.params;
+  let assignmentReady = false;
+  let inGroup = false;
+  let groupZid = null;
+  const groups = await getGroups(term);
+  
+  if (Object.keys(groups).indexOf(zid) !== -1) {
+    assignmentReady = true;
+    const groupname = groups[zid];
+    for (const key in groups) {
+      if (groups[key] === groupname && key != zid) {
+        groupZid = key;
+        inGroup = true;
+      }
+    }
+  }  
+  return {
+    assignmentReady,
+    inGroup,
+    groupZid,
+  }
 }));
 
 app.get('/api/:term/exam', needValidZid(async (term, zid) => {

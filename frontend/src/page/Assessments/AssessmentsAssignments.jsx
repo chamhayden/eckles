@@ -15,9 +15,18 @@ import { ass1a, ass1b, ass2a, ass2b, ass3a, ass3b, ass4a, ass4b } from './Assign
 import SubNavWrapper from '../../component/SubNavWrapper';
 import makePage from '../../component/makePage';
 import config from '../../config';
+import { apiCall } from '../../util/api';
 
 const AssessmentsAssignments = ({ }) => {
   const { getters, setters } = useContext(Context);
+  const [groupInfo, setGroupInfo] = React.useState(null);
+  React.useEffect(() => {
+    apiCall(`${getters.term}/groupinfo`, {}, 'GET')
+      .then(data => {
+        setGroupInfo(data);
+      })
+  }, []);
+  
   const params = useParams();
   const menu = [
     {
@@ -46,6 +55,34 @@ const AssessmentsAssignments = ({ }) => {
     <SubNavWrapper baseUrl={'/assessments/assignments'} menu={menu}>
       <>
         {getters.term === '24T3' || getters.term.indexOf('25') !== -1 ? <>
+          {params.ass === 'ass4' && (
+            <>
+              <h3>Here is some information about your group</h3>
+                {groupInfo ? (
+                  <>
+                    {!groupInfo.assignmentReady ? (
+                      <>You have yet to complete the preference form for this assignment - please wait until the week 5 & 6 course notices. You must fill in the form in those notices.</>
+                    ) : (
+                      <>
+                        Your assignment repo has been created. You are <> </>
+                        {groupInfo.inGroup ? (
+                          <>working in a group with z{groupInfo.groupZid}@unsw.edu.au.</>
+                        ) : (
+                          <>working alone.</>
+                        )}
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    Loading...
+                  </>
+                )}
+              <br />
+              <br />
+              <hr />
+             </>
+          )}
           {
             params.ass === 'ass1' ? <AssPrint mda={ass1a} mdb={ass1b} assNumber={1} startWeek={1} /> :
             params.ass === 'ass2' ? <AssPrint mda={ass2a} mdb={ass2b} assNumber={2} startWeek={3} /> :
