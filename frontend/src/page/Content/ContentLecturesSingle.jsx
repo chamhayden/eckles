@@ -22,6 +22,10 @@ import Youtube from "../../component/Youtube";
 import { getYoutubeCodeFromUrl } from "../../util/content";
 import TitleCard from "../../component/TitleCard";
 import SectionHeader from "../../component/SectionHeader";
+import { Rating } from 'react-simple-star-rating'
+import { apiCall } from '../../util/api';
+
+let ratingCommentsTimeout = null;
 
 const ContentLecturesSingle = ({}) => {
   const { getters, setters } = useContext(Context);
@@ -29,7 +33,37 @@ const ContentLecturesSingle = ({}) => {
   const [lecture, setLecture] = React.useState(null);
   const [relatedLectures, setRelatedLectures] = React.useState([]);
   const [relatedTutes, setRelatedTutes] = React.useState([]);
+  const [rating, setRating] = React.useState(0);
+  const [ratingComments, setRatingComments] = React.useState('');
   const params = useParams();
+
+  React.useEffect(() => {
+    if (params.lecid) {
+      apiCall(`${getters.term}/rating/${params.lecid}`, {}, 'GET')
+        .then(data => {
+          console.log(data);
+          setRating(data.rating);
+          setRatingComments(data.comment);
+        })
+    }
+  }, [params.lecid]);
+
+  const commentDebounce = () => {
+    clearTimeout(ratingCommentsTimeout);
+    ratingCommentsTimeout = setTimeout(() => {
+      apiCall(`${getters.term}/rating`, { lectureslug: params.lecid, rating: rating, comment: ratingComments, }, 'POST')
+      .then();
+    }, 1000);
+  }
+  React.useEffect(commentDebounce, [rating, ratingComments]);
+
+  const handleRatingComments = (e) => {
+    setRatingComments(e.target.value);
+  }
+
+  const handleRating = (rate) => {
+    setRating(rate);
+  }
 
   React.useEffect(() => {
     const candidates = getters.content.content_lectures.filter(
@@ -194,6 +228,16 @@ const ContentLecturesSingle = ({}) => {
         <>There are no slides for this lecture</>
       )}
 
+       {['22T1', '22T3', '23T1', '23T3', '24T1', '24T3', '25T1'].indexOf(getters.term) === -1 && (
+        <>
+          <h2>Please rate after watching!</h2>
+          <Rating
+            onClick={handleRating}
+            initialValue={rating}
+          />
+          &nbsp;&nbsp;<input value={ratingComments} onChange={handleRatingComments} placeholder="Any comments? This will auto-save" style={{ height: '20px', width: '300px' }}/>
+        </>
+      )}
 
       <Accordion
         sx={{
@@ -222,6 +266,7 @@ const ContentLecturesSingle = ({}) => {
           )}
         </AccordionDetails>
       </Accordion>
+
 
       {relatedLectures.length > 0 && (
         <>
