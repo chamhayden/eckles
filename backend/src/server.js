@@ -9,7 +9,7 @@ const path = require('path');
 const shell = require('shelljs')
 const fs = require('fs');
 
-const { generateContent } = require('./content');
+const { generateContent, updateRating, getRating } = require('./content');
 const { getStudentIds, getGrades } = require('./student_data');
 
 
@@ -400,6 +400,22 @@ app.get('/api/gradesearch', (req, res) => {
 app.get('/api/validterms', (req, res) => {
   res.json(Object.keys(config.TERMS));
 });
+
+app.get('/api/:term/rating/:lectureslug', needValidZid(async (_, zid, req) => {
+  const { term, lectureslug } = req.params;
+  const data = await getRating(term, zid, lectureslug);
+  return {
+    rating: data.rating,
+    comment: data.comment,
+  };
+}));
+
+app.post('/api/:term/rating', needValidZid(async (_, zid, req) => {
+  const { term } = req.params;
+  const { rating, lectureslug, comment } = req.body;
+  await updateRating(term, zid, lectureslug, rating, comment)
+  return {};
+}));
 
 app.use(express.static(path.join(__dirname, '../../frontend/build')))
 
