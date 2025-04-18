@@ -122,7 +122,7 @@ const ContentTutorialsSearch = () => {
         tutFilters.showPastWeeks ||
         (selectedWeek !== null
           ? tutorialWeek === selectedWeek
-          : tutorialWeek >= currentWeek);
+          : tutorialWeek >= (currentWeek - 1));
 
       const topicMatch = !topic || tutorial.topic().name === topic;
       const relevanceMatch = relevanceOptions.includes(tutorial.importance);
