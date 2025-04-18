@@ -139,7 +139,7 @@ const ContentLecturesSearch = () => {
       const lectureWeek = lecture.week().week;
 
       const weekMatch =
-        selectedWeek || filters.showPastWeeks || lectureWeek >= currentWeek;
+        selectedWeek || filters.showPastWeeks || lectureWeek >= (currentWeek - 1);
 
       let selectedTopic =
         filters.selectedTopic === "All" ? "" : filters.selectedTopic;
