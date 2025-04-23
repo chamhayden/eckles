@@ -46,7 +46,7 @@ const CourseOutline25T1 = () => {
         2. Date, Time, and Duration
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The final exam will be a 3 hour exam. The exam will run [HAYDEN TODO INSERT DATE AND TIME].
+        The final exam will be a 3 hour exam. The exam will run in the morning session on the 6th of May.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         Only submissions made during your exam time window will be counted as valid.
