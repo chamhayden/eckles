@@ -20,7 +20,7 @@ const CourseOutline25T1 = () => {
   return (
     <>
       <Typography variant="body" component="div" gutterBottom>
-        <b>COMP6080 is an open-book, invigilated, hurdle-based in-person exam completed at UNSW.</b>
+        <b>COMP6080 is an open-book, online exam.</b>
         <br />
         <br />
       </Typography>     
@@ -46,7 +46,7 @@ const CourseOutline25T1 = () => {
         2. Date, Time, and Duration
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The final exam will be a 3 hour exam. The exam will run in the morning session on the 4th of December 2024.
+        The final exam will be a 3 hour exam. The exam will run [HAYDEN TODO INSERT DATE AND TIME].
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         Only submissions made during your exam time window will be counted as valid.
@@ -137,12 +137,6 @@ const CourseOutline25T1 = () => {
          <li>Make commits no more than 100 lines of code</li>
          <li>Have meaningful commit names</li>
         </ul>
-      </Typography>
-      <Typography variant="h5" component="div" gutterBottom>
-        Hurdle Requirements
-      </Typography>
-      <Typography variant="body1" component="div" gutterBottom>
-        This exam has a hurdle component - which means if you don't achieve a <i>scaled</i> pass mark then you will not pass the course.
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
         7. Submission
