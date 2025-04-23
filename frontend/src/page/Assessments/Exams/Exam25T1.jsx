@@ -20,7 +20,7 @@ const CourseOutline25T1 = () => {
   return (
     <>
       <Typography variant="body" component="div" gutterBottom>
-        <b>COMP6080 is an open-book, invigilated, hurdle-based in-person exam completed at UNSW.</b>
+        <b>COMP6080 is an open-book, hurdle-based online exam.</b>
         <br />
         <br />
       </Typography>     
