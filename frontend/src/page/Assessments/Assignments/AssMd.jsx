@@ -720,7 +720,7 @@ It is your responsibiltiy to ensure that your code can run successfully when clo
 You can run a dryrun to sanity check your code runs basically by:
 
 1. Pushing your code to master on gitlab
-2. On a CSE terminal (vlab or lab machine), run \`6080 ass4dryrun presto GROUP_NAME\` where GROUP_NAME is the name of your group
+2. On a CSE terminal (vlab or lab machine), run \`6080 ass4dryrun ASS GROUP_NAME\` where GROUP_NAME is the name of your group, and ASS is the assignment (e.g. bigbrain, presto, airbrb)
 
 ## 10. Late Submission Policy
 
