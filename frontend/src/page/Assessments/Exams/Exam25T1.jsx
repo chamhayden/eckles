@@ -20,7 +20,7 @@ const CourseOutline25T1 = () => {
   return (
     <>
       <Typography variant="body" component="div" gutterBottom>
-        <b>COMP6080 is an open-book, hurdle-based online exam.</b>
+        <b>COMP6080 is an open-book, hurdle-based, online exam.</b>
         <br />
         <br />
       </Typography>     
