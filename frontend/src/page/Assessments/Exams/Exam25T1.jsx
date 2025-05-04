@@ -144,7 +144,7 @@ const CourseOutline25T1 = () => {
         </ul>
         If you have other specific circumstances (like adding large configuration files or dependencies), similarly explain these in your commit message. Ensure the message clearly conveys the reason for the exception.
 
-        <strong>No other code is allowed</strong> for these exceptions to be valid.
+        <strong>The commit must not contain other code</strong> for these exceptions to be valid.
 
         Reasons such as adding new functionality, components, or other code-related changes are not accepted. Excepted commits must not contain such changes.
       </Typography>
