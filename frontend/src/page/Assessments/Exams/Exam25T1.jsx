@@ -137,6 +137,16 @@ const CourseOutline25T1 = () => {
          <li>Make commits no more than 100 lines of code</li>
          <li>Have meaningful commit names</li>
         </ul>
+        Exceptions to the 100 line commit requirement are made for initial setup files (e.g., package.json) and when running lint.
+        However, the commit message must explicitly reflect this. Example:
+        <ul>
+          <li>Commit over 100 lines: Initial React app setup</li>
+        </ul>
+        If you have other specific circumstances (like adding large configuration files or dependencies), similarly explain these in your commit message. Ensure the message clearly conveys the reason for the exception.
+
+        <strong>The commit must not contain other code</strong> for these exceptions to be valid.
+
+        Reasons such as adding new functionality, components, or other code-related changes are not accepted. Excepted commits must not contain such changes.
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
         7. Submission
@@ -167,6 +177,11 @@ const CourseOutline25T1 = () => {
           <li>A sample exam paper can be found <a target="_blank" href="https://nw-syd-gitlab.cseunsw.tech/COMP6080/exam-sample-spec">here</a>.
             <ul><li>A solution (built file, not the source code) of the sample exam can be found <a target="_blank" href="https://cs6080.web.cse.unsw.edu.au/sample-exam/">here</a>. Please note, this solution may be incomplete, but it is mostly complete.</li></ul>
           </li>
+          <li>An exam submission repo will be released to each student before the exam.
+            <ul><li>You are free to push any files you want to that repo before the exam begins.</li></ul>
+          </li>
+          <li>You are free to use React or VanillaJS for the exam.</li>
+          <li>If you are using React, you must use either NPM or Yarn as your package manager. All other variations such as frameworks and additional packages are up to you</li>
         </ul>
       </Typography>
     </>
