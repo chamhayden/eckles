@@ -143,8 +143,10 @@ const CourseOutline25T1 = () => {
           <li>Commit over 100 lines: Initial React app setup</li>
         </ul>
         If you have other specific circumstances (like adding large configuration files or dependencies), similarly explain these in your commit message. Ensure the message clearly conveys the reason for the exception.
-        
-        Reasons such as adding new functionality, components, or other code-related changes are not accepted.
+
+        <strong>No other code is allowed</strong> for these exceptions to be valid.
+
+        Reasons such as adding new functionality, components, or other code-related changes are not accepted. Excepted commits must not contain such changes.
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
         7. Submission
