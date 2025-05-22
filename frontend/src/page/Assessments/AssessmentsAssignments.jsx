@@ -61,7 +61,7 @@ const AssessmentsAssignments = ({ }) => {
                 {groupInfo ? (
                   <>
                     {!groupInfo.assignmentReady ? (
-                      <>You have yet to complete the preference form for this assignment - please wait until the week 5 & 6 course notices. You must fill in the form in those notices.</>
+                      <><span style={{ fontSize: '2em', color: 'red', }}>⚠️⚠️⚠️ You have yet to complete the preference form for this assignment ⚠️⚠️⚠️ - see the week 5 & 6 course notices for the form. EVERY student must fill in this form to get access to your repo, regardless of if you're working alone or not.</span></>
                     ) : (
                       <>
                         Your assignment repo has been created. You are <> </>
