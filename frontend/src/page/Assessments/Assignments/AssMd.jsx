@@ -448,7 +448,7 @@ Please note: When we test your UI we will use a pre-loaded database JSON that al
       
 ### 5.5. Bonus Marks (5%)
  * An extra 5% of the assignment can be attained via bonus marks, meaning a maximum mark of 105/100. Any bonus marks that extend your ass2 mark above 100% will bleed into other assignment marks, but cannot contribute outside of the 75% of the course that is allocated for assignment marks
- * Your bonus feature(s) can be anything. You just have to think of something that could make your web app stand out in some minor or major way. Simple examples would include just making sure that your user interface and user experience stands out amongst other students, maybe through some user testing.
+ * Your bonus feature(s) can be anything. You just have to think of something that could make your web app stand out in some minor or major way. Simple examples would include just making sure that your user interface and user experience stands out amongst other students, maybe through some user testing. They can be functional (added behaviour) or aesthetic (making things very pretty).
  * You could also add extra features, such as some additional frontend form validations - the possibilities are limitless.
  * If you do implement a bonus feature, describe the feature and its details in \`bonus.md\` in the root directory of this repository.
 
@@ -553,9 +553,6 @@ You are to build a web app using a provided backend. This app shall be built wit
 
 #### 1.3.1 Languages
 
-- You must implement this assignment in React.js. You **cannot** use other declarative frameworks, such as Angular, or Vue.
-- You must use React.js solutions wherever possible, and avoid doing any direct DOM manipulation unless completely unavoidable (check with course staff).
-- You are strictly **NOT** allowed to use universal css for styling, this applies to any usage of \`.css\`, \`.scss\`, \`.sass\` or \`.less\` files to style your work. You should use css-in-js techniques such as [styled components](https://styled-components.com/) and [Tailwind CSS](https://tailwindcss.com/) etc. It's fine to have **ONLY** setup CSS files for Tailwind CSS, any UI library you chose to work with and global setup to overwrite \`body\`'s style.
 - You can use any UI libraries that you would like, such as material-UI, Radix UI or any other library that you would like.
 - Besides those described to avoid, you can install and use any package that is available on [npm](https://www.npmjs.com/). You **MUST** commit \`package.json\` changes.
 
@@ -565,7 +562,13 @@ You are to build a web app using a provided backend. This app shall be built wit
 
 #### 1.3.3 Using code found online
 
-- You may use small amounts of general purpose code (not specific to the assignment) obtained from a site such as Stack Overflow or other publically available resources. You should attribute **clearly** the source of this code in a comment with it. You can not otherwise use code written by another person.`;
+- You may use small amounts of general purpose code (not specific to the assignment) obtained from a site such as Stack Overflow or other publically available resources. You should attribute **clearly** the source of this code in a comment with it. You can not otherwise use code written by another person.
+
+#### 1.3.4. ⚠ Prohibited Usage ⚠
+
+- **You are strictly **NOT** allowed to use universal css for styling. You cannot use direct CSS importing. You should either use CSS Modules, Styled Components, a UI Framework, or a combination of these. If you use a CSS Framework, it's fine to have **ONLY** setup CSS files for Tailwind CSS, any UI library you chose to work with and global setup to overwrite \`body\`'s style.**
+- You **cannot** use other declarative frameworks, such as Angular, or Vue. You must use ReactJS.
+- You must use React.js solutions wherever possible, and avoid doing any direct DOM manipulation unless completely unavoidable (check with course staff).`;
 
 export const ass4b = `
 
@@ -659,7 +662,7 @@ Your assignment will be hand-marked by tutor(s) in the course according to the c
 
 ### 6.9. Bonus Mark (5%)
  * Implementation of extra features that are not included in the spec.
- * Extra features should be non-trivial, have a clear justification for existing, and show either a form of technical, product, or creative flare.
+ * Extra features should be non-trivial, have a clear justification for existing, and show either a form of technical, product, or creative flare. They can be functional (added behaviour) or aesthetic (making things very pretty).
  * Any extra features written down in \`BONUS.md\` in the project folder
  * Any bonus marks that extend your ass4 mark above 100% will bleed into other assignment marks, but cannot contribute outside of the 80% of the course that is allocated for assignment marks
  * <b>Expectations placed on solo groups will be half of that of pairs to achieve the same mark.</b>
