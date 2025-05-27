@@ -15,6 +15,7 @@ import { getPrimaryNavList } from "../component/NavList";
 import SessionAlert from "../component/SessionAlert";
 import { getCurrentWeek, isHappeningNow } from "../util/date";
 import HappeningNow from "../component/HappeningNow";
+import truncate from "html-truncate";
 
 const Dashboard = ({}) => {
   const { getters, setters } = useContext(Context);
@@ -68,6 +69,7 @@ const Dashboard = ({}) => {
                   <Card
                     variant="outlined"
                     sx={{ padding: "20px", margin: "20px 0" }}
+                    key={idx}
                   >
                     <h3 style={{ margin: 0, padding: 0 }}>{post.title}</h3>
                     <span style={{ fontSize: "0.6em" }}>
@@ -81,9 +83,11 @@ const Dashboard = ({}) => {
                       }}
                       dangerouslySetInnerHTML={{
                         __html:
-                          post.document
-                            .replaceAll("\n", "<br />")
-                            .substring(0, 300) + `......`,
+                          truncate(
+                            post.document.replaceAll("\n", "<br />"),
+                            300,
+                            { ellipsis: `......` }
+                          ),
                       }}
                     ></div>
                     <br />
