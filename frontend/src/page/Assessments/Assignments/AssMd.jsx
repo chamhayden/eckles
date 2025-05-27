@@ -552,9 +552,9 @@ You are to build a web app using a provided backend. This app shall be built wit
 2. We strongly recommend you to use [\`nvm\`](https://github.com/nvm-sh/nvm) to manage node version, once you have \`nvm\` installed, you can run \`nvm use\` in frontend directory to switch to \`v20.17.0\`, and note that for the backend we are using a different node version specified in a different \`.nvmrc\`.
 
 #### 1.3.1 Languages
-
 - You can use any UI libraries that you would like, such as material-UI, Radix UI or any other library that you would like.
 - Besides those described to avoid, you can install and use any package that is available on [npm](https://www.npmjs.com/). You **MUST** commit \`package.json\` changes.
+- You may use small amounts of general purpose code (not specific to the assignment) obtained from a site such as Stack Overflow or other publically available resources. You should attribute **clearly** the source of this code in a comment with it. You can not otherwise use code written by another person.
 
 #### 1.3.2 Browser Compatibility
 
@@ -562,6 +562,7 @@ You are to build a web app using a provided backend. This app shall be built wit
 
 #### 1.3.3 Using code found online
 
+<<<<<<< HEAD
 - You may use small amounts of general purpose code (not specific to the assignment) obtained from a site such as Stack Overflow or other publically available resources. You should attribute **clearly** the source of this code in a comment with it. You can not otherwise use code written by another person.
 
 #### 1.3.4. ⚠ Prohibited Usage ⚠
@@ -723,7 +724,7 @@ It is your responsibiltiy to ensure that your code can run successfully when clo
 You can run a dryrun to sanity check your code runs basically by:
 
 1. Pushing your code to master on gitlab
-2. On a CSE terminal (vlab or lab machine), run \`6080 ass4dryrun presto GROUP_NAME\` where GROUP_NAME is the name of your group
+2. On a CSE terminal (vlab or lab machine), run \`6080 ass4dryrun ASS GROUP_NAME\` where GROUP_NAME is the name of your group, and ASS is the assignment (e.g. bigbrain, presto, airbrb)
 
 ## 10. Late Submission Policy
 
