@@ -8,6 +8,7 @@ const cors = require('cors');
 const path = require('path');
 const shell = require('shelljs')
 const fs = require('fs');
+const Discourse = require('discourse2').default;
 
 const { generateContent, updateRating, getRating } = require('./content');
 const { getStudentIds, getGrades } = require('./student_data');
@@ -46,24 +47,49 @@ const getContent = shortTermHold('content', async (term) => {
 
 const getForum = shortTermHold('forum', async (term) => {
   const edCourseNumber = config.TERMS[term].ED_COURSE_NUMBER;
-  const r = await fetch(`https://edstem.org/api/courses/${edCourseNumber}/threads?limit=30&sort=new`, {
-    method: 'GET',
-    headers: {
-      'X-Token': config.TERMS[term].ED_TOKEN,
-    }
+  const discourseAPI = new Discourse("https://discourse01.cse.unsw.edu.au/25T2/COMP6771", {
+    "Api-Key": config.TERMS[term].DISCOURSE_API_KEY,
+    "Api-Username": config.TERMS[term].DISCOURSE_API_USERNAME,
   });
-  const data = await r.json();
-  let notices = [];
-  if (data.threads) {
-    notices = data.threads.filter(t => t.is_pinned).map(t => ({
-      url: `https://edstem.org/au/courses/${edCourseNumber}/discussion/${t.id}`,
+
+  const category = await getAnnouncementCategory(discourseAPI);
+  if (category === undefined) {
+    throw new SettingsError('Announcement category not found in Discourse');
+  }
+  const categoryTopics = await discourseAPI.listCategoryTopics({ id: category.id, slug: 'announcements' });
+
+  const promises = [];
+
+  const output = [];
+
+  for (const topic of categoryTopics.topic_list.topics) {
+    const p = discourseAPI.getTopic({ id: topic.id.toString() }).then((x) => {
+      output.push(x);
+    });
+    promises.push(p);
+  }
+
+  await Promise.all(promises);
+
+  if (output.length > 0) {
+    notices = output.filter(t => (t.visible && t['post_stream']['posts'].length > 0)).map(t => ({
+      url: `https://discourse01.cse.unsw.edu.au/${term}/COMP6771/t/${t.id}`,
       title: t.title,
-      document: t.document,
+      document: t['post_stream']['posts'][0].cooked,
       created_at: t.created_at,
     }));
+    notices.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
   }
   return notices;
 });
+
+const getAnnouncementCategory = async (discourseAPI) => {
+  const categories = await discourseAPI.listCategories();
+  const announcementCategory = categories.category_list.categories.find(
+    (x) => x.slug.toLowerCase() === 'announcements',
+  );
+  return announcementCategory;
+}
 
 const getGroups = shortTermHold('groups', async (term) => {
   const { stdout } = shell.exec(`rm -rf /tmp/gl && git clone git@nw-syd-gitlab.cseunsw.tech:COMP6080/${term}/STAFF/administration.git /tmp/gl && cd /tmp/gl && cat groups.csv`)
