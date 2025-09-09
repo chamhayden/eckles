@@ -4,7 +4,7 @@ config.BASE_URL = config.DEV ? 'http://localhost:6080' : 'https://cgi.cse.unsw.e
 config.BASE_NAME = config.DEV ? '/~cs6080/' : '/~cs6080/';
 
 config.terms = config.DEV ? ['sample', '24T1', '24T3', '25T1', '25T3'] : ['sample', '24T1', '24T3', '25T1', '25T3'];
-config.DEFAULT_TERM = '25T1'; //config.DEV ? 'sample' : '24T1';
+config.DEFAULT_TERM = '25T3'; //config.DEV ? 'sample' : '24T1';
 
 config.joinSchema = {
   meta: {
