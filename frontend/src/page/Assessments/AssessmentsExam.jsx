@@ -7,6 +7,7 @@ import Exam23T3 from './Exams/Exam23T3';
 import Exam24T1 from './Exams/Exam24T1';
 import Exam24T3 from './Exams/Exam24T3';
 import Exam25T1 from './Exams/Exam25T1';
+import Exam25T3 from './Exams/Exam25T3';
 import makePage from '../../component/makePage';
 import { Context, useContext } from '../../context';
 import { apiCall } from '../../util/api';

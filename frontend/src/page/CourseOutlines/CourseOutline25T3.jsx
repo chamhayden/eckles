@@ -15,7 +15,7 @@ import { Context, useContext } from '../../context';
 
 import config from '../../config';
 
-const CourseOutline25T1 = () => {
+const CourseOutline25T3 = () => {
   const { getters } = useContext(Context);
   const navigate = useNavigate();
 
@@ -587,4 +587,4 @@ const CourseOutline25T1 = () => {
   );
 }
 
-export default CourseOutline25T1;
+export default CourseOutline25T3;
