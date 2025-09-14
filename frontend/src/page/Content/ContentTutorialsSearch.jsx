@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useMemo } from "react";
 import { Context, useContext } from "../../context";
 import TutLecContentCard from "../../component/TutLecContentCard";
 import TutLecContentListItem from "../../component/TutLecContentListItem";
@@ -22,120 +22,44 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import GridViewIcon from "@mui/icons-material/GridView";
 import ReorderIcon from "@mui/icons-material/Reorder";
 import { getCurrentWeek } from "../../util/date";
+import {
+  useSearchFilters,
+  filterTutorials,
+  MODAL_STYLES,
+} from "../../util/content";
 
 const ContentTutorialsSearch = () => {
-  const { getters, setters } = useContext(Context);
+  const { getters } = useContext(Context);
   const { content_tutorials, weeks, topics, meta } = getters.content;
   const currentWeek = getCurrentWeek(meta[0].value);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [tutWeek, setTutWeek] = useState("All");
-  const [isTutFiltered, setIsTutFiltered] = useState(false);
-  const [filtersTutOpen, setFiltersTutOpen] = useState(false);
-  const [viewMode, setViewMode] = useState("list");
-  const [tutFilters, setTutFilters] = useState({
-    selectedTopic: "All",
-    selectedRelevance: "workHard",
-    showPastWeeks: false,
-  });
-  const [tempFilters, setTempFilters] = useState({
-    selectedTopic: "All",
-    selectedRelevance: "workHard",
-    showPastWeeks: false,
-  });
 
-  useEffect(() => {
-    localStorage.getItem("viewMode") &&
-      setViewMode(localStorage.getItem("viewMode"));
-    const storedFilters = localStorage.getItem("tutFilters");
-    if (storedFilters) {
-      const parsedFilters = JSON.parse(storedFilters);
-      setTutFilters(parsedFilters);
-      setTempFilters(parsedFilters);
-      setIsTutFiltered(
-        parsedFilters.selectedRelevance !== "workHard" ||
-          parsedFilters.selectedTopic !== "All"
-      );
-    }
-    const storedWeek = localStorage.getItem("tutWeek");
-    if (storedWeek) {
-      setTutWeek(storedWeek === "All" ? "All" : parseInt(storedWeek, 10));
-    }
-  }, []);
+  const {
+    searchQuery,
+    setSearchQuery,
+    selectedWeek,
+    viewMode,
+    filters,
+    filtersOpen,
+    tempFilters,
+    setTempFilters,
+    isFiltered,
+    toggleFilters,
+    handleResetFilters,
+    handleApplyFilters,
+    handleWeekChange,
+    handleViewModeToggle,
+  } = useSearchFilters("tutorials", "tut");
 
-  const toggleFilters = () => {
-    setFiltersTutOpen(!filtersTutOpen);
-  };
-
-  const resetFilters = () => {
-    setTutFilters({
-      selectedTopic: "All",
-      selectedRelevance: "workHard",
-      showPastWeeks: false,
-    });
-    setTempFilters({
-      selectedTopic: "All",
-      selectedRelevance: "workHard",
-      showPastWeeks: false,
-    });
-    setIsTutFiltered(false);
-    setFiltersTutOpen(false);
-    localStorage.removeItem("tutFilters");
-  };
-
-  const applyFilters = () => {
-    const newFilters = { ...tutFilters, ...tempFilters };
-    setTutFilters(newFilters);
-    setFiltersTutOpen(false);
-    setIsTutFiltered(
-      newFilters.selectedRelevance !== "" ||
-        newFilters.selectedTopic !== "All" ||
-        newFilters.showPastWeeks !== false
-    );
-    localStorage.setItem("tutFilters", JSON.stringify(newFilters));
-  };
-
+  // Filtered tutorials computation
   const filteredTutorials = useMemo(() => {
-    const getRelevanceOptions = () => {
-      switch (tutFilters.selectedRelevance) {
-        case "bareMinimum":
-          return ["🟢 COMPULSORY"];
-        case "workHard":
-          return ["🟢 COMPULSORY", "🔵 REFINING"];
-        case "learnEverything":
-          return ["🟢 COMPULSORY", "🔵 REFINING", "🟠 EXTENDED"];
-        default:
-          return [];
-      }
-    };
-
-    const relevanceOptions = getRelevanceOptions();
-    return content_tutorials.filter((tutorial) => {
-      const nameMatch = tutorial.name
-        ? tutorial.name.toLowerCase().includes(searchQuery.toLowerCase())
-        : false;
-      const topic =
-        tutFilters.selectedTopic === "All" ? "" : tutFilters.selectedTopic;
-      const tutorialWeek = tutorial.week().week;
-      const selectedWeek = tutWeek === "All" ? null : parseInt(tutWeek, 10);
-
-      const weekMatch =
-        tutFilters.showPastWeeks ||
-        (selectedWeek !== null
-          ? tutorialWeek === selectedWeek
-          : tutorialWeek >= (currentWeek - 1));
-
-      const topicMatch = !topic || tutorial.topic().name === topic;
-      const relevanceMatch = relevanceOptions.includes(tutorial.importance);
-
-      setIsTutFiltered(
-        tutFilters.selectedRelevance !== "workHard" ||
-          tutFilters.selectedTopic !== "All" ||
-          tutFilters.showPastWeeks !== false
-      );
-
-      return nameMatch && weekMatch && topicMatch && relevanceMatch;
-    });
-  }, [content_tutorials, tutFilters, searchQuery, tutWeek, currentWeek]);
+    return filterTutorials(
+      content_tutorials,
+      filters,
+      searchQuery,
+      selectedWeek,
+      currentWeek
+    );
+  }, [content_tutorials, filters, searchQuery, selectedWeek, currentWeek]);
 
   return (
     <>
@@ -162,11 +86,8 @@ const ContentTutorialsSearch = () => {
           <InputLabel id="week-select-label2">Week</InputLabel>
           <Select
             labelId="week-select-label2"
-            value={tutWeek}
-            onChange={(event) => {
-              setTutWeek(event.target.value);
-              localStorage.setItem("tutWeek", event.target.value);
-            }}
+            value={selectedWeek}
+            onChange={handleWeekChange}
             label="Week"
           >
             <MenuItem value="All">All</MenuItem>
@@ -182,7 +103,7 @@ const ContentTutorialsSearch = () => {
         <FormControl>
           <Button
             startIcon={<FilterListIcon />}
-            variant={isTutFiltered ? "contained" : "outlined"}
+            variant={isFiltered ? "contained" : "outlined"}
             size="small"
             onClick={toggleFilters}
           >
@@ -190,46 +111,19 @@ const ContentTutorialsSearch = () => {
           </Button>
         </FormControl>
         <FormControl>
-          <IconButton color="primary">
-            {viewMode === "grid" ? (
-              <GridViewIcon
-                onClick={() => {
-                  setViewMode("list");
-                  localStorage.setItem("viewMode", "list");
-                }}
-              />
-            ) : (
-              <ReorderIcon
-                onClick={() => {
-                  setViewMode("grid");
-                  localStorage.setItem("viewMode", "grid");
-                }}
-              />
-            )}
+          <IconButton color="primary" onClick={handleViewModeToggle}>
+            {viewMode === "grid" ? <GridViewIcon /> : <ReorderIcon />}
           </IconButton>
         </FormControl>
       </Stack>
 
       <Modal
-        open={filtersTutOpen}
+        open={filtersOpen}
         onClose={toggleFilters}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 400,
-            bgcolor: "background.paper",
-            border: "none",
-            borderRadius: "5px",
-            boxShadow: 24,
-            p: 4,
-          }}
-        >
+        <Box sx={MODAL_STYLES}>
           <h2>Filter Content</h2>
           <Stack spacing={2}>
             <FormControl fullWidth>
@@ -298,10 +192,10 @@ const ContentTutorialsSearch = () => {
               <Button variant="outlined" onClick={toggleFilters}>
                 Cancel
               </Button>
-              <Button variant="outlined" onClick={resetFilters}>
+              <Button variant="outlined" onClick={handleResetFilters}>
                 Reset
               </Button>
-              <Button variant="contained" onClick={applyFilters}>
+              <Button variant="contained" onClick={handleApplyFilters}>
                 Apply
               </Button>
             </Stack>
