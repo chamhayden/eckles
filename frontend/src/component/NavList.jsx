@@ -30,7 +30,7 @@ export const getPrimaryNavList = (term) => {
     },
     {
       title: 'Forum',
-      route: 'https://edstem.org/au/join/JzR6ZW',
+      route: 'https://discourse02.cse.unsw.edu.au/25T3/COMP6080',
       external: true,
       loginRequired: true,
       Icon: ForumIcon,
