@@ -47,7 +47,7 @@ const getContent = shortTermHold('content', async (term) => {
 
 const getForum = shortTermHold('forum', async (term) => {
   const edCourseNumber = config.TERMS[term].ED_COURSE_NUMBER;
-  const discourseAPI = new Discourse("https://discourse01.cse.unsw.edu.au/25T2/COMP6771", {
+  const discourseAPI = new Discourse("https://discourse02.cse.unsw.edu.au/25T3/COMP6080", {
     "Api-Key": config.TERMS[term].DISCOURSE_API_KEY,
     "Api-Username": config.TERMS[term].DISCOURSE_API_USERNAME,
   });
