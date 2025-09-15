@@ -73,7 +73,7 @@ const getForum = shortTermHold('forum', async (term) => {
 
   if (output.length > 0) {
     notices = output.filter(t => (t.visible && t['post_stream']['posts'].length > 0)).map(t => ({
-      url: `https://discourse01.cse.unsw.edu.au/${term}/COMP6771/t/${t.id}`,
+      url: `https://discourse02.cse.unsw.edu.au/${term}/COMP6080/t/${t.id}`,
       title: t.title,
       document: t['post_stream']['posts'][0].cooked,
       created_at: t.created_at,
