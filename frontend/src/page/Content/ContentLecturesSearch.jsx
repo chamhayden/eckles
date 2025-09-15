@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import { Context, useContext } from "../../context";
 import TutLecContentCard from "../../component/TutLecContentCard";
 import TutLecContentListItem from "../../component/TutLecContentListItem";
@@ -24,148 +24,44 @@ import InfoIcon from "@mui/icons-material/Info";
 import GridViewIcon from "@mui/icons-material/GridView";
 import ReorderIcon from "@mui/icons-material/Reorder";
 import { getCurrentWeek } from "../../util/date";
+import {
+  useSearchFilters,
+  filterLectures,
+  MODAL_STYLES,
+} from "../../util/content";
 
 const ContentLecturesSearch = () => {
-  const { getters, setters } = useContext(Context);
+  const { getters } = useContext(Context);
   const { content_lectures, weeks, topics, meta } = getters.content;
   const currentWeek = getCurrentWeek(meta[0].value);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [week, setWeek] = useState("All");
-  const [isFiltered, setIsFiltered] = useState(false);
-  const [filtersOpen, setFiltersOpen] = useState(false);
-  const [viewMode, setViewMode] = useState("list");
-  const [filters, setFilters] = useState({
-    selectedTopic: "All",
-    selectedRelevance: "workHard",
-    completedCOMP1531: true,
-    showLiveLectures: false,
-    showPastWeeks: false,
-  });
-  const [tempFilters, setTempFilters] = useState({
-    selectedTopic: "All",
-    selectedRelevance: "workHard",
-    completedCOMP1531: true,
-    showLiveLectures: false,
-    showPastWeeks: false,
-  });
-  useEffect(() => {
-    localStorage.getItem("viewMode") &&
-      setViewMode(localStorage.getItem("viewMode"));
-    const storedFilters = localStorage.getItem("filters");
-    if (storedFilters) {
-      const parsedFilters = JSON.parse(storedFilters);
-      setFilters(parsedFilters);
-      setTempFilters(parsedFilters);
-      setIsFiltered(
-        parsedFilters.selectedRelevance !== "workHard" ||
-          parsedFilters.selectedTopic !== "All" ||
-          parsedFilters.showLiveLectures
-      );
-    }
-    const storedWeek = localStorage.getItem("lecWeek");
-    if (storedWeek) {
-      setWeek(storedWeek === "All" ? "All" : parseInt(storedWeek, 10));
-    }
-  }, []);
+  const {
+    searchQuery,
+    setSearchQuery,
+    selectedWeek,
+    viewMode,
+    filters,
+    filtersOpen,
+    tempFilters,
+    setTempFilters,
+    isFiltered,
+    toggleFilters,
+    handleResetFilters,
+    handleApplyFilters,
+    handleWeekChange,
+    handleViewModeToggle,
+  } = useSearchFilters("lectures", "lec");
 
-  const toggleFilters = () => {
-    setFiltersOpen(!filtersOpen);
-  };
-
-  const resetFilters = () => {
-    setFilters({
-      selectedTopic: "All",
-      selectedRelevance: "workHard",
-      completedCOMP1531: true,
-      showLiveLectures: false,
-      showPastWeeks: false,
-    });
-    setTempFilters({
-      selectedTopic: "All",
-      selectedRelevance: "workHard",
-      completedCOMP1531: true,
-      showLiveLectures: false,
-      showPastWeeks: false,
-    });
-    setIsFiltered(false);
-    setFiltersOpen(false);
-    localStorage.removeItem("filters");
-  };
-
-  const applyFilters = () => {
-    setFilters(tempFilters);
-    setFiltersOpen(false);
-    setIsFiltered(
-      tempFilters.selectedRelevance !== "workHard" ||
-        tempFilters.selectedTopic !== "All" ||
-        tempFilters.showLiveLectures
-    );
-    localStorage.setItem("filters", JSON.stringify(tempFilters));
-  };
-
+  // Filtered lectures computation
   const filteredLectures = useMemo(() => {
-    const getRelevanceOptions = () => {
-      if (!filters.completedCOMP1531) {
-        switch (filters.selectedRelevance) {
-          case "bareMinimum":
-            return ["Catchup", "Mandatory"];
-          case "workHard":
-            return ["Catchup", "Mandatory", "Recommended"];
-          case "learnEverything":
-            return ["Catchup", "Mandatory", "Recommended", "Extension"];
-          default:
-            return ["Catchup", "Mandatory", "Recommended", "Extension"];
-        }
-      }
-      switch (filters.selectedRelevance) {
-        case "bareMinimum":
-          return ["Mandatory"];
-        case "workHard":
-          return ["Mandatory", "Recommended"];
-        case "learnEverything":
-          return ["Mandatory", "Recommended", "Extension"];
-        default:
-          return ["Catchup", "Mandatory", "Recommended", "Extension"];
-      }
-    };
-
-    const relevanceOptions = getRelevanceOptions();
-    return content_lectures.filter((lecture) => {
-      const nameMatch = lecture.name
-        ? lecture.name.toLowerCase().includes(searchQuery.toLowerCase())
-        : false;
-      let selectedWeek = week === "All" ? "" : week;
-      const lectureWeek = lecture.week().week;
-
-      const weekMatch =
-        selectedWeek || filters.showPastWeeks || lectureWeek >= (currentWeek - 1);
-
-      let selectedTopic =
-        filters.selectedTopic === "All" ? "" : filters.selectedTopic;
-      const topicMatch =
-        !selectedTopic || lecture.topic().name === selectedTopic;
-      const relevanceMatch = relevanceOptions.includes(lecture.relevance);
-      const liveLectureMatch =
-        !filters.showLiveLectures || lecture.status === "🔴 NEW";
-
-      setIsFiltered(
-        filters.selectedRelevance !== "workHard" ||
-          filters.selectedTopic !== "All" ||
-          filters.showLiveLectures !== false ||
-          filters.completedCOMP1531 !== true ||
-          filters.showPastWeeks !== false
-      );
-
-      return (
-        nameMatch &&
-        weekMatch &&
-        topicMatch &&
-        relevanceMatch &&
-        liveLectureMatch
-      );
-    });
-  }, [content_lectures, filters, searchQuery, week, currentWeek]);
+    return filterLectures(
+      content_lectures,
+      filters,
+      searchQuery,
+      selectedWeek,
+      currentWeek
+    );
+  }, [content_lectures, filters, searchQuery, selectedWeek, currentWeek]);
 
   return (
     <>
@@ -192,11 +88,8 @@ const ContentLecturesSearch = () => {
           <InputLabel id="week-select-label2">Week</InputLabel>
           <Select
             labelId="week-select-label"
-            value={week}
-            onChange={(event) => {
-              setWeek(event.target.value);
-              localStorage.setItem("lecWeek", event.target.value);
-            }}
+            value={selectedWeek}
+            onChange={handleWeekChange}
             label="Week"
           >
             <MenuItem value="All">All</MenuItem>
@@ -232,22 +125,8 @@ const ContentLecturesSearch = () => {
           </Button>
         </FormControl>
         <FormControl>
-          <IconButton color="primary">
-            {viewMode === "grid" ? (
-              <GridViewIcon
-                onClick={() => {
-                  setViewMode("list");
-                  localStorage.setItem("viewMode", "list");
-                }}
-              />
-            ) : (
-              <ReorderIcon
-                onClick={() => {
-                  setViewMode("grid");
-                  localStorage.setItem("viewMode", "grid");
-                }}
-              />
-            )}
+          <IconButton color="primary" onClick={handleViewModeToggle}>
+            {viewMode === "grid" ? <GridViewIcon /> : <ReorderIcon />}
           </IconButton>
         </FormControl>
       </Stack>
@@ -258,20 +137,7 @@ const ContentLecturesSearch = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 400,
-            bgcolor: "background.paper",
-            border: "none",
-            borderRadius: "5px",
-            boxShadow: 24,
-            p: 4,
-          }}
-        >
+        <Box sx={MODAL_STYLES}>
           <h2>Filter Content</h2>
           <Stack spacing={2}>
             <FormControl fullWidth>
@@ -379,10 +245,10 @@ const ContentLecturesSearch = () => {
               <Button variant="outlined" onClick={toggleFilters}>
                 Cancel
               </Button>
-              <Button variant="outlined" onClick={resetFilters}>
+              <Button variant="outlined" onClick={handleResetFilters}>
                 Reset
               </Button>
-              <Button variant="contained" onClick={applyFilters}>
+              <Button variant="contained" onClick={handleApplyFilters}>
                 Apply
               </Button>
             </Stack>
