@@ -562,7 +562,6 @@ You are to build a web app using a provided backend. This app shall be built wit
 
 #### 1.3.3 Using code found online
 
-<<<<<<< HEAD
 - You may use small amounts of general purpose code (not specific to the assignment) obtained from a site such as Stack Overflow or other publically available resources. You should attribute **clearly** the source of this code in a comment with it. You can not otherwise use code written by another person.
 
 #### 1.3.4. ⚠ Prohibited Usage ⚠
