@@ -33,12 +33,12 @@ const HelpResources = ({ }) => {
       icon: <PodcastsIcon />,
       subRoute: 'cypress',
     },
-    /*{
-      title: 'Git',
-      icon: <GitHubIcon />,
-      subRoute: 'git',
-    },
     {
+      title: 'Postgrads',
+      icon: <GitHubIcon />,
+      subRoute: 'postgrad',
+    },
+    /*{
       title: 'Network',
       icon: <PodcastsIcon />,
       subRoute: 'network',

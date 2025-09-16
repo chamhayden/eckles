@@ -30,7 +30,7 @@ import HelpBase from './page/Help/HelpBase';
 import HelpStyle from './page/Help/HelpStyle';
 import HelpInstallation from './page/Help/HelpInstallation';
 import HelpResources from './page/Help/HelpResources';
-import HelpResourcesGit from './page/Help/HelpResourcesGit';
+import HelpResourcesPostgrad from './page/Help/HelpResourcesPostgrad';
 import HelpResourcesNetwork from './page/Help/HelpResourcesNetwork';
 import HelpResourcesHtmlCss from './page/Help/HelpResourcesHtmlCss';
 import HelpResourcesJavascript from './page/Help/HelpResourcesJavascript';
@@ -82,7 +82,7 @@ const Router = () => {
           <Route path="style" element={<HelpStyle />} />
           <Route path="installation" element={<HelpInstallation />} />
           <Route path="resources" element={<HelpResources />}>
-            <Route path="git" element={<HelpResourcesGit />} />
+            <Route path="postgrad" element={<HelpResourcesPostgrad />} />
             <Route path="network" element={<HelpResourcesNetwork />} />
             <Route path="htmlcss" element={<HelpResourcesHtmlCss />} />
             <Route path="javascript" element={<HelpResourcesJavascript />} />
