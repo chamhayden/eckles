@@ -82,7 +82,7 @@ const Router = () => {
           <Route path="style" element={<HelpStyle />} />
           <Route path="installation" element={<HelpInstallation />} />
           <Route path="resources" element={<HelpResources />}>
-            <Route path="postgrad" element={<HelpResourcesPostgrad />} />
+            <Route path="HelpResourcesPostgrad" element={<HelpResourcesPostgrad />} />
             <Route path="network" element={<HelpResourcesNetwork />} />
             <Route path="htmlcss" element={<HelpResourcesHtmlCss />} />
             <Route path="javascript" element={<HelpResourcesJavascript />} />
