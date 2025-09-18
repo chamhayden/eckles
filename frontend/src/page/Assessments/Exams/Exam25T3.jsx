@@ -46,7 +46,7 @@ const CourseOutline25T3 = () => {
         2. Date, Time, and Duration
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The final exam will be a 3 hour exam. The exam will run in the morning session on the 4th of December 2024.
+        The final exam will be a 3 hour exam. The exam will run in the TBD.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         Only submissions made during your exam time window will be counted as valid.
