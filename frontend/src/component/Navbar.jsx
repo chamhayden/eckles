@@ -14,7 +14,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Collapse from '@mui/material/Collapse';
 
 
-import mainlogo from '../asset/mainlogo.png';
+import mainlogo from '../asset/doggie.png';
 import {Context, useContext} from '../context';
 import { makeStyles } from "@mui/styles";
 
@@ -83,9 +83,9 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
         }}
       >
         <Box sx={{ overflow: 'auto', paddingTop: '60px' }}>
-          <Box sx={{ cursor: 'pointer', position: 'fixed', top: 0, height: '60px', width: drawerWidth, backgroundColor: background, zIndex: 999, borderBottom: '1px solid #333' }} onClick={() => navigate(`/${getters.term}`)}>
-            <img src={mainlogo} style={{ height: '59px', marginBottom: '10px', float: 'left' }} alt={'main-logo'}/>
-            <Typography sx={{ float: 'left ',fontSize: '1.3em', paddingTop: '15px', paddingLeft: '15px' }}>
+          <Box sx={{ display: 'flex',justifyContent: 'center', alignItems: 'center', cursor: 'pointer', position: 'fixed', top: 0, height: '60px', width: drawerWidth, backgroundColor: background, zIndex: 999, borderBottom: '1px solid #333' }} onClick={() => navigate(`/${getters.term}/course-outline`)}>
+            <img src={mainlogo} style={{ height: '40px', }} alt={'main-logo'}/>
+            <Typography sx={{ fontSize: '1.3em', paddingLeft: '15px' }}>
               COMP6080
             </Typography>
           </Box>
