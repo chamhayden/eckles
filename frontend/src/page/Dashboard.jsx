@@ -79,15 +79,11 @@ const Dashboard = ({}) => {
                       style={{
                         marginTop: "20px",
                         fontSize: "0.8em",
-                        lineHeight: "110%",
+                        lineHeight: "150%",
                       }}
                       dangerouslySetInnerHTML={{
                         __html:
-                          truncate(
-                            post.document.replaceAll("\n", "<br />"),
-                            300,
-                            { ellipsis: `......` }
-                          ),
+                          post.document
                       }}
                     ></div>
                     <br />
