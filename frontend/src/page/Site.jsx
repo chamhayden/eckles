@@ -11,7 +11,7 @@ import Navbar from '../component/Navbar';
 import config from '../config';
 import {isDesktopWidth, isMobileWidth} from '../util/screen';
 
-const drawerWidth = 240;
+const drawerWidth = 255;
 
 const SiteWrapper = ({ children }) => {
   const { getters, setters } = useContext(Context);
