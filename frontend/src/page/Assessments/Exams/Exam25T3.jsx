@@ -46,7 +46,7 @@ const CourseOutline25T3 = () => {
         2. Date, Time, and Duration
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The final exam will be a 3 hour exam. The exam will run in the TBD.
+        The final exam will be a 3 hour exam. The exam will run in the morning of the 6th of December.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         Only submissions made during your exam time window will be counted as valid.
@@ -138,7 +138,7 @@ const CourseOutline25T3 = () => {
          <li>Have meaningful commit names</li>
         </ul>
       </Typography>
-      <Typography variant="h5" component="div" gutterBottom>
+      <Typography variant="h6" component="div" gutterBottom>
         Hurdle Requirements
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
