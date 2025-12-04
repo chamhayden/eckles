@@ -99,7 +99,12 @@ const CourseOutline25T3 = () => {
           <li>This exam is an open book exam, meaning you are able to use the internet and other resources, with a few exceptions.
           <ul>
             <li>You are prohibited from seeking help from other students during the exam. Any communications (physical, digital) after you or another person has started the exam time is not allowed.</li>
-            <li>You cannot use code generation tools such as LLMs, including but not limited to, ChatGPT, Gemini</li>
+            <li>You cannot use code generation tools such as LLMs, including but not limited to, ChatGPT, Gemini, etc. If you're using a tool that generates code that you didn't write by hand then it should be considered prohibitive and may result in a 0 grade. The only two exceptions are:
+              <ul>
+                <li>The immediate google AI results summary that come from entering a query into google search</li>
+                <li>Single-line autocompletion (e.g. variable name suggestions etc). This differs from some of the newer auto-complete functionality in tools like cursor that will suggest multiple lines of code that it can generate</li>
+              </ul>
+            </li>
             <li>Whilst you can use resources on the internet, you cannot copy or plagiarise those resources. The only material you can copy is any of your own assignment work, any work you've prepared in advance, or any course materials</li>
           </ul>
           </li>
@@ -111,22 +116,7 @@ const CourseOutline25T3 = () => {
         <b>Deliberate violation of exam conditions will be referred to Student Integrity as serious misconduct. This may result in a 0 for the course.</b>
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        If you have questions or clarifications needed during the exam, you can make a PRIVATE post on our usual forum (linked in sidebar). Do not message lecturers or tutors on MS teams. Do not email lecturers or tutors about issues that are not of a sensitive nature.
-      </Typography>
-      <Typography variant="body1" component="div" gutterBottom>
-        When posting a message to the forum, it's important that you are detailed in your description of your issues. If you are having technical issues:
-        <ul>
-          <li>Make sure your most recent code is up on gitlab</li>
-          <li>Show screenshots of the issue (code, terminal, etc)</li>
-          <li>Explain how you produced it</li>
-          <li>Whether you're running it locally or in vlab</li>
-        </ul>
-      </Typography>
-      <Typography variant="body1" component="div" gutterBottom>
-        Failure to comply may result in delays in responding to your queries.
-      </Typography>
-      <Typography variant="body1" component="div" gutterBottom>
-        Clarifications made during the exam will be made at the top of the exam paper page. After each clarification, invigilators will notify students to refresh the exam paper page.
+        If you have questions or clarifications needed during the exam, please ask the invigilator. Do NOT email or MS Teams any course staff during teh exam.
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
         6. Git Commit Requirements
@@ -154,18 +144,7 @@ const CourseOutline25T3 = () => {
         Do not leave it to the deadline to push your code to master. Submit each question when you finish working on it.
       </Typography>
       <Typography variant="h5" component="div" gutterBottom>
-        8. Troubleshooting
-      </Typography>
-      <Typography variant="body1" component="div" gutterBottom>
-        If you are having issues working on the exam at CSE, please follow these steps
-        <ul>
-          <li>If you're using VLab:try leaving VLab and reconnecting. You will likely be put on a different server, which may make your connection better. If the problem persists, try using SSH instead: instructions here or here</li>
-          <li>If you're using VSCode: Try disconnecting from VSCode, then changing the URL from vscode.cse.unsw.edu.au to vscode2.cse.unsw.edu.au .</li>
-          <li>If you're using SSH: try disconnecting and reconnecting.</li>
-        </ul>
-      </Typography>
-      <Typography variant="h5" component="div" gutterBottom>
-        9. Preparation
+        8. Preparation
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         <ul>
