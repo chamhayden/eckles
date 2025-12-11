@@ -411,6 +411,7 @@ app.get('/api/gradesearch', (req, res) => {
     'ass3_bonus_adjust',
     'ass4_bonus_adjust',
     'exam_raw',
+    'exam',
     'exam_other_penalty',
     'exam_git_score',
     'exam_feature_document',
