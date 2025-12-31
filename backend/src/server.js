@@ -392,7 +392,6 @@ app.get('/api/gradesearch', (req, res) => {
     'ass2',
     'ass3',
     'ass4',
-    'exam_raw',
     'exam',
     'final',
     'PASSED_HURDLE',
