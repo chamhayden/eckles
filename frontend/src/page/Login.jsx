@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Radio from '@mui/material/Radio';
+import MenuItem from '@mui/material/MenuItem';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
@@ -100,7 +102,9 @@ const SignIn = (props) => {
   });
 
   React.useEffect(() => {
-    setTerm(getters.validTerms[0]);
+    if (getters.validTerms.length > 0) {
+      setTerm(getters.validTerms[0]);
+    }
   }, [getters.validTerms]);
 
   const login = (zid, zpass, term) => {
@@ -136,18 +140,21 @@ const SignIn = (props) => {
             <InputLabel htmlFor="password">zpass</InputLabel>
             <Input name="password" type="password" id="password" autoComplete="current-password" value={zpass} onChange={e => setZpass(e.target.value)} />
           </FormControl>
-          <FormControl>
-            <FormLabel sx={{ marginTop: '15px', marginBottom: '5px' }} id="demo-radio-buttons-group-label">term</FormLabel>
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue={getters.validTerms.length ? getters.validTerms[getters.validTerms.length - 1][0] : 'sample'}
-              name="radio-buttons-group"
+
+          {getters.validTerms.length > 1 && (<FormControl>
+            <FormLabel sx={{ marginTop: '15px', marginBottom: '5px' }} id="demo-select-label">Term</FormLabel>
+            <Select
+              labelId="demo-select-label"
+              value={term}
+              onChange={(e) => setTerm(e.target.value)}
             >
               {getters.validTerms.sort().reverse().map((term, key) => (
-                <FormControlLabel sx={{padding: '0px 10px' }} onClick={() => setTerm(term)} key={key}  value={term} control={<Radio />} label={term} />
+                <MenuItem key={key} value={term}>
+                  {term}
+                </MenuItem>
               ))}
-            </RadioGroup>
-          </FormControl>
+            </Select>
+          </FormControl>)}
           <p className={classes.disclaimer}>Your password and credentials are not stored by either this software or by teaching staff. If you change your UNSW password due to suspected compromise, please email cs6080@cse.unsw.edu.au to inform us as well.</p>
           <Stack spacing={2}>
           <Button
