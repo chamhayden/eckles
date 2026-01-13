@@ -309,7 +309,7 @@ This will start up a second HTTP server where if you navigate to \`http://localh
 
 You are prohibited from modifying the backend. No work needs to be done on the backend. It's provided to you simply to power your frontend.
 
-The backend server can be cloned by running \`git clone git@nw-syd-gitlab.cseunsw.tech:COMP6080/[term]/ass3-backend.git\` where [term] is the current term (e.g. 24T3). After you clone this repo, you must run \`npm install\` in the project once.
+The backend server can be cloned by running \`git clone git@gitlab.cse.unsw.edu.au:undergraduate-courses/COMP6080/[term]/ass3-backend.git\` where [term] is the current term (e.g. 24T3). After you clone this repo, you must run \`npm install\` in the project once.
 
 To run the backend server, simply run \`npm start\` in the backend project. This will start the backend.
 
@@ -444,7 +444,7 @@ Please note: When we test your UI we will use a pre-loaded database JSON that al
 ### 5.4. Usability & Accessibility (5%)
  * Your application is usable and easy to navigate. No obvious usability issues or confusing layouts/flows.
  * Your application follows standard accessibility guidelines, such as use of alt tags, and colours that aren't inaccessible.
- * Describe any attempts you've made to improve the usability/accessibility in <code>usability.md</code>
+ * Describe any attempts you've made to improve the usability/accessibility in \`usability.md\`
       
 ### 5.5. Bonus Marks (5%)
  * An extra 5% of the assignment can be attained via bonus marks, meaning a maximum mark of 105/100. Any bonus marks that extend your ass2 mark above 100% will bleed into other assignment marks, but cannot contribute outside of the 75% of the course that is allocated for assignment marks
@@ -549,8 +549,6 @@ You are to build a web app using a provided backend. This app shall be built wit
 
 You are to build a web app using a provided backend. This app shall be built with React.js. It must be a SPA (Single Page Application), which means navigation between different views or "pages" should not require full page reloads and you should not add/modify \`.html\` files in \`frontend\` folder. Failure to align with this requirement will result in a 50% penalty of the mark.
 
-2. We strongly recommend you to use [\`nvm\`](https://github.com/nvm-sh/nvm) to manage node version, once you have \`nvm\` installed, you can run \`nvm use\` in frontend directory to switch to \`v20.17.0\`, and note that for the backend we are using a different node version specified in a different \`.nvmrc\`.
-
 #### 1.3.1 Languages
 - You can use any UI libraries that you would like, such as material-UI, Radix UI or any other library that you would like.
 - Besides those described to avoid, you can install and use any package that is available on [npm](https://www.npmjs.com/). You **MUST** commit \`package.json\` changes.
@@ -629,7 +627,7 @@ Your assignment will be hand-marked by tutor(s) in the course according to the c
 
 ### 6.1. Functionality of the Feature Set (50%)
  * Features implemented that satisfy requirements as outlined in section 2.
- * You <b>MUST</b> update the <code>progress.csv</code> file in the root folder of this repository as you complete things partially or fully. The valid values are "NO", "PARTIAL", and "YES". Updating this is necessary so that your tutor knows what to focus on and what to avoid - giving them the best understanding of your work and provide you with marks you have earned. Failure to correctly fill in this file will result in a 5% penalty.
+ * You **MUST** update the \`progress.csv\` file in the root folder of this repository as you complete things partially or fully. The valid values are "NO", "PARTIAL", and "YES". Updating this is necessary so that your tutor knows what to focus on and what to avoid - giving them the best understanding of your work and provide you with marks you have earned. Failure to correctly fill in this file will result in a 5% penalty.
 
 ### 6.2. Responsiveness (10%)
  * Features implemented in a mobile responsive way that work on screens as small as 400px wide, 700px high
@@ -665,7 +663,7 @@ Your assignment will be hand-marked by tutor(s) in the course according to the c
  * Extra features should be non-trivial, have a clear justification for existing, and show either a form of technical, product, or creative flare. They can be functional (added behaviour) or aesthetic (making things very pretty).
  * Any extra features written down in \`BONUS.md\` in the project folder
  * Any bonus marks that extend your ass4 mark above 100% will bleed into other assignment marks, but cannot contribute outside of the 80% of the course that is allocated for assignment marks
- * <b>Expectations placed on solo groups will be half of that of pairs to achieve the same mark.</b>
+ * **Expectations placed on solo groups will be half of that of pairs to achieve the same mark.**
  * If you are working individually and complete all features marked as 🙉🙉🙉 (and high quality) you can receive full marks for bonus marks.
 
 ## 7. Git Commit Requirements

@@ -92,7 +92,7 @@ const getAnnouncementCategory = async (discourseAPI) => {
 }
 
 const getGroups = shortTermHold('groups', async (term) => {
-  const { stdout } = shell.exec(`rm -rf /tmp/gl && git clone git@nw-syd-gitlab.cseunsw.tech:COMP6080/${term}/STAFF/administration.git /tmp/gl && cd /tmp/gl && cat groups.csv`)
+  const { stdout } = shell.exec(`rm -rf /tmp/gl && git clone git@gitlab.cse.unsw.edu.au:undergraduate-courses/COMP6080/${term}/STAFF/administration.git /tmp/gl && cd /tmp/gl && cat groups.csv`)
   const groupLink = {};
   stdout.split('\n').forEach(line => {
     const innerLine = line.split(',');
@@ -307,12 +307,12 @@ app.get('/gitlabredir/:term/:repo/:path?', async (req, res) => {
     if (repo === 'ass2') newRepo = config.TERMS[term].ASS_MAP[1];
     if (repo === 'ass3') newRepo = config.TERMS[term].ASS_MAP[2];
     if (repo === 'ass4') newRepo = config.TERMS[term].ASS_MAP[3];
-    repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/students/z${zid}/${newRepo}`
+    repoPath = `https://gitlab.cse.unsw.edu.au/undergraduate-courses/COMP6080/${term}/students/z${zid}/${newRepo}`
     if (isTutor(zid, term)) {
-      repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/STAFF/repos/${newRepo}`
+      repoPath = `https://gitlab.cse.unsw.edu.au/undergraduate-courses/COMP6080/${term}/STAFF/repos/${newRepo}`
     } else if (['ass4'].includes(repo)) {
       const group = (await getGroups(term))[zid];
-      repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/groups/${group}/${newRepo}`
+      repoPath = `https://gitlab.cse.unsw.edu.au/undergraduate-courses/COMP6080/${term}/groups/${group}/${newRepo}`
     }
     if (path) {
       repoPath += `/-/tree/master/${path}`

@@ -173,7 +173,7 @@ const CourseOutline23T3 = () => {
         There will be a number of people who feel strongly about the exclusion of particular topics from the course, such as typescript or more complex state managers (redux, mobx). Often when topics are omitted it's because they aren't <em>fundamental</em>knowledge in the limited weeks this course is offered in.
       </Typography>
       <Typography variant="body1" gutterBottom>
-        We've compiled <a href="https://nw-syd-gitlab.cseunsw.tech/COMP6080/21T3/main-content/-/blob/master/FAQ.md">an FAQ</a> to answer these questions. If you still have further questions or comments, we'd encourage you to use the forum linked in the sidebar.
+        We've compiled <a href="https://gitlab.cse.unsw.edu.au/undergraduate-courses/COMP6080/21T3/main-content/-/blob/master/FAQ.md">an FAQ</a> to answer these questions. If you still have further questions or comments, we'd encourage you to use the forum linked in the sidebar.
       </Typography>
       <Typography variant="body1" gutterBottom>
         Students with prerequisite knowledge in this course should understand that this is an introductory course with very limited assumed knowledge, and as such, is not a course to extent an already firm foundation of knowledge. If you are already quite competent in the areas taught in this course, please be patient as we will be moving quite slowly by your standards. If this is something that you feel may be frustrating, it may be more appropriate with your skill-set to find a more stimulating course.

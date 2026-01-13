@@ -149,7 +149,7 @@ const CourseOutline25T3 = () => {
       <Typography variant="body1" component="div" gutterBottom>
         <ul>
           <li>Review previous exercises and assignments to stay confident with both theory and practical elements of the course.</li>
-          <li>A sample exam paper can be found <a target="_blank" href="https://nw-syd-gitlab.cseunsw.tech/COMP6080/exam-sample-spec">here</a>.
+          <li>A sample exam paper can be found <a target="_blank" href="https://gitlab.cse.unsw.edu.au/undergraduate-courses/COMP6080/exam-sample-spec">here</a>.
             <ul><li>A solution (built file, not the source code) of the sample exam can be found <a target="_blank" href="https://cs6080.web.cse.unsw.edu.au/sample-exam/">here</a>. Please note, this solution may be incomplete, but it is mostly complete.</li></ul>
           </li>
         </ul>
