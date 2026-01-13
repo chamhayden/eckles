@@ -498,10 +498,12 @@ app.get('/api/gradesearch', (req, res) => {
     'ass4_other_penalty_comments',
   ];
 
+
   let eachLine = shellresult.trim().split('\n')
   eachLine.sort();
   const results = eachLine.map(splitOnFirstSpace);
 
+  console.log(results);
 
   res.json({
     main: results.filter(r => includeMain.includes(r[0])),

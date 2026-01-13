@@ -41,6 +41,8 @@ const AssessmentsExam = () => {
     Component = <Exam25T1 />
   } else if (getters.term === '25T3') {
     Component = <Exam25T3 />
+  } else if (getters.term === '26T1') {
+    Component = <Exam26T1 />
   }
 
   return <>
