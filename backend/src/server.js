@@ -503,8 +503,6 @@ app.get('/api/gradesearch', (req, res) => {
   eachLine.sort();
   const results = eachLine.map(splitOnFirstSpace);
 
-  console.log(results);
-
   res.json({
     main: results.filter(r => includeMain.includes(r[0])),
     ass1: results.filter(r => includeAss1.includes(r[0])),
