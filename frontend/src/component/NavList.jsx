@@ -116,14 +116,14 @@ export const getPrimaryNavList = (term) => {
 
 export const getSecondaryNavList = (term) => {
   return [
-    {
+    /*{
       title: 'Feedback',
       loginRequired: true,
       route: 'https://docs.google.com/forms/d/e/1FAIpQLScTvTvH1Hm64hLefcMoZrhRzuyxcnZUw6ekOjHTF23cD8eweg/viewform',
       external: true,
       Icon: HearingIcon,
       description: 'Provide feedback to course staff if you have any comments to share',
-    },
+    },*/
     {
       title: 'Content Request',
       loginRequired: true,

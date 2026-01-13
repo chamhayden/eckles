@@ -135,7 +135,7 @@ It is your responsibility to ensure that your code can run successfully when clo
 
 ## 9. Late Submission Policy
 
-No late submission are accepted`;
+Late submissions are accepted up to 4 days (96 hours) after the due date. The late penalty is 5% per day. The first 5% penalty will begin applying 1 minute after the initial deadline.`;
 
 export const ass2a = `
 
@@ -237,7 +237,7 @@ It is your responsibility to ensure that your code can run successfully when clo
 
 ## 7. Late Submission Policy
 
-No late submission are accepted.
+Late submissions are accepted up to 4 days (96 hours) after the due date. The late penalty is 5% per day. The first 5% penalty will begin applying 1 minute after the initial deadline.
 
 `;
 
