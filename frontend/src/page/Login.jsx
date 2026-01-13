@@ -31,46 +31,63 @@ const theme = createTheme();
 const styles = ({
   main: {
     width: 'auto',
-    display: 'block', // Fix IE 11 issue.
-    marginLeft: theme.spacing(3),
-    marginRight: theme.spacing(3),
-    [theme.breakpoints.up(400 + theme.spacing(3) * 2)]: {
-      width: 400,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-    paddingTop: theme.spacing.unit * 8,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '100vh',
+    padding: theme.spacing(3),
   },
   paper: {
-    marginTop: theme.spacing(8),
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    maxWidth: '400px',
+    width: '100%',
+    maxWidth: '450px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `20px 20px 20px`,
+    padding: '40px',
+    borderRadius: '16px',
+    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
+    border: '1px solid rgba(0, 0, 0, 0.08)',
+    background: 'linear-gradient(180deg, #ffffff 0%, #f8f9fc 100%)',
   },
   avatar: {
     margin: theme.spacing.unit,
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing.unit,
+    width: '100%',
+    marginTop: theme.spacing(2),
   },
   submit: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(2),
+    borderRadius: '10px',
+    padding: '12px',
+    fontWeight: 600,
+    textTransform: 'none',
+    fontSize: '1rem',
+    transition: 'all 0.3s ease',
+    '&:hover': {
+      transform: 'translateY(-2px)',
+      boxShadow: '0 6px 20px rgba(37, 99, 235, 0.4)',
+    }
   },
   logo: {
     width: '100%',
-    maxWidth: '350px',
-    marginBottom: '20px',
+    maxWidth: '300px',
+    marginBottom: '24px',
+    transition: 'transform 0.3s ease',
+    '&:hover': {
+      transform: 'scale(1.05)',
+    }
   },
   disclaimer: {
     textAlign: 'center',
-    color: '#ccc',
-    fontSize: '9pt',
+    color: '#64748b',
+    fontSize: '10pt',
+    lineHeight: '1.6',
+    marginTop: '16px',
+    padding: '12px',
+    backgroundColor: 'rgba(100, 116, 139, 0.05)',
+    borderRadius: '8px',
   },
 });
 
@@ -126,10 +143,25 @@ const SignIn = (props) => {
 
   return (
     <main className={classes.main}>
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} elevation={0}>
         <img className={classes.logo} src={mainlogo} alt='mainlogo'/>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h4" sx={{ 
+          fontWeight: 700,
+          mb: 1.5,
+          lineHeight: 1.3,
+          background: 'linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+        }}>
           Sign in to COMP6080
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ 
+          mb: 4,
+          lineHeight: 1.6,
+          fontSize: '1rem',
+        }}>
+          Welcome back! Please enter your credentials.
         </Typography>
         <form className={classes.form}>
           <FormControl margin="normal" required fullWidth>
@@ -155,25 +187,53 @@ const SignIn = (props) => {
               ))}
             </Select>
           </FormControl>)}
-          <p className={classes.disclaimer}>Your password and credentials are not stored by either this software or by teaching staff. If you change your UNSW password due to suspected compromise, please email cs6080@cse.unsw.edu.au to inform us as well.</p>
-          <Stack spacing={2}>
+          <p className={classes.disclaimer}>🔒 Your password and credentials are not stored by either this software or by teaching staff. If you change your UNSW password due to suspected compromise, please email cs6080@cse.unsw.edu.au to inform us as well.</p>
+          <Stack spacing={2} sx={{ mt: 3 }}>
           <Button
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
             onClick={() => login(zid, zpass, term)}
+            sx={{
+              borderRadius: '10px',
+              padding: '12px',
+              fontWeight: 600,
+              textTransform: 'none',
+              fontSize: '1rem',
+              background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+              boxShadow: '0 4px 14px rgba(37, 99, 235, 0.4)',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                transform: 'translateY(-2px)',
+                boxShadow: '0 6px 20px rgba(37, 99, 235, 0.5)',
+                background: 'linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)',
+              }
+            }}
           >
-            Sign in
+            Sign in →
           </Button>
           <Button
             fullWidth
-            variant="contained"
-            color="success"
-            className={classes.submit}
+            variant="outlined"
+            color="primary"
             onClick={() => window.location.href = config.BASE_NAME}
+            sx={{
+              borderRadius: '10px',
+              padding: '12px',
+              fontWeight: 600,
+              textTransform: 'none',
+              fontSize: '1rem',
+              borderWidth: '2px',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                borderWidth: '2px',
+                transform: 'translateY(-2px)',
+                boxShadow: '0 4px 12px rgba(37, 99, 235, 0.2)',
+              }
+            }}
           >
-            Back to homepage
+            ← Back to homepage
           </Button>
           </Stack>
         </form>

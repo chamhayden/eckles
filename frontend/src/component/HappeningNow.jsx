@@ -6,15 +6,20 @@ function LiveSession({ title, sessions, getDetails }) {
 
   return (
     <>
-      <Typography variant="h6" fontWeight="bold" gutterBottom>
-        {title} Happening NOW!
+      <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ 
+        color: 'white',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 1,
+      }}>
+        🔴 {title} Happening NOW!
       </Typography>
       {sessions.map((session, index) => {
         const { time, location, callUrl, className } = getDetails(session);
 
         const content = (
           <>
-            <Typography variant="body1">
+            <Typography variant="body1" sx={{ color: 'white', lineHeight: 1.8 }}>
               <strong>Time:</strong> {time} {location && `| `}
               {location && <strong>Location:</strong>} {location}
               {className && ` | `}
@@ -26,20 +31,27 @@ function LiveSession({ title, sessions, getDetails }) {
                 href={callUrl.includes("http") ? callUrl : undefined}
                 target="_blank"
                 rel="noopener noreferrer"
-                disableElevation
                 sx={{
                   width: "100%",
-                  marginTop: "5px",
-                  backgroundColor: "#2f7d31",
+                  marginTop: "12px",
+                  backgroundColor: "#059669",
                   color: "white",
-                  border: "3px solid white",
+                  fontWeight: 600,
+                  borderRadius: '8px',
+                  padding: '10px',
+                  textTransform: 'none',
+                  fontSize: '1rem',
+                  boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.3)',
                   "&:hover": {
-                    backgroundColor: "#1b5e20",
+                    backgroundColor: "#047857",
                     color: "white",
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 6px 12px -2px rgb(0 0 0 / 0.3)',
                   },
+                  transition: 'all 0.2s ease',
                 }}
               >
-                {callUrl.includes("http") ? "Join Online Session" : callUrl}
+                {callUrl.includes("http") ? "🎥 Join Online Session" : callUrl}
               </Button>
             )}
           </>
@@ -50,8 +62,11 @@ function LiveSession({ title, sessions, getDetails }) {
             key={index}
             sx={{
               marginBottom: "15px",
-              backgroundColor: "#4daf50",
-              border: "1px solid white",
+              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)",
+              backdropFilter: 'blur(10px)',
+              border: "2px solid rgba(255, 255, 255, 0.3)",
+              borderRadius: '12px',
+              boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.2)',
             }}
           >
             <CardContent>{content}</CardContent>
@@ -59,7 +74,14 @@ function LiveSession({ title, sessions, getDetails }) {
         ) : (
           <Box
             key={index}
-            sx={{ marginBottom: "10px", backgroundColor: "#4daf50" }}
+            sx={{ 
+              marginBottom: "12px",
+              padding: '16px',
+              borderRadius: '12px',
+              background: "linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)",
+              backdropFilter: 'blur(10px)',
+              border: "2px solid rgba(255, 255, 255, 0.3)",
+            }}
           >
             {content}
           </Box>
@@ -85,10 +107,12 @@ export default function HappeningNow({
     <Box
       sx={{
         width: "100%",
-        borderRadius: 1,
+        borderRadius: '16px',
         padding: "20px",
-        margin: "20px 0",
-        backgroundColor: "#4daf50",
+        margin: "16px 0",
+        background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
+        boxShadow: '0 10px 25px -5px rgba(16, 185, 129, 0.4)',
+        border: '2px solid rgba(255, 255, 255, 0.2)',
       }}
     >
       <LiveSession

@@ -23,12 +23,39 @@ const SubNav = ({ menu, baseUrl, sidebarOpen }) => {
   return (
     <Box sx={{ pb: 7 }} ref={ref}>
       <CssBaseline />
-      <Paper sx={{ minWidth: '400px', position: 'fixed', top: 61, zIndex: 0, left: getters.sidebarOpen ? '230px' : 0, right: 0 }} elevation={3}>
+      <Paper sx={{ 
+        minWidth: '400px', 
+        position: 'fixed', 
+        top: 60, 
+        zIndex: 0, 
+        left: getters.sidebarOpen ? '230px' : 0, 
+        right: 0,
+        borderRadius: 0,
+        borderBottom: '1px solid',
+        borderColor: 'divider',
+        backdropFilter: 'blur(10px)',
+        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+      }} elevation={0}>
         <BottomNavigation
           showLabels
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
+          }}
+          sx={{
+            backgroundColor: 'transparent',
+            '& .MuiBottomNavigationAction-root': {
+              transition: 'all 0.3s ease',
+              borderRadius: '8px',
+              margin: '4px',
+              '&:hover': {
+                backgroundColor: 'rgba(37, 99, 235, 0.08)',
+              },
+              '&.Mui-selected': {
+                color: 'primary.main',
+                fontWeight: 600,
+              }
+            }
           }}
         >
           {menu.map(({ title, icon, subRoute }, key) => (

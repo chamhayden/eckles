@@ -71,25 +71,63 @@ const Header = ({ pageTitle, menuToggle, sidebarWidth}) => {
   return (
     <AppBar
       position="fixed"
+      elevation={0}
       sx={{
         width: `calc(100% - ${sidebarWidth}px)`,
         left: 0,
         ml: `${sidebarWidth}px`,
         height: "60px",
+        backdropFilter: 'blur(20px) saturate(180%)',
+        backgroundColor: getters.isDark ? 'rgba(30, 41, 59, 0.8)' : 'rgba(255, 255, 255, 0.85)',
+        color: getters.isDark ? '#f1f5f9' : '#1e293b',
+        borderBottom: getters.isDark ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.08)',
+        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        boxShadow: '0 4px 20px 0 rgba(0, 0, 0, 0.05)',
       }}
     >
-      <Toolbar>
+      <Toolbar sx={{ 
+        height: '60px', 
+        minHeight: '60px !important', 
+        display: 'flex', 
+        alignItems: 'center',
+        paddingTop: '0 !important', 
+        paddingBottom: '0 !important' 
+      }}>
         <IconButton
-          size="large"
+          size="medium"
           edge="start"
-          color="inherit"
           aria-label="menu"
-          sx={{ mr: 2 }}
+          sx={{ 
+            mr: 1.5,
+            color: getters.isDark ? '#f1f5f9' : '#1e293b',
+            transition: 'all 0.2s ease',
+            '&:hover': {
+              transform: 'rotate(90deg)',
+              backgroundColor: getters.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(37, 99, 235, 0.1)',
+            }
+          }}
           onClick={menuToggle}
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography 
+          variant="h6" 
+          component="div" 
+          sx={{ 
+            flexGrow: 1,
+            fontWeight: 600,
+            display: 'flex',
+            alignItems: 'center',
+            height: '100%',
+            background: getters.isDark 
+              ? 'linear-gradient(135deg, #f1f5f9 0%, #94a3b8 100%)'
+              : 'linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            paddingTop: '12px'
+          }}
+        >
           {pageTitle}
         </Typography>
         <DarkModeSwitch

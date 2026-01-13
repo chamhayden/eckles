@@ -53,16 +53,51 @@ const SetOfTables = ({ boxes, lectures }) => {
 
   return (
   	<>
-      {lectures && <div style={{ border: '1px solid #999', padding: '10px', fontSize: '1.1em', margin: '0 auto 20px auto', minWidth: 100, maxWidth: '380px' }}>
-        What type of student are you?<br />
+      {lectures && <Paper elevation={0} sx={{ 
+        border: '1px solid', 
+        borderColor: 'divider',
+        borderRadius: '12px',
+        padding: '20px', 
+        fontSize: '1.1em', 
+        margin: '0 auto 24px auto', 
+        minWidth: 100, 
+        maxWidth: '420px',
+        background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%)',
+      }}>
+        <Typography variant="h6" sx={{ mb: 2, fontWeight: 600, color: 'primary.main' }}>
+          🎓 What type of student are you?
+        </Typography>
         {Object.keys(RELEVANCE).map((item, idx) => {
           if (RELEVANCE[item].select) {
-            return <span style={{ cursor: 'pointer'}} onClick={() => setStudentTypeFn(item)}><input type="radio" checked={studentType === item} />{RELEVANCE[item].select}<br /></span>
+            return <div key={idx} style={{ 
+              cursor: 'pointer',
+              marginBottom: '8px',
+              padding: '8px',
+              borderRadius: '8px',
+              transition: 'all 0.2s ease',
+              backgroundColor: studentType === item ? 'rgba(37, 99, 235, 0.1)' : 'transparent',
+            }} onClick={() => setStudentTypeFn(item)}>
+              <input type="radio" checked={studentType === item} readOnly style={{ marginRight: '8px' }} />
+              {RELEVANCE[item].select}
+            </div>
           }
         })}
-        <div style={{ height: '20px' }}></div>
-        <span style={{ cursor: 'pointer' }} onClick={() => setNoCatchupFn(noCatchup === 0 ? 1 : 0)}><input type="checkbox" checked={noCatchup} />I completed COMP1531 <span onClick={(e) => { alert('If you uncheck this box, we will show all COMP1531 lectures that are relevant to this course. You won\'t necessarily need to watch every catch up lecture, because you may already have that knowledge.'); e.stopPropagation(); }}>ℹ️</span></span>
-      </div>}
+        <div style={{ height: '16px' }}></div>
+        <div style={{ 
+          cursor: 'pointer',
+          padding: '8px',
+          borderRadius: '8px',
+          transition: 'all 0.2s ease',
+          backgroundColor: noCatchup ? 'rgba(16, 185, 129, 0.1)' : 'transparent',
+        }} onClick={() => setNoCatchupFn(noCatchup === 0 ? 1 : 0)}>
+          <input type="checkbox" checked={noCatchup} readOnly style={{ marginRight: '8px' }} />
+          I completed COMP1531{' '}
+          <span onClick={(e) => { 
+            alert('If you uncheck this box, we will show all COMP1531 lectures that are relevant to this course. You won\'t necessarily need to watch every catch up lecture, because you may already have that knowledge.'); 
+            e.stopPropagation(); 
+          }} style={{ cursor: 'help' }}>ℹ️</span>
+        </div>
+      </Paper>}
   	  {boxes.map(({ title, key, headers, table, maxWidth, totalDuration }, boxKey) => {
         var hasLectures = false
         let totalWidth = 0;
@@ -72,16 +107,42 @@ const SetOfTables = ({ boxes, lectures }) => {
         headers = headers.map(h => ({ ...h, width: h.width / (totalWidth / 100) }));
         return (
           <>
-            <Accordion key={boxKey} sx={{ marginTop: '0 !important', marginLeft: 'auto !important', marginRight: 'auto !important', minWidth: 100, maxWidth }} expanded={true} id={key}>
+            <Accordion key={boxKey} sx={{ 
+              marginTop: '0 !important', 
+              marginBottom: '20px !important',
+              marginLeft: 'auto !important', 
+              marginRight: 'auto !important', 
+              minWidth: 100, 
+              maxWidth,
+              borderRadius: '12px !important',
+              border: '1px solid',
+              borderColor: 'divider',
+              boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+              '&:before': {
+                display: 'none',
+              },
+              overflow: 'hidden',
+            }} expanded={true} id={key}>
               <AccordionSummary
                 //expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
+                sx={{
+                  background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%)',
+                  borderBottom: '1px solid',
+                  borderColor: 'divider',
+                }}
               >
-                <Typography variant="h5">{title}</Typography>
+                <Typography variant="h5" sx={{ fontWeight: 600, color: 'primary.main' }}>{title}</Typography>
               </AccordionSummary>
-              <AccordionDetails>
-                <TableContainer component={Paper} sx={{ boxShadow: 'none', }}>
+              <AccordionDetails sx={{ padding: '16px' }}>
+                <TableContainer component={Paper} sx={{ 
+                  boxShadow: 'none',
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                }}>
                   <Table aria-label="simple table">
                     <colgroup>
                       {headers.map(({ width, showFn }, widthKey) => {
@@ -92,7 +153,13 @@ const SetOfTables = ({ boxes, lectures }) => {
                       })}
                     </colgroup>
                     <TableHead>
-                      <TableRow>
+                      <TableRow sx={{ 
+                        backgroundColor: 'rgba(37, 99, 235, 0.05)',
+                        '& th': {
+                          fontWeight: 700,
+                          color: 'primary.main',
+                        }
+                      }}>
                         {headers.map(({ name, showFn }, headerKey) => {
                         	if (showFn === undefined || showFn()) {
                         	  return <TableCell key={headerKey}><b>{name}</b></TableCell>;
@@ -118,7 +185,13 @@ const SetOfTables = ({ boxes, lectures }) => {
                         return (
                         <TableRow
                           key={tableRowKey}
-                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                          sx={{ 
+                            '&:last-child td, &:last-child th': { border: 0 },
+                            '&:hover': {
+                              backgroundColor: 'rgba(37, 99, 235, 0.03)',
+                            },
+                            transition: 'background-color 0.2s ease',
+                          }}
                         >
                         	{tableRow.map((cell, cellKey) => {
                             if (!lectures || shouldShowImportance(tableRow)) {
@@ -158,11 +231,16 @@ const SetOfTables = ({ boxes, lectures }) => {
                   <Typography variant="h6"
                     sx={{
                       textAlign: 'end',
-                      fontSize: '0.875rem',
-                      marginTop: '10px'
+                      fontSize: '0.95rem',
+                      marginTop: '16px',
+                      padding: '12px',
+                      borderRadius: '8px',
+                      backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                      color: 'secondary.main',
+                      fontWeight: 600,
                     }}
                   >
-                    Total duration: <strong>{parseMins(durationCount)}</strong>
+                    ⏱️ Total duration: <strong>{parseMins(durationCount)}</strong>
                   </Typography>
 
                 }

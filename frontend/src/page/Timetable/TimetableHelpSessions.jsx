@@ -59,11 +59,27 @@ const TimetableHelpSessions = () => {
   }, [getters.content.weeks]);
 
   return <>
-    <div style={{ border: '1px solid #999', padding: '10px', margin: '0 auto 20px auto', minWidth: 100, maxWidth: '44rem' }}>
-      <p style={{ fontSize: '1.2rem' }}>1. Join the <a href="https://unsw.to/hopper" target="_blank">Hopper Queue</a><br/>
-      2. Join the Team's help session meeting on the table below</p>
-      <p>Please be aware that help sessions with less tutors may result in longer wait times.</p>
-    </div>
+    <Paper 
+      elevation={0}
+      sx={{ 
+        border: '1px solid',
+        borderColor: 'divider',
+        borderRadius: '12px',
+        padding: '24px',
+        margin: '0 auto 32px auto',
+        minWidth: 100,
+        maxWidth: '44rem',
+        background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%)',
+      }}
+    >
+      <Typography variant="body1" sx={{ fontSize: '1.1rem', lineHeight: 1.8, mb: 2 }}>
+        <strong>1.</strong> Join the <a href="https://unsw.to/hopper" target="_blank" style={{ fontWeight: 600 }}>Hopper Queue</a><br/>
+        <strong>2.</strong> Join the Team's help session meeting on the table below
+      </Typography>
+      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+        Please be aware that help sessions with less tutors may result in longer wait times.
+      </Typography>
+    </Paper>
     <SetOfTables boxes={boxes} />
   </>
 

@@ -72,47 +72,64 @@ export default function TutLecContentCard({
   : `/NOW/content/tutorials/${contentKey}`;
 
   return (
-    <Link to={cardLink}>
+    <Link to={cardLink} style={{ textDecoration: 'none' }}>
         <Card
         sx={{
             display: "flex",
             flexDirection: "column",
             height: "100%",
             width: "100%",
-            boxShadow: "lg",
-            paddingBottom: "10px",
+            paddingBottom: "12px",
+            borderRadius: '12px',
+            border: '1px solid',
+            borderColor: 'divider',
+            boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             "&:hover": {
-            transform: "scale(1.05)",
-            transition: "all .2s ease-in-out;",
+              transform: "translateY(-8px)",
+              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
+              borderColor: 'primary.main',
             },
-            border: "1px solid #dcdcdc",
         }}
         >
         <CardContent
             sx={{
             flex: "1 0 auto",
+            padding: '18px',
             }}
         >
             <Stack
             direction="row"
             alignItems="center"
             justifyContent="space-between"
+            gap={2}
             >
-            <Stack>
+            <Stack flex={1}>
                 <Typography
                 variant="h6"
                 component="div"
                 sx={{
+                    fontWeight: 600,
+                    mb: 1.5,
+                    lineHeight: 1.4,
+                    fontSize: '1.15rem',
+                    transition: 'color 0.2s ease',
                     "&:hover": {
-                    textDecoration: "underline",
-                    color: "#5b7edb",
+                      color: "primary.main",
                     },
                 }}
                 >
                 {name}
                 </Typography>
-                <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-                {duration_mins} minutes
+                <Typography sx={{ 
+                  color: "text.secondary",
+                  fontSize: '0.95rem',
+                  lineHeight: 1.6,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 0.5,
+                }}>
+                  ⏱️ {duration_mins} minutes
                 </Typography>
             </Stack>
 
@@ -126,6 +143,9 @@ export default function TutLecContentCard({
                 sx={{
                 width: 100,
                 height: 100,
+                border: '2px solid',
+                borderColor: 'divider',
+                boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                 }}
             />
             </Stack>
@@ -137,13 +157,48 @@ export default function TutLecContentCard({
             rowGap={1}
             flexWrap="wrap"
             sx={{
-            padding: 1,
+            padding: '0 18px 14px 18px',
             }}
         >
-            <Chip label={topic} />
-            <Chip label={fullWeek} />
-            <Chip color={relevanceChip.color} label={relevanceChip.label} />
-            {isLive && <Chip color="secondary" label={"Live"} />}
+            <Chip 
+              label={topic} 
+              sx={{ 
+                fontWeight: 500,
+                borderRadius: '8px',
+              }} 
+            />
+            <Chip 
+              label={fullWeek}
+              sx={{ 
+                fontWeight: 500,
+                borderRadius: '8px',
+              }}
+            />
+            <Chip 
+              color={relevanceChip.color} 
+              label={relevanceChip.label}
+              sx={{ 
+                fontWeight: 600,
+                borderRadius: '8px',
+              }}
+            />
+            {isLive && <Chip 
+              color="secondary" 
+              label={"🔴 Live"}
+              sx={{ 
+                fontWeight: 600,
+                borderRadius: '8px',
+                animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                '@keyframes pulse': {
+                  '0%, 100%': {
+                    opacity: 1,
+                  },
+                  '50%': {
+                    opacity: 0.7,
+                  },
+                },
+              }}
+            />}
         </Stack>
         </Card>
     </Link>

@@ -4,51 +4,103 @@ html, #root {
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f6f6f6; /* fallback for old browsers */
-  background: -webkit-linear-gradient(90deg, #f6f6f6, #f6f6f6); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(90deg, #f6f6f6, #f6f6f6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #f8f9fc;
+  background: linear-gradient(135deg, #f8f9fc 0%, #eef2f7 100%);
   height: 100%;
+  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Better paragraph spacing */
+p {
+  margin-bottom: 1em;
+  line-height: 1.7;
+}
+
+/* Headings with better spacing */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.25em;
+  margin-bottom: 0.6em;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1.1rem; }
+
+/* Better list spacing */
+ul, ol {
+  margin-bottom: 1.25em;
+  padding-left: 2em;
+}
+
+li {
+  margin-bottom: 0.4em;
+  line-height: 1.7;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: 'Fira Code', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-  background-color: rgb(255, 255, 255);
-  border-radius: 5px;
-  padding: 0.2em;
+  background-color: rgba(135, 131, 120, 0.15);
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+  transition: all 0.2s ease;
+}
+
+code:hover {
+  background-color: rgba(135, 131, 120, 0.25);
 }
 
 a {
   text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-a, a:visited, a:hover, a:active {
-  color: #487bff;
+a, a:visited {
+  color: #2563eb;
+}
+
+a:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #1e40af;
 }
 
 .app-bar{
-  -moz-transition: left 218ms cubic-bezier(0.4, 0, 0.2, 1);
-  -o-transition: left 218ms cubic-bezier(0.4, 0, 0.2, 1);
-  -webkit-transition: left 218ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: left 218ms cubic-bezier(0.4, 0, 0.2, 1);
+  -moz-transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  -o-transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
   left: 0;
   width: auto !important;
   right: 0 !important;
   position: fixed !important;
+  backdrop-filter: blur(10px);
 }
 
 .app-content{
-  -moz-transition: padding-left 218ms cubic-bezier(0.4, 0, 0.2, 1);
-  -o-transition: padding-left 218ms cubic-bezier(0.4, 0, 0.2, 1);
-  -webkit-transition: padding-left 218ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: padding-left 218ms cubic-bezier(0.4, 0, 0.2, 1);
-  padding-right: 20px !important;
-  padding-top: 64px !important;
+  -moz-transition: padding-left 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  -o-transition: padding-left 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition: padding-left 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: padding-left 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  padding-right: 30px !important;
+  padding-top: 76px !important;
+  padding-bottom: 30px !important;
 }
 
 .app-bar.expanded{
@@ -56,5 +108,31 @@ a, a:visited, a:hover, a:active {
 }
 
 .app-content.expanded{
-  padding-left: 255px;
+  padding-left: 275px;
+}
+
+/* Add smooth scroll behavior */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
 }

@@ -9,7 +9,12 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 export const Body = (props) => {
   return (
-    <Typography {...props} variant="body1" style={{ padding: '10px 0'}}>
+    <Typography {...props} variant="body1" sx={{ 
+      padding: '0',
+      marginBottom: '1.25em',
+      lineHeight: 1.7,
+      fontSize: '1rem',
+    }}>
       {props.children}
     </Typography>
   )
@@ -17,7 +22,11 @@ export const Body = (props) => {
 
 export const H3 = (props) => {
   return (
-    <Typography id={props.id} {...props} variant="h4" component="div" gutterBottom>
+    <Typography id={props.id} {...props} variant="h4" component="div" sx={{ 
+      marginTop: '1.5em',
+      marginBottom: '0.6em',
+      lineHeight: 1.35,
+    }}>
       {props.children}
     </Typography>
   );
@@ -25,14 +34,18 @@ export const H3 = (props) => {
 
 export const H5 = (props) => {
   return (
-    <Typography id={props.id} {...props} variant="h5" component="div" gutterBottom>
+    <Typography id={props.id} {...props} variant="h5" component="div" sx={{ 
+      marginTop: '1.25em',
+      marginBottom: '0.6em',
+      lineHeight: 1.4,
+    }}>
       {props.children}
     </Typography>
   );
 }
 
 export const HR = () => {
-  return <Divider sx={{ mb: 3, mt: 3, }} />
+  return <Divider sx={{ my: 4 }} />
 }
 
 export const Code = (props) => {
@@ -40,7 +53,16 @@ export const Code = (props) => {
 
   // All code elements in this div will have a background color of transparent
   return (
-    <Box sx={{ maxWidth: '800px', 'code': { bgcolor: 'transparent' } }}> 
+    <Box sx={{ 
+      maxWidth: '800px', 
+      'code': { bgcolor: 'transparent' },
+      '& pre': {
+        borderRadius: '8px !important',
+        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+        border: '1px solid',
+        borderColor: 'divider',
+      }
+    }}> 
       <SyntaxHighlighter
         style={a11yDark}
         language={props.lang}
@@ -84,16 +106,41 @@ const ExampleAccordionWrapper = ({ children, title = 'Example' }) => {
   const [expand, setExpand] = React.useState(false);
 
   return (
-    <Box sx={{ boxShadow: 'rgba(0, 0, 0, 0.2) 0px 5px 15px', borderRadius: '15px'}} my={2}>
-      <Box sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }} p={1} onClick={() => setExpand(!expand)}>
-        <ExpandLessIcon style={{ rotate: (expand) ? '180deg' : '0deg', transition: 'rotate 0.1s ease-in-out' }} />
-        <Body>
+    <Box sx={{ 
+      boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+      borderRadius: '12px',
+      border: '1px solid',
+      borderColor: 'divider',
+      overflow: 'hidden',
+      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+      '&:hover': {
+        boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+        borderColor: 'primary.main',
+      }
+    }} my={2}>
+      <Box sx={{ 
+        cursor: 'pointer', 
+        display: 'flex', 
+        alignItems: 'center',
+        backgroundColor: expand ? 'primary.main' : 'background.paper',
+        color: expand ? 'white' : 'text.primary',
+        transition: 'all 0.3s ease',
+        '&:hover': {
+          backgroundColor: expand ? 'primary.dark' : 'action.hover',
+        }
+      }} p={2} onClick={() => setExpand(!expand)}>
+        <ExpandLessIcon style={{ 
+          rotate: (expand) ? '180deg' : '0deg', 
+          transition: 'rotate 0.3s ease-in-out',
+          marginRight: '8px',
+        }} />
+        <Body sx={{ margin: 0, padding: 0 }}>
           <b>{`💡 ${(title)}:`} </b>
         </Body>
       </Box>
       <Collapse in={expand} unmountOnExit>
-        <Box component='hr' m={0}/>
-        <Box p={2} pl={3}>
+        <Box component='hr' m={0} sx={{ borderColor: 'divider', opacity: 0.3 }}/>
+        <Box p={3}>
           {children}
         </Box>
       </Collapse>

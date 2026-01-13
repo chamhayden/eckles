@@ -25,12 +25,13 @@ const ExternalIcon = () => {
   return <OpenInNewIcon/>;
 }
 
-const background = 'rgb(22,27,37) !important';
+const background = 'linear-gradient(180deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%) !important';
 
 const useStyles = makeStyles({
   paper: {
     background,
     color: '#fff !important',
+    boxShadow: '4px 0 20px rgba(0, 0, 0, 0.3)',
   }
 });
 
@@ -83,9 +84,39 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
         }}
       >
         <Box sx={{ overflow: 'auto', paddingTop: '60px' }}>
-          <Box sx={{ display: 'flex',justifyContent: 'center', alignItems: 'center', cursor: 'pointer', position: 'fixed', top: 0, height: '60px', width: drawerWidth, backgroundColor: background, zIndex: 999, borderBottom: '1px solid #333' }} onClick={() => navigate(`/${getters.term}`)}>
-            <img src={mainlogo} style={{ height: '40px', }} alt={'main-logo'}/>
-            <Typography sx={{ fontSize: '1.3em', paddingLeft: '15px' }}>
+          <Box sx={{ 
+            display: 'flex',
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            cursor: 'pointer', 
+            position: 'fixed', 
+            top: 0, 
+            height: '60px', 
+            width: drawerWidth, 
+            background: 'linear-gradient(180deg, rgb(15, 23, 42) 0%, rgb(20, 27, 48) 100%)',
+            zIndex: 999, 
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              background: 'linear-gradient(180deg, rgb(20, 27, 48) 0%, rgb(25, 32, 53) 100%)',
+            }
+          }} onClick={() => navigate(`/${getters.term}`)}>
+            <img src={mainlogo} style={{ 
+              height: '40px',
+              transition: 'transform 0.3s ease',
+            }} alt={'main-logo'} onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}/>
+            <Typography sx={{ 
+              fontSize: '1.3em', 
+              paddingLeft: '15px',
+              paddingTop: '19px',
+              fontWeight: 700,
+              display: 'flex',
+              alignItems: 'center',
+              background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>
               COMP6080
             </Typography>
           </Box>
@@ -98,11 +129,49 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
             const clickFn = route ? () => redirect(getUrl(route, external)) : () => handleClick(key);
             return (
               <span key={key}>
-                <ListItem button onClick={clickFn} selected={boldIfPage(route)}>
-                  <ListItemIcon>
+                <ListItem 
+                  button 
+                  onClick={clickFn} 
+                  selected={boldIfPage(route)}
+                  sx={{
+                    margin: '2px 8px',
+                    padding: '2px 26px 2px 6px',
+                    borderRadius: '8px',
+                    transition: 'all 0.2s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    minHeight: '40px',
+                    '&:hover': {
+                      backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                      transform: 'translateX(4px)',
+                    },
+                    '&.Mui-selected': {
+                      backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                      borderLeft: '3px solid #3b82f6',
+                      '&:hover': {
+                        backgroundColor: 'rgba(59, 130, 246, 0.25)',
+                      }
+                    }
+                  }}
+                >
+                  <ListItemIcon sx={{ minWidth: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Icon style={{fill: 'white'}} />
                   </ListItemIcon>
-                  <ListItemText sx={{ fontWeight: 'bold' }} primary={title} />
+                  <ListItemText 
+                    primaryTypographyProps={{
+                      sx: {
+                        fontWeight: 'bold',
+                        fontSize: '1rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        paddingTop: '15px'
+                      }
+                    }}
+                    sx={{ 
+                      my: 0,
+                    }} 
+                    primary={title} 
+                  />
                   {external && <ExternalIcon />}
                   {children ? open[key] ? <ExpandLess /> : <ExpandMore /> : <></>}
                 </ListItem>
@@ -115,11 +184,50 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
                         const clickFn2 = route2 ? () => redirect(getUrl(route2, external2)) : () => handleClick(key2);
                         if (getters.loggedIn || !child.loginRequired) {
                           return (
-                            <ListItemButton sx={{ pl: 5 }} key={key2} onClick={clickFn2} selected={boldIfPage(child.route)}>
-                              <ListItemIcon>
+                            <ListItemButton 
+                              sx={{ 
+                                pl: 5,
+                                pr: 2,
+                                margin: '1px 8px',
+                                paddingTop: '0px',
+                                paddingBottom: '0px',
+                                borderRadius: '8px',
+                                transition: 'all 0.2s ease',
+                                display: 'flex',
+                                alignItems: 'center',
+                                minHeight: '44px',
+                                '&:hover': {
+                                  backgroundColor: 'rgba(139, 92, 246, 0.15)',
+                                  transform: 'translateX(4px)',
+                                },
+                                '&.Mui-selected': {
+                                  backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                                  '&:hover': {
+                                    backgroundColor: 'rgba(139, 92, 246, 0.25)',
+                                  }
+                                }
+                              }} 
+                              key={key2} 
+                              onClick={clickFn2} 
+                              selected={boldIfPage(child.route)}
+                            >
+                              <ListItemIcon sx={{ minWidth: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 <child.Icon style={{fill: 'white'}} />
                               </ListItemIcon>
-                              <ListItemText primary={child.title} /> 
+                              <ListItemText 
+                                primaryTypographyProps={{
+                                  sx: {
+                                    fontSize: '1rem',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    paddingTop: '15px',
+                                  }
+                                }}
+                                sx={{ 
+                                  my: 0,
+                                }} 
+                                primary={child.title} 
+                              /> 
                               {external2 && <ExternalIcon />}
                             </ListItemButton>
                           );
@@ -132,18 +240,56 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
             );
           })}
           </List>
-          {getters.loggedIn && <Divider sx={{borderColor: '#666', margin: '0 15px' }} />}
+          {getters.loggedIn && <Divider sx={{borderColor: 'rgba(255, 255, 255, 0.15)', margin: '8px 15px' }} />}
           <List>
           {getSecondaryNavList(getters.term).map(({ external, title, Icon, route, loginRequired }, key) => {
             if (!getters.loggedIn && loginRequired) {
               return <span key={key}></span>
             }
             return (
-              <ListItem button key={key} onClick={() => redirect(getUrl(route, external))} selected={boldIfPage(route)}>
-                <ListItemIcon>
+              <ListItem 
+                button 
+                key={key} 
+                onClick={() => redirect(getUrl(route, external))} 
+                selected={boldIfPage(route)}
+                sx={{
+                  margin: '2px 8px',
+                  padding: '2px 26px 2px 6px',
+                  borderRadius: '8px',
+                  transition: 'all 0.2s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  minHeight: '40px',
+                  '&:hover': {
+                    backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                    transform: 'translateX(4px)',
+                  },
+                  '&.Mui-selected': {
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderLeft: '3px solid #3b82f6',
+                    '&:hover': {
+                      backgroundColor: 'rgba(59, 130, 246, 0.25)',
+                    }
+                  }
+                }}
+              >
+                <ListItemIcon sx={{ minWidth: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Icon style={{fill: 'white'}} />
                 </ListItemIcon>
-                <ListItemText primary={title} />
+                <ListItemText 
+                  primaryTypographyProps={{
+                    sx: {
+                      fontSize: '1rem',
+                      paddingTop: '15px',
+                      display: 'flex',
+                      alignItems: 'center',
+                    }
+                  }}
+                  sx={{ 
+                    my: 0,
+                  }} 
+                  primary={title} 
+                />
                 {external && <ExternalIcon />}
               </ListItem>
             );
