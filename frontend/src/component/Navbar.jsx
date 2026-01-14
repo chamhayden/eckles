@@ -135,7 +135,7 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
                   selected={boldIfPage(route)}
                   sx={{
                     margin: '2px 8px',
-                    padding: '2px 26px 2px 6px',
+                    padding: '2px 26px 2px 16px',
                     borderRadius: '8px',
                     transition: 'all 0.2s ease',
                     display: 'flex',
@@ -254,7 +254,7 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
                 selected={boldIfPage(route)}
                 sx={{
                   margin: '2px 8px',
-                  padding: '2px 26px 2px 6px',
+                  padding: '2px 26px 2px 26px',
                   borderRadius: '8px',
                   transition: 'all 0.2s ease',
                   display: 'flex',

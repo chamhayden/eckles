@@ -46,39 +46,44 @@ const getContent = shortTermHold('content', async (term) => {
 });
 
 const getForum = shortTermHold('forum', async (term) => {
-  const edCourseNumber = config.TERMS[term].ED_COURSE_NUMBER;
-  const discourseAPI = new Discourse("https://discourse02.cse.unsw.edu.au/25T3/COMP6080", {
-    "Api-Key": config.TERMS[term].DISCOURSE_API_KEY,
-    "Api-Username": config.TERMS[term].DISCOURSE_API_USERNAME,
-  });
-
-  const category = await getAnnouncementCategory(discourseAPI);
-  if (category === undefined) {
-    throw new SettingsError('Announcement category not found in Discourse');
-  }
-  const categoryTopics = await discourseAPI.listCategoryTopics({ id: category.id, slug: 'announcements' });
-
-  const promises = [];
-
-  const output = [];
-
-  for (const topic of categoryTopics.topic_list.topics) {
-    const p = discourseAPI.getTopic({ id: topic.id.toString() }).then((x) => {
-      output.push(x);
+  let notices = [];
+  try {
+    const edCourseNumber = config.TERMS[term].ED_COURSE_NUMBER;
+    const discourseAPI = new Discourse("https://discourse02.cse.unsw.edu.au/25T3/COMP6080", {
+      "Api-Key": config.TERMS[term].DISCOURSE_API_KEY,
+      "Api-Username": config.TERMS[term].DISCOURSE_API_USERNAME,
     });
-    promises.push(p);
-  }
-
-  await Promise.all(promises);
-
-  if (output.length > 0) {
-    notices = output.filter(t => (t.visible && t['post_stream']['posts'].length > 0)).map(t => ({
-      url: `https://discourse02.cse.unsw.edu.au/${term}/COMP6080/t/${t.id}`,
-      title: t.title,
-      document: t['post_stream']['posts'][0].cooked,
-      created_at: t.created_at,
-    }));
-    notices.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  
+    const category = await getAnnouncementCategory(discourseAPI);
+    if (category === undefined) {
+      throw new SettingsError('Announcement category not found in Discourse');
+    }
+    const categoryTopics = await discourseAPI.listCategoryTopics({ id: category.id, slug: 'announcements' });
+  
+    const promises = [];
+  
+    const output = [];
+  
+    for (const topic of categoryTopics.topic_list.topics) {
+      const p = discourseAPI.getTopic({ id: topic.id.toString() }).then((x) => {
+        output.push(x);
+      });
+      promises.push(p);
+    }
+  
+    await Promise.all(promises);
+  
+    if (output.length > 0) {
+      notices = output.filter(t => (t.visible && t['post_stream']['posts'].length > 0)).map(t => ({
+        url: `https://discourse02.cse.unsw.edu.au/${term}/COMP6080/t/${t.id}`,
+        title: t.title,
+        document: t['post_stream']['posts'][0].cooked,
+        created_at: t.created_at,
+      }));
+      notices.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    }
+  } catch (err) {
+    
   }
   return notices;
 });
@@ -498,10 +503,12 @@ app.get('/api/gradesearch', (req, res) => {
     'ass4_other_penalty_comments',
   ];
 
-
+  console.log('shellresult.trim()', shellresult.trim());
   let eachLine = shellresult.trim().split('\n')
   eachLine.sort();
+  console.log(eachLine);
   const results = eachLine.map(splitOnFirstSpace);
+  console.log(results);
 
   res.json({
     main: results.filter(r => includeMain.includes(r[0])),
