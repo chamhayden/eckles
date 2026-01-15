@@ -1,0 +1,142 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Chip from "@mui/material/Chip";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import ContactPageIcon from "@mui/icons-material/ContactPage";
+
+const LectureInfoPanel = ({ lecture, term }) => {
+  const authorNames = lecture
+    .staff()
+    .map((s) => s.name)
+    .join(", ");
+  const hasSlides = lecture.pdf_url !== "null";
+  const pdfUrl =
+    lecture.pdf_url === undefined
+      ? `/~cs6080/raw/lectures/${lecture.key}.pdf`
+      : lecture.pdf_url;
+  const TimeStr = `${lecture.duration_mins} mins`;
+  const slides = hasSlides ? "Available" : "Not available";
+
+  return (
+    <Box
+      sx={{
+        borderRadius: 1,
+        p: 3,
+        bgcolor: "background.paper",
+        mb: 2,
+      }}
+    >
+      {/* Title row */}
+      <Box
+        sx={{ display: "flex", alignItems: "baseline", gap: 1, flexWrap: "wrap" }}
+      >
+        <Typography
+          variant="h4"
+          sx={{ fontWeight: 800, lineHeight: 1.15, marginBottom: 0 }}
+        >
+          {lecture.name}
+        </Typography>
+      </Box>
+
+      {/* Meta line */}
+      <Typography variant="body2" color="text.secondary">
+        {lecture.topic().area().name} •{" "}
+        <Link to={`/${term}/content/lectures/topic#${lecture.topic().name}`}>
+          {lecture.topic().name}
+        </Link>
+        {" • "}
+        {authorNames}
+      </Typography>
+
+      {/* Description / status */}
+      {lecture.description && (
+        <Typography
+          variant="body1"
+          color="text"
+          sx={{ mt: 2, lineHeight: 1.6, maxWidth: "80ch" }}
+        >
+          <Typography component="span" fontWeight={700}>
+            Description:{" "}
+          </Typography>
+          {lecture.description}
+        </Typography>
+      )}
+
+      {/* Pills */}
+      <Box sx={{ display: "flex", gap: 1.25, mt: 1.5, flexWrap: "wrap" }}>
+        <Chip label={TimeStr} size="small" variant="outlined" color="secondary" />
+        <Chip
+          label={`Slides: ${slides}`}
+          size="small"
+          variant="outlined"
+          color={hasSlides ? "success" : "default"}
+        />
+      </Box>
+
+      {/* Divider */}
+      <Box sx={{ my: 2, borderTop: "1px solid", borderColor: "divider" }} />
+
+      {/* Action bar */}
+      <Box sx={{ display: "flex", alignItems: "stretch" }}>
+        {/* PDF */}
+        <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
+          {hasSlides ? (
+            lecture.visible ? (
+              <Button
+                component="a"
+                href={pdfUrl}
+                target="_blank"
+                rel="noreferrer"
+                variant="text"
+                sx={{ textTransform: "none" }}
+                startIcon={<ContactPageIcon />}
+              >
+                Lecture Slides
+              </Button>
+            ) : (
+              <Button
+                onClick={() => alert("Lecture is coming soon! Check back later")}
+                variant="text"
+                sx={{ textTransform: "none" }}
+                startIcon={<ContactPageIcon />}
+              >
+                Lecture Slides
+              </Button>
+            )
+          ) : (
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ alignSelf: "center" }}
+            >
+              Lecture Slides
+            </Typography>
+          )}
+        </Box>
+
+        {/* vertical divider */}
+        <Box sx={{ borderLeft: "1px solid", borderColor: "divider" }} />
+
+        {/* Code */}
+        <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
+          <Button
+            component="a"
+            href={`/~cs6080/raw/lectures/${lecture.key}/`}
+            target="_blank"
+            rel="noreferrer"
+            variant="text"
+            sx={{ textTransform: "none" }}
+            startIcon={<GitHubIcon />}
+          >
+            LectureCode
+          </Button>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+export default LectureInfoPanel;
