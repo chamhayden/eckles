@@ -11,8 +11,8 @@ import LectureInfoPanel from "./component/LectureInfoPanel";
 import LectureRating from "./component/LectureRating";
 import LectureVideo from "./component/LectureVideo";
 import { Typography } from "@mui/material";
-import Divider from "@mui/material/Divider";
-
+import Button from "@mui/material/Button";
+import UndoIcon from '@mui/icons-material/Undo';
 const buildRelatedLectures = (lecture, allLectures, term) => {
   const relatedLectures = [
     ...(lecture.lectures_prereq ? lecture.lectures_prereq() : []).map((l) => ({
@@ -142,6 +142,18 @@ const ContentLecturesSingle = ({}) => {
 
   return (
     <>
+
+    <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+      {/* add a button back to last page */}
+      <Button
+        variant="none"
+        onClick={() => window.history.back()}
+        sx={{ mt: 2 }}
+        startIcon={<UndoIcon />}
+      >
+        Back
+      </Button>
+    </Box>
       <Box
         sx={{
           display: "flex",
@@ -150,6 +162,7 @@ const ContentLecturesSingle = ({}) => {
           justifyContent: "space-between",
         }}
       >
+   
         <Box sx={{ flex: "3 1 0%", minWidth: 0 }}>
           <LectureVideo lecture={lecture} />
           <LectureRating
