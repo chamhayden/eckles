@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
+import imageBg from '../asset/VideoBg.png';
 
 // https://stackoverflow.com/questions/40958727/javascript-generate-unique-number-based-on-string
 const hashCode = (str) => {
@@ -70,19 +71,37 @@ const ContentCards = ({ data, minHeight }) => {
                     }}>{label}</div>
                   </div>
                 }
-                <CardMedia
-                  component="img"
-                  height="160"
-                  sx={{ 
-                    borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
-                    background: imageBackground ?? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                    transition: 'transform 0.3s ease',
-                    '&:hover': {
-                      transform: 'scale(1.05)',
-                    }
-                  }}
-                  image={imageUrl ?? `https://picsum.photos/id/${hash}/400/300` }
-                />
+
+                <Box sx={{ position: 'relative' }}>
+                  <CardMedia
+                    component="img"
+                    height="160"
+                    sx={{ 
+                      borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
+                      background: imageBg ?? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      transition: 'transform 0.3s ease',
+                      '&:hover': {
+                        transform: 'scale(1.05)',
+                      }
+                    }}
+                    image={imageBg ?? `https://picsum.photos/id/${hash}/400/300` }
+                  />
+                  <Typography variant="h6" component="div" sx={{ 
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontWeight: 600,
+                    fontSize: '1.15rem',
+                    lineHeight: 1.4,
+                    textAlign: 'center',
+                    padding: '0 12px',
+                    zIndex: 1,
+                  }}>
+                    {title}
+                  </Typography>
+                </Box>
                 <CardContent sx={{ padding: '20px' }}>
                   {weektopic &&
                     <Box style={{float: 'left'}}>
@@ -106,15 +125,6 @@ const ContentCards = ({ data, minHeight }) => {
                       }}>⏱️ {duration} mins</Typography>
                     </Box>
                   }
-                  <Typography gutterBottom variant="h6" component="div" sx={{ 
-                    clear: 'both', 
-                    paddingTop: '16px',
-                    fontWeight: 600,
-                    fontSize: '1.15rem',
-                    lineHeight: 1.4,
-                    marginBottom: '8px',
-                  }}>{title}
-                  </Typography>
                   {staff && 
                     <Typography variant="body2" color="text.secondary" sx={{ 
                       fontSize: '0.875rem', 
