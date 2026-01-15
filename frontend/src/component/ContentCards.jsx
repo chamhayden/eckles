@@ -39,8 +39,18 @@ const ContentCards = ({ data, minHeight }) => {
         return (
           <Box sx={{ 
             minWidth: '220px', 
-            flex: 1, 
-            maxWidth: '400px',
+            flex: {
+              xs: '1 1 100%',
+              sm: '1 1 calc((100% - 20px) / 2)',
+              md: '1 1 calc((100% - 40px) / 3)',
+              lg: '1 1 calc((100% - 60px) / 4)',
+            },
+            maxWidth: {
+              xs: '100%',
+              sm: 'calc((100% - 20px) / 2)',
+              md: 'calc((100% - 40px) / 3)',
+              lg: 'calc((100% - 60px) / 4)',
+            },
           }} key={key}>
             <Card sx={{ 
               minHeight,
@@ -75,7 +85,7 @@ const ContentCards = ({ data, minHeight }) => {
                 <Box sx={{ position: 'relative' }}>
                   <CardMedia
                     component="img"
-                    height="210"
+                    height="180"
                     sx={{ 
                       borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
                       background: imageBg ?? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
