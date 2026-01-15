@@ -22,7 +22,6 @@ const Youtube = ({ code }) => {
         allowFullScreen
         style={{
           margin: '25px 10px',
-          borderRadius: '12px',
           boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2)',
         }}
       ></iframe>

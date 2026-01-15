@@ -12,6 +12,9 @@ const LectureVideo = ({ lecture }) => (
       background: "rgb(0,0,0)",
       "&.Mui-expanded": { margin: 0 },
       "& .MuiAccordionDetails-root": { padding: 0 },
+      borderTopLeftRadius: 2,
+      borderTopRightRadius: 2,
+      overflow: "hidden",
     }}
     expanded={true}
   >
