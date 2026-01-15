@@ -20,6 +20,8 @@ const LectureInfoPanel = ({ lecture, term }) => {
   const TimeStr = `${lecture.duration_mins} mins`;
   const slides = hasSlides ? "Available" : "Not available";
 
+  
+
   return (
     <Box
       sx={{
@@ -41,6 +43,9 @@ const LectureInfoPanel = ({ lecture, term }) => {
         </Typography>
       </Box>
 
+      {/* Divider */}
+      <Box sx={{ my: 2, borderTop: "1px solid", borderColor: "divider" }} />
+
       {/* Meta line */}
       <Typography variant="body2" color="text.secondary">
         {lecture.topic().area().name} •{" "}
@@ -49,6 +54,22 @@ const LectureInfoPanel = ({ lecture, term }) => {
         </Link>
         {" • "}
         {authorNames}
+      </Typography>
+
+        <Typography
+          variant="body1"
+          color="text"
+          sx={{ mt: 2, lineHeight: 1.6, maxWidth: "80ch" }}
+        >
+          <Typography component="span" fontWeight={700}>
+            Deadline: {" "}
+          </Typography>
+          Should watch no later than end of {" "}
+          <Link
+            to={`/${term}/content/lectures/week#${lecture.week().week}`}
+        >
+          week {lecture.week().week}
+        </Link>
       </Typography>
 
       {/* Description / status */}

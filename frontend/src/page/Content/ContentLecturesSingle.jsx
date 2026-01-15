@@ -157,10 +157,10 @@ const ContentLecturesSingle = ({}) => {
           <LectureInfoPanel lecture={lecture} term={getters.term} />
         </Box>
       </Box>
-      {/* <RelatedContent
+      <RelatedContent
         relatedLectures={relatedLectures}
         relatedTutes={relatedTutes}
-      /> */}
+      />
     </>
   );
 };
