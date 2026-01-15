@@ -10,13 +10,14 @@ import { apiCall } from "../../util/api";
 import LectureInfoPanel from "./component/LectureInfoPanel";
 import LectureRating from "./component/LectureRating";
 import LectureVideo from "./component/LectureVideo";
+import { Typography } from "@mui/material";
 
 const buildRelatedLectures = (lecture, allLectures, term) => {
   const relatedLectures = [
     ...(lecture.lectures_prereq ? lecture.lectures_prereq() : []).map((l) => ({
       ...l,
       label: "Watch first",
-      labelBackground: "rgb(248,139,139)",
+      labelBackground: "rgb(248,139,139, 0.7)",
     })),
     ...allLectures
       .filter(
@@ -30,7 +31,7 @@ const buildRelatedLectures = (lecture, allLectures, term) => {
       .map((l) => ({
         ...l,
         label: "Up Next",
-        labelBackground: "rgb(175,239,148)",
+        labelBackground: 'rgba(175, 239, 148, 0.7)',
       })),
   ];
 
@@ -70,15 +71,20 @@ const RelatedContent = ({ relatedLectures, relatedTutes }) => (
   <>
     {relatedLectures.length > 0 && (
       <>
-        <SectionHeader>Related Lectures</SectionHeader>
-        <ContentCards minHeight={330} data={relatedLectures} />
+          {/* Divider */}
+        <Box sx={{ pt: 2, mt: 8, borderTop: "1px solid", borderColor: "divider" }} />
+        <Typography variant="h4">Related Lectures</Typography>
+        <ContentCards minHeight={220} data={relatedLectures} />
+        
       </>
     )}
 
     {relatedTutes.length > 0 && (
       <>
-        <SectionHeader>Now you're ready for these exercises</SectionHeader>
-        <ContentCards minHeight={250} data={relatedTutes} />
+          {/* Divider */}
+        <Box sx={{ pt: 2, mt: 8, borderTop: "1px solid", borderColor: "divider" }} />
+        <Typography variant="h4">Now you're ready for these exercises</Typography>
+        <ContentCards minHeight={220} data={relatedTutes} />
       </>
     )}
   </>

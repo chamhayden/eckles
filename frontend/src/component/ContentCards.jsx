@@ -4,9 +4,9 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
-import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import imageBg from '../asset/VideoBg.png';
+import Chip from '@mui/material/Chip';
 
 // https://stackoverflow.com/questions/40958727/javascript-generate-unique-number-based-on-string
 const hashCode = (str) => {
@@ -22,7 +22,7 @@ const hashCode = (str) => {
 
 const ContentCards = ({ data, minHeight }) => {
   return (
-    <Box sx={{ display: 'flex', gap: '20px', flexWrap: 'wrap', marginTop: '16px' }}>
+    <Box sx={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
       {data.map(({
         linkUrl,
         imageUrl,
@@ -61,26 +61,25 @@ const ContentCards = ({ data, minHeight }) => {
               },
               overflow: 'hidden',
             }}>
-              <Link to={linkUrl}>
                 {label &&
                   <div style={{
                     position: 'absolute',
-                    width: '120px',
-                    height: '40px',
                     zIndex: 10,
                   }}>
-                    <div style={{
-                      padding: '8px 12px',
-                      margin: '15px 0 0 15px',
-                      background: labelBackground,
-                      borderRadius: '8px',
-                      textAlign: 'center',
-                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
-                      fontWeight: 600,
-                      fontSize: '0.85em',
-                    }}>{label}</div>
-                  </div>
+                     <Box label={label} variant="outlined" 
+                      sx={{ 
+                        color: 'white', 
+                        backgroundColor: `${labelBackground}`,
+                        fontSize: '0.75rem',
+                        borderTopLeftRadius: 10,
+                        borderBottomRightRadius: 10,
+                      }}
+                    >
+                      <Typography variant="caption" sx={{ padding: '4px 8px', display: 'block' }}>{label}</Typography>
+                    </Box>
+                 </div>
                 }
+                
 
                 <Box sx={{ position: 'relative' }}>
                   <CardMedia
@@ -95,6 +94,7 @@ const ContentCards = ({ data, minHeight }) => {
                       }
                     }}
                     image={imageBg ?? `https://picsum.photos/id/${hash}/400/300` }
+                    linkUrl={linkUrl}
                   />
                   <Typography variant="h6" component="div" color="white" sx={{ 
                     position: 'absolute',
@@ -103,7 +103,6 @@ const ContentCards = ({ data, minHeight }) => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     fontWeight: 600,
-                    fontSize: '1.15rem',
                     lineHeight: 1.4,
                     textAlign: 'center',
                     padding: '0 12px',
@@ -113,45 +112,43 @@ const ContentCards = ({ data, minHeight }) => {
                     {title}
                   </Typography>
                 </Box>
-                <CardContent sx={{ padding: '20px' }}>
-                  {weektopic &&
-                    <Box style={{float: 'left'}}>
-                      <Typography variant="body2" color="text.secondary" sx={{ 
-                        fontSize: '0.75rem',
-                        fontWeight: 500,
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                        padding: '6px 10px',
-                        borderRadius: '6px',
-                      }}>{weektopic}</Typography>
+                <CardContent sx={{ padding: '10px' }}>
+                   <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', marginBottom: 1 , justifyContent: 'space-between', alignContent: 'center' }}>
+                    <Box sx={{ height: '8px',  alignContent: 'center', display: 'flex', gap: 1 }}>
+                             {duration && 
+                          <Box>
+                            <Typography variant="body2" color="text.secondary" sx={{ 
+                              fontSize: '0.75rem',
+                              fontWeight: 500,
+                            }}>⏱️ {duration} mins</Typography>
+                          </Box>
+                        }
+                        {staff && 
+                          <Typography variant="body2" color="text.secondary" sx={{ 
+                            fontSize: '0.75rem',
+                            fontWeight: 500,
+                          }}> {staff}</Typography>
+                        }
+                    </Box>  
+                    <Box>
+                        {weektopic &&
+                          <Box>
+                            <Typography variant="body2" color="text.secondary" sx={{ 
+                              fontSize: '0.75rem',
+                              fontWeight: 500,
+                              backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                              padding: '2px 4px',
+                              borderRadius: '2px',
+                            }}>{weektopic}</Typography>
+                          </Box>
+                        }
+                      
                     </Box>
-                  }
-                  {duration && 
-                    <Box style={{float: 'right'}}>
-                      <Typography variant="body2" color="text.secondary" sx={{ 
-                        fontSize: '0.75rem',
-                        fontWeight: 500,
-                        backgroundColor: 'rgba(139, 92, 246, 0.1)',
-                        padding: '6px 10px',
-                        borderRadius: '6px',
-                      }}>⏱️ {duration} mins</Typography>
-                    </Box>
-                  }
-                  {staff && 
-                    <Typography variant="body2" color="text.secondary" sx={{ 
-                      fontSize: '0.875rem', 
-                      marginTop: '12px',
-                      fontWeight: 500,
-                      lineHeight: 1.6,
-                    }}>By {staff}</Typography>
-                  }
+                  </Box>
                   {description && <Typography variant="body2" color="text.secondary" sx={{ 
                     fontSize: '0.875rem', 
-                    marginTop: '14px', 
-                    fontStyle: 'italic',
-                    lineHeight: 1.65,
                   }}>{description}</Typography>}
                 </CardContent>
-              </Link>
             </Card>
           </Box>
         );
