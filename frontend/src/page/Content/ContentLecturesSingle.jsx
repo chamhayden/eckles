@@ -82,10 +82,11 @@ const buildRelatedTutes = (lecture, term) => {
 
 const LectureHeader = ({ lecture, term }) => (
   <SectionHeader>
-    {lecture.topic().emoji} <b>{lecture.name}</b> &nbsp; (part of{" "}
+    <b>{lecture.name}</b>
+    (part of
     <Link to={`/${term}/content/lectures/topic#${lecture.topic().name}`}>
       {lecture.topic().name}
-    </Link>{" "}
+    </Link>
     in {lecture.topic().area().name})
   </SectionHeader>
 );
@@ -205,17 +206,28 @@ const LectureRating = ({
 const LectureVideo = ({ lecture }) => (
   <Accordion
     sx={{
-      marginTop: "35px !important",
-      marginLeft: "auto !important",
-      marginRight: "auto !important",
       minWidth: 100,
+      width: "100%",
       background: "rgb(0,0,0)",
     }}
     expanded={true}
   >
     <AccordionDetails>
       {lecture.video && lecture.visible ? (
-        <Youtube code={lecture.video} />
+        <Box
+          sx={{
+            width: "100%",
+            "& iframe": {
+              width: "100%",
+              height: "auto",
+              aspectRatio: "16 / 9",
+              margin: "0 !important",
+              display: "block",
+            },
+          }}
+        >
+          <Youtube code={lecture.video} />
+        </Box>
       ) : (
         <div
           style={{
@@ -312,26 +324,34 @@ const ContentLecturesSingle = ({}) => {
 
   return (
     <>
-      <Button variant="outlined" size="small" onClick={() => navigate(-1)}>
-        ← Back
-      </Button>
-
-      <br />
-      <LectureHeader lecture={lecture} term={getters.term} />
-      <LectureMeta lecture={lecture} term={getters.term} />
-      <LectureSlides lecture={lecture} />
-      <LectureRating
-        term={getters.term}
-        rating={rating}
-        ratingComments={ratingComments}
-        onRating={handleRating}
-        onRatingCommentsChange={handleRatingComments}
-      />
-      <LectureVideo lecture={lecture} />
-      <RelatedContent
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 3,
+          alignItems: "flex-start",
+        }}
+      >
+        <Box sx={{ flex: "3 1 0%", minWidth: 0 }}>
+          <LectureVideo lecture={lecture} />
+          <LectureRating
+            term={getters.term}
+            rating={rating}
+            ratingComments={ratingComments}
+            onRating={handleRating}
+            onRatingCommentsChange={handleRatingComments}
+          />
+        </Box>
+        <Box sx={{ flex: "2 1 0%", minWidth: 0 }}>
+          <LectureHeader lecture={lecture} term={getters.term} />
+          <LectureMeta lecture={lecture} term={getters.term} />
+          <LectureSlides lecture={lecture} />
+        </Box>
+      </Box>
+      {/* <RelatedContent
         relatedLectures={relatedLectures}
         relatedTutes={relatedTutes}
-      />
+      /> */}
     </>
   );
 };
