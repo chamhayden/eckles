@@ -38,7 +38,7 @@ const ContentCards = ({ data, minHeight }) => {
         const hash = hashCode(description) % 400;
         return (
           <Box sx={{ 
-            minWidth: '220px', 
+            minWidth: '240px', 
             flex: {
               xs: '1 1 100%',
               sm: '1 1 calc((100% - 20px) / 2)',
@@ -75,7 +75,8 @@ const ContentCards = ({ data, minHeight }) => {
                         borderBottomRightRadius: 10,
                       }}
                     >
-                      <Typography variant="caption" sx={{ padding: '4px 8px', display: 'block' }}>{label}</Typography>
+                      <Typography variant="caption" sx={{ 
+                        fontWeight: 600,padding: '4px 8px', display: 'block' }}>{label}</Typography>
                     </Box>
                  </div>
                 }
@@ -112,8 +113,8 @@ const ContentCards = ({ data, minHeight }) => {
                     {title}
                   </Typography>
                 </Box>
-                <CardContent sx={{ padding: '10px' }}>
-                   <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', marginBottom: 1 , justifyContent: 'space-between', alignContent: 'center' }}>
+                <Box py={2} px={2} sx={{ paddingBottom: 0}}>
+                   <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' , justifyContent: 'space-between', alignContent: 'center' }}>
                     <Box sx={{ height: '8px',  alignContent: 'center', display: 'flex', gap: 1 }}>
                              {duration && 
                           <Box>
@@ -145,10 +146,12 @@ const ContentCards = ({ data, minHeight }) => {
                       
                     </Box>
                   </Box>
-                  {description && <Typography variant="body2" color="text.secondary" sx={{ 
-                    fontSize: '0.875rem', 
-                  }}>{description}</Typography>}
-                </CardContent>
+                  <Box>
+                    {description && <Typography variant="body2" color="text.secondary" sx={{ 
+                      fontSize: '0.875rem', 
+                    }}>{description}</Typography>}
+                  </Box>
+                </Box>
             </Card>
           </Box>
         );

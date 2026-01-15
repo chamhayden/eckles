@@ -11,13 +11,14 @@ import LectureInfoPanel from "./component/LectureInfoPanel";
 import LectureRating from "./component/LectureRating";
 import LectureVideo from "./component/LectureVideo";
 import { Typography } from "@mui/material";
+import Divider from "@mui/material/Divider";
 
 const buildRelatedLectures = (lecture, allLectures, term) => {
   const relatedLectures = [
     ...(lecture.lectures_prereq ? lecture.lectures_prereq() : []).map((l) => ({
       ...l,
       label: "Watch first",
-      labelBackground: "rgb(248,139,139, 0.7)",
+      labelBackground: "rgba(254, 32, 32, 0.4)",
     })),
     ...allLectures
       .filter(
@@ -31,7 +32,7 @@ const buildRelatedLectures = (lecture, allLectures, term) => {
       .map((l) => ({
         ...l,
         label: "Up Next",
-        labelBackground: 'rgba(175, 239, 148, 0.7)',
+        labelBackground: 'rgba(87, 242, 26, 0.4)',
       })),
   ];
 
