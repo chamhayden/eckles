@@ -149,6 +149,7 @@ const LectureRating = ({ term, lectureId, initialRating, initialComment }) => {
     "& .MuiInputBase-root": {
       padding: 0,        // 去掉根元素 padding
       alignItems: "center",
+      margin: 0,
     },
     "& .MuiInputBase-input": {
       fontSize: "1rem",
@@ -156,9 +157,14 @@ const LectureRating = ({ term, lectureId, initialRating, initialComment }) => {
     },
     "& input::placeholder": {
       color: "text.secondary",
-      opacity: 0.9,
-}
-  }}
+      opacity: 1,
+    },
+    "& .MuiFormHelperText-root": {
+          marginTop: "4px",
+          fontSize: "0.75rem", 
+      }}
+  }
+
 />
   <Box
     sx={{
