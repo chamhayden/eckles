@@ -75,7 +75,7 @@ const ContentCards = ({ data, minHeight }) => {
                 <Box sx={{ position: 'relative' }}>
                   <CardMedia
                     component="img"
-                    height="160"
+                    height="210"
                     sx={{ 
                       borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
                       background: imageBg ?? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -86,7 +86,7 @@ const ContentCards = ({ data, minHeight }) => {
                     }}
                     image={imageBg ?? `https://picsum.photos/id/${hash}/400/300` }
                   />
-                  <Typography variant="h6" component="div" sx={{ 
+                  <Typography variant="h6" component="div" color="white" sx={{ 
                     position: 'absolute',
                     inset: 0,
                     display: 'flex',
@@ -98,6 +98,7 @@ const ContentCards = ({ data, minHeight }) => {
                     textAlign: 'center',
                     padding: '0 12px',
                     zIndex: 1,
+                    fontSize: '2rem',
                   }}>
                     {title}
                   </Typography>
