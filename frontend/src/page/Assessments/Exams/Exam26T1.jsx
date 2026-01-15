@@ -24,7 +24,7 @@ const CourseOutline26T1 = () => {
         <br />
         <br />
       </Typography>     
-      <Typography variant="h5" component="div" gutterBottom>
+      <Typography variant="h5" component="div" style={{ marginTop: '20px', marginBottom: '10px' }}>
         1. Requirements to sit the exam
       </Typography>     
       <Typography variant="body1" component="div" gutterBottom>
@@ -42,7 +42,7 @@ const CourseOutline26T1 = () => {
           <li>If you were able to advise cs6080@cse.unsw.edu.au of the illness during the assessment, attach screenshots of this conversation to the Special Consideration application</li>
         </ol>
       </Typography>
-      <Typography variant="h5" component="div" gutterBottom>
+      <Typography variant="h5" component="div" style={{ marginTop: '20px', marginBottom: '10px' }}>
         2. Date, Time, and Duration
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
@@ -51,7 +51,7 @@ const CourseOutline26T1 = () => {
       <Typography variant="body1" component="div" gutterBottom>
         Only submissions made during your exam time window will be counted as valid.
       </Typography>
-      <Typography variant="h5" component="div" gutterBottom>
+      <Typography variant="h5" component="div" style={{ marginTop: '20px', marginBottom: '10px' }}>
         3. Exam Structure
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
@@ -75,7 +75,7 @@ const CourseOutline26T1 = () => {
       <Typography variant="body1" component="div" gutterBottom>
         You are allowed to your code code from other assessments in the exam (or in the case of assignment 4, your group's code).
       </Typography>
-      <Typography variant="h5" component="div" gutterBottom>
+      <Typography variant="h5" component="div" style={{ marginTop: '20px', marginBottom: '10px' }}>
         4. Platform to complete exam
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
@@ -91,7 +91,7 @@ const CourseOutline26T1 = () => {
       <Typography variant="body1" component="div" gutterBottom>
         Technical issues relating to your local environment that are reasonably solvable prior to the exam are not grounds for special consideration.
       </Typography>
-      <Typography variant="h5" component="div" gutterBottom>
+      <Typography variant="h5" component="div" style={{ marginTop: '20px', marginBottom: '10px' }}>
         5. Communication & Help during the exam
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
@@ -118,7 +118,7 @@ const CourseOutline26T1 = () => {
       <Typography variant="body1" component="div" gutterBottom>
         If you have questions or clarifications needed during the exam, please ask the invigilator. Do NOT email or MS Teams any course staff during teh exam.
       </Typography>
-      <Typography variant="h5" component="div" gutterBottom>
+      <Typography variant="h5" component="div" style={{ marginTop: '20px', marginBottom: '10px' }}>
         6. Git Commit Requirements
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
@@ -134,7 +134,7 @@ const CourseOutline26T1 = () => {
       <Typography variant="body1" component="div" gutterBottom>
         This exam has a hurdle component - which means if you don't achieve a <i>scaled</i> pass mark then you will not pass the course.
       </Typography>
-      <Typography variant="h5" component="div" gutterBottom>
+      <Typography variant="h5" component="div" style={{ marginTop: '20px', marginBottom: '10px' }}>
         7. Submission
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
@@ -143,7 +143,7 @@ const CourseOutline26T1 = () => {
       <Typography variant="body1" component="div" gutterBottom>
         Do not leave it to the deadline to push your code to master. Submit each question when you finish working on it.
       </Typography>
-      <Typography variant="h5" component="div" gutterBottom>
+      <Typography variant="h5" component="div" style={{ marginTop: '20px', marginBottom: '10px' }}>
         8. Preparation
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>

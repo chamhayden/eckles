@@ -41,7 +41,7 @@ const TimetableHelpSessions = () => {
           ],
           table: week.schedule_help_sessions().map(help_session => {
             let lastObject = { value: help_session.call_url_h };
-            if (help_session.call_url_h.includes('http')) {
+            if (help_session.call_url_h && help_session.call_url_h.includes('http')) {
               lastObject = { Raw: () => <Button variant="contained" onClick={() => {
                   window.location.href = `${help_session.call_url_h}`;
                 }}>Join</Button>, };

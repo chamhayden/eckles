@@ -54,10 +54,10 @@ const AssessmentsAssignments = ({ }) => {
   return (
     <SubNavWrapper baseUrl={'/assessments/assignments'} menu={menu}>
       <>
-        {getters.term === '24T3' || getters.term.indexOf('25') !== -1 ? <>
+        {['22T1', '22T3', '23T1', '23T3', '24T1', '24T3', '25T1'].indexOf(getters.term) === -1 ? <>
           {params.ass === 'ass4' && (
             <>
-              <h3>Here is some information about your group</h3>
+              <h3 style={{ marginTop: 0 }}>Here is some information about your group</h3>
                 {groupInfo ? (
                   <>
                     {!groupInfo.assignmentReady ? (

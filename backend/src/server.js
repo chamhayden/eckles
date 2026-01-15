@@ -503,12 +503,9 @@ app.get('/api/gradesearch', (req, res) => {
     'ass4_other_penalty_comments',
   ];
 
-  console.log('shellresult.trim()', shellresult.trim());
   let eachLine = shellresult.trim().split('\n')
   eachLine.sort();
-  console.log(eachLine);
   const results = eachLine.map(splitOnFirstSpace);
-  console.log(results);
 
   res.json({
     main: results.filter(r => includeMain.includes(r[0])),
@@ -528,8 +525,8 @@ app.get('/api/:term/rating/:lectureslug', needValidZid(async (_, zid, req) => {
   const { term, lectureslug } = req.params;
   const data = await getRating(term, zid, lectureslug);
   return {
-    rating: data.rating,
-    comment: data.comment,
+    rating: data ? data.rating : null,
+    comment: data ? data.comment : null,
   };
 }));
 

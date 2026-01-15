@@ -36,7 +36,7 @@ const Logout = () => {
         minHeight: '40px',
         padding: '0 20px',
         transition: 'all 0.2s ease',
-        color: getters.isDark ? '#f1f5f9' : '#1e293b',
+        color: '#f1f5f9',
         border: getters.isDark ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid rgba(30, 41, 59, 0.2)',
         display: 'inline-flex',
         alignItems: 'center',

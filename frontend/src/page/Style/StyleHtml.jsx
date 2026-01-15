@@ -15,7 +15,7 @@ const StyleHtml = ({}) => {
 
   return (
     <section style={{ maxWidth: 'calc(100vw - 65px)', boxSizing: 'border-box' }}>
-      <H3>{emoji} 1. HTML Style Guide</H3>
+      <h3 style={{ marginTop: '0'}}>{emoji} 1. HTML Style Guide</h3>
 
       <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
       <Body>
@@ -229,7 +229,7 @@ const StyleHtml = ({}) => {
         ]}
         goods={[
 `<div class="...">
-  <h3>Shopping List:</h3>
+  <h4>Shopping List:</h4>
   <ul>
     <li>Milk</li>
     <li>Apple</li>
@@ -302,11 +302,11 @@ const StyleHtml = ({}) => {
     <h2>Our Services</h2>
 
     <article>
-      <h3>Service 1</h3>
+      <h4>Service 1</h4>
       <p>We can paint your car</p>
     </article>
     <article>
-      <h3>Service 2</h3>
+      <h4>Service 2</h4>
       <p>We can repair your car</p>
     </article>
   </section>

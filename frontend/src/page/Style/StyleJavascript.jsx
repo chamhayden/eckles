@@ -10,7 +10,7 @@ const StyleJavascript = ({}) => {
 
   return (
     <>
-      <H3>{emoji} 3. JavaScript</H3>
+      <h3 style={{ marginTop: '0'}}>{emoji} 3. JavaScript</h3>
 
       <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
       

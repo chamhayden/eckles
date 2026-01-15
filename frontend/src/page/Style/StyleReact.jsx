@@ -12,7 +12,7 @@ const StyleReact = ({}) => {
 
   return (
     <>
-      <H3>{emoji} 4. ReactJS</H3>
+      <h3 style={{ marginTop: '0'}}>{emoji} 3. ReactJS</h3>
 
       <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
 

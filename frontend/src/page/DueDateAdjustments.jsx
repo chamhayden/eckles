@@ -21,14 +21,14 @@ import { Context, useContext } from '../context';
 
 const DueDateAdjustments = () => {
   return <>
-    <h2>Summary</h2>
+    <h4 style={{ marginTop: 0}}>Summary</h4>
     <p>In this course, students can gain extensions one of two ways:</p>
     <ol>
       <li>By applying for <a href="https://www.student.unsw.edu.au/special-consideration" target="_blank">special consideration</a>. When illness or circumstances beyond your control interfere with your assessment performance, you may be eligible to apply for Special Consideration; a process for assessing the impact of unexpected, short-term events on your ability to complete a specific assessment task.</li>
       <li>By having an <a href="https://www.student.unsw.edu.au/equitable-learning" target="_blank">Equitable Learning Services consideration (ELS)</a>. ELS provides practical support to ensure your mental or physical health conditions do not adversely affect your studies.</li>
     </ol>
 
-    <h3>1. Special Consideration</h3>
+    <h4>1. Special Consideration</h4>
     <p>
       When you apply for special consideration, they will assess your submission, and if approved, email both you and the course account with the extension or adjustment. For any pair/group assignment (if applicable to this course), adjustmens may be a little less straightforward.
     </p>
@@ -38,7 +38,7 @@ const DueDateAdjustments = () => {
       <li>You continue working on your assignment, with the assumption that the number of days extension you have is equivalent to the number of days your documentation says you were impacted for.</li>
     </ul>
 
-    <h3>2. ELS</h3>
+    <h4>2. ELS</h4>
     <p>ELS situations are dealt with my emailing the lecturer-in-charge within a week before an assessment is due. They will extend the due date of your personal assessment.</p>
   </>
 

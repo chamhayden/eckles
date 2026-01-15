@@ -18,9 +18,9 @@ const AssPrint = ({ mda, mdb, assNumber, startWeek }) => {
   }
   return (
     <>
-      <Markdown remarkPlugins={[remarkGfm]}>{`# Assessment ${assNumber}`}</Markdown>
+      <h2 style={{ marginTop: '0' }}>{`Assignment ${assNumber}`}</h2>
       <Markdown remarkPlugins={[remarkGfm]}>{mda}</Markdown>
-      <Markdown remarkPlugins={[remarkGfm]}>{`## 2. The Task 🔥🔥`}</Markdown>
+      <Markdown remarkPlugins={[remarkGfm]}>{`### 2. The Task 🔥🔥`}</Markdown>
       {readyFromWeek(assNumber) ? 
         <>
           <a target="_blank" href={`${config.BASE_URL}/gitlabredir/${getters.term}/${`ass${assNumber}`}`}>Please see details about the task here.</a>

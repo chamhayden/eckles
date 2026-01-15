@@ -441,10 +441,6 @@ const CourseOutline26T1 = () => {
           <li>UI Fundamentals</li>
           <li>Good & Bad UI 1</li>
           <li>Good & Bad UI 2</li>
-          <li>Perceivability</li>
-          <li>Operabilitity</li>
-          <li>Understandability</li>
-          <li>Robustness</li>
         </ul>
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
@@ -473,7 +469,6 @@ const CourseOutline26T1 = () => {
           <li>CSS Frameworks</li>
           <li>useContext</li>
           <li>State management</li>
-          <li>Class components</li>
           <li>Usability testing</li>
           <li>Figma & Component Libraries</li>
           <li>Pre-rendering</li>
@@ -483,8 +478,10 @@ const CourseOutline26T1 = () => {
         <b>Week 9</b>
         <ul>
           <li>Demo: ReactJS Further</li>
-          <li>Introduction</li>
-          <li>Component Testing</li>
+          <li>Perceivability</li>
+          <li>Operabilitity</li>
+          <li>Understandability</li>
+          <li>Robustness</li>
           <li>UI Testing</li>
           <li>UI Testing (Demo)</li>
         </ul>

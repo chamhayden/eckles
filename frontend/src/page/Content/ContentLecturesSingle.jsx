@@ -48,14 +48,8 @@ const ContentLecturesSingle = ({}) => {
     }
   }, [params.lecid]);
 
-  const commentDebounce = () => {
-    clearTimeout(ratingCommentsTimeout);
-    ratingCommentsTimeout = setTimeout(() => {
-      apiCall(`${getters.term}/rating`, { lectureslug: params.lecid, rating: rating, comment: ratingComments, }, 'POST')
-      .then();
-    }, 1000);
-  }
-  React.useEffect(commentDebounce, [rating, ratingComments]);
+  // This is the API call to set the rating
+  // apiCall(`${getters.term}/rating`, { lectureslug: params.lecid, rating: rating, comment: ratingComments, }, 'POST').then();
 
   const handleRatingComments = (e) => {
     setRatingComments(e.target.value);

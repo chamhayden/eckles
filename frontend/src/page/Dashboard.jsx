@@ -55,10 +55,9 @@ const Dashboard = ({}) => {
             mb: 3,
             mt: 0,
             lineHeight: 1.3,
-            background: 'linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
+            fontSize: '1.7em',
+            color: '#333 !important',
           }}>
             Welcome to COMP6080 for {getters.term}
           </Typography>
@@ -80,6 +79,7 @@ const Dashboard = ({}) => {
                 mt: 4, 
                 mb: 2,
                 lineHeight: 1.4,
+                fontSize: '1.3em',
                 color: 'text.primary' 
               }}>
                 📢 Recent Notices
@@ -132,6 +132,12 @@ const Dashboard = ({}) => {
                         },
                         '& li': {
                           marginBottom: '0.5em',
+                        },
+                        '& h1': {
+                          fontSize: '1.5em',
+                        },
+                        '& h2': {
+                          fontSize: '1.2em',
                         }
                       }}
                       dangerouslySetInnerHTML={{
