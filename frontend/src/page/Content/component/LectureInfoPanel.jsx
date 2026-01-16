@@ -152,7 +152,7 @@ const LectureInfoPanel = ({ lecture, term }) => {
             sx={{ textTransform: "none" }}
             startIcon={<GitHubIcon />}
           >
-            LectureCode
+            Lecture Code
           </Button>
         </Box>
       </Box>
