@@ -1,17 +1,17 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import CastForEducationIcon from "@mui/icons-material/CastForEducation";
-import HelpIcon from "@mui/icons-material/Help";
-import SchoolIcon from "@mui/icons-material/School";
-import { keyframes } from "@mui/system";
-import { Context, useContext } from "../context";
-import { utcToZonedTime } from 'date-fns-tz'
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import CastForEducationIcon from '@mui/icons-material/CastForEducation';
+import HelpIcon from '@mui/icons-material/Help';
+import SchoolIcon from '@mui/icons-material/School';
+import { keyframes } from '@mui/system';
+import { Context, useContext } from '../context';
+import { utcToZonedTime } from 'date-fns-tz';
 
 // First day of the term to determine weeks. May need to be changed per term
-const start_of_term = new Date("September 11, 2023 00:00:00");
-const today = utcToZonedTime(new Date(), "Australia/Sydney");
-const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const start_of_term = new Date('September 11, 2023 00:00:00');
+const today = utcToZonedTime(new Date(), 'Australia/Sydney');
+const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 let tutor = [];
 
 /**
@@ -34,8 +34,8 @@ const calculateCurrentWeek = () => {
  */
 const calculateHour = (timeslot) => {
   const curr_time = new Date(today.getTime());
-  let hour = Number(timeslot.replace("pm", "").replace("am", ""));
-  if (timeslot.includes("pm") && hour !== 12) {
+  let hour = Number(timeslot.replace('pm', '').replace('am', ''));
+  if (timeslot.includes('pm') && hour !== 12) {
     hour += 12;
   }
   return curr_time.setHours(hour, 0, 0);
@@ -44,22 +44,18 @@ const calculateHour = (timeslot) => {
 /**
  * Function to determine which sessions are valid with the current date
  * @params schedule_array {Array<Object>} - Array of sessions grabbed from the database
- * @returns sessions {Array<Object>} - Array of sessions that have been filtered based off 
+ * @returns sessions {Array<Object>} - Array of sessions that have been filtered based off
  *                                     the current week and day
  */
 const calculateSessions = (schedule_array) => {
   const curr_week = calculateCurrentWeek();
   if (curr_week === 0) return [];
-  let sessions = schedule_array.filter((session) => 
-    weekday[today.getDay()] === session.day
-  );
+  let sessions = schedule_array.filter((session) => weekday[today.getDay()] === session.day);
   if (sessions.length > 0 && typeof sessions[0].week === 'function') {
-    sessions = sessions.filter((session) =>
-      session.week().week === curr_week
-    );
+    sessions = sessions.filter((session) => session.week().week === curr_week);
   }
   return sessions;
-}
+};
 
 /**
  * Function to check whether current time is within the current session
@@ -67,23 +63,23 @@ const calculateSessions = (schedule_array) => {
  * @returns session {Object | Number} - A valid session if found, otherwise return 0
  */
 const checkCurrentSession = (session) => {
-  let timeslot = ""
+  let timeslot = '';
   if (session.time) {
-    timeslot = session.time.split("-");
+    timeslot = session.time.split('-');
   } else {
-    timeslot = session.times.split("-");
+    timeslot = session.times.split('-');
   }
   const start = calculateHour(timeslot[0]);
   // Remove spacing at last time if additional text exists for the tutorial name e.g. "12pm-1pm (T12A)"
   if (timeslot[1].length > 4) {
-    timeslot[1] = timeslot[1].split(" ")[0];
+    timeslot[1] = timeslot[1].split(' ')[0];
   }
   const end = calculateHour(timeslot[1]);
   if (today.getTime() > start && today.getTime() < end) {
     return session;
   }
   return 0;
-}
+};
 
 const checkLectureURL = (schedule_array) => {
   const URLs = [];
@@ -101,14 +97,21 @@ const checkLectureURL = (schedule_array) => {
 
 const checkTutorialURL = (schedule_array) => {
   // No tutorials during term break
-  if (calculateCurrentWeek() === 6) return "";
+  if (calculateCurrentWeek() === 6) return '';
   const URLs = [];
   const sessions = calculateSessions(schedule_array);
   if (sessions.length > 0) {
     for (let session of sessions) {
       const curr_session = checkCurrentSession(session);
       if (curr_session.call_url_h && curr_session.call_url_h.includes('http')) {
-        tutor.push(curr_session.staff ? curr_session.staff().map((s) => s.name).join(", ") : "");
+        tutor.push(
+          curr_session.staff
+            ? curr_session
+                .staff()
+                .map((s) => s.name)
+                .join(', ')
+            : ''
+        );
         URLs.push(curr_session.call_url_h);
       }
     }
@@ -140,59 +143,73 @@ const SessionAlert = (props) => {
 
   const SessionCards = [
     {
-      title: "Lecture",
+      title: 'Lecture',
       icon: SchoolIcon,
-      backgroundColor: "warning.main",
-      shadow: "orange",
+      backgroundColor: 'warning.main',
+      shadow: 'orange',
       URL: checkLectureURL(getters.content.schedule_lectures),
     },
     {
-      title: "Tutorial",
+      title: 'Tutorial',
       icon: CastForEducationIcon,
-      backgroundColor: "error.main",
-      shadow: "red",
+      backgroundColor: 'error.main',
+      shadow: 'red',
       URL: checkTutorialURL(getters.content.schedule_tutorials),
     },
     {
-      title: "Help Session",
+      title: 'Help Session',
       icon: HelpIcon,
-      backgroundColor: "info.main",
-      shadow: "blue",
+      backgroundColor: 'info.main',
+      shadow: 'blue',
       URL: checkHelpSessionURL(getters.content.weeks),
     },
   ];
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "25px", marginBottom: "25px" }}>
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        gap: '25px',
+        marginBottom: '25px',
+      }}
+    >
       {SessionCards.map((card) => {
         return (
           <>
-            {card.URL.length > 0 && getters.loggedIn && (
+            {card.URL.length > 0 &&
+              getters.loggedIn &&
               card.URL.map((URL, idx) => {
                 return (
                   <Card
                     key={card.title}
-                    onClick={ () => props.redirect(URL) }
-                    sx={{ backgroundColor: card.backgroundColor, color: "white", minWidth: 275, flex: 1, height: 150,
-                      cursor: "pointer", animation: `${glow} 1s infinite alternate ease`,
-                      boxShadow: `0 0 5px 5px ${card.shadow}`
+                    onClick={() => props.redirect(URL)}
+                    sx={{
+                      backgroundColor: card.backgroundColor,
+                      color: 'white',
+                      minWidth: 275,
+                      flex: 1,
+                      height: 150,
+                      cursor: 'pointer',
+                      animation: `${glow} 1s infinite alternate ease`,
+                      boxShadow: `0 0 5px 5px ${card.shadow}`,
                     }}
                   >
                     <CardContent>
                       <Typography variant="h5" component="div" sx={{ mb: 1 }}>
-                        <card.icon style={{ paddingTop: "5px" }} /> {card.title}
+                        <card.icon style={{ paddingTop: '5px' }} /> {card.title}
                       </Typography>
-                      {card.title === "Tutorial" && (
+                      {card.title === 'Tutorial' && (
                         <Typography variant="body">Tutor: {tutor[idx]}</Typography>
                       )}
                       <Typography variant="body2">
-                        A {card.title.toLowerCase()} is currently live! Click on the
-                        card to redirect yourself to the session.
+                        A {card.title.toLowerCase()} is currently live! Click on the card to
+                        redirect yourself to the session.
                       </Typography>
                     </CardContent>
                   </Card>
-                )
-              })
-            )}
+                );
+              })}
           </>
         );
       })}

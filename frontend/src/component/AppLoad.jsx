@@ -23,14 +23,17 @@ const AppLoad = () => {
   return (
     <LoadingWrapper>
       {/*<LoadingImage className={{}} src={mainlogo} />*/}
-      {!error && (
-        <CircularProgress color="inherit" />
-      )}
+      {!error && <CircularProgress color="inherit" />}
       {error && (
-        <i>Sorry, please try again later.<br /><br /><small>If the problem persists, contact cs6080@cse.unsw.edu.au</small></i>
+        <i>
+          Sorry, please try again later.
+          <br />
+          <br />
+          <small>If the problem persists, contact cs6080@cse.unsw.edu.au</small>
+        </i>
       )}
     </LoadingWrapper>
   );
-}
+};
 
 export default AppLoad;

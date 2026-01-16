@@ -1,20 +1,20 @@
-import React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Box from "@mui/material/Box";
-import Youtube from "../../../component/Youtube";
+import React from 'react';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Box from '@mui/material/Box';
+import Youtube from '../../../component/Youtube';
 
 const LectureVideo = ({ lecture }) => (
   <Accordion
     sx={{
       minWidth: 100,
-      width: "100%",
-      background: "rgb(0,0,0)",
-      "&.Mui-expanded": { margin: 0 },
-      "& .MuiAccordionDetails-root": { padding: 0 },
+      width: '100%',
+      background: 'rgb(0,0,0)',
+      '&.Mui-expanded': { margin: 0 },
+      '& .MuiAccordionDetails-root': { padding: 0 },
       borderTopLeftRadius: 2,
       borderTopRightRadius: 2,
-      overflow: "hidden",
+      overflow: 'hidden',
     }}
     expanded={true}
   >
@@ -22,13 +22,13 @@ const LectureVideo = ({ lecture }) => (
       {lecture.video && lecture.visible ? (
         <Box
           sx={{
-            width: "100%",
-            "& iframe": {
-              width: "100%",
-              height: "auto",
-              aspectRatio: "16 / 9",
-              margin: "0 !important",
-              display: "block",
+            width: '100%',
+            '& iframe': {
+              width: '100%',
+              height: 'auto',
+              aspectRatio: '16 / 9',
+              margin: '0 !important',
+              display: 'block',
             },
           }}
         >
@@ -37,10 +37,10 @@ const LectureVideo = ({ lecture }) => (
       ) : (
         <div
           style={{
-            textAlign: "center",
-            margin: "100px 20px",
-            fontSize: "2em",
-            color: "#fff",
+            textAlign: 'center',
+            margin: '100px 20px',
+            fontSize: '2em',
+            color: '#fff',
           }}
         >
           Check back later!

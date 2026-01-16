@@ -14,7 +14,9 @@ import { Context, useContext } from '../context';
 
 const Staff = () => {
   const { getters } = useContext(Context);
-  const staff = getters.content.staff.filter(s => s.active).sort((a, b) => a.name.localeCompare(b.name));
+  const staff = getters.content.staff
+    .filter((s) => s.active)
+    .sort((a, b) => a.name.localeCompare(b.name));
 
   const handleCopyEmail = async (email) => {
     if (navigator?.clipboard?.writeText) {
@@ -72,7 +74,11 @@ const Staff = () => {
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <span>{email}</span>
                     <Tooltip title="Copy email">
-                      <IconButton size="small" aria-label="Copy email" onClick={() => handleCopyEmail(email)}>
+                      <IconButton
+                        size="small"
+                        aria-label="Copy email"
+                        onClick={() => handleCopyEmail(email)}
+                      >
                         <FileCopyIcon fontSize="inherit" />
                       </IconButton>
                     </Tooltip>

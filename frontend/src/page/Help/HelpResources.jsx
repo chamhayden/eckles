@@ -11,7 +11,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import SubNavWrapper from '../../component/SubNavWrapper';
 import makePage from '../../component/makePage';
 
-const HelpResources = ({ }) => {
+const HelpResources = ({}) => {
   const menu = [
     {
       title: 'HTML/CSS',
@@ -47,11 +47,15 @@ const HelpResources = ({ }) => {
 
   return (
     <SubNavWrapper baseUrl={'/help/resources'} menu={menu}>
-      If you have resources you think are useful, please don't hesitate to share them by putting in a <a target="_blank" href="https://github.com/chamhayden/eckles">pull request!</a>
-      <Divider sx={{ mb: 3, mt: 3, }} />
+      If you have resources you think are useful, please don't hesitate to share them by putting in
+      a{' '}
+      <a target="_blank" href="https://github.com/chamhayden/eckles">
+        pull request!
+      </a>
+      <Divider sx={{ mb: 3, mt: 3 }} />
       <Outlet />
     </SubNavWrapper>
   );
 };
 
-export default HelpResources
+export default HelpResources;

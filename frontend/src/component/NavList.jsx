@@ -16,8 +16,8 @@ import StyleIcon from '@mui/icons-material/Style';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import PaletteIcon from '@mui/icons-material/Palette';
-import BadgeIcon from  '@mui/icons-material/Badge';
-import GradeIcon from  '@mui/icons-material/Grade';
+import BadgeIcon from '@mui/icons-material/Badge';
+import GradeIcon from '@mui/icons-material/Grade';
 
 export const getPrimaryNavList = (term) => {
   return [
@@ -109,7 +109,7 @@ export const getPrimaryNavList = (term) => {
           Icon: PaletteIcon,
           description: 'View our style guide for different languages in the course',
         },
-      ]
+      ],
     },
   ];
 };
@@ -132,14 +132,14 @@ export const getSecondaryNavList = (term) => {
       Icon: HearingIcon,
       description: 'Make content requests',
     },
-    
+
     {
       title: 'Source Code',
       loginRequired: true,
       route: 'https://github.com/chamhayden/eckles',
       external: true,
       Icon: CodeIcon,
-      description: 'View the source code for this platform you\'re using',
+      description: "View the source code for this platform you're using",
     },
     {
       title: 'Grades',
@@ -163,4 +163,4 @@ export const getSecondaryNavList = (term) => {
       description: 'Staff',
     },
   ];
-}
+};

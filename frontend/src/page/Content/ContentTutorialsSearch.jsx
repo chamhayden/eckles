@@ -1,8 +1,8 @@
-import React, { useMemo } from "react";
-import { Context, useContext } from "../../context";
-import TutLecContentCard from "../../component/TutLecContentCard";
-import TutLecContentListItem from "../../component/TutLecContentListItem";
-import makePage from "../../component/makePage";
+import React, { useMemo } from 'react';
+import { Context, useContext } from '../../context';
+import TutLecContentCard from '../../component/TutLecContentCard';
+import TutLecContentListItem from '../../component/TutLecContentListItem';
+import makePage from '../../component/makePage';
 import {
   Box,
   Button,
@@ -17,17 +17,13 @@ import {
   FormControlLabel,
   Checkbox,
   Typography,
-} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import FilterListIcon from "@mui/icons-material/FilterList";
-import GridViewIcon from "@mui/icons-material/GridView";
-import ReorderIcon from "@mui/icons-material/Reorder";
-import { getCurrentWeek } from "../../util/date";
-import {
-  useSearchFilters,
-  filterTutorials,
-  MODAL_STYLES,
-} from "../../util/content";
+} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import GridViewIcon from '@mui/icons-material/GridView';
+import ReorderIcon from '@mui/icons-material/Reorder';
+import { getCurrentWeek } from '../../util/date';
+import { useSearchFilters, filterTutorials, MODAL_STYLES } from '../../util/content';
 
 const ContentTutorialsSearch = () => {
   const { getters } = useContext(Context);
@@ -49,35 +45,27 @@ const ContentTutorialsSearch = () => {
     handleApplyFilters,
     handleWeekChange,
     handleViewModeToggle,
-  } = useSearchFilters("tutorials", "tut");
+  } = useSearchFilters('tutorials', 'tut');
 
   // Filtered tutorials computation
   const filteredTutorials = useMemo(() => {
-    return filterTutorials(
-      content_tutorials,
-      filters,
-      searchQuery,
-      selectedWeek,
-      currentWeek
-    );
+    return filterTutorials(content_tutorials, filters, searchQuery, selectedWeek, currentWeek);
   }, [content_tutorials, filters, searchQuery, selectedWeek, currentWeek]);
 
   return (
     <>
-      <Box sx={{ 
-        background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%)',
-        border: '1px solid',
-        borderColor: 'divider',
-        borderRadius: '12px',
-        padding: '16px',
-        marginBottom: '20px',
-      }}>
-        <Stack
-          alignItems="center"
-          direction="row"
-          flexWrap="wrap"
-          gap={1.5}
-        >
+      <Box
+        sx={{
+          background:
+            'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%)',
+          border: '1px solid',
+          borderColor: 'divider',
+          borderRadius: '12px',
+          padding: '16px',
+          marginBottom: '20px',
+        }}
+      >
+        <Stack alignItems="center" direction="row" flexWrap="wrap" gap={1.5}>
           <FormControl sx={{ flex: 2, minWidth: '250px' }}>
             <OutlinedInput
               placeholder="Search tutorials..."
@@ -106,12 +94,17 @@ const ContentTutorialsSearch = () => {
                 },
                 '&.Mui-focused': {
                   boxShadow: '0 0 0 3px rgba(37, 99, 235, 0.1)',
-                }
+                },
               }}
             />
           </FormControl>
           <FormControl sx={{ minWidth: 120 }} size="small">
-            <InputLabel id="week-select-label2" sx={{ backgroundColor: 'background.paper', px: 0.5 }}>Week</InputLabel>
+            <InputLabel
+              id="week-select-label2"
+              sx={{ backgroundColor: 'background.paper', px: 0.5 }}
+            >
+              Week
+            </InputLabel>
             <Select
               labelId="week-select-label2"
               value={selectedWeek}
@@ -140,7 +133,7 @@ const ContentTutorialsSearch = () => {
           </FormControl>
           <Button
             startIcon={<FilterListIcon />}
-            variant={isFiltered ? "contained" : "outlined"}
+            variant={isFiltered ? 'contained' : 'outlined'}
             onClick={toggleFilters}
             sx={{
               borderRadius: '8px',
@@ -156,13 +149,13 @@ const ContentTutorialsSearch = () => {
               lineHeight: 1,
               '&:hover': {
                 borderWidth: isFiltered ? 1 : 2,
-              }
+              },
             }}
           >
             {isFiltered ? 'Filtered' : 'Filter'}
           </Button>
-          <IconButton 
-            color="primary" 
+          <IconButton
+            color="primary"
             onClick={handleViewModeToggle}
             sx={{
               border: '2px solid',
@@ -176,10 +169,10 @@ const ContentTutorialsSearch = () => {
               padding: '0',
               '&:hover': {
                 backgroundColor: 'rgba(37, 99, 235, 0.1)',
-              }
+              },
             }}
           >
-            {viewMode === "grid" ? <GridViewIcon /> : <ReorderIcon />}
+            {viewMode === 'grid' ? <GridViewIcon /> : <ReorderIcon />}
           </IconButton>
         </Stack>
       </Box>
@@ -190,20 +183,27 @@ const ContentTutorialsSearch = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{
-          ...MODAL_STYLES,
-          width: 500,
-          borderRadius: '16px',
-          border: '1px solid',
-          borderColor: 'divider',
-          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
-        }}>
+        <Box
+          sx={{
+            ...MODAL_STYLES,
+            width: 500,
+            borderRadius: '16px',
+            border: '1px solid',
+            borderColor: 'divider',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+          }}
+        >
           <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
             🔍 Filter Tutorials
           </Typography>
           <Stack spacing={3}>
             <FormControl fullWidth>
-              <InputLabel id="topic-select-label" sx={{ backgroundColor: 'background.paper', px: 0.5 }}>Topic</InputLabel>
+              <InputLabel
+                id="topic-select-label"
+                sx={{ backgroundColor: 'background.paper', px: 0.5 }}
+              >
+                Topic
+              </InputLabel>
               <Select
                 labelId="topic-select-label"
                 value={tempFilters.selectedTopic}
@@ -227,7 +227,12 @@ const ContentTutorialsSearch = () => {
               </Select>
             </FormControl>
             <FormControl fullWidth>
-              <InputLabel id="relevance-select-label" sx={{ backgroundColor: 'background.paper', px: 0.5 }}>Study Level</InputLabel>
+              <InputLabel
+                id="relevance-select-label"
+                sx={{ backgroundColor: 'background.paper', px: 0.5 }}
+              >
+                Study Level
+              </InputLabel>
               <Select
                 labelId="relevance-select-label"
                 value={tempFilters.selectedRelevance}
@@ -242,25 +247,24 @@ const ContentTutorialsSearch = () => {
                   borderRadius: '8px',
                 }}
               >
-                <MenuItem value="bareMinimum">
-                  🎯 Bare Minimum
-                </MenuItem>
-                <MenuItem value="workHard">
-                  💪 Work Hard
-                </MenuItem>
-                <MenuItem value="learnEverything">
-                  🚀 Learn Everything
-                </MenuItem>
+                <MenuItem value="bareMinimum">🎯 Bare Minimum</MenuItem>
+                <MenuItem value="workHard">💪 Work Hard</MenuItem>
+                <MenuItem value="learnEverything">🚀 Learn Everything</MenuItem>
               </Select>
             </FormControl>
-            <Box sx={{ 
-              border: '1px solid',
-              borderColor: 'divider',
-              borderRadius: '8px',
-              padding: '16px',
-              backgroundColor: 'rgba(37, 99, 235, 0.03)',
-            }}>
-              <Typography variant="subtitle2" sx={{ mb: 1.5, fontWeight: 600, color: 'text.primary' }}>
+            <Box
+              sx={{
+                border: '1px solid',
+                borderColor: 'divider',
+                borderRadius: '8px',
+                padding: '16px',
+                backgroundColor: 'rgba(37, 99, 235, 0.03)',
+              }}
+            >
+              <Typography
+                variant="subtitle2"
+                sx={{ mb: 1.5, fontWeight: 600, color: 'text.primary' }}
+              >
                 Filter Options
               </Typography>
               <FormControlLabel
@@ -280,8 +284,8 @@ const ContentTutorialsSearch = () => {
               />
             </Box>
             <Stack direction="row" justifyContent="flex-end" spacing={2} sx={{ mt: 2 }}>
-              <Button 
-                variant="outlined" 
+              <Button
+                variant="outlined"
                 onClick={toggleFilters}
                 sx={{
                   borderRadius: '8px',
@@ -291,8 +295,8 @@ const ContentTutorialsSearch = () => {
               >
                 Cancel
               </Button>
-              <Button 
-                variant="outlined" 
+              <Button
+                variant="outlined"
                 onClick={handleResetFilters}
                 sx={{
                   borderRadius: '8px',
@@ -302,8 +306,8 @@ const ContentTutorialsSearch = () => {
               >
                 Reset
               </Button>
-              <Button 
-                variant="contained" 
+              <Button
+                variant="contained"
                 onClick={handleApplyFilters}
                 sx={{
                   borderRadius: '8px',
@@ -332,9 +336,9 @@ const ContentTutorialsSearch = () => {
             <React.Fragment key={weekObj.week}>
               <Box
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  width: "100%",
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: '100%',
                   mt: 4,
                   mb: 2,
                 }}
@@ -342,34 +346,34 @@ const ContentTutorialsSearch = () => {
                 <hr
                   style={{
                     flexGrow: 1,
-                    borderTop: "1px solid #ccc",
+                    borderTop: '1px solid #ccc',
                     margin: 0,
                   }}
                 />
                 <Box
                   sx={{
                     px: 2,
-                    whiteSpace: "nowrap",
-                    fontWeight: "bold",
+                    whiteSpace: 'nowrap',
+                    fontWeight: 'bold',
                     borderRadius: 2,
                     border: 1,
-                    borderColor: "primary.main",
-                    padding: "5px 20px",
-                    color: "primary.main",
+                    borderColor: 'primary.main',
+                    padding: '5px 20px',
+                    color: 'primary.main',
                   }}
                 >
-                  {" "}
+                  {' '}
                   Week {weekObj.week}
                 </Box>
                 <hr
                   style={{
                     flexGrow: 1,
-                    borderTop: "1px solid #ccc",
+                    borderTop: '1px solid #ccc',
                     margin: 0,
                   }}
                 />
               </Box>
-              {viewMode === "grid" ? (
+              {viewMode === 'grid' ? (
                 <Box
                   display="grid"
                   gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))"
@@ -380,11 +384,11 @@ const ContentTutorialsSearch = () => {
                       contentKey={tutorial.key}
                       name={tutorial.name}
                       duration_mins={tutorial.duration}
-                      relevance={tutorial.importance.split(" ")[1]}
+                      relevance={tutorial.importance.split(' ')[1]}
                       week={tutorial.week().week}
                       topicEmoji={tutorial.topic().emoji}
                       topicName={tutorial.topic().name}
-                      live={""}
+                      live={''}
                       lecture={false}
                       thumbnail={
                         tutorial.thumbnail && tutorial.thumbnail.length > 0
@@ -397,7 +401,7 @@ const ContentTutorialsSearch = () => {
               ) : (
                 <Box
                   sx={{
-                    display: "grid",
+                    display: 'grid',
                     gap: 2,
                   }}
                 >
@@ -406,11 +410,11 @@ const ContentTutorialsSearch = () => {
                       contentKey={tutorial.key}
                       name={tutorial.name}
                       duration_mins={tutorial.duration}
-                      relevance={tutorial.importance.split(" ")[1]}
+                      relevance={tutorial.importance.split(' ')[1]}
                       week={tutorial.week().week}
                       topicEmoji={tutorial.topic().emoji}
                       topicName={tutorial.topic().name}
-                      live={""}
+                      live={''}
                       lecture={false}
                       thumbnail={
                         tutorial.thumbnail && tutorial.thumbnail.length > 0
@@ -431,5 +435,5 @@ const ContentTutorialsSearch = () => {
 
 export default makePage(ContentTutorialsSearch, {
   loginRequired: true,
-  title: "",
+  title: '',
 });

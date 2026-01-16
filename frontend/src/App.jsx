@@ -5,7 +5,6 @@ import { CookiesProvider } from 'react-cookie';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 
-
 import config from './config';
 import './index.css';
 import Router from './Router';
@@ -23,7 +22,7 @@ const App = () => {
   const [validTerms, setValidTerms] = React.useState(initialValue.validTerms);
   const [screenWidth, setScreenWidth] = React.useState(initialValue.screenWidth);
   const [isTutor, setIsTutor] = React.useState(initialValue.isTutor);
-  const [isDark, setDark] = React.useState(initialValue.dark)
+  const [isDark, setDark] = React.useState(initialValue.dark);
 
   const getters = {
     sidebarOpen,
@@ -36,7 +35,7 @@ const App = () => {
     validTerms,
     screenWidth,
     isTutor,
-    isDark
+    isDark,
   };
   const setters = {
     setSidebarOpen,
@@ -49,8 +48,8 @@ const App = () => {
     setValidTerms,
     setScreenWidth,
     setIsTutor,
-    setDark
-  }
+    setDark,
+  };
 
   const lightTheme = createTheme({
     palette: {
@@ -77,14 +76,29 @@ const App = () => {
       text: {
         primary: '#1e293b',
         secondary: '#64748b',
-      }
+      },
     },
     typography: {
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif",
       fontSize: 16,
-      h1: { fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.2, marginBottom: '0.6em' },
-      h2: { fontWeight: 700, letterSpacing: '-0.01em', lineHeight: 1.25, marginBottom: '0.6em' },
-      h3: { fontWeight: 600, letterSpacing: '-0.01em', lineHeight: 1.3, marginBottom: '0.6em' },
+      h1: {
+        fontWeight: 700,
+        letterSpacing: '-0.02em',
+        lineHeight: 1.2,
+        marginBottom: '0.6em',
+      },
+      h2: {
+        fontWeight: 700,
+        letterSpacing: '-0.01em',
+        lineHeight: 1.25,
+        marginBottom: '0.6em',
+      },
+      h3: {
+        fontWeight: 600,
+        letterSpacing: '-0.01em',
+        lineHeight: 1.3,
+        marginBottom: '0.6em',
+      },
       h4: { fontWeight: 600, lineHeight: 1.35, marginBottom: '0.6em' },
       h5: { fontWeight: 600, lineHeight: 1.4, marginBottom: '0.6em' },
       h6: { fontWeight: 600, lineHeight: 1.4, marginBottom: '0.6em' },
@@ -123,7 +137,7 @@ const App = () => {
       '0 25px 50px -12px rgb(0 0 0 / 0.25)',
       '0 25px 50px -12px rgb(0 0 0 / 0.25)',
     ],
-  })
+  });
 
   const darkTheme = createTheme({
     palette: {
@@ -150,14 +164,29 @@ const App = () => {
       text: {
         primary: '#f1f5f9',
         secondary: '#94a3b8',
-      }
+      },
     },
     typography: {
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif",
       fontSize: 16,
-      h1: { fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.2, marginBottom: '0.6em' },
-      h2: { fontWeight: 700, letterSpacing: '-0.01em', lineHeight: 1.25, marginBottom: '0.6em' },
-      h3: { fontWeight: 600, letterSpacing: '-0.01em', lineHeight: 1.3, marginBottom: '0.6em' },
+      h1: {
+        fontWeight: 700,
+        letterSpacing: '-0.02em',
+        lineHeight: 1.2,
+        marginBottom: '0.6em',
+      },
+      h2: {
+        fontWeight: 700,
+        letterSpacing: '-0.01em',
+        lineHeight: 1.25,
+        marginBottom: '0.6em',
+      },
+      h3: {
+        fontWeight: 600,
+        letterSpacing: '-0.01em',
+        lineHeight: 1.3,
+        marginBottom: '0.6em',
+      },
       h4: { fontWeight: 600, lineHeight: 1.35, marginBottom: '0.6em' },
       h5: { fontWeight: 600, lineHeight: 1.4, marginBottom: '0.6em' },
       h6: { fontWeight: 600, lineHeight: 1.4, marginBottom: '0.6em' },
@@ -196,22 +225,24 @@ const App = () => {
       '0 25px 50px -12px rgb(0 0 0 / 0.5)',
       '0 25px 50px -12px rgb(0 0 0 / 0.5)',
     ],
-  })
+  });
 
   return (
-  <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-    <ScopedCssBaseline sx={{
-      minHeight:'100%'
-    }}>
-      <Context.Provider value={{ getters, setters, }}>
-        <CookiesProvider>
-          <BrowserRouter basename={config.BASE_NAME}>
-            <Router />
-          </BrowserRouter>
-        </CookiesProvider>
-      </Context.Provider>
-    </ScopedCssBaseline>
-  </ThemeProvider>
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      <ScopedCssBaseline
+        sx={{
+          minHeight: '100%',
+        }}
+      >
+        <Context.Provider value={{ getters, setters }}>
+          <CookiesProvider>
+            <BrowserRouter basename={config.BASE_NAME}>
+              <Router />
+            </BrowserRouter>
+          </CookiesProvider>
+        </Context.Provider>
+      </ScopedCssBaseline>
+    </ThemeProvider>
   );
 };
 

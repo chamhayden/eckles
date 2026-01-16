@@ -8,7 +8,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import { Outlet } from 'react-router-dom';
 
-const HelpBase = ({ }) => {
+const HelpBase = ({}) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 

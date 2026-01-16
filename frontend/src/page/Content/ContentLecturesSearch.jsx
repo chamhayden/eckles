@@ -1,8 +1,8 @@
-import React, { useMemo } from "react";
-import { Context, useContext } from "../../context";
-import TutLecContentCard from "../../component/TutLecContentCard";
-import TutLecContentListItem from "../../component/TutLecContentListItem";
-import makePage from "../../component/makePage";
+import React, { useMemo } from 'react';
+import { Context, useContext } from '../../context';
+import TutLecContentCard from '../../component/TutLecContentCard';
+import TutLecContentListItem from '../../component/TutLecContentListItem';
+import makePage from '../../component/makePage';
 import {
   Box,
   Button,
@@ -18,18 +18,14 @@ import {
   MenuItem,
   IconButton,
   Typography,
-} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import FilterListIcon from "@mui/icons-material/FilterList";
-import InfoIcon from "@mui/icons-material/Info";
-import GridViewIcon from "@mui/icons-material/GridView";
-import ReorderIcon from "@mui/icons-material/Reorder";
-import { getCurrentWeek } from "../../util/date";
-import {
-  useSearchFilters,
-  filterLectures,
-  MODAL_STYLES,
-} from "../../util/content";
+} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import InfoIcon from '@mui/icons-material/Info';
+import GridViewIcon from '@mui/icons-material/GridView';
+import ReorderIcon from '@mui/icons-material/Reorder';
+import { getCurrentWeek } from '../../util/date';
+import { useSearchFilters, filterLectures, MODAL_STYLES } from '../../util/content';
 
 const ContentLecturesSearch = () => {
   const { getters } = useContext(Context);
@@ -51,35 +47,27 @@ const ContentLecturesSearch = () => {
     handleApplyFilters,
     handleWeekChange,
     handleViewModeToggle,
-  } = useSearchFilters("lectures", "lec");
+  } = useSearchFilters('lectures', 'lec');
 
   // Filtered lectures computation
   const filteredLectures = useMemo(() => {
-    return filterLectures(
-      content_lectures,
-      filters,
-      searchQuery,
-      selectedWeek,
-      currentWeek
-    );
+    return filterLectures(content_lectures, filters, searchQuery, selectedWeek, currentWeek);
   }, [content_lectures, filters, searchQuery, selectedWeek, currentWeek]);
 
   return (
     <>
-      <Box sx={{ 
-        background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%)',
-        border: '1px solid',
-        borderColor: 'divider',
-        borderRadius: '12px',
-        padding: '16px',
-        marginBottom: '20px',
-      }}>
-        <Stack
-          alignItems="center"
-          direction="row"
-          flexWrap="wrap"
-          gap={1.5}
-        >
+      <Box
+        sx={{
+          background:
+            'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%)',
+          border: '1px solid',
+          borderColor: 'divider',
+          borderRadius: '12px',
+          padding: '16px',
+          marginBottom: '20px',
+        }}
+      >
+        <Stack alignItems="center" direction="row" flexWrap="wrap" gap={1.5}>
           <FormControl sx={{ flex: 2, minWidth: '250px' }}>
             <OutlinedInput
               placeholder="Search lectures..."
@@ -108,12 +96,17 @@ const ContentLecturesSearch = () => {
                 },
                 '&.Mui-focused': {
                   boxShadow: '0 0 0 3px rgba(37, 99, 235, 0.1)',
-                }
+                },
               }}
             />
           </FormControl>
           <FormControl sx={{ minWidth: 120 }} size="small">
-            <InputLabel id="week-select-label2" sx={{ backgroundColor: 'background.paper', px: 0.5 }}>Week</InputLabel>
+            <InputLabel
+              id="week-select-label2"
+              sx={{ backgroundColor: 'background.paper', px: 0.5 }}
+            >
+              Week
+            </InputLabel>
             <Select
               labelId="week-select-label"
               value={selectedWeek}
@@ -140,77 +133,77 @@ const ContentLecturesSearch = () => {
                 ))}
             </Select>
           </FormControl>
-            <Button
-              startIcon={<FilterListIcon />}
-              variant={isFiltered ? "contained" : "outlined"}
-              onClick={toggleFilters}
-              sx={{
-                borderRadius: '8px',
-                height: '40px',
-                minHeight: '40px',
-                padding: '0 16px',
-                fontWeight: 600,
-                textTransform: 'none',
+          <Button
+            startIcon={<FilterListIcon />}
+            variant={isFiltered ? 'contained' : 'outlined'}
+            onClick={toggleFilters}
+            sx={{
+              borderRadius: '8px',
+              height: '40px',
+              minHeight: '40px',
+              padding: '0 16px',
+              fontWeight: 600,
+              textTransform: 'none',
+              borderWidth: isFiltered ? 1 : 2,
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '12px',
+              lineHeight: 1,
+              '&:hover': {
                 borderWidth: isFiltered ? 1 : 2,
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '12px',
-                lineHeight: 1,
-                '&:hover': {
-                  borderWidth: isFiltered ? 1 : 2,
-                }
-              }}
-            >
-              {isFiltered ? 'Filtered' : 'Filter'}
-            </Button>
-            <Button
-              variant="outlined"
-              onClick={() =>
-                (window.location.href =
-                  "https://www.youtube.com/watch?v=kU1lGsUqqIE&list=PLi2pCZz5m6GH_-23-LKG7ZgfE5TbbFdQK&index=1")
-              }
-              sx={{
-                borderRadius: '8px',
-                height: '40px',
-                minHeight: '40px',
-                padding: '0 16px',
-                fontWeight: 600,
-                textTransform: 'none',
+              },
+            }}
+          >
+            {isFiltered ? 'Filtered' : 'Filter'}
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={() =>
+              (window.location.href =
+                'https://www.youtube.com/watch?v=kU1lGsUqqIE&list=PLi2pCZz5m6GH_-23-LKG7ZgfE5TbbFdQK&index=1')
+            }
+            sx={{
+              borderRadius: '8px',
+              height: '40px',
+              minHeight: '40px',
+              padding: '0 16px',
+              fontWeight: 600,
+              textTransform: 'none',
+              borderWidth: 2,
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              lineHeight: 1,
+              marginBottom: '12px',
+              '&:hover': {
                 borderWidth: 2,
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                lineHeight: 1,
-                marginBottom: '12px',
-                '&:hover': {
-                  borderWidth: 2,
-                }
-              }}
-            >
-              📺 YouTube
-            </Button>
-            <IconButton 
-              color="primary" 
-              onClick={handleViewModeToggle}
-              sx={{
-                border: '2px solid',
-                borderColor: 'primary.main',
-                borderRadius: '8px',
-                width: '40px',
-                height: '40px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '0',
-                marginBottom: '12px',
-                '&:hover': {
-                  backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                }
-              }}
-            >
-              {viewMode === "grid" ? <GridViewIcon /> : <ReorderIcon />}
-            </IconButton>
+              },
+            }}
+          >
+            📺 YouTube
+          </Button>
+          <IconButton
+            color="primary"
+            onClick={handleViewModeToggle}
+            sx={{
+              border: '2px solid',
+              borderColor: 'primary.main',
+              borderRadius: '8px',
+              width: '40px',
+              height: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '0',
+              marginBottom: '12px',
+              '&:hover': {
+                backgroundColor: 'rgba(37, 99, 235, 0.1)',
+              },
+            }}
+          >
+            {viewMode === 'grid' ? <GridViewIcon /> : <ReorderIcon />}
+          </IconButton>
         </Stack>
       </Box>
 
@@ -220,20 +213,27 @@ const ContentLecturesSearch = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{
-          ...MODAL_STYLES,
-          width: 500,
-          borderRadius: '16px',
-          border: '1px solid',
-          borderColor: 'divider',
-          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
-        }}>
+        <Box
+          sx={{
+            ...MODAL_STYLES,
+            width: 500,
+            borderRadius: '16px',
+            border: '1px solid',
+            borderColor: 'divider',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+          }}
+        >
           <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
             🔍 Filter Lectures
           </Typography>
           <Stack spacing={3}>
             <FormControl fullWidth>
-              <InputLabel id="topic-select-label" sx={{ backgroundColor: 'background.paper', px: 0.5 }}>Topic</InputLabel>
+              <InputLabel
+                id="topic-select-label"
+                sx={{ backgroundColor: 'background.paper', px: 0.5 }}
+              >
+                Topic
+              </InputLabel>
               <Select
                 labelId="topic-select-label"
                 value={tempFilters.selectedTopic}
@@ -257,7 +257,12 @@ const ContentLecturesSearch = () => {
               </Select>
             </FormControl>
             <FormControl fullWidth>
-              <InputLabel id="relevance-select-label" sx={{ backgroundColor: 'background.paper', px: 0.5 }}>Study Level</InputLabel>
+              <InputLabel
+                id="relevance-select-label"
+                sx={{ backgroundColor: 'background.paper', px: 0.5 }}
+              >
+                Study Level
+              </InputLabel>
               <Select
                 labelId="relevance-select-label"
                 value={tempFilters.selectedRelevance}
@@ -272,29 +277,28 @@ const ContentLecturesSearch = () => {
                   borderRadius: '8px',
                 }}
               >
-                <MenuItem value="bareMinimum">
-                  🎯 Bare Minimum
-                </MenuItem>
-                <MenuItem value="workHard">
-                  💪 Work Hard
-                </MenuItem>
-                <MenuItem value="learnEverything">
-                  🚀 Learn Everything
-                </MenuItem>
+                <MenuItem value="bareMinimum">🎯 Bare Minimum</MenuItem>
+                <MenuItem value="workHard">💪 Work Hard</MenuItem>
+                <MenuItem value="learnEverything">🚀 Learn Everything</MenuItem>
               </Select>
             </FormControl>
-            <Box sx={{ 
-              border: '1px solid',
-              borderColor: 'divider',
-              borderRadius: '8px',
-              padding: '16px',
-              backgroundColor: 'rgba(37, 99, 235, 0.03)',
-            }}>
-              <Typography variant="subtitle2" sx={{ mb: 1.5, fontWeight: 600, color: 'text.primary' }}>
+            <Box
+              sx={{
+                border: '1px solid',
+                borderColor: 'divider',
+                borderRadius: '8px',
+                padding: '16px',
+                backgroundColor: 'rgba(37, 99, 235, 0.03)',
+              }}
+            >
+              <Typography
+                variant="subtitle2"
+                sx={{ mb: 1.5, fontWeight: 600, color: 'text.primary' }}
+              >
                 Filter Options
               </Typography>
               <Stack spacing={1.5}>
-                <Stack direction={"row"} alignItems="center" spacing={0}>
+                <Stack direction={'row'} alignItems="center" spacing={0}>
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -349,8 +353,8 @@ const ContentLecturesSearch = () => {
               </Stack>
             </Box>
             <Stack direction="row" justifyContent="flex-end" spacing={2} sx={{ mt: 2 }}>
-              <Button 
-                variant="outlined" 
+              <Button
+                variant="outlined"
                 onClick={toggleFilters}
                 sx={{
                   borderRadius: '8px',
@@ -360,8 +364,8 @@ const ContentLecturesSearch = () => {
               >
                 Cancel
               </Button>
-              <Button 
-                variant="outlined" 
+              <Button
+                variant="outlined"
                 onClick={handleResetFilters}
                 sx={{
                   borderRadius: '8px',
@@ -371,8 +375,8 @@ const ContentLecturesSearch = () => {
               >
                 Reset
               </Button>
-              <Button 
-                variant="contained" 
+              <Button
+                variant="contained"
                 onClick={handleApplyFilters}
                 sx={{
                   borderRadius: '8px',
@@ -401,9 +405,9 @@ const ContentLecturesSearch = () => {
             <React.Fragment key={weekObj.week}>
               <Box
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  width: "100%",
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: '100%',
                   mt: 4,
                   mb: 2,
                 }}
@@ -411,20 +415,20 @@ const ContentLecturesSearch = () => {
                 <hr
                   style={{
                     flexGrow: 1,
-                    borderTop: "1px solid #ccc",
+                    borderTop: '1px solid #ccc',
                     margin: 0,
                   }}
                 />
                 <Box
                   sx={{
                     px: 2,
-                    whiteSpace: "nowrap",
-                    fontWeight: "bold",
+                    whiteSpace: 'nowrap',
+                    fontWeight: 'bold',
                     borderRadius: 2,
                     border: 1,
-                    borderColor: "primary.main",
-                    padding: "5px 20px",
-                    color: "primary.main",
+                    borderColor: 'primary.main',
+                    padding: '5px 20px',
+                    color: 'primary.main',
                   }}
                 >
                   Week {weekObj.week}
@@ -432,12 +436,12 @@ const ContentLecturesSearch = () => {
                 <hr
                   style={{
                     flexGrow: 1,
-                    borderTop: "1px solid #ccc",
+                    borderTop: '1px solid #ccc',
                     margin: 0,
                   }}
                 />
               </Box>
-              {viewMode === "grid" ? (
+              {viewMode === 'grid' ? (
                 <Box
                   display="grid"
                   gridTemplateColumns="repeat(auto-fill, minmax(300px, 1fr))"
@@ -466,7 +470,7 @@ const ContentLecturesSearch = () => {
               ) : (
                 <Box
                   sx={{
-                    display: "grid",
+                    display: 'grid',
                     gap: 2,
                   }}
                 >
@@ -501,5 +505,5 @@ const ContentLecturesSearch = () => {
 
 export default makePage(ContentLecturesSearch, {
   loginRequired: true,
-  title: "",
+  title: '',
 });
