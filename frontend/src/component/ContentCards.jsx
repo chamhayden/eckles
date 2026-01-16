@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import imageBg from '../asset/VideoBg.png';
-import Chip from '@mui/material/Chip';
+import CardActionArea from '@mui/material/CardActionArea';
 
 // https://stackoverflow.com/questions/40958727/javascript-generate-unique-number-based-on-string
 const hashCode = (str) => {
@@ -61,6 +61,18 @@ const ContentCards = ({ data, minHeight }) => {
               },
               overflow: 'hidden',
             }}>
+              
+                    <CardActionArea
+                        component="a"
+                        href={linkUrl}
+                        target='_blank'
+
+                        sx={{
+                          textDecoration: 'none',
+                          '&:hover': { textDecoration: 'none' },
+                          cursor: 'pointer',
+                        }}
+                            >
                 {label &&
                   <div style={{
                     position: 'absolute',
@@ -83,20 +95,20 @@ const ContentCards = ({ data, minHeight }) => {
                 
 
                 <Box sx={{ position: 'relative' }}>
-                  <CardMedia
-                    component="img"
-                    height="180"
-                    sx={{ 
-                      borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
-                      background: imageBg ?? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                      transition: 'transform 0.3s ease',
-                      '&:hover': {
-                        transform: 'scale(1.05)',
-                      }
-                    }}
-                    image={imageBg ?? `https://picsum.photos/id/${hash}/400/300` }
-                    linkUrl={linkUrl}
-                  />
+                        <CardMedia
+                          component="img"
+                          height="180"
+                          sx={{ 
+                            borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
+                            background: imageBg ?? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                            transition: 'transform 0.3s ease',
+                            '&:hover': {
+                              transform: 'scale(1.05)',
+                            }
+                          }}
+                          image={imageBg ?? `https://picsum.photos/id/${hash}/400/300` }
+                          alt={title}
+                        />
                   <Typography variant="h6" component="div" color="white" sx={{ 
                     position: 'absolute',
                     inset: 0,
@@ -152,6 +164,8 @@ const ContentCards = ({ data, minHeight }) => {
                     }}>{description}</Typography>}
                   </Box>
                 </Box>
+                
+                  </CardActionArea>
             </Card>
           </Box>
         );

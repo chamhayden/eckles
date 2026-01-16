@@ -38,7 +38,7 @@ const buildRelatedLectures = (lecture, allLectures, term) => {
 
   return relatedLectures.map((lec) => ({
     title: lec.name,
-    linkUrl: `/${term}/content/lectures/${lec.key}`,
+    linkUrl: `/~cs6080/${term}/content/lectures/${lec.key}`,
     imageUrl: `https://img.youtube.com/vi/${
       lec.video ? getYoutubeCodeFromUrl(lec.video) : ""
     }/hqdefault.jpg`,
@@ -64,7 +64,7 @@ const buildRelatedTutes = (lecture, term) => {
   return lecture.content_tutorials().map((tutorial) => ({
     title: tutorial.key,
     description: tutorial.name,
-    linkUrl: `/${term}/content/tutorials/${tutorial.key}`,
+    linkUrl: `/~cs6080/${term}/content/tutorials/${tutorial.key}`,
   }));
 };
 
