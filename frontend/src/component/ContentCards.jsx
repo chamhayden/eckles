@@ -146,17 +146,18 @@ const ContentCards = ({ data, minHeight }) => {
                       
                     </Box>
                   </Box>
-
+                {description && 
                   <Box>
-                    {description && <Typography variant="body2" color="text.secondary" sx={{ 
-                      fontSize: '0.875rem', 
-                      display: '-webkit-box',
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: 'vertical',
-                      overflow: 'hidden',
-                      minHeight: 2,
-                    }}>{description}</Typography>} 
-                  </Box>
+                            <Typography variant="body2" color="text.secondary" sx={{ 
+                                  fontSize: '0.875rem', 
+                                  display: '-webkit-box',
+                                  WebkitLineClamp: 2,
+                                  WebkitBoxOrient: 'vertical',
+                                  overflow: 'hidden',
+                                  height: '3.4em',
+                                }}>{description}</Typography>
+                              </Box>
+                  }
                 </Box>
                 
                   </CardActionArea>
