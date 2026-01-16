@@ -38,19 +38,7 @@ const ContentCards = ({ data, minHeight }) => {
         const hash = hashCode(description) % 400;
         return (
           <Box sx={{ 
-            minWidth: '240px', 
-            flex: {
-              xs: '1 1 100%',
-              sm: '1 1 calc((100% - 20px) / 2)',
-              md: '1 1 calc((100% - 40px) / 3)',
-              lg: '1 1 calc((100% - 60px) / 4)',
-            },
-            maxWidth: {
-              xs: '100%',
-              sm: 'calc((100% - 20px) / 2)',
-              md: 'calc((100% - 40px) / 3)',
-              lg: 'calc((100% - 60px) / 4)',
-            },
+            width: '280px'
           }} key={key}>
             <Card sx={{ 
               minHeight,
