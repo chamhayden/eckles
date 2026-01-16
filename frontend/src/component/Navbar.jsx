@@ -21,7 +21,7 @@ import { getPrimaryNavList, getSecondaryNavList } from './NavList';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 const ExternalIcon = () => {
-  return <OpenInNewIcon />;
+  return <OpenInNewIcon sx={{fontSize : '16px'}} />;
 };
 
 const background = 'linear-gradient(180deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%) !important';
@@ -117,7 +117,7 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
             />
             <Typography
               sx={{
-                fontSize: '1.3em',
+                fontSize: '1.15em',
                 paddingLeft: '15px',
                 paddingTop: '19px',
                 fontWeight: 700,
@@ -176,13 +176,13 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
                         justifyContent: 'center',
                       }}
                     >
-                      <Icon style={{ fill: 'white' }} />
+                      <Icon style={{ fill: 'white', fontSize: '16px' }} />
                     </ListItemIcon>
                     <ListItemText
                       primaryTypographyProps={{
                         sx: {
                           fontWeight: 'bold',
-                          fontSize: '1rem',
+                          fontSize: '0.9rem',
                           display: 'flex',
                           alignItems: 'center',
                           paddingTop: '15px',
@@ -194,7 +194,7 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
                       primary={title}
                     />
                     {external && <ExternalIcon />}
-                    {children ? open[key] ? <ExpandLess /> : <ExpandMore /> : <></>}
+                    {children ? open[key] ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" /> : <></>}
                   </ListItem>
                   {children && (
                     <Collapse in={open[key]} timeout="auto" unmountOnExit>
@@ -242,12 +242,12 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
                                     justifyContent: 'center',
                                   }}
                                 >
-                                  <child.Icon style={{ fill: 'white' }} />
+                                  <child.Icon style={{ fill: 'white', fontSize: '16px' }} />
                                 </ListItemIcon>
                                 <ListItemText
                                   primaryTypographyProps={{
                                     sx: {
-                                      fontSize: '1rem',
+                                      fontSize: '0.85rem',
                                       display: 'flex',
                                       alignItems: 'center',
                                       paddingTop: '15px',
@@ -319,12 +319,12 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
                         justifyContent: 'center',
                       }}
                     >
-                      <Icon style={{ fill: 'white' }} />
+                      <Icon style={{ fill: 'white', fontSize: '16px' }} />
                     </ListItemIcon>
                     <ListItemText
                       primaryTypographyProps={{
                         sx: {
-                          fontSize: '1rem',
+                          fontSize: '0.9rem',
                           paddingTop: '15px',
                           display: 'flex',
                           alignItems: 'center',
