@@ -7,7 +7,6 @@ import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Rating } from "react-simple-star-rating";
 import { apiCall } from "../../../util/api";
-import StarsIcon from '@mui/icons-material/Stars';
 
 const RATING_DISABLED_TERMS = new Set([
   "22T1",
