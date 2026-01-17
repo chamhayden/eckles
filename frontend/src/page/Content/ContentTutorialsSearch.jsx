@@ -65,7 +65,7 @@ const ContentTutorialsSearch = () => {
           marginBottom: '20px',
         }}
       >
-        <Stack  direction="row" flexWrap="wrap" gap={1.5}>
+        <Stack direction="row" flexWrap="wrap" gap={1.5}>
           <FormControl sx={{ flex: 2, minWidth: '250px' }}>
             <OutlinedInput
               placeholder="Search tutorials..."
@@ -267,7 +267,7 @@ const ContentTutorialsSearch = () => {
               >
                 Filter Options
               </Typography>
-         {/* TODO ALIGHEN CHECKBOX AND LABEL BETTER */}
+              {/* TODO ALIGHEN CHECKBOX AND LABEL BETTER */}
               <FormControlLabel
                 control={
                   <Checkbox
@@ -282,7 +282,7 @@ const ContentTutorialsSearch = () => {
                 }
                 label="Show past weeks"
                 componentsProps={{
-                  typography: { sx: { lineHeight: 1, margin: 0 } }
+                  typography: { sx: { lineHeight: 1, margin: 0 } },
                 }}
               />
             </Box>

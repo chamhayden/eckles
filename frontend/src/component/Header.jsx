@@ -83,6 +83,7 @@ const Header = ({ pageTitle, menuToggle, sidebarWidth }) => {
         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         boxShadow: '0 4px 20px 0 rgba(0, 0, 0, 0.05)',
       }}
+      backgroundColor={getters.isDark ? '#0f172a' : '#ffffff'}
     >
       <Toolbar
         sx={{

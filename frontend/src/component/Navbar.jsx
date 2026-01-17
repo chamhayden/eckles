@@ -22,7 +22,7 @@ import { getPrimaryNavList, getSecondaryNavList } from './NavList';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 const ExternalIcon = () => {
-  return <OpenInNewIcon sx={{fontSize : '16px'}} />;
+  return <OpenInNewIcon sx={{ fontSize: '16px' }} />;
 };
 
 const background = 'linear-gradient(180deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%) !important';
@@ -216,7 +216,15 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
                       primary={title}
                     />
                     {external && <ExternalIcon />}
-                    {children ? safeOpen[key] ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" /> : <></>}
+                    {children ? (
+                      safeOpen[key] ? (
+                        <ExpandLess fontSize="small" />
+                      ) : (
+                        <ExpandMore fontSize="small" />
+                      )
+                    ) : (
+                      <></>
+                    )}
                   </ListItem>
                   {children && (
                     <Collapse in={safeOpen[key]} timeout="auto" unmountOnExit>
