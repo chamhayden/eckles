@@ -165,7 +165,6 @@ const PokemonCatchController = forwardRef(function PokemonCatchController(_, ref
         bottom: 14,
         font: "700 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial",
         color: "#fff",
-        opacity: 0.9,
         userSelect: "none",
         backdropFilter: "blur(4px)",
         padding: "6px 12px",
@@ -259,7 +258,7 @@ const PokemonCatchController = forwardRef(function PokemonCatchController(_, ref
               src="https://www.gstatic.com/videogames/pokemon/pokeball.svg"
             />
 
-            <div style={styles.hint}>Gotcha! Hope you’re having an amazing day~~</div>
+            <div style={styles.hint}>Gotcha!!! Hope you’re having an amzing day❤️ ~～</div>
           </div>
         </div>
       )}
