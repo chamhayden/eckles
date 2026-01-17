@@ -90,7 +90,7 @@ export default function TutLecContentCard({
           <Stack direction="row" alignItems="center" justifyContent="space-between">
             <Stack direction="row" alignItems="center">
               <img
-                src={thumbnail ? thumbnail.url : `https://picsum.photos/id/${hash}/200`}
+                src={thumbnail ? thumbnail : `https://picsum.photos/id/${hash}/200`}
                 alt={name}
                 style={{ width: 'auto', height: '100px', display: 'block' }}
               />

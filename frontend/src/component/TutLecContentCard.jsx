@@ -131,7 +131,7 @@ export default function TutLecContentCard({
             </Stack>
 
             <Avatar
-              src={thumbnail ? thumbnail.url : `https://picsum.photos/id/${hash}/200`}
+              src={thumbnail ? thumbnail : `https://picsum.photos/id/${hash}/200`}
               alt={name}
               sx={{
                 width: 100,
