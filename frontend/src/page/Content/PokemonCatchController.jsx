@@ -97,14 +97,14 @@ const PokemonCatchController = forwardRef(function PokemonCatchController(_, ref
       close: {
         position: "absolute",
         top: 12,
-        right: 12,
+        right: 18,
         width: 36,
         height: 36,
         borderRadius: 12,
         border: 0,
         cursor: "pointer",
         background: "rgba(0,0,0,.08)",
-        color: "#111",
+        color: "#fff",
         fontWeight: 900,
         zIndex: 2,
       },
@@ -160,7 +160,7 @@ const PokemonCatchController = forwardRef(function PokemonCatchController(_, ref
         left: 16,
         bottom: 14,
         font: "700 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial",
-        color: "#333",
+        color: "#fff",
         opacity: 0.85,
         userSelect: "none",
       },
@@ -229,7 +229,7 @@ const PokemonCatchController = forwardRef(function PokemonCatchController(_, ref
               onClick={() => setIsOpen(false)}
               aria-label="Close"
             >
-              ×
+              Close
             </button>
 
             <div style={styles.flash} />
@@ -252,7 +252,7 @@ const PokemonCatchController = forwardRef(function PokemonCatchController(_, ref
               src="https://www.gstatic.com/videogames/pokemon/pokeball.svg"
             />
 
-            <div style={styles.hint}>Gotcha!</div>
+            <div style={styles.hint}>Gotcha! Hope you’re having an amazing day!</div>
           </div>
         </div>
       )}
