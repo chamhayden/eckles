@@ -62,11 +62,14 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
   };
 
   const boldIfPage = (route) => {
+    if (!route) {
+      return false;
+    }
     if (route === '/') {
       return pathname === route;
-    } else {
-      return pathname.includes(route);
     }
+    const baseRoute = route.endsWith('/search') ? route.slice(0, -'/search'.length) : route;
+    return pathname.includes(baseRoute);
   };
 
   return (
