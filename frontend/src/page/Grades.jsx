@@ -210,11 +210,11 @@ const Grades = () => {
             </Card>
           )}
 
-          {renderGradeTable('Overall Grades', grades.main, '📊')}
-          {renderGradeTable('Assignment 1 Breakdown', grades.ass1, '📝')}
-          {renderGradeTable('Assignment 2 Breakdown', grades.ass2, '📝')}
-          {renderGradeTable('Assignment 3 Breakdown', grades.ass3, '📝')}
-          {renderGradeTable('Assignment 4 Breakdown', grades.ass4, '📝')}
+          {renderGradeTable('Overall Grades', grades.main, '')}
+          {renderGradeTable('Assignment 1 Breakdown', grades.ass1, '')}
+          {renderGradeTable('Assignment 2 Breakdown', grades.ass2, '')}
+          {renderGradeTable('Assignment 3 Breakdown', grades.ass3, '')}
+          {renderGradeTable('Assignment 4 Breakdown', grades.ass4, '')}
         </>
       )}
     </Box>
@@ -223,5 +223,5 @@ const Grades = () => {
 
 export default makePage(Grades, {
   loginRequired: true,
-  title: '💯 Grades',
+  title: 'Grades',
 });
