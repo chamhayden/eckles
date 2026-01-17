@@ -22,7 +22,7 @@ You will _need_ to watch at least the following lectures before starting (it wil
  * [Fonts](/~cs6080/NOW/content/lectures/css-fonts)
  
 You will _need_ to watch at least the following lectures to finish the assessment completely:
- * [Dev Tools](/~cs6080/NOW/content/lectures/dev-tools)`
+ * [Dev Tools](/~cs6080/NOW/content/lectures/dev-tools)`;
 
 export const ass1b = `
 
@@ -271,7 +271,7 @@ You will _need_ to watch at least the following lectures to finish the assessmen
  * [Perceivability](https://cgi.cse.unsw.edu.au/~cs6080/NOW/content/lectures/accessibility-perceivability)
  * [Operability](https://cgi.cse.unsw.edu.au/~cs6080/NOW/content/lectures/accessibility-operability)
  * [Understandability](https://cgi.cse.unsw.edu.au/~cs6080/NOW/content/lectures/accessibility-understandability)
- * [Robustness](https://cgi.cse.unsw.edu.au/~cs6080/NOW/content/lectures/accessibility-robustness)`
+ * [Robustness](https://cgi.cse.unsw.edu.au/~cs6080/NOW/content/lectures/accessibility-robustness)`;
 
 export const ass3b = `
 
@@ -505,7 +505,6 @@ It is your responsibiltiy to ensure that your code can run successfully when clo
 
 No late submission are accepted.
 `;
-
 
 export const ass4a = `
 

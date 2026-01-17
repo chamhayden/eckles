@@ -8,13 +8,19 @@ import MenuItem from '@mui/material/MenuItem';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions} from '@mui/material';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from '@mui/material';
 import FormLabel from '@mui/material/FormLabel';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { withStyles, } from '@mui/styles';
+import { withStyles } from '@mui/styles';
 import { createTheme } from '@mui/material/styles';
 import mainlogo from '../asset/mainlogo.png';
 import { useNavigate } from 'react-router-dom';
@@ -28,7 +34,7 @@ import { Context, useContext } from '../context';
 
 const theme = createTheme();
 /* Sourced https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/sign-in/SignIn.js */
-const styles = ({
+const styles = {
   main: {
     width: 'auto',
     display: 'flex',
@@ -68,7 +74,7 @@ const styles = ({
     '&:hover': {
       transform: 'translateY(-2px)',
       boxShadow: '0 6px 20px rgba(37, 99, 235, 0.4)',
-    }
+    },
   },
   logo: {
     width: '100%',
@@ -77,7 +83,7 @@ const styles = ({
     transition: 'transform 0.3s ease',
     '&:hover': {
       transform: 'scale(1.05)',
-    }
+    },
   },
   disclaimer: {
     textAlign: 'center',
@@ -89,7 +95,7 @@ const styles = ({
     backgroundColor: 'rgba(100, 116, 139, 0.05)',
     borderRadius: '8px',
   },
-});
+};
 
 const SignIn = (props) => {
   // dialog state
@@ -127,13 +133,13 @@ const SignIn = (props) => {
   const login = (zid, zpass, term) => {
     setLoading(true);
     apiCall('login', { term, zid, zpass }, 'POST', handleClickOpen)
-      .then(_ => {
+      .then((_) => {
         localStorage.removeItem('eckles_content');
         localStorage.removeItem('eckles_expiry');
-        window.location.href = `${config.BASE_NAME}${term}`
+        window.location.href = `${config.BASE_NAME}${term}`;
       })
-      .finally(_ => setLoading(false));
-  }
+      .finally((_) => setLoading(false));
+  };
 
   const { classes } = props;
 
@@ -144,106 +150,138 @@ const SignIn = (props) => {
   return (
     <main className={classes.main}>
       <Paper className={classes.paper} elevation={0}>
-        <img className={classes.logo} src={mainlogo} alt='mainlogo'/>
-        <Typography component="h1" variant="h4" sx={{ 
-          fontWeight: 700,
-          mb: 1.5,
-          lineHeight: 1.3,
-          background: 'linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-        }}>
+        <img className={classes.logo} src={mainlogo} alt="mainlogo" />
+        <Typography
+          component="h1"
+          variant="h4"
+          sx={{
+            fontWeight: 700,
+            mb: 1.5,
+            lineHeight: 1.3,
+            background: 'linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}
+        >
           Sign in to COMP6080
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ 
-          mb: 4,
-          lineHeight: 1.6,
-          fontSize: '1rem',
-        }}>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            mb: 4,
+            lineHeight: 1.6,
+            fontSize: '1rem',
+          }}
+        >
           Welcome back! Please enter your credentials.
         </Typography>
         <form className={classes.form}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">zid</InputLabel>
-            <Input id="username" name="username" autoComplete="username" autoFocus placeholder="z1234567" value={zid} onChange={e => setZid(e.target.value)} />
+            <Input
+              id="username"
+              name="username"
+              autoComplete="username"
+              autoFocus
+              placeholder="z1234567"
+              value={zid}
+              onChange={(e) => setZid(e.target.value)}
+            />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">zpass</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" value={zpass} onChange={e => setZpass(e.target.value)} />
+            <Input
+              name="password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={zpass}
+              onChange={(e) => setZpass(e.target.value)}
+            />
           </FormControl>
 
-          {getters.validTerms.length > 1 && (<FormControl>
-            <FormLabel sx={{ marginTop: '15px', marginBottom: '5px' }} id="demo-select-label">Term</FormLabel>
-            <Select
-              labelId="demo-select-label"
-              value={term}
-              onChange={(e) => setTerm(e.target.value)}
-            >
-              {getters.validTerms.sort().reverse().map((term, key) => (
-                <MenuItem key={key} value={term}>
-                  {term}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>)}
-          <p className={classes.disclaimer}>🔒 Your password and credentials are not stored by either this software or by teaching staff. If you change your UNSW password due to suspected compromise, please email cs6080@cse.unsw.edu.au to inform us as well.</p>
+          {getters.validTerms.length > 1 && (
+            <FormControl>
+              <FormLabel sx={{ marginTop: '15px', marginBottom: '5px' }} id="demo-select-label">
+                Term
+              </FormLabel>
+              <Select
+                labelId="demo-select-label"
+                value={term}
+                onChange={(e) => setTerm(e.target.value)}
+              >
+                {getters.validTerms
+                  .sort()
+                  .reverse()
+                  .map((term, key) => (
+                    <MenuItem key={key} value={term}>
+                      {term}
+                    </MenuItem>
+                  ))}
+              </Select>
+            </FormControl>
+          )}
+          <p className={classes.disclaimer}>
+            🔒 Your password and credentials are not stored by either this software or by teaching
+            staff. If you change your UNSW password due to suspected compromise, please email
+            cs6080@cse.unsw.edu.au to inform us as well.
+          </p>
           <Stack spacing={2} sx={{ mt: 3 }}>
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={() => login(zid, zpass, term)}
-            sx={{
-              borderRadius: '10px',
-              padding: '12px',
-              fontWeight: 600,
-              textTransform: 'none',
-              fontSize: '1rem',
-              background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-              boxShadow: '0 4px 14px rgba(37, 99, 235, 0.4)',
-              transition: 'all 0.3s ease',
-              '&:hover': {
-                transform: 'translateY(-2px)',
-                boxShadow: '0 6px 20px rgba(37, 99, 235, 0.5)',
-                background: 'linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)',
-              }
-            }}
-          >
-            Sign in →
-          </Button>
-          <Button
-            fullWidth
-            variant="outlined"
-            color="primary"
-            onClick={() => window.location.href = config.BASE_NAME}
-            sx={{
-              borderRadius: '10px',
-              padding: '12px',
-              fontWeight: 600,
-              textTransform: 'none',
-              fontSize: '1rem',
-              borderWidth: '2px',
-              transition: 'all 0.3s ease',
-              '&:hover': {
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={() => login(zid, zpass, term)}
+              sx={{
+                borderRadius: '10px',
+                padding: '12px',
+                fontWeight: 600,
+                textTransform: 'none',
+                fontSize: '1rem',
+                background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.4)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 6px 20px rgba(37, 99, 235, 0.5)',
+                  background: 'linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)',
+                },
+              }}
+            >
+              Sign in →
+            </Button>
+            <Button
+              fullWidth
+              variant="outlined"
+              color="primary"
+              onClick={() => (window.location.href = config.BASE_NAME)}
+              sx={{
+                borderRadius: '10px',
+                padding: '12px',
+                fontWeight: 600,
+                textTransform: 'none',
+                fontSize: '1rem',
                 borderWidth: '2px',
-                transform: 'translateY(-2px)',
-                boxShadow: '0 4px 12px rgba(37, 99, 235, 0.2)',
-              }
-            }}
-          >
-            ← Back to homepage
-          </Button>
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  borderWidth: '2px',
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 4px 12px rgba(37, 99, 235, 0.2)',
+                },
+              }}
+            >
+              ← Back to homepage
+            </Button>
           </Stack>
         </form>
       </Paper>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>{"Error"}</DialogTitle>
+        <DialogTitle>{'Error'}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-              {errorMessage}
-          </DialogContentText>
+          <DialogContentText>{errorMessage}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
@@ -253,7 +291,7 @@ const SignIn = (props) => {
       </Dialog>
     </main>
   );
-}
+};
 
 SignIn.propTypes = {
   classes: PropTypes.object.isRequired,

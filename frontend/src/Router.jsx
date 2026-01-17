@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Routes,
-  Route,
-} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Staff from './page/Staff';
 import Site from './page/Site';
@@ -46,10 +43,9 @@ import { Context, useContext } from './context';
 const Router = () => {
   const { getters, setters } = useContext(Context);
   React.useEffect(() => {
-    apiCall('validterms', {}, 'GET')
-      .then(terms => {
-        setters.setValidTerms(terms)
-      });
+    apiCall('validterms', {}, 'GET').then((terms) => {
+      setters.setValidTerms(terms);
+    });
   }, []);
   return (
     <Routes>
@@ -103,6 +99,6 @@ const Router = () => {
       </Route>
     </Routes>
   );
-}
+};
 
 export default Router;

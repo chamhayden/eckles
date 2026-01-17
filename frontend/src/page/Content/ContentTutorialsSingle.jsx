@@ -1,33 +1,72 @@
-import { HashLink as Link } from "react-router-hash-link";
-import React from "react";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
+import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import UndoIcon from '@mui/icons-material/Undo';
 
-import Typography from "@mui/material/Typography";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
+import makePage from '../../component/makePage';
+import { Context, useContext } from '../../context';
+import { getYoutubeCodeFromUrl } from '../../util/content';
+import RelatedTutorials from './component/RelatedTutorials';
+import TutorialInfoPanel from './component/TutorialInfoPanel';
+import TutorialVideoPanel from './component/TutorialVideoPanel';
 
-import ContentCards from "../../component/ContentCards";
-import makePage from "../../component/makePage";
-import { Context, useContext } from "../../context";
-import Youtube from "../../component/Youtube";
-import { getYoutubeCodeFromUrl } from "../../util/content";
-import TitleCard from "../../component/TitleCard";
-import SectionHeader from "../../component/SectionHeader";
-import config from "../../config";
+const buildRelatedTutorials = (tutorial, allTutorials, term) => {
+  if (!tutorial || !allTutorials) {
+    return [];
+  }
+
+  const topicName = tutorial.topic ? tutorial.topic().name : null;
+  const weekNumber = tutorial.week ? tutorial.week().week : null;
+
+  const sameTopic = topicName
+    ? allTutorials.filter((t) => t.key !== tutorial.key && t.topic && t.topic().name === topicName)
+    : [];
+  const sameWeek = weekNumber
+    ? allTutorials.filter((t) => t.key !== tutorial.key && t.week && t.week().week === weekNumber)
+    : [];
+
+  const related = [...sameTopic, ...sameWeek].filter(
+    (item, index, all) => all.findIndex((candidate) => candidate.key === item.key) === index
+  );
+
+  const relatedWithVideo = related.filter((item) => item.video_url);
+  const list = relatedWithVideo.slice(0, 6);
+
+  return list.map((item) => {
+    const topic = item.topic ? item.topic() : null;
+    const week = item.week ? item.week().week : null;
+    const weekLabel =
+      week === null || week === undefined ? '' : week === 11 ? 'Extra' : `Week ${week}`;
+    const weekTopic =
+      weekLabel && topic
+        ? `${weekLabel} ${topic.emoji} - ${topic.name}`
+        : topic
+          ? `${topic.emoji} - ${topic.name}`
+          : weekLabel;
+
+    return {
+      title: item.key,
+      linkUrl: `/~cs6080/${term}/content/tutorials/${item.key}`,
+      imageUrl: item.video_url
+        ? `https://img.youtube.com/vi/${getYoutubeCodeFromUrl(item.video_url)}/hqdefault.jpg`
+        : undefined,
+      description: item.name,
+      duration: item.duration,
+      weektopic: weekTopic || undefined,
+    };
+  });
+};
 
 const ContentTutorialsSingle = () => {
   const { getters, setters } = useContext(Context);
   const navigate = useNavigate();
   const [tutorial, setTutorial] = React.useState(null);
+  const [relatedTutorials, setRelatedTutorials] = React.useState([]);
   const params = useParams();
 
   React.useEffect(() => {
-    const candidates = getters.content.content_tutorials.filter(
-      (c) => c.key === params.tutid
-    );
+    const candidates = getters.content.content_tutorials.filter((c) => c.key === params.tutid);
     if (candidates.length === 1) {
       setTutorial(candidates[0]);
     }
@@ -36,6 +75,9 @@ const ContentTutorialsSingle = () => {
   React.useEffect(() => {
     if (tutorial !== null) {
       setters.setTitle(`Tutorial: ${tutorial.key}`);
+      setRelatedTutorials(
+        buildRelatedTutorials(tutorial, getters.content.content_tutorials, getters.term)
+      );
     }
   }, [tutorial]);
 
@@ -45,88 +87,39 @@ const ContentTutorialsSingle = () => {
 
   return (
     <>
-      <Button variant="outlined" size="small" onClick={() => navigate(-1)}>
-        ← Back
-      </Button>
-
-      <SectionHeader>
-        {tutorial.topic().emoji} <b>{tutorial.key}</b> &nbsp; (part of{" "}
-        <Link
-          to={`/~cs6080/${getters.term}/content/tutorials/topic#${
-            tutorial.topic().name
-          }`}
-        >
-          {tutorial.topic().name}
-        </Link>{" "}
-        in {tutorial.topic().area().name})
-      </SectionHeader>
-
-      <Box sx={{ ml: 1, mb: 3 }}>
-        <Typography variant="body1" gutterBottom>
-          {tutorial.name}
-        </Typography>
-      </Box>
-
-      <Box sx={{ ml: 1, mb: 3 }}>
-        <Typography variant="body1" gutterBottom>
-          This exercise is {tutorial.importance}
-        </Typography>
-      </Box>
-
-      <Box sx={{ ml: 1, mb: 3 }}>
-        <Typography variant="body1" gutterBottom>
-          Duration: {tutorial.duration} minutes ⏱️
-        </Typography>
-      </Box>
-
-      <Button variant="contained" size="large">
-        <a
-          style={{ color: "#fff" }}
-          target="_blank"
-          href={`${config.BASE_URL}/gitlabredir/${getters.term}/exercises/${tutorial.key}`}
-        >
-          View activity on gitlab
-        </a>
-      </Button>
-      <Accordion
+      <Box
         sx={{
-          marginTop: "35px !important",
-          marginLeft: "auto !important",
-          marginRight: "auto !important",
-          minWidth: 100,
-          background: "rgb(0,0,0)",
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
         }}
-        expanded={true}
       >
-        <AccordionDetails>
-          {tutorial.video_author && (
-            <span style={{ color: "white" }}>
-              Tutor who recorded: {tutorial.video_author().name}
-            </span>
-          )}
-          {tutorial.video_url ? (
-            <Youtube code={tutorial.video_url} />
-          ) : (
-            <div
-              style={{
-                textAlign: "center",
-                margin: "100px 20px",
-                fontSize: "2em",
-                color: "#fff",
-              }}
-            >
-              Recording not yet released.
-            </div>
-          )}
-        </AccordionDetails>
-      </Accordion>
+        <Button variant="none" onClick={() => navigate(-1)} sx={{ mt: 2 }} startIcon={<UndoIcon />}>
+          Back
+        </Button>
+      </Box>
+
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 3,
+          justifyContent: 'space-between',
+        }}
+      >
+        <Box sx={{ flex: '3 1 0%', minWidth: 0 }}>
+          <TutorialVideoPanel tutorial={tutorial} />
+        </Box>
+        <Box sx={{ flex: '2 1 0%', minWidth: 0 }}>
+          <TutorialInfoPanel tutorial={tutorial} term={getters.term} />
+        </Box>
+      </Box>
+      <RelatedTutorials relatedTutorials={relatedTutorials} />
     </>
   );
-
-  return <>hello</>;
 };
 
 export default makePage(ContentTutorialsSingle, {
   loginRequired: true,
-  title: "",
+  title: '',
 });

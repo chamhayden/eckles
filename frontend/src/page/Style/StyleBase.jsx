@@ -15,8 +15,7 @@ import makePage from '../../component/makePage';
 
 import { Context, useContext } from '../../context';
 
-const HelpResources = ({ }) => {
-
+const HelpResources = ({}) => {
   const { getters } = useContext(Context);
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -57,4 +56,4 @@ const HelpResources = ({ }) => {
   );
 };
 
-export default HelpResources
+export default HelpResources;

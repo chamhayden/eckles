@@ -36,40 +36,46 @@ import { apiCall } from '../util/api';
 import { Context, useContext } from '../context';
 
 const Grades = () => {
-
   const { getters, setters } = useContext(Context);
   const [grades, setGrades] = React.useState([]);
 
   const [zid, setZid] = React.useState('');
 
   const getGrades = () => {
-    apiCall(`gradesearch?term=${getters.term}&searchZid=${zid}`, { }, 'GET')
-      .then(data => {
-        setGrades(data);
-      });
-  }
+    apiCall(`gradesearch?term=${getters.term}&searchZid=${zid}`, {}, 'GET').then((data) => {
+      setGrades(data);
+    });
+  };
   React.useEffect(() => {
     getGrades();
   }, []);
 
   const renderGradeTable = (title, data, emoji) => (
-    <Card elevation={0} sx={{ 
-      mb: 3,
-      border: '1px solid',
-      borderColor: 'divider',
-      borderRadius: '12px',
-      overflow: 'hidden',
-    }}>
-      <CardContent sx={{ 
-        p: 0,
-        '&:last-child': { pb: 0 }
-      }}>
-        <Box sx={{ 
-          p: 3,
-          background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%)',
-          borderBottom: '1px solid',
-          borderColor: 'divider',
-        }}>
+    <Card
+      elevation={0}
+      sx={{
+        mb: 3,
+        border: '1px solid',
+        borderColor: 'divider',
+        borderRadius: '12px',
+        overflow: 'hidden',
+      }}
+    >
+      <CardContent
+        sx={{
+          p: 0,
+          '&:last-child': { pb: 0 },
+        }}
+      >
+        <Box
+          sx={{
+            p: 3,
+            background:
+              'linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%)',
+            borderBottom: '1px solid',
+            borderColor: 'divider',
+          }}
+        >
           <Typography variant="h5" sx={{ fontWeight: 700 }}>
             {emoji} {title}
           </Typography>
@@ -77,18 +83,20 @@ const Grades = () => {
         <TableContainer>
           <Table>
             <TableHead>
-              <TableRow sx={{ 
-                backgroundColor: 'rgba(37, 99, 235, 0.03)',
-              }}>
+              <TableRow
+                sx={{
+                  backgroundColor: 'rgba(37, 99, 235, 0.03)',
+                }}
+              >
                 <TableCell sx={{ fontWeight: 700, width: '50%' }}>Field</TableCell>
                 <TableCell sx={{ fontWeight: 700, width: '50%' }}>Value</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {data.map((value, key) => (
-                <TableRow 
+                <TableRow
                   key={key}
-                  sx={{ 
+                  sx={{
                     '&:hover': {
                       backgroundColor: 'rgba(37, 99, 235, 0.02)',
                     },
@@ -96,20 +104,27 @@ const Grades = () => {
                   }}
                 >
                   <TableCell sx={{ fontWeight: 500 }}>{value[0]}</TableCell>
-                  {(value[1] === '.' || value[1] === '') ? (
+                  {value[1] === '.' || value[1] === '' ? (
                     <TableCell>
-                      <Typography variant="body2" sx={{ 
-                        color: 'text.secondary',
-                        fontStyle: 'italic',
-                        fontSize: '0.875rem',
-                      }}>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: 'text.secondary',
+                          fontStyle: 'italic',
+                          fontSize: '0.875rem',
+                        }}
+                      >
                         Unreleased
                       </Typography>
                     </TableCell>
                   ) : (
                     <TableCell sx={{ fontWeight: 600, color: 'primary.main' }}>
                       {value[1].replace('{', '').replace('}', '')}
-                      {value[2] && <Typography component="span" sx={{ color: 'text.secondary', ml: 1 }}>/ {value[2]}</Typography>}
+                      {value[2] && (
+                        <Typography component="span" sx={{ color: 'text.secondary', ml: 1 }}>
+                          / {value[2]}
+                        </Typography>
+                      )}
                     </TableCell>
                   )}
                 </TableRow>
@@ -124,14 +139,16 @@ const Grades = () => {
   return (
     <Box sx={{ maxWidth: '1200px', margin: '0 auto' }}>
       {grades.length === 0 ? (
-        <Box sx={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center',
-          minHeight: '400px',
-          flexDirection: 'column',
-          gap: 2,
-        }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '400px',
+            flexDirection: 'column',
+            gap: 2,
+          }}
+        >
           <CircularProgress size={48} />
           <Typography variant="h6" color="text.secondary">
             Loading your grades...
@@ -140,13 +157,17 @@ const Grades = () => {
       ) : (
         <>
           {getters.isTutor && (
-            <Card elevation={0} sx={{ 
-              mb: 4,
-              border: '1px solid',
-              borderColor: 'divider',
-              borderRadius: '12px',
-              background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(37, 99, 235, 0.05) 100%)',
-            }}>
+            <Card
+              elevation={0}
+              sx={{
+                mb: 4,
+                border: '1px solid',
+                borderColor: 'divider',
+                borderRadius: '12px',
+                background:
+                  'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(37, 99, 235, 0.05) 100%)',
+              }}
+            >
               <CardContent sx={{ p: 3 }}>
                 <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
                   🔍 Tutor Search
@@ -155,7 +176,7 @@ const Grades = () => {
                   <TextField
                     fullWidth
                     value={zid}
-                    onChange={e => setZid(e.target.value)}
+                    onChange={(e) => setZid(e.target.value)}
                     placeholder="Enter student zID (e.g., 5555555)"
                     variant="outlined"
                     InputProps={{
@@ -168,11 +189,11 @@ const Grades = () => {
                     sx={{
                       '& .MuiOutlinedInput-root': {
                         borderRadius: '8px',
-                      }
+                      },
                     }}
                   />
-                  <Button 
-                    variant="contained" 
+                  <Button
+                    variant="contained"
                     onClick={getGrades}
                     sx={{
                       minWidth: '120px',
@@ -188,7 +209,7 @@ const Grades = () => {
               </CardContent>
             </Card>
           )}
-          
+
           {renderGradeTable('Overall Grades', grades.main, '📊')}
           {renderGradeTable('Assignment 1 Breakdown', grades.ass1, '📝')}
           {renderGradeTable('Assignment 2 Breakdown', grades.ass2, '📝')}
@@ -197,9 +218,8 @@ const Grades = () => {
         </>
       )}
     </Box>
-  )
-
-}
+  );
+};
 
 export default makePage(Grades, {
   loginRequired: true,

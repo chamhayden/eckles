@@ -12,28 +12,57 @@ const StyleReact = ({}) => {
 
   return (
     <>
-      <h3 style={{ marginTop: '0'}}>{emoji} 3. ReactJS</h3>
-
-      <Body>The assignments in COMP6080 all have a portion of their marks allocated to code style. As such, it is <b>highly</b> recommended for students to have a read through this style guide.</Body>
+      <h3 style={{ marginTop: '0' }}>{emoji} 3. ReactJS</h3>
 
       <Body>
-        Below is our style guide for COMP6080 for writing good React code. <b>For anything not mentioned here, refer to the <a href="https://github.com/airbnb/javascript/tree/master/react" target="_blank" rel="noreferrer">Airbnb style guide for ReactJS</a>.</b> It is a very strict style guide so we don't enforce every principle, but do take it's guidance generally.
+        The assignments in COMP6080 all have a portion of their marks allocated to code style. As
+        such, it is <b>highly</b> recommended for students to have a read through this style guide.
       </Body>
-      <Body color='red'>
-        All guidelines mentioned in the Javascript section also applies here.
-      </Body>
+
       <Body>
-        Please also note that you should refer to the marking criteria too that's attached with each Assignment.
+        Below is our style guide for COMP6080 for writing good React code.{' '}
+        <b>
+          For anything not mentioned here, refer to the{' '}
+          <a
+            href="https://github.com/airbnb/javascript/tree/master/react"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Airbnb style guide for ReactJS
+          </a>
+          .
+        </b>{' '}
+        It is a very strict style guide so we don't enforce every principle, but do take it's
+        guidance generally.
+      </Body>
+      <Body color="red">All guidelines mentioned in the Javascript section also applies here.</Body>
+      <Body>
+        Please also note that you should refer to the marking criteria too that's attached with each
+        Assignment.
       </Body>
 
       <ul>
-        <li><a href="#jsx-casing">4.1. Casing & Quotation</a></li>
-        <li><a href="#jsx-comments">4.2. Comments (And examples of E2E/Component testing)</a></li>
-        <li><a href="#jsx-modularisation">4.3. Modularisation</a></li>
-        <li><a href="#jsx-eslint">4.4. ESLint</a></li>
-        <li><a href="#jsx-document">4.5. The Document Keyword</a></li>
-        <li><a href="#jsx-functional-vs-class">4.6. Functional VS. Class Components</a></li>
-        <li><a href="#jsx-css-and-react">4.7. CSS and React</a></li>
+        <li>
+          <a href="#jsx-casing">4.1. Casing & Quotation</a>
+        </li>
+        <li>
+          <a href="#jsx-comments">4.2. Comments (And examples of E2E/Component testing)</a>
+        </li>
+        <li>
+          <a href="#jsx-modularisation">4.3. Modularisation</a>
+        </li>
+        <li>
+          <a href="#jsx-eslint">4.4. ESLint</a>
+        </li>
+        <li>
+          <a href="#jsx-document">4.5. The Document Keyword</a>
+        </li>
+        <li>
+          <a href="#jsx-functional-vs-class">4.6. Functional VS. Class Components</a>
+        </li>
+        <li>
+          <a href="#jsx-css-and-react">4.7. CSS and React</a>
+        </li>
       </ul>
 
       <HR />
@@ -45,24 +74,30 @@ const StyleReact = ({}) => {
       <Example
         lang="javascript"
         bads={[
-`const myComponent = () => {
+          `const myComponent = () => {
     //...
 }
 
 const my-component = () => {
     //...
-}`
+}`,
         ]}
         goods={[
-`const MyComponent = () => {
+          `const MyComponent = () => {
     //...
-}`
+}`,
         ]}
       />
 
-      <Body>Custom hooks you have made must start with <code>use</code>. i.e., <code>useWindowResize()</code> or <code>useLocalStorage()</code>.</Body>
+      <Body>
+        Custom hooks you have made must start with <code>use</code>. i.e.,{' '}
+        <code>useWindowResize()</code> or <code>useLocalStorage()</code>.
+      </Body>
 
-      <Body>You may use either single (') or double (") quotations as long as you're <b>consistent</b> with which you choose.</Body>
+      <Body>
+        You may use either single (') or double (") quotations as long as you're <b>consistent</b>{' '}
+        with which you choose.
+      </Body>
 
       <Body>Javascript casing rules applies to other variables.</Body>
 
@@ -70,13 +105,17 @@ const my-component = () => {
 
       <H5 id="jsx-comments">{emoji} 4.2. Comments (And examples of E2E/Component testing)</H5>
 
-      <Body>Use comments to explain what your components are for and what they do. This is not only for you, but also for your group partner. Additionally, they are also very important when <b>describing the test cases you have written for component and E2E testing</b>.</Body>
+      <Body>
+        Use comments to explain what your components are for and what they do. This is not only for
+        you, but also for your group partner. Additionally, they are also very important when{' '}
+        <b>describing the test cases you have written for component and E2E testing</b>.
+      </Body>
 
       <Example
         title="Example for React Components"
         lang="javascript"
         bads={[
-`import React, { useState } from 'react';
+          `import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 
 const ButtonColorChanger = () => {
@@ -96,10 +135,10 @@ const ButtonColorChanger = () => {
   );
 };
 
-export default ButtonColorChanger;`
+export default ButtonColorChanger;`,
         ]}
         goods={[
-`import React, { useState } from 'react';
+          `import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 
 /**
@@ -126,7 +165,7 @@ const ButtonColorChanger = () => {
   );
 };
 
-export default ButtonColorChanger;`
+export default ButtonColorChanger;`,
         ]}
       />
 
@@ -134,7 +173,7 @@ export default ButtonColorChanger;`
         title="Example for Cypress/E2E testing"
         lang="javascript"
         bads={[
-`describe('Login functionality', () => {
+          `describe('Login functionality', () => {
   beforeEach(() => {
     cy.visit('localhost:3000/login')
   });
@@ -145,10 +184,10 @@ export default ButtonColorChanger;`
     cy.url().should('include', '/dashboard');
     cy.get('.user-name').should('contain', 'John Doe');
   });
-});`
+});`,
         ]}
         goods={[
-`/**
+          `/**
  * This test verifies that a user can successfully log in to the application
  */
 describe('Login functionality', () => {
@@ -169,7 +208,7 @@ describe('Login functionality', () => {
   });
 
   // etc. etc...
-});`
+});`,
         ]}
       />
 
@@ -177,7 +216,7 @@ describe('Login functionality', () => {
         title="Example for JEST/Component testing"
         lang="javascript"
         bads={[
-`import React from 'react';
+          `import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Button from '../Button.jsx';
 
@@ -194,10 +233,10 @@ describe('Button component', () => {
     fireEvent.click(getByText('Click me'));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
-});`
+});`,
         ]}
         goods={[
-`import React from 'react';
+          `import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Button from '../Button.jsx';
 
@@ -227,24 +266,38 @@ describe('Button component', () => {
   });
 
   // etc. etc...
-});`
+});`,
         ]}
       />
 
-      <Body>Note that you do not need to follow the above verbatim - It is to just give a guide of good commenting habits.</Body>
+      <Body>
+        Note that you do not need to follow the above verbatim - It is to just give a guide of good
+        commenting habits.
+      </Body>
 
       <HR />
 
       <H5 id="jsx-modularisation">{emoji} 4.3. Modularisation</H5>
 
-      <Body>Modularisation is an essential part of building scalable React applications (or any project). If you find your components becoming extremely bloated with loads of hooks in it with deep nesting (i.e., not shallow), chances are that it can be broken into smaller components. <b>Each component should ideally have a single responsibility</b> so it is much easier to perform component testing.</Body>
+      <Body>
+        Modularisation is an essential part of building scalable React applications (or any
+        project). If you find your components becoming extremely bloated with loads of hooks in it
+        with deep nesting (i.e., not shallow), chances are that it can be broken into smaller
+        components. <b>Each component should ideally have a single responsibility</b> so it is much
+        easier to perform component testing.
+      </Body>
 
-      <Body>It is also best practice to limit it to <b>one component per file</b> when possible, with the filename being the component's name. This is for easier readability and easier time locating where a component is written. If you find a file housing many components and those components are being used by other components, then that is a sign to split it up.</Body>
+      <Body>
+        It is also best practice to limit it to <b>one component per file</b> when possible, with
+        the filename being the component's name. This is for easier readability and easier time
+        locating where a component is written. If you find a file housing many components and those
+        components are being used by other components, then that is a sign to split it up.
+      </Body>
 
       <Example
         lang="javascript"
         bads={[
-`import React, { Fragment, useState } from 'react';
+          `import React, { Fragment, useState } from 'react';
 
 const App = () => {
   const [topStory, setTopStory] = useState({});
@@ -271,10 +324,10 @@ const App = () => {
       </div>
     </Fragment>
   )
-}`
+}`,
         ]}
         goods={[
-`import React, { Fragment } from 'react';
+          `import React, { Fragment } from 'react';
 import Navbar from './Navbar.jsx';
 import TopStoryDisplay from './TopStoryDisplay.jsx';
 import NewsDisplay from './NewsDisplay.jsx';
@@ -290,7 +343,7 @@ const App = () => {
       <TVGuide />
     </Fragment>
   )
-}`
+}`,
         ]}
       />
 
@@ -298,26 +351,38 @@ const App = () => {
 
       <H5 id="jsx-eslint">{emoji} 4.4. ESLint</H5>
 
-      <Body>You'll be given a pre-setup ESLint with your React Assignment. <b>Do not ignore</b> the errors and warnings it outputs, as it will point out little practices you haven't followed.</Body>
+      <Body>
+        You'll be given a pre-setup ESLint with your React Assignment. <b>Do not ignore</b> the
+        errors and warnings it outputs, as it will point out little practices you haven't followed.
+      </Body>
 
       <b>🔴Bad</b>
-      <Box component='img' display='block' src={EslintError} alt="ESLint Error" width="700px" />
+      <Box component="img" display="block" src={EslintError} alt="ESLint Error" width="700px" />
       <br />
       <b>🟢Good</b>
-      <Box component='img' display='block' src={EslintSuccess} alt="ESLint Success" width="700px"/>
-  
-      <Body>Note that the ESLint compiler errors shown above was using the configuration from 22T3. Please use the configuration given to you in your Assignment.</Body>
+      <Box component="img" display="block" src={EslintSuccess} alt="ESLint Success" width="700px" />
+
+      <Body>
+        Note that the ESLint compiler errors shown above was using the configuration from 22T3.
+        Please use the configuration given to you in your Assignment.
+      </Body>
 
       <HR />
 
       <H5 id="jsx-document">{emoji} 4.5. The Document Keyword</H5>
 
-      <Body>When you're working on a React project, it's highly recommended avoid the `document` keyword, which you may have used in previous assignments. This is because React already manages DOM manipulation for you through its virtual DOM. Using this keyword also hinders your components reusability (as seen below). By relying on the `document` keyword, you're overlooking the innovative features that make React so widely used.</Body>
+      <Body>
+        When you're working on a React project, it's highly recommended avoid the `document`
+        keyword, which you may have used in previous assignments. This is because React already
+        manages DOM manipulation for you through its virtual DOM. Using this keyword also hinders
+        your components reusability (as seen below). By relying on the `document` keyword, you're
+        overlooking the innovative features that make React so widely used.
+      </Body>
 
       <Example
         lang="javascript"
         bads={[
-`import React from 'react';
+          `import React from 'react';
 import Box from '@mui/material/Box';
 
 const HoverTest = () => {
@@ -346,10 +411,10 @@ const HoverTest = () => {
       {'Hovering'}
     </Box>
   );
-};`
+};`,
         ]}
         goods={[
-`import React, { useState } from 'react';
+          `import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 
 const HoverTest = () => {
@@ -378,7 +443,7 @@ const HoverTest = () => {
       {isHovering ? 'Hovering' : 'Not Hovering'}
     </Box>
   );
-};`
+};`,
         ]}
       />
 
@@ -386,17 +451,30 @@ const HoverTest = () => {
 
       <H5 id="jsx-functional-vs-class">{emoji} 4.6. Functional VS. Class Components</H5>
 
-      <Body>Stick to <b>Functional</b> components rather than Class components. This is because, but not limited to:</Body>
+      <Body>
+        Stick to <b>Functional</b> components rather than Class components. This is because, but not
+        limited to:
+      </Body>
       <ul>
-        <li><b>Simplicity</b> - It is easier to test and understand Functional components as you won't need to worry about complex concepts such as lifecycle methods or `this` keyword.</li>
-        <li><b>Modernity</b> - With Functional components being the most popular, there is more resources online to help you out. There are also a lot more libraries available for Functional components compared to Class components.</li>
-        <li><b>Hooks</b> - These simplify state management, handling side effects and the lifecycle functionalities in components without the need of classes.</li>
+        <li>
+          <b>Simplicity</b> - It is easier to test and understand Functional components as you won't
+          need to worry about complex concepts such as lifecycle methods or `this` keyword.
+        </li>
+        <li>
+          <b>Modernity</b> - With Functional components being the most popular, there is more
+          resources online to help you out. There are also a lot more libraries available for
+          Functional components compared to Class components.
+        </li>
+        <li>
+          <b>Hooks</b> - These simplify state management, handling side effects and the lifecycle
+          functionalities in components without the need of classes.
+        </li>
       </ul>
 
       <Example
         lang="javascript"
         bads={[
-`import React, { Component } from 'react';
+          `import React, { Component } from 'react';
 
 class ButtonClicker extends Component {
   constructor(props) {
@@ -423,10 +501,10 @@ class ButtonClicker extends Component {
   }
 }
 
-export default ButtonClicker;`
+export default ButtonClicker;`,
         ]}
         goods={[
-`import React, { useState } from 'react';
+          `import React, { useState } from 'react';
 
 const ButtonClicker = () => {
   const [clickCount, setClickCount] = useState(0);
@@ -442,7 +520,7 @@ const ButtonClicker = () => {
   );
 };
 
-export default ButtonClicker;`
+export default ButtonClicker;`,
         ]}
       />
 
@@ -450,22 +528,33 @@ export default ButtonClicker;`
 
       <H5 id="jsx-css-and-react">{emoji} 4.7. CSS and React</H5>
 
-      <Body>When it comes to CSS, <b>do not use universal CSS</b> (i.e., importing a `.css` file into a React component). Likewise, you should also avoid inline styling. See the following lectures for more information:</Body>
+      <Body>
+        When it comes to CSS, <b>do not use universal CSS</b> (i.e., importing a `.css` file into a
+        React component). Likewise, you should also avoid inline styling. See the following lectures
+        for more information:
+      </Body>
       <ul>
-        <li><a href="https://youtu.be/Z0OPBwLu5s0">Global CSS</a> for why it is not great practice.</li>
-        <li><a href="https://youtu.be/o81ktwwig3g">CSS Frameworks</a> for what the better practices are.</li>
+        <li>
+          <a href="https://youtu.be/Z0OPBwLu5s0">Global CSS</a> for why it is not great practice.
+        </li>
+        <li>
+          <a href="https://youtu.be/o81ktwwig3g">CSS Frameworks</a> for what the better practices
+          are.
+        </li>
       </ul>
 
       <Body>The better practices include:</Body>
       <ul>
         <li>CSS Modules (generally not recommended, but still OK)</li>
-        <li>Using utility class frameworks including but not limited to:
+        <li>
+          Using utility class frameworks including but not limited to:
           <ul>
             <li>Tailwind CSS</li>
             <li>Bootstrap/React-Bootstrap</li>
           </ul>
         </li>
-        <li>CSS-in-JS methods including but not limited to:
+        <li>
+          CSS-in-JS methods including but not limited to:
           <ul>
             <li>Styled Components to create your own custom CSS </li>
             <li>Material UI (MUI) sx and styling options</li>
@@ -473,21 +562,26 @@ export default ButtonClicker;`
         </li>
       </ul>
 
-      <Body>The following examples uses MUI v5. We highly recommend exploring [MUI's documentation](https://mui.com/material-ui/getting-started/overview/) to maximise the utility of these practices. Also, you are not just restricted to MUI; feel free to explore other libraries that offer similar functionality.</Body>
+      <Body>
+        The following examples uses MUI v5. We highly recommend exploring [MUI's
+        documentation](https://mui.com/material-ui/getting-started/overview/) to maximise the
+        utility of these practices. Also, you are not just restricted to MUI; feel free to explore
+        other libraries that offer similar functionality.
+      </Body>
 
       <Example
         lang="javascript"
         bads={[
-`import './image.css';
+          `import './image.css';
 
 const GrayCard = ({ src, alt }) => {
   return (
     <img className='gray-image' alt={alt} src={src} />
   )
-}`
+}`,
         ]}
         goods={[
-`// using MUI's sx prop
+          `// using MUI's sx prop
 import { Box } from '@mui/material';
 
 const GrayCard = ({ src, alt }) => {
@@ -506,7 +600,7 @@ const GrayCard = ({ src, alt }) => {
     />
   )
 }`,
-`// using MUI's styled component
+          `// using MUI's styled component
 // In a separate .jsx file
 import { styled } from '@mui/material';
 
@@ -523,7 +617,7 @@ const App = () => {
   return (
     <GrayCard src='https://picsum.photos/200' alt='Old days' />
   )
-}`
+}`,
         ]}
       />
     </>

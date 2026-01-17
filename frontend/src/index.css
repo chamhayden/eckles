@@ -1,11 +1,22 @@
-
-html, #root {
+html,
+#root {
   height: 100%;
+  font-size: 16px;
 }
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -24,22 +35,40 @@ p {
 }
 
 /* Headings with better spacing */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-top: 1.25em;
   margin-bottom: 0.6em;
   line-height: 1.3;
   font-weight: 600;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.75rem; }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.25rem; }
-h6 { font-size: 1.1rem; }
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.75rem;
+}
+h4 {
+  font-size: 1.5rem;
+}
+h5 {
+  font-size: 1.25rem;
+}
+h6 {
+  font-size: 1.1rem;
+}
 
 /* Better list spacing */
-ul, ol {
+ul,
+ol {
   margin-bottom: 1.25em;
   padding-left: 2em;
 }
@@ -50,8 +79,7 @@ li {
 }
 
 code {
-  font-family: 'Fira Code', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Fira Code', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   background-color: rgba(135, 131, 120, 0.15);
   border-radius: 4px;
   padding: 0.2em 0.4em;
@@ -68,7 +96,8 @@ a {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-a, a:visited {
+a,
+a:visited {
   color: #2563eb;
 }
 
@@ -81,7 +110,7 @@ a:active {
   color: #1e40af;
 }
 
-.app-bar{
+.app-bar {
   -moz-transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
   -o-transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -93,7 +122,7 @@ a:active {
   backdrop-filter: blur(10px);
 }
 
-.app-content{
+.app-content {
   -moz-transition: padding-left 280ms cubic-bezier(0.4, 0, 0.2, 1);
   -o-transition: padding-left 280ms cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-transition: padding-left 280ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -103,11 +132,11 @@ a:active {
   padding-bottom: 30px !important;
 }
 
-.app-bar.expanded{
+.app-bar.expanded {
   left: 255px;
 }
 
-.app-content.expanded{
+.app-content.expanded {
   padding-left: 275px;
 }
 

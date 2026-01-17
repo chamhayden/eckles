@@ -2,14 +2,14 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
-import {Outlet, useLocation, useNavigate, useParams} from 'react-router-dom';
-import {Helmet} from 'react-helmet';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
-import {Context, useContext} from '../context';
+import { Context, useContext } from '../context';
 import Header from '../component/Header';
 import Navbar from '../component/Navbar';
 import config from '../config';
-import {isDesktopWidth, isMobileWidth} from '../util/screen';
+import { isDesktopWidth, isMobileWidth } from '../util/screen';
 
 const drawerWidth = 255;
 
@@ -40,7 +40,7 @@ const SiteWrapper = ({ children }) => {
     if (isMobileWidth()) {
       setters.setSidebarOpen(false);
     }
-  }, [pathname])
+  }, [pathname]);
 
   React.useEffect(() => {
     if (pathname === '/') {
@@ -61,17 +61,21 @@ const SiteWrapper = ({ children }) => {
         <title>{getters.title}</title>
         <link rel="icon" type="image/x-icon" href="/favicon.png" />
       </Helmet>
-      <Box sx={{ display: 'flex'}}>
+      <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <Header pageTitle={getters.title} sidebarWidth={sidebarRealTimeWidth} menuToggle={() => setters.setSidebarOpen(!getters.sidebarOpen)} />
+        <Header
+          pageTitle={getters.title}
+          sidebarWidth={sidebarRealTimeWidth}
+          menuToggle={() => setters.setSidebarOpen(!getters.sidebarOpen)}
+        />
         <Navbar drawerWidth={drawerWidth} />
-        <Box component="main" sx={{ flexGrow: 1, padding: '20px'}}>
+        <Box component="main" sx={{ flexGrow: 1, padding: '20px' }}>
           <Toolbar />
           <Outlet />
         </Box>
       </Box>
     </>
-  )
+  );
 };
 
 export default SiteWrapper;

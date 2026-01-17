@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import makePage from '../../component/makePage';
 
-const AssessmentsBase = ({ }) => {
+const AssessmentsBase = ({}) => {
   return (
     <>
       <Outlet />
