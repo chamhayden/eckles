@@ -25,6 +25,9 @@ import React, {
 const PokemonCatchController = forwardRef(function PokemonCatchController(_, ref) {
   const [isOpen, setIsOpen] = useState(false);
   const [ripples, setRipples] = useState([]);
+  // add ramdom pokemon selection 1-151,finished
+  const randomId = Math.floor(Math.random() * 151) + 1;
+  const pokemon = `https://www.gstatic.com/videogames/pokemon/animation/${randomId}.svg`; // default pokemon image
 
   const open = useCallback(() => {
     setIsOpen(true);
@@ -240,7 +243,7 @@ const PokemonCatchController = forwardRef(function PokemonCatchController(_, ref
             <img
               alt="pokemon"
               style={styles.frame}
-              src="https://www.gstatic.com/videogames/pokemon/animation/1.svg"
+              src={pokemon}
             />
 
             <img
