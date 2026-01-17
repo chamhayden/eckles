@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import imageBg from '../asset/VideoBg.png';
 import CardActionArea from '@mui/material/CardActionArea';
-import chalkCursor from '../asset/pokeball-cursor.svg';
+import pokeballCursor from '../asset/pokeball-cursor.svg';
 
 // https://stackoverflow.com/questions/40958727/javascript-generate-unique-number-based-on-string
 const hashCode = (str) => {
@@ -69,7 +69,7 @@ const ContentCards = ({ data, minHeight }) => {
                   sx={{
                     textDecoration: 'none',
                     '&:hover': { textDecoration: 'none' },
-                    cursor: `url(${chalkCursor}) 16 16, pointer`,
+                    cursor: `url(${pokeballCursor}) 16 16, pointer`,
                   }}
                 >
                   {label && (
