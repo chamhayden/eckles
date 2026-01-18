@@ -98,7 +98,19 @@ export default function TutLecContentCard({
             padding: '18px',
           }}
         >
-          <Stack direction="row" alignItems="center" justifyContent="space-between" gap={2}>
+          <Stack direction="row" alignItems="flex-start" justifyContent="space-between" gap={2}>
+
+            <Avatar
+              src={thumbnail ? thumbnail : `https://picsum.photos/id/${hash}/200`}
+              alt={name}
+              sx={{
+                width: 100,
+                height: 100,
+                border: '2px solid',
+                borderColor: 'divider',
+                boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+              }}
+            />
             <Stack flex={1}>
               <Typography
                 variant="h6"
@@ -130,17 +142,6 @@ export default function TutLecContentCard({
               </Typography>
             </Stack>
 
-            <Avatar
-              src={thumbnail ? thumbnail : `https://picsum.photos/id/${hash}/200`}
-              alt={name}
-              sx={{
-                width: 100,
-                height: 100,
-                border: '2px solid',
-                borderColor: 'divider',
-                boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
-              }}
-            />
           </Stack>
         </CardContent>
 
