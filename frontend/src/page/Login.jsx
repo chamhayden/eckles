@@ -84,10 +84,6 @@ const styles = {
     margin: theme.spacing.unit,
     backgroundColor: theme.palette.secondary.main,
   },
-  form: {
-    width: '100%',
-    marginTop: theme.spacing(2),
-  },
   submit: {
     marginTop: theme.spacing(2),
     borderRadius: '10px',
@@ -134,7 +130,7 @@ const styles = {
     marginTop: '16px',
     padding: '12px',
     backgroundColor: 'rgba(100, 116, 139, 0.05)',
-    borderRadius: '8px',
+    borderRadius: '12px',
   },
 };
 
@@ -212,7 +208,6 @@ const SignIn = (props) => {
               variant="body2"
               color="text.secondary"
               sx={{
-                mb: 4,
                 lineHeight: 1.6,
                 fontSize: '1rem',
               }}
