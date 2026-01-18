@@ -161,7 +161,7 @@ export default function TutLecContentCard({
                 flexWrap: 'wrap',
                 justifyContent: { xs: 'flex-start', sm: 'flex-start', md: 'flex-end' },
                 width: { xs: '100%', sm: '100%', md: 'auto' },
-                maxWidth: { md: '320px' },
+                maxWidth: { md: '330px' },
                 pl: { xs: 0, md: 2 },
                 flexShrink: 1,
                 minWidth: 0,
