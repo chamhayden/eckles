@@ -36,24 +36,24 @@ export default function TutLecContentCard({
     if (lecture) {
       switch (relevance) {
         case 'Mandatory':
-          return { label: 'Mandatory', color: 'success' };
+          return { label: 'Mandatory', color: 'error' };
         case 'Catchup':
           return { label: 'Catchup', color: 'secondary' };
         case 'Recommended':
-          return { label: 'Recommended', color: 'info' };
+          return { label: 'Recommended', color: 'warning' };
         case 'Extension':
-          return { label: 'Extension', color: 'warning' };
+          return { label: 'Extension', color: 'info' };
         default:
           return { label: 'Unknown', color: 'default' };
       }
     } else {
       switch (relevance) {
         case 'COMPULSORY':
-          return { label: 'Compulsory', color: 'success' };
+          return { label: 'Compulsory', color: 'error' };
         case 'REFINING':
-          return { label: 'Refining', color: 'info' };
+          return { label: 'Refining', color: 'warning' };
         case 'EXTENDED':
-          return { label: 'Extended', color: 'warning' };
+          return { label: 'Extended', color: 'info' };
         default:
           return { label: 'Unknown', color: 'default' };
       }
@@ -161,7 +161,7 @@ export default function TutLecContentCard({
                 flexWrap: 'wrap',
                 justifyContent: { xs: 'flex-start', sm: 'flex-start', md: 'flex-end' },
                 width: { xs: '100%', sm: '100%', md: 'auto' },
-                maxWidth: { md: '330px' },
+                maxWidth: { md: '340px' },
                 pl: { xs: 0, md: 2 },
                 flexShrink: 1,
                 minWidth: 0,

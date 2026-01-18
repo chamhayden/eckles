@@ -65,7 +65,7 @@ const App = () => {
         dark: '#7c3aed',
       },
       success: {
-        main: '#d0ee95ff',
+        main: '#b9d983ff',
         light: '#34d399',
         dark: '#059669',
       },
@@ -76,6 +76,16 @@ const App = () => {
       text: {
         primary: '#1e293b',
         secondary: '#64748b',
+      },
+      warning: {
+        main: '#fbbf24',
+        light: '#fde68a',
+        dark: '#f59e0b',
+      },
+      error: {
+        main: '#ef4444',
+        light: '#fca5a5',
+        dark: '#b91c1c',
       },
     },
     typography: {

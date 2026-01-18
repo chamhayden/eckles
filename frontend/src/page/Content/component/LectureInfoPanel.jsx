@@ -81,7 +81,7 @@ const LectureInfoPanel = ({ lecture, term }) => {
           label={`Slides: ${slides}`}
           size="small"
           variant="outlined"
-          color={hasSlides ? 'success' : 'default'}
+          color={hasSlides ? 'error' : 'default'}
         />
       </Box>
 
