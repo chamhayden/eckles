@@ -30,9 +30,8 @@ const CourseNode = ({ data, selected }) => {
       opacity: 1,
     },
     'in-progress': {
-      bg: 'linear-gradient(145deg, #5865F2 0%, #4752c4 100%)',
-      border: '#7983f5',
-      glow: '0 0 20px rgba(88, 101, 242, 0.8), 0 0 40px rgba(88, 101, 242, 0.5), 0 0 80px rgba(88, 101, 242, 0.3)',
+      bg: 'linear-gradient(145deg, #1da0cfff 0%, #1da0cfff 100%)',
+      border: '#167da2ff',
       cursor: 'pointer',
       opacity: 1,
     },
@@ -122,8 +121,8 @@ const Legend = () => (
   <div
     style={{
       position: 'absolute',
-      bottom: 20,
-      right: 20,
+      top: 20,
+      left: 80,
       background: 'rgba(20, 20, 40, 0.85)',
       backdropFilter: 'blur(12px)',
       padding: '14px 18px',
@@ -145,9 +144,9 @@ const Legend = () => (
     </div>
     {[
       { label: 'completed', color: '#2ed573' },
-      { label: 'in-progress', color: '#5865F2' },
+      { label: 'in-progress', color: '#1da0cfff' },
       { label: 'available', color: '#4158D0' },
-      { label: 'locked', color: '#3d3d60' },
+      { label: 'locked', color: '#3d3d60ff' },
     ].map(({ label, color }) => (
       <div
         key={label}
