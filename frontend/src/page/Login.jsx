@@ -107,8 +107,8 @@ const styles = {
   logo: {
     zIndex:10,
     position: 'absolute',
-    right: '-50%',
-    bottom: '-8%',
+    right: '-46%',
+    bottom: '-6%',
     width: '100%',
     maxWidth: '290px',
     marginBottom: '24px',
