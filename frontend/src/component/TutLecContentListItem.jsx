@@ -80,19 +80,18 @@ export default function TutLecContentCard({
           boxShadow: 'none',
           padding: '0px',
           borderBottom: '1px solid #ddd',
-          maxHeight: '100px',
           '&:hover': {
             backgroundColor: '#f5f5f5',
           },
         }}
       >
-        <CardContent sx={{ padding: '10px 0px' }}>
+        <CardContent sx={{ '&:last-child': { paddingBottom: '10px' } , padding: '10px 20px' }}>
           <Stack direction="row" alignItems="center" justifyContent="space-between">
             <Stack direction="row" alignItems="center">
               <img
                 src={thumbnail ? thumbnail : `https://picsum.photos/id/${hash}/200`}
                 alt={name}
-                style={{ width: 'auto', height: '100px', display: 'block' }}
+                style={{ width: 'auto', height: '100px', display: 'block',borderRadius: '8px' }}
               />
               <Stack direction="column" sx={{ paddingLeft: 2 }}>
                 <Typography
