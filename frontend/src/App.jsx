@@ -55,7 +55,7 @@ const App = () => {
     palette: {
       mode: 'light',
       primary: {
-        main: '#5789f4ff',
+        main: '#5685e9ff',
         light: '#80a7e5ff',
         dark: '#2958d9ff',
       },

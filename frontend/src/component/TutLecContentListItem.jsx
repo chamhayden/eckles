@@ -79,10 +79,6 @@ export default function TutLecContentCard({
           border: 'none',
           boxShadow: 'none',
           padding: '0px',
-          borderBottom: '1px solid #ddd',
-          '&:hover': {
-            backgroundColor: '#f5f5f5',
-          },
         }}
       >
         <CardContent sx={{ '&:last-child': { paddingBottom: '10px' }, padding: '10px 20px' }}>
