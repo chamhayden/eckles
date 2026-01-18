@@ -19,6 +19,7 @@ import Typography from '@mui/material/Typography';
 import { withStyles } from '@mui/styles';
 import { createTheme } from '@mui/material/styles';
 import mainlogo from '../asset/mainlogo.png';
+import cloud from '../asset/cloud.png';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import Stack from '@mui/material/Stack';
@@ -28,10 +29,25 @@ import { apiCall } from '../util/api';
 import config from '../config';
 import { Context, useContext } from '../context';
 import { Box } from '@mui/system';
-
 const theme = createTheme();
 /* Sourced https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/sign-in/SignIn.js */
 const styles = {
+  '@keyframes cloudDrift': {
+    '0%, 100%': {
+      left: '0%',
+    },
+    '50%': {
+      left: '-6%',
+    },
+  },
+  '@keyframes cloudDrift2': {
+    '0%, 100%': {
+      left: '-10%',
+    },
+    '50%': {
+      left: '-6%',
+    },
+  },
   main: {
     width: 'auto',
     display: 'flex',
@@ -120,7 +136,42 @@ const styles = {
       top: '-11%',
       bottom: 'auto',
       right: '-9%',
+    }
+  },
+  cloud: {
+    zIndex: 0,
+    position: 'absolute',
+    left: '50%',
+    top: '-10%',
+    width: '100%',
+    maxWidth: '120px',
+    marginBottom: '24px',
+    opacity: 0.8,
+    animation: '$cloudDrift 6s ease-in-out infinite',
+    [theme.breakpoints.down('md')]: {
+      maxWidth: '0',
     },
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '0',
+    },
+  },
+  cloud2: {
+    zIndex: 0,
+    position: 'absolute',
+    left: '2%',
+    top: '-1%',
+    width: '100%',
+    maxWidth: '80px',
+    marginBottom: '24px',
+    opacity: 0.8,
+    animation: '$cloudDrift2 6s ease-in-out infinite',
+    [theme.breakpoints.down('md')]: {
+      maxWidth: '0',
+    },
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '0',
+    },
+
   },
   disclaimer: {
     textAlign: 'center',
@@ -183,12 +234,16 @@ const SignIn = (props) => {
   if (loading) {
     return <AppLoad />;
   }
+  
 
   return (
     <main className={classes.main}>
       <Paper className={classes.paper} elevation={0} sx={{ background: 'transparent' }}>
         <Box className={classes.container}>
             <img className={classes.logo} src={mainlogo} alt="mainlogo" />
+            <img className={classes.cloud} src={cloud} alt="cloud" />
+            <img className={classes.cloud2} src={cloud} alt="cloud" />
+
             <Typography
               component="h1"
               variant="h4"
