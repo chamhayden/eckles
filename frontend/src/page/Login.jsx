@@ -2,11 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import Radio from '@mui/material/Radio';
 import MenuItem from '@mui/material/MenuItem';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import {
   Dialog,
@@ -31,8 +27,7 @@ import AppLoad from '../component/AppLoad';
 import { apiCall } from '../util/api';
 import config from '../config';
 import { Context, useContext } from '../context';
-import { Position } from '@xyflow/react';
-import zIndex from '@mui/material/styles/zIndex';
+import { Box } from '@mui/system';
 
 const theme = createTheme();
 /* Sourced https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/sign-in/SignIn.js */
@@ -73,6 +68,10 @@ const styles = {
   paper: {
     width: '100%',
     maxWidth: '450px',
+    position: 'relative',
+    background: 'transparent',
+  },
+  container: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -80,8 +79,6 @@ const styles = {
     borderRadius: '16px',
     boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
     border: '1px solid rgba(0, 0, 0, 0.08)',
-    background: 'linear-gradient(180deg, #ffffff 0%, #f8f9fc 100%)',
-    position: 'relative',
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -193,136 +190,140 @@ const SignIn = (props) => {
 
   return (
     <main className={classes.main}>
-      <Paper className={classes.paper} elevation={0}>
-        <img className={classes.logo} src={mainlogo} alt="mainlogo" />
-        <Typography
-          component="h1"
-          variant="h4"
-          sx={{
-            fontWeight: 700,
-            mb: 1.5,
-            lineHeight: 1.3,
-            background: 'linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}
-        >
-          COMP6080
-        </Typography>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{
-            mb: 4,
-            lineHeight: 1.6,
-            fontSize: '1rem',
-          }}
-        >
-          Welcome back! Sign in with your zID.
-        </Typography>
-        <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">zid</InputLabel>
-            <Input
-              id="username"
-              name="username"
-              autoComplete="username"
-              autoFocus
-              placeholder="z1234567"
-              value={zid}
-              onChange={(e) => setZid(e.target.value)}
-            />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">zpass</InputLabel>
-            <Input
-              name="password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={zpass}
-              onChange={(e) => setZpass(e.target.value)}
-            />
-          </FormControl>
+      <Paper className={classes.paper} elevation={0} sx={{ background: 'transparent' }}>
+        <Box className={classes.container}>
+            <img className={classes.logo} src={mainlogo} alt="mainlogo" />
+            <Typography
+              component="h1"
+              variant="h4"
+              sx={{
+                fontWeight: 700,
+                mb: 1.5,
+                lineHeight: 1.3,
+                background: 'linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              COMP6080
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                mb: 4,
+                lineHeight: 1.6,
+                fontSize: '1rem',
+              }}
+            >
+              Welcome back! Sign in with your zID.
+            </Typography>
+            <form className={classes.form}>
+              <FormControl margin="normal" required fullWidth>
+                <InputLabel htmlFor="email">zid</InputLabel>
+                <Input
+                  id="username"
+                  name="username"
+                  autoComplete="username"
+                  autoFocus
+                  placeholder="z1234567"
+                  value={zid}
+                  onChange={(e) => setZid(e.target.value)}
+                />
+              </FormControl>
+              <FormControl margin="normal" required fullWidth>
+                <InputLabel htmlFor="password">zpass</InputLabel>
+                <Input
+                  name="password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  value={zpass}
+                  onChange={(e) => setZpass(e.target.value)}
+                />
+              </FormControl>
 
-          {getters.validTerms.length > 1 && (
-            <FormControl>
-              <FormLabel sx={{ marginTop: '15px', marginBottom: '5px' }} id="demo-select-label">
-                Term
-              </FormLabel>
-              <Select
-                labelId="demo-select-label"
-                value={term}
-                onChange={(e) => setTerm(e.target.value)}
-              >
-                {getters.validTerms
-                  .sort()
-                  .reverse()
-                  .map((term, key) => (
-                    <MenuItem key={key} value={term}>
-                      {term}
-                    </MenuItem>
-                  ))}
-              </Select>
-            </FormControl>
-          )}
-          <Stack spacing={2} sx={{ mt: 3 }}>
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={() => login(zid, zpass, term)}
-              sx={{
-                borderRadius: '10px',
-                padding: '12px',
-                fontWeight: 600,
-                textTransform: 'none',
-                fontSize: '1rem',
-                background: 'linear-gradient(135deg, #5b7fcbff 0%, #2a57d2ff 100%)',
-                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.4)',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 6px 20px rgba(37, 99, 235, 0.5)',
-                  background: 'linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)',
-                },
-              }}
-            >
-              Sign in →
-            </Button>
-            <Button
-              fullWidth
-              variant="outlined"
-              color="primary"
-              onClick={() => (window.location.href = config.BASE_NAME)}
-              sx={{
-                borderRadius: '10px',
-                padding: '12px',
-                fontWeight: 600,
-                textTransform: 'none',
-                fontSize: '1rem',
-                borderWidth: '2px',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  borderWidth: '2px',
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 4px 12px rgba(37, 99, 235, 0.2)',
-                },
-              }}
-            >
-              ← Back to Home
-            </Button>
-          </Stack>
+              {getters.validTerms.length > 1 && (
+                <FormControl>
+                  <FormLabel sx={{ marginTop: '15px', marginBottom: '5px' }} id="demo-select-label">
+                    Term
+                  </FormLabel>
+                  <Select
+                    labelId="demo-select-label"
+                    value={term}
+                    onChange={(e) => setTerm(e.target.value)}
+                  >
+                    {getters.validTerms
+                      .sort()
+                      .reverse()
+                      .map((term, key) => (
+                        <MenuItem key={key} value={term}>
+                          {term}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                </FormControl>
+              )}
+              <Stack spacing={2} sx={{ mt: 3 }}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                  onClick={() => login(zid, zpass, term)}
+                  sx={{
+                    borderRadius: '10px',
+                    padding: '12px',
+                    fontWeight: 600,
+                    textTransform: 'none',
+                    fontSize: '1rem',
+                    background: 'linear-gradient(135deg, #5b7fcbff 0%, #2a57d2ff 100%)',
+                    boxShadow: '0 4px 14px rgba(37, 99, 235, 0.4)',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      transform: 'translateY(-2px)',
+                      boxShadow: '0 6px 20px rgba(37, 99, 235, 0.5)',
+                      background: 'linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)',
+                    },
+                  }}
+                >
+                  Sign in →
+                </Button>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => (window.location.href = config.BASE_NAME)}
+                  sx={{
+                    borderRadius: '10px',
+                    padding: '12px',
+                    fontWeight: 600,
+                    textTransform: 'none',
+                    fontSize: '1rem',
+                    borderWidth: '2px',
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      borderWidth: '2px',
+                      transform: 'translateY(-2px)',
+                      boxShadow: '0 4px 12px rgba(37, 99, 235, 0.2)',
+                    },
+                  }}
+                >
+                  ← Back to Home
+                </Button>
+              </Stack>
+
+            </form>
+        </Box>
 
           <p className={classes.disclaimer}>
             Your password and credentials are not stored by either this software or by teaching
             staff. If you change your UNSW password due to suspected compromise, please email
             cs6080@cse.unsw.edu.au to inform us as well.
           </p>
-        </form>
       </Paper>
+     
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>{'Error'}</DialogTitle>
         <DialogContent>
