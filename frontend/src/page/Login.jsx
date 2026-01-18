@@ -48,6 +48,14 @@ const styles = {
       left: '-6%',
     },
   },
+  '@keyframes cloudDrift3': {
+    '0%, 100%': {
+      right: '-10%',
+    },
+    '50%': {
+      right: '-6%',
+    },
+  },
   main: {
     width: 'auto',
     display: 'flex',
@@ -149,10 +157,18 @@ const styles = {
     opacity: 0.8,
     animation: '$cloudDrift 6s ease-in-out infinite',
     [theme.breakpoints.down('md')]: {
-      maxWidth: '0',
+      maxWidth: '50px',
+      animation: '$cloudDrift3 6s ease-in-out infinite',
+      left: 'auto',
+      right: '-3%',
+      top: '-10%',
     },
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '0',
+      maxWidth: '50px',
+      animation: '$cloudDrift3 6s ease-in-out infinite',
+      left: 'auto',
+      right: '-3%',
+      top: '-10%',
     },
   },
   cloud2: {
@@ -166,10 +182,18 @@ const styles = {
     opacity: 0.8,
     animation: '$cloudDrift2 6s ease-in-out infinite',
     [theme.breakpoints.down('md')]: {
-      maxWidth: '0',
+      maxWidth: '30px',
+      animation: '$cloudDrift3 6s ease-in-out infinite',
+      left: 'auto',
+      right: '-3%',
+      top: '-10%',
     },
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '0',
+      maxWidth: '30px',
+      animation: '$cloudDrift3 6s ease-in-out infinite',
+      left: 'auto',
+      right: '-3%',
+      top: '-10%',
     },
 
   },
