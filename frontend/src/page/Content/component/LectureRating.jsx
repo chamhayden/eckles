@@ -93,14 +93,14 @@ const LectureRating = ({ term, lectureId, initialRating, initialComment }) => {
       .catch(() => {
         setSubmitState({
           isSubmitting: false,
-          error: 'Rating submission failed.',
+          error: 'Submission failed.',
           success: false,
         });
       });
   };
 
   const showAlert = submitState.success || Boolean(submitState.error);
-  const alertMessage = submitState.error || 'Rating submitted.';
+  const alertMessage = submitState.error || 'We’ve received your submission.';
   const alertSeverity = submitState.error ? 'error' : 'success';
 
   return (
