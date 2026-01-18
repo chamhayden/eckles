@@ -37,15 +37,15 @@ import zIndex from '@mui/material/styles/zIndex';
 const theme = createTheme();
 /* Sourced https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/sign-in/SignIn.js */
 const styles = {
- main: {
-  width: 'auto',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  minHeight: '100vh',
-  padding: theme.spacing(3),
+  main: {
+    width: 'auto',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '100vh',
+    padding: theme.spacing(3),
 
-  background: `
+    background: `
     radial-gradient(
       60% 80% at 75% 50%,
       rgba(120, 170, 220, 0.45),
@@ -68,8 +68,8 @@ const styles = {
     )
   `,
 
-  boxShadow: 'inset 0 0 0 1px rgba(120, 159, 255, 0.16)',
-},
+    boxShadow: 'inset 0 0 0 1px rgba(120, 159, 255, 0.16)',
+  },
   paper: {
     width: '100%',
     maxWidth: '450px',
@@ -105,7 +105,7 @@ const styles = {
     },
   },
   logo: {
-    zIndex:10,
+    zIndex: 10,
     position: 'absolute',
     right: '-46%',
     bottom: '-6%',

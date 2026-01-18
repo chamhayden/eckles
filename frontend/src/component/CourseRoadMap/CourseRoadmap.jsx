@@ -11,10 +11,9 @@ import {
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
-
 const CourseNode = ({ data, selected }) => {
   const { title, status = 'available', onClick, totalMinute } = data;
-  
+
   const statusConfig = {
     locked: {
       bg: 'linear-gradient(145deg, #252540 0%, #1e1e35 100%)',
@@ -50,7 +49,17 @@ const CourseNode = ({ data, selected }) => {
 
   return (
     <>
-      <Handle type="target" position={Position.Top} style={{ background: cfg.border, border: '2px solid #1a1a2e', width: 8, height: 8, top: -4 }} />
+      <Handle
+        type="target"
+        position={Position.Top}
+        style={{
+          background: cfg.border,
+          border: '2px solid #1a1a2e',
+          width: 8,
+          height: 8,
+          top: -4,
+        }}
+      />
       <div
         onClick={() => status !== 'locked' && onClick?.()}
         style={{
@@ -67,30 +76,83 @@ const CourseNode = ({ data, selected }) => {
           transform: selected ? 'scale(1.08)' : 'scale(1)',
         }}
       >
-        <div style={{ color: '#fff', fontSize: '13px', fontWeight: 600, textAlign: 'center', letterSpacing: '0.3px', lineHeight: 1.3, textShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>
+        <div
+          style={{
+            color: '#fff',
+            fontSize: '13px',
+            fontWeight: 600,
+            textAlign: 'center',
+            letterSpacing: '0.3px',
+            lineHeight: 1.3,
+            textShadow: '0 2px 4px rgba(0,0,0,0.2)',
+          }}
+        >
           {title}
         </div>
         {totalMinute !== undefined && (
-          <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '10px', textAlign: 'center', marginTop: '6px', fontWeight: 500 }}>
+          <div
+            style={{
+              color: 'rgba(255,255,255,0.6)',
+              fontSize: '10px',
+              textAlign: 'center',
+              marginTop: '6px',
+              fontWeight: 500,
+            }}
+          >
             {totalMinute} Minutes
           </div>
         )}
       </div>
-      <Handle type="source" position={Position.Bottom} style={{ background: cfg.border, border: '2px solid #1a1a2e', width: 8, height: 8, bottom: -4 }} />
+      <Handle
+        type="source"
+        position={Position.Bottom}
+        style={{
+          background: cfg.border,
+          border: '2px solid #1a1a2e',
+          width: 8,
+          height: 8,
+          bottom: -4,
+        }}
+      />
     </>
   );
 };
 
 const Legend = () => (
-  <div style={{ position: 'absolute', bottom: 20, right: 20, background: 'rgba(20, 20, 40, 0.85)', backdropFilter: 'blur(12px)', padding: '14px 18px', borderRadius: '12px', border: '1px solid rgba(90, 111, 214, 0.25)', zIndex: 10 }}>
-    <div style={{ color: '#fff', fontSize: '11px', fontWeight: 700, marginBottom: '10px', letterSpacing: '0.5px' }}>课程状态</div>
+  <div
+    style={{
+      position: 'absolute',
+      bottom: 20,
+      right: 20,
+      background: 'rgba(20, 20, 40, 0.85)',
+      backdropFilter: 'blur(12px)',
+      padding: '14px 18px',
+      borderRadius: '12px',
+      border: '1px solid rgba(90, 111, 214, 0.25)',
+      zIndex: 10,
+    }}
+  >
+    <div
+      style={{
+        color: '#fff',
+        fontSize: '11px',
+        fontWeight: 700,
+        marginBottom: '10px',
+        letterSpacing: '0.5px',
+      }}
+    >
+      Course Status
+    </div>
     {[
       { label: 'completed', color: '#2ed573' },
       { label: 'in-progress', color: '#5865F2' },
       { label: 'available', color: '#4158D0' },
       { label: 'locked', color: '#3d3d60' },
     ].map(({ label, color }) => (
-      <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '6px' }}>
+      <div
+        key={label}
+        style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '6px' }}
+      >
         <div style={{ width: '10px', height: '10px', borderRadius: '3px', background: color }} />
         <span style={{ color: 'rgba(255,255,255,0.75)', fontSize: '10px' }}>{label}</span>
       </div>
@@ -98,64 +160,78 @@ const Legend = () => (
   </div>
 );
 
-
 const calculateLayout = (courses, config) => {
   const { nodeWidth, horizontalSpacing, verticalSpacing } = config;
-  const parents = new Map(courses.map(c => [c.id, c.prerequisites || []]));
+  const parents = new Map(courses.map((c) => [c.id, c.prerequisites || []]));
   const levels = new Map();
-  
+
   const getLevel = (id, stack = new Set()) => {
     if (levels.has(id)) return levels.get(id);
     if (stack.has(id)) return 0;
     stack.add(id);
     const prereqs = parents.get(id) || [];
-    const level = prereqs.length === 0 ? 0 : Math.max(...prereqs.map(pid => getLevel(pid, stack))) + 1;
+    const level =
+      prereqs.length === 0 ? 0 : Math.max(...prereqs.map((pid) => getLevel(pid, stack))) + 1;
     levels.set(id, level);
     return level;
   };
-  
-  courses.forEach(c => getLevel(c.id));
-  
+
+  courses.forEach((c) => getLevel(c.id));
+
   const levelGroups = new Map();
-  courses.forEach(course => {
+  courses.forEach((course) => {
     const lvl = levels.get(course.id);
     if (!levelGroups.has(lvl)) levelGroups.set(lvl, []);
     levelGroups.get(lvl).push(course);
   });
-  
+
   const positions = new Map();
-  [...levelGroups.keys()].sort((a, b) => a - b).forEach(level => {
-    const nodes = levelGroups.get(level);
-    const totalW = nodes.length * nodeWidth + (nodes.length - 1) * horizontalSpacing;
-    const startX = -totalW / 2 + nodeWidth / 2;
-    nodes.forEach((course, i) => {
-      positions.set(course.id, { x: startX + i * (nodeWidth + horizontalSpacing), y: level * verticalSpacing });
+  [...levelGroups.keys()]
+    .sort((a, b) => a - b)
+    .forEach((level) => {
+      const nodes = levelGroups.get(level);
+      const totalW = nodes.length * nodeWidth + (nodes.length - 1) * horizontalSpacing;
+      const startX = -totalW / 2 + nodeWidth / 2;
+      nodes.forEach((course, i) => {
+        positions.set(course.id, {
+          x: startX + i * (nodeWidth + horizontalSpacing),
+          y: level * verticalSpacing,
+        });
+      });
     });
-  });
-  
+
   return positions;
 };
 
 const CourseRoadmap = ({ courses = [], config = {}, onCourseClick }) => {
-  const cfg = { nodeWidth: 180, nodeHeight: 70, horizontalSpacing: 80, verticalSpacing: 200, showLegend: true, showControls: true, ...config };
-  
+  const cfg = {
+    nodeWidth: 180,
+    nodeHeight: 70,
+    horizontalSpacing: 80,
+    verticalSpacing: 200,
+    showLegend: true,
+    showControls: true,
+    ...config,
+  };
+
   const nodeTypes = useMemo(() => ({ courseNode: CourseNode }), []);
   const positions = useMemo(() => calculateLayout(courses, cfg), [courses, cfg]);
-  
-  const initialNodes = useMemo(() => 
-    courses.map(course => ({
-      id: course.id,
-      type: 'courseNode',
-      position: positions.get(course.id) || { x: 0, y: 0 },
-      data: { ...course, onClick: () => onCourseClick?.(course) },
-    })),
+
+  const initialNodes = useMemo(
+    () =>
+      courses.map((course) => ({
+        id: course.id,
+        type: 'courseNode',
+        position: positions.get(course.id) || { x: 0, y: 0 },
+        data: { ...course, onClick: () => onCourseClick?.(course) },
+      })),
     [courses, positions, onCourseClick]
   );
-  
+
   const initialEdges = useMemo(() => {
     const edges = [];
-    courses.forEach(course => {
-      (course.prerequisites || []).forEach(prereqId => {
+    courses.forEach((course) => {
+      (course.prerequisites || []).forEach((prereqId) => {
         const isLocked = course.status === 'locked';
         const isActive = course.status === 'in-progress';
         edges.push({
@@ -165,16 +241,21 @@ const CourseRoadmap = ({ courses = [], config = {}, onCourseClick }) => {
           type: 'default',
           animated: isActive,
           style: { stroke: isLocked ? '#3d3d60' : '#5a6fd6', strokeWidth: isActive ? 2.5 : 2 },
-          markerEnd: { type: MarkerType.ArrowClosed, color: isLocked ? '#3d3d60' : '#5a6fd6', width: 16, height: 16 },
+          markerEnd: {
+            type: MarkerType.ArrowClosed,
+            color: isLocked ? '#3d3d60' : '#5a6fd6',
+            width: 16,
+            height: 16,
+          },
         });
       });
     });
     return edges;
   }, [courses]);
-  
+
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
   const [edges, , onEdgesChange] = useEdgesState(initialEdges);
-  
+
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
       <ReactFlow
