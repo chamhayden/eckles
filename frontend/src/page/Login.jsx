@@ -31,6 +31,8 @@ import AppLoad from '../component/AppLoad';
 import { apiCall } from '../util/api';
 import config from '../config';
 import { Context, useContext } from '../context';
+import { Position } from '@xyflow/react';
+import zIndex from '@mui/material/styles/zIndex';
 
 const theme = createTheme();
 /* Sourced https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/sign-in/SignIn.js */
@@ -42,6 +44,9 @@ const styles = {
     alignItems: 'center',
     minHeight: '100vh',
     padding: theme.spacing(3),
+      background:
+        'linear-gradient(165deg, rgba(236, 244, 255, 0.95) 0%, rgba(221, 234, 255, 0.75) 100%)',
+      boxShadow: 'inset 0 0 0 1px rgba(120, 159, 255, 0.16)',
   },
   paper: {
     width: '100%',
@@ -54,6 +59,7 @@ const styles = {
     boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
     border: '1px solid rgba(0, 0, 0, 0.08)',
     background: 'linear-gradient(180deg, #ffffff 0%, #f8f9fc 100%)',
+    position: 'relative',
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -77,12 +83,28 @@ const styles = {
     },
   },
   logo: {
+    zIndex:10,
+    position: 'absolute',
+    right: '-50%',
+    bottom: '-8%',
     width: '100%',
-    maxWidth: '300px',
+    maxWidth: '290px',
     marginBottom: '24px',
     transition: 'transform 0.3s ease',
     '&:hover': {
       transform: 'scale(1.05)',
+    },
+    [theme.breakpoints.down('md')]: {
+      maxWidth: '150px',
+      top: '-11%',
+      bottom: 'auto',
+      right: '-9%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '150px',
+      top: '-11%',
+      bottom: 'auto',
+      right: '-9%',
     },
   },
   disclaimer: {
@@ -164,7 +186,7 @@ const SignIn = (props) => {
             backgroundClip: 'text',
           }}
         >
-          Sign in to COMP6080
+          COMP6080
         </Typography>
         <Typography
           variant="body2"
@@ -175,7 +197,7 @@ const SignIn = (props) => {
             fontSize: '1rem',
           }}
         >
-          Welcome back! Please enter your credentials.
+          Welcome back! Sign in with your zID.
         </Typography>
         <form className={classes.form}>
           <FormControl margin="normal" required fullWidth>
@@ -223,11 +245,6 @@ const SignIn = (props) => {
               </Select>
             </FormControl>
           )}
-          <p className={classes.disclaimer}>
-            🔒 Your password and credentials are not stored by either this software or by teaching
-            staff. If you change your UNSW password due to suspected compromise, please email
-            cs6080@cse.unsw.edu.au to inform us as well.
-          </p>
           <Stack spacing={2} sx={{ mt: 3 }}>
             <Button
               fullWidth
@@ -241,7 +258,7 @@ const SignIn = (props) => {
                 fontWeight: 600,
                 textTransform: 'none',
                 fontSize: '1rem',
-                background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                background: 'linear-gradient(135deg, #5b7fcbff 0%, #2a57d2ff 100%)',
                 boxShadow: '0 4px 14px rgba(37, 99, 235, 0.4)',
                 transition: 'all 0.3s ease',
                 '&:hover': {
@@ -273,9 +290,15 @@ const SignIn = (props) => {
                 },
               }}
             >
-              ← Back to homepage
+              ← Back to Home
             </Button>
           </Stack>
+
+          <p className={classes.disclaimer}>
+            Your password and credentials are not stored by either this software or by teaching
+            staff. If you change your UNSW password due to suspected compromise, please email
+            cs6080@cse.unsw.edu.au to inform us as well.
+          </p>
         </form>
       </Paper>
       <Dialog open={open} onClose={handleClose}>
