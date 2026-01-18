@@ -37,17 +37,39 @@ import zIndex from '@mui/material/styles/zIndex';
 const theme = createTheme();
 /* Sourced https://github.com/mui-org/material-ui/blob/v3.x/docs/src/pages/getting-started/page-layout-examples/sign-in/SignIn.js */
 const styles = {
-  main: {
-    width: 'auto',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '100vh',
-    padding: theme.spacing(3),
-      background:
-        'linear-gradient(165deg, rgba(236, 244, 255, 0.95) 0%, rgba(221, 234, 255, 0.75) 100%)',
-      boxShadow: 'inset 0 0 0 1px rgba(120, 159, 255, 0.16)',
-  },
+ main: {
+  width: 'auto',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  minHeight: '100vh',
+  padding: theme.spacing(3),
+
+  background: `
+    radial-gradient(
+      60% 80% at 75% 50%,
+      rgba(120, 170, 220, 0.45),
+      transparent 70%
+    ),
+    radial-gradient(
+      40% 60% at 20% 30%,
+      rgba(200, 210, 220, 0.35),
+      transparent 65%
+    ),
+    radial-gradient(
+      20% 30% at 80% 70%,
+      rgba(240, 210, 180, 0.25),
+      transparent 60%
+    ),
+    linear-gradient(
+      165deg,
+      rgba(236, 244, 255, 0.95) 0%,
+      rgba(221, 234, 255, 0.75) 100%
+    )
+  `,
+
+  boxShadow: 'inset 0 0 0 1px rgba(120, 159, 255, 0.16)',
+},
   paper: {
     width: '100%',
     maxWidth: '450px',
