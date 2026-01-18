@@ -55,9 +55,9 @@ const App = () => {
     palette: {
       mode: 'light',
       primary: {
-        main: '#2563eb',
-        light: '#3b82f6',
-        dark: '#1d4ed8',
+        main: '#5789f4ff',
+        light: '#80a7e5ff',
+        dark: '#2958d9ff',
       },
       secondary: {
         main: '#8b5cf6',
@@ -65,7 +65,7 @@ const App = () => {
         dark: '#7c3aed',
       },
       success: {
-        main: '#10b981',
+        main: '#d0ee95ff',
         light: '#34d399',
         dark: '#059669',
       },
