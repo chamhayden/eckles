@@ -3,7 +3,7 @@ import { Context, useContext } from '../../context';
 import TutLecContentCard from '../../component/TutLecContentCard';
 import TutLecContentListItem from '../../component/TutLecContentListItem';
 import makePage from '../../component/makePage';
-import THUMBNAIL_URL from '../../asset/thumbnail.jpg'
+import THUMBNAIL_URL from '../../asset/thumbnail.jpg';
 import {
   Box,
   Button,

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Rating } from 'react-simple-star-rating';
 import { apiCall } from '../../../util/api';
-import PokemonCatchController from "../PokemonCatchController";
+import PokemonCatchController from '../PokemonCatchController';
 
 import pokeballCursor from '../../../asset/pokeball-cursor.svg';
 

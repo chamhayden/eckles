@@ -99,7 +99,6 @@ export default function TutLecContentCard({
           }}
         >
           <Stack direction="row" alignItems="flex-start" justifyContent="space-between" gap={2}>
-
             <Avatar
               src={thumbnail ? thumbnail : `https://picsum.photos/id/${hash}/200`}
               alt={name}
@@ -141,7 +140,6 @@ export default function TutLecContentCard({
                 ⏱️ {duration_mins} minutes
               </Typography>
             </Stack>
-
           </Stack>
         </CardContent>
 

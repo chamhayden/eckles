@@ -82,45 +82,41 @@ export default function TutLecContentCard({
         }}
       >
         <CardContent sx={{ '&:last-child': { paddingBottom: '10px' }, padding: '10px 20px' }}>
-          <Stack 
-            direction={{ xs: 'column', sm: 'column', md: 'row' }} 
+          <Stack
+            direction={{ xs: 'column', sm: 'column', md: 'row' }}
             alignItems={{ xs: 'flex-start', sm: 'flex-start', md: 'center' }}
             gap={2}
           >
-          
-            <Stack 
-              direction="row" 
-              alignItems="center" 
-              sx={{ 
-                flex: 1, 
+            <Stack
+              direction="row"
+              alignItems="center"
+              sx={{
+                flex: 1,
                 minWidth: 0,
-                width: { xs: '100%', sm: '100%', md: 'auto' }
+                width: { xs: '100%', sm: '100%', md: 'auto' },
               }}
             >
-
               <Box sx={{ flexShrink: 0 }}>
                 <img
                   src={thumbnail ? thumbnail : `https://picsum.photos/id/${hash}/200`}
                   alt={name}
-                  style={{ 
-                    width: 'auto', 
-                    height: '100px', 
-                    display: 'block', 
-                    borderRadius: '8px'
+                  style={{
+                    width: 'auto',
+                    height: '100px',
+                    display: 'block',
+                    borderRadius: '8px',
                   }}
                 />
               </Box>
 
-      
-              <Stack 
-                direction="column" 
-                sx={{ 
-                  px: 2, 
-                  flex: 1, 
-                  minWidth: 0, 
+              <Stack
+                direction="column"
+                sx={{
+                  px: 2,
+                  flex: 1,
+                  minWidth: 0,
                   overflow: 'hidden',
-                  width: { xs: '100%', sm: '100%', md: 200} 
-
+                  width: { xs: '100%', sm: '100%', md: 200 },
                 }}
               >
                 <Tooltip title={name} placement="top" arrow disableInteractive>
@@ -129,10 +125,10 @@ export default function TutLecContentCard({
                     sx={{
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
-                      whiteSpace: { xs: 'normal', sm: 'normal', md: 'nowrap' }, 
+                      whiteSpace: { xs: 'normal', sm: 'normal', md: 'nowrap' },
                       cursor: 'pointer',
                       display: '-webkit-box',
-                      WebkitLineClamp: { xs: 2, sm: 2, md: 1 }, 
+                      WebkitLineClamp: { xs: 2, sm: 2, md: 1 },
                       WebkitBoxOrient: 'vertical',
                       '&:hover': {
                         textDecoration: 'underline',
@@ -148,7 +144,6 @@ export default function TutLecContentCard({
                 </Typography>
               </Stack>
             </Stack>
-
 
             <Stack
               direction="row"
@@ -172,6 +167,5 @@ export default function TutLecContentCard({
         </CardContent>
       </Card>
     </Link>
-
   );
 }

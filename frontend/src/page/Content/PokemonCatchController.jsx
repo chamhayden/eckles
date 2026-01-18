@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
   forwardRef,
-} from "react";
+} from 'react';
 
 /**
  * Usage (parent):
@@ -61,113 +61,112 @@ const PokemonCatchController = forwardRef(function PokemonCatchController(_, ref
   const styles = useMemo(
     () => ({
       overlay: {
-        position: "fixed",
+        position: 'fixed',
         inset: 0,
         zIndex: 999999,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "rgba(0,0,0,.25)",
-        backdropFilter: "blur(2px)",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'rgba(0,0,0,.25)',
+        backdropFilter: 'blur(2px)',
       },
 
       // ripples (viewport-based, since now no button rect)
       rippleDot: (x, y) => ({
-        position: "fixed",
+        position: 'fixed',
         left: x,
         top: y,
         width: 12,
         height: 12,
         borderRadius: 999,
-        transform: "translate(-50%,-50%)",
-        pointerEvents: "none",
-        background: "rgba(255,255,255,.35)",
-        animation: "poke_ripple 560ms ease-out forwards",
+        transform: 'translate(-50%,-50%)',
+        pointerEvents: 'none',
+        background: 'rgba(255,255,255,.35)',
+        animation: 'poke_ripple 560ms ease-out forwards',
         zIndex: 1000000,
       }),
 
       stage: {
-        position: "relative",
-        width: "min(520px, 92vw)",
-        aspectRatio: "1 / 1",
+        position: 'relative',
+        width: 'min(520px, 92vw)',
+        aspectRatio: '1 / 1',
         borderRadius: 24,
-        overflow: "hidden",
+        overflow: 'hidden',
       },
 
       close: {
-        position: "absolute",
+        position: 'absolute',
         top: 12,
         right: 18,
         width: 60,
         height: 36,
         borderRadius: 12,
         border: 0,
-        cursor: "pointer",
-        background: "rgba(0,0,0,.5)",
-        color: "#fff",
+        cursor: 'pointer',
+        background: 'rgba(0,0,0,.5)',
+        color: '#fff',
         zIndex: 2,
-        font: "700 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial",
-        backdropFilter: "blur(4px)",
-        padding: "6px 12px",
+        font: '700 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial',
+        backdropFilter: 'blur(4px)',
+        padding: '6px 12px',
 
         opacity: 0.9,
       },
 
       flash: {
-        position: "absolute",
-        left: "50%",
-        top: "50%",
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
         width: 500,
         height: 500,
-        transform: "translate(-50%,-50%) scale(.9)",
-        backgroundImage:
-          'url("https://www.gstatic.com/videogames/pokemon/animation/flash.png")',
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "13500px 500px",
+        transform: 'translate(-50%,-50%) scale(.9)',
+        backgroundImage: 'url("https://www.gstatic.com/videogames/pokemon/animation/flash.png")',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '13500px 500px',
         opacity: 0,
-        animation: "poke_flashPlay 900ms steps(27) 1 forwards",
-        pointerEvents: "none",
+        animation: 'poke_flashPlay 900ms steps(27) 1 forwards',
+        pointerEvents: 'none',
       },
 
       shadow: {
-        position: "absolute",
-        left: "50%",
-        top: "62%",
-        width: "52%",
-        transform: "translateX(-50%)",
+        position: 'absolute',
+        left: '50%',
+        top: '62%',
+        width: '52%',
+        transform: 'translateX(-50%)',
         opacity: 0.25,
       },
 
       frame: {
-        position: "absolute",
-        left: "50%",
-        top: "40%",
-        width: "48%",
-        transform: "translate(-50%,-50%)",
-        filter: "drop-shadow(0 12px 16px rgba(0,0,0,.2))",
+        position: 'absolute',
+        left: '50%',
+        top: '40%',
+        width: '48%',
+        transform: 'translate(-50%,-50%)',
+        filter: 'drop-shadow(0 12px 16px rgba(0,0,0,.2))',
         animation:
-          "poke_pokemonFlash 180ms ease-out 1 620ms, poke_pokemonCapture 520ms ease-in forwards 640ms",
+          'poke_pokemonFlash 180ms ease-out 1 620ms, poke_pokemonCapture 520ms ease-in forwards 640ms',
       },
 
       ball: {
-        position: "absolute",
-        left: "15%",
-        top: "70%",
-        width: "18%",
-        transform: "translate(-50%,-50%)",
+        position: 'absolute',
+        left: '15%',
+        top: '70%',
+        width: '18%',
+        transform: 'translate(-50%,-50%)',
         animation:
-          "poke_ballThrow 1100ms cubic-bezier(.2,.9,.2,1) forwards, poke_ballShake 900ms ease-in-out 1150ms 1 forwards",
+          'poke_ballThrow 1100ms cubic-bezier(.2,.9,.2,1) forwards, poke_ballShake 900ms ease-in-out 1150ms 1 forwards',
       },
 
       hint: {
-        position: "absolute",
+        position: 'absolute',
         left: 16,
         bottom: 14,
-        font: "700 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial",
-        color: "#fff",
-        userSelect: "none",
-        backdropFilter: "blur(4px)",
-        padding: "6px 12px",
+        font: '700 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial',
+        color: '#fff',
+        userSelect: 'none',
+        backdropFilter: 'blur(4px)',
+        padding: '6px 12px',
         borderRadius: 12,
       },
     }),
@@ -230,11 +229,7 @@ const PokemonCatchController = forwardRef(function PokemonCatchController(_, ref
             aria-label="Playing Pokemon catch animation"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              style={styles.close}
-              onClick={() => setIsOpen(false)}
-              aria-label="Close"
-            >
+            <button style={styles.close} onClick={() => setIsOpen(false)} aria-label="Close">
               X
             </button>
 
@@ -246,11 +241,7 @@ const PokemonCatchController = forwardRef(function PokemonCatchController(_, ref
               src="https://www.gstatic.com/videogames/pokemon/animation/shadow.png"
             />
 
-            <img
-              alt="pokemon"
-              style={styles.frame}
-              src={pokemon}
-            />
+            <img alt="pokemon" style={styles.frame} src={pokemon} />
 
             <img
               alt="pokeball"

@@ -34,7 +34,7 @@ import HelpResourcesJavascript from './page/Help/HelpResourcesJavascript';
 import HelpResourcesCypress from './page/Help/HelpResourcesCypress';
 import DueDateAdjustments from './page/DueDateAdjustments';
 import HelpResourcesReact from './page/Help/HelpResourcesReact';
-
+import CourseRoadmapDemo from './page/CourseRoadmapDemo';
 import Grades from './page/Grades';
 
 import { apiCall } from './util/api';
@@ -95,6 +95,7 @@ const Router = () => {
         <Route path="course-outline" element={<CourseOutline />}></Route>
         <Route path="due-date-adjustments" element={<DueDateAdjustments />}></Route>
         <Route path="grades" element={<Grades />} />
+        <Route path="course-roadmap-demo" element={<CourseRoadmapDemo />}></Route>
         <Route path="staff" element={<Staff />}></Route>
       </Route>
     </Routes>

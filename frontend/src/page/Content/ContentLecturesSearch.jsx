@@ -27,7 +27,7 @@ import ReorderIcon from '@mui/icons-material/Reorder';
 import { getCurrentWeek } from '../../util/date';
 import { useSearchFilters, filterLectures, MODAL_STYLES } from '../../util/content';
 
-import THUMBNAIL_URL from '../../asset/thumbnail.jpg'
+import THUMBNAIL_URL from '../../asset/thumbnail.jpg';
 
 const ContentLecturesSearch = () => {
   const { getters } = useContext(Context);
