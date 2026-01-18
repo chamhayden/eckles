@@ -134,7 +134,7 @@ const ContentCards = ({ data, minHeight }) => {
                         textAlign: 'center',
                         padding: '0 12px',
                         zIndex: 1,
-                        fontSize: '2rem',
+                        fontSize: '1.7rem',
                       }}
                     >
                       {title}

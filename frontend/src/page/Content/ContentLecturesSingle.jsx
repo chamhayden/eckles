@@ -18,7 +18,7 @@ const buildRelatedLectures = (lecture, allLectures, term) => {
     ...(lecture.lectures_prereq ? lecture.lectures_prereq() : []).map((l) => ({
       ...l,
       label: 'Watch first',
-      labelBackground: 'rgba(254, 32, 32, 0.4)',
+      labelBackground: 'rgba(254, 32, 32, 0.7)',
     })),
     ...allLectures
       .filter(
