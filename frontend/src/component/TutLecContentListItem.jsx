@@ -110,7 +110,7 @@ export default function TutLecContentCard({
                     width: 'auto', 
                     height: '100px', 
                     display: 'block', 
-                    borderRadius: '8px' 
+                    borderRadius: '8px'
                   }}
                 />
               </Box>
@@ -122,7 +122,9 @@ export default function TutLecContentCard({
                   px: 2, 
                   flex: 1, 
                   minWidth: 0, 
-                  overflow: 'hidden' 
+                  overflow: 'hidden',
+                  width: { xs: '100%', sm: '100%', md: 200} 
+
                 }}
               >
                 <Tooltip title={name} placement="top" arrow disableInteractive>
