@@ -63,6 +63,7 @@ const styles = {
     alignItems: 'center',
     minHeight: '100vh',
     padding: theme.spacing(3),
+    overflowX: 'hidden',
 
     background: `
     radial-gradient(
