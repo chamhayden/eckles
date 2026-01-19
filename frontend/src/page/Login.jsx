@@ -93,7 +93,6 @@ const styles = {
   paper: {
     width: '100%',
     maxWidth: '450px',
-    position: 'relative',
     background: 'transparent',
   },
   container: {
@@ -104,6 +103,7 @@ const styles = {
     borderRadius: '16px',
     boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
     border: '1px solid rgba(0, 0, 0, 0.08)',
+    position: 'relative',
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -125,10 +125,10 @@ const styles = {
   logo: {
     zIndex: 10,
     position: 'absolute',
-    right: '-46%',
-    bottom: '-6%',
+    right: '-36%',
+    bottom: '-10%',
     width: '100%',
-    maxWidth: '290px',
+    maxWidth: '250px',
     marginBottom: '24px',
     transition: 'transform 0.3s ease',
     '&:hover': {
