@@ -1,28 +1,36 @@
 import React from 'react';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
-import Youtube from '../../component/Youtube';
+import helpResourcesPostgradMarkdown from './HelpResourcesPostgrad.md';
 import makePage from '../../component/makePage';
 
 const ResourcesPostgrad = ({}) => {
+  const [markdown, setMarkdown] = React.useState('');
+
+  React.useEffect(() => {
+    let isActive = true;
+    fetch(helpResourcesPostgradMarkdown)
+      .then((response) => response.text())
+      .then((text) => {
+        if (isActive) {
+          setMarkdown(text);
+        }
+      });
+    return () => {
+      isActive = false;
+    };
+  }, [helpResourcesPostgradMarkdown]);
+
   return (
-    <>
-      <Typography variant="h5" component="div" gutterBottom>
-        Postgraduates
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        Postgraduates start COMP6080 with less prerequisite knowledge namely in the areas of Git and
-        HTTP Servers. To help our wonderful postgraduates out, one of our team (who themselves
-        happens to be a postgraduate) have put together a helpful getting started guide just for
-        you.
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <a target="_blank" href="https://cgi.cse.unsw.edu.au/~cs6080/raw/postgrad-guide.pdf">
-          Postgraduate guide
-        </a>
-      </Typography>
-    </>
+    <Markdown
+      remarkPlugins={[remarkGfm]}
+      components={{
+        a: ({ node: _node, ...props }) => <a {...props} target="_blank" rel="noreferrer" />,
+      }}
+    >
+      {markdown}
+    </Markdown>
   );
 };
 
