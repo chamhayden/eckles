@@ -55,9 +55,9 @@ const App = () => {
     palette: {
       mode: 'light',
       primary: {
-        main: '#2563eb',
-        light: '#3b82f6',
-        dark: '#1d4ed8',
+        main: '#5685e9ff',
+        light: '#80a7e5ff',
+        dark: '#2958d9ff',
       },
       secondary: {
         main: '#8b5cf6',
@@ -65,7 +65,7 @@ const App = () => {
         dark: '#7c3aed',
       },
       success: {
-        main: '#10b981',
+        main: '#b9d983ff',
         light: '#34d399',
         dark: '#059669',
       },
@@ -76,6 +76,16 @@ const App = () => {
       text: {
         primary: '#1e293b',
         secondary: '#64748b',
+      },
+      warning: {
+        main: '#fbbf24',
+        light: '#fde68a',
+        dark: '#f59e0b',
+      },
+      error: {
+        main: '#ef4444',
+        light: '#fca5a5',
+        dark: '#b91c1c',
       },
     },
     typography: {

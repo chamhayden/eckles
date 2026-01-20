@@ -16,15 +16,17 @@ import Collapse from '@mui/material/Collapse';
 import mainlogo from '../asset/doggie.png';
 import { Context, useContext } from '../context';
 import { makeStyles } from '@mui/styles';
+import { useLocalStorage } from '../util/content';
 
 import { getPrimaryNavList, getSecondaryNavList } from './NavList';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 const ExternalIcon = () => {
-  return <OpenInNewIcon sx={{fontSize : '16px'}} />;
+  return <OpenInNewIcon sx={{ fontSize: '16px' }} />;
 };
 
 const background = 'linear-gradient(180deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%) !important';
+const SIDEBAR_EXPAND_STORAGE_KEY = 'eckles_sidebar_expand';
 
 const useStyles = makeStyles({
   paper: {
@@ -40,10 +42,27 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
   const classes = useStyles();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [open, setOpen] = React.useState(Array(primaryNav.length).fill(true));
+  const defaultOpen = React.useMemo(() => Array(primaryNav.length).fill(true), [primaryNav.length]);
+  const [open, setOpen] = useLocalStorage(SIDEBAR_EXPAND_STORAGE_KEY, defaultOpen);
+  const safeOpen = Array.isArray(open) ? open : defaultOpen;
+
+  React.useEffect(() => {
+    if (Array.isArray(open) && open.length === primaryNav.length) {
+      return;
+    }
+    const nextOpen = Array(primaryNav.length).fill(true);
+    if (Array.isArray(open)) {
+      open.forEach((value, index) => {
+        if (index < nextOpen.length && typeof value === 'boolean') {
+          nextOpen[index] = value;
+        }
+      });
+    }
+    setOpen(nextOpen);
+  }, [open, primaryNav.length, setOpen]);
 
   const handleClick = (key) => {
-    const newOpen = [...open];
+    const newOpen = [...safeOpen];
     newOpen[key] = !newOpen[key];
     setOpen(newOpen);
   };
@@ -62,11 +81,14 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
   };
 
   const boldIfPage = (route) => {
+    if (!route) {
+      return false;
+    }
     if (route === '/') {
       return pathname === route;
-    } else {
-      return pathname.includes(route);
     }
+    const baseRoute = route.endsWith('/search') ? route.slice(0, -'/search'.length) : route;
+    return pathname.includes(baseRoute);
   };
 
   return (
@@ -194,10 +216,18 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
                       primary={title}
                     />
                     {external && <ExternalIcon />}
-                    {children ? open[key] ? <ExpandLess fontSize="small" /> : <ExpandMore fontSize="small" /> : <></>}
+                    {children ? (
+                      safeOpen[key] ? (
+                        <ExpandLess fontSize="small" />
+                      ) : (
+                        <ExpandMore fontSize="small" />
+                      )
+                    ) : (
+                      <></>
+                    )}
                   </ListItem>
                   {children && (
-                    <Collapse in={open[key]} timeout="auto" unmountOnExit>
+                    <Collapse in={safeOpen[key]} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
                         {children.map((child, key2) => {
                           const external2 = child.external;

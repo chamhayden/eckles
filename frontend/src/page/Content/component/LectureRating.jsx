@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
@@ -7,6 +7,9 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Rating } from 'react-simple-star-rating';
 import { apiCall } from '../../../util/api';
+import PokemonCatchController from '../PokemonCatchController';
+
+import pokeballCursor from '../../../asset/pokeball-cursor.svg';
 
 const RATING_DISABLED_TERMS = new Set(['22T1', '22T3', '23T1', '23T3', '24T1', '24T3', '25T1']);
 const MIN_COMMENT_LENGTH = 20;
@@ -19,7 +22,7 @@ const LectureRating = ({ term, lectureId, initialRating, initialComment }) => {
     error: '',
     success: false,
   });
-  const [ratingPopoverOpen, setRatingPopoverOpen] = React.useState(false);
+  const pokeRef = useRef(null);
 
   React.useEffect(() => {
     setDraftRating(initialRating ?? 0);
@@ -60,6 +63,7 @@ const LectureRating = ({ term, lectureId, initialRating, initialComment }) => {
   };
 
   const handleSubmit = () => {
+    pokeRef.current?.catchPokemon();
     if (commentTooShort || submitState.isSubmitting || !lectureId) {
       return;
     }
@@ -89,14 +93,14 @@ const LectureRating = ({ term, lectureId, initialRating, initialComment }) => {
       .catch(() => {
         setSubmitState({
           isSubmitting: false,
-          error: 'Rating submission failed.',
+          error: 'Submission failed.',
           success: false,
         });
       });
   };
 
   const showAlert = submitState.success || Boolean(submitState.error);
-  const alertMessage = submitState.error || 'Rating submitted.';
+  const alertMessage = submitState.error || 'We’ve received your submission.';
   const alertSeverity = submitState.error ? 'error' : 'success';
 
   return (
@@ -173,6 +177,7 @@ const LectureRating = ({ term, lectureId, initialRating, initialComment }) => {
             aria-label="Submit rating"
             sx={{
               fontSize: '0.75rem',
+              cursor: `url(${pokeballCursor}) 16 16, pointer`,
             }}
           >
             {submitState.isSubmitting ? <CircularProgress size={12} color="inherit" /> : 'Send'}
@@ -194,6 +199,7 @@ const LectureRating = ({ term, lectureId, initialRating, initialComment }) => {
           {alertMessage}
         </Alert>
       </Snackbar>
+      <PokemonCatchController ref={pokeRef} />
     </Box>
   );
 };

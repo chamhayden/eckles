@@ -34,7 +34,6 @@ import HelpResourcesJavascript from './page/Help/HelpResourcesJavascript';
 import HelpResourcesCypress from './page/Help/HelpResourcesCypress';
 import DueDateAdjustments from './page/DueDateAdjustments';
 import HelpResourcesReact from './page/Help/HelpResourcesReact';
-
 import Grades from './page/Grades';
 
 import { apiCall } from './util/api';

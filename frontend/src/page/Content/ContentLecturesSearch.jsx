@@ -27,6 +27,8 @@ import ReorderIcon from '@mui/icons-material/Reorder';
 import { getCurrentWeek } from '../../util/date';
 import { useSearchFilters, filterLectures, MODAL_STYLES } from '../../util/content';
 
+import THUMBNAIL_URL from '../../asset/thumbnail.jpg';
+
 const ContentLecturesSearch = () => {
   const { getters } = useContext(Context);
   const { content_lectures, weeks, topics, meta } = getters.content;
@@ -459,11 +461,7 @@ const ContentLecturesSearch = () => {
                       topicName={lecture.topic().name}
                       live={lecture.status}
                       lecture={true}
-                      thumbnail={
-                        lecture.thumbnail && lecture.thumbnail.length > 0
-                          ? lecture.thumbnail[0]
-                          : null
-                      }
+                      thumbnail={THUMBNAIL_URL}
                     />
                   ))}
                 </Box>
@@ -486,11 +484,7 @@ const ContentLecturesSearch = () => {
                       topicName={lecture.topic().name}
                       live={lecture.status}
                       lecture={true}
-                      thumbnail={
-                        lecture.thumbnail && lecture.thumbnail.length > 0
-                          ? lecture.thumbnail[0]
-                          : null
-                      }
+                      thumbnail={THUMBNAIL_URL}
                     />
                   ))}
                 </Box>

@@ -17,15 +17,20 @@ export const isHappeningNow = (event) => {
   if (eventDay !== currentDay) return false;
 
   const timeStr = event.time || event.times;
-  if (!timeStr) return false;
+  if (!timeStr || typeof timeStr !== 'string') return false;
 
   const [startStr, endStr] = timeStr.split('-');
+  if (!startStr || !endStr) return false;
 
-  const { hour: startHour, min: startMin } = parseTime(startStr);
+  const startTimeParts = parseTime(startStr);
+  if (!startTimeParts) return false;
+  const { hour: startHour, min: startMin } = startTimeParts;
   const startTime = new Date(now);
   startTime.setHours(startHour, startMin, 0, 0);
 
-  const { hour: endHour, min: endMin } = parseTime(endStr.split(' ')[0]);
+  const endTimeParts = parseTime(endStr.split(' ')[0]);
+  if (!endTimeParts) return false;
+  const { hour: endHour, min: endMin } = endTimeParts;
   const endTime = new Date(now);
   endTime.setHours(endHour, endMin, 0, 0);
 
@@ -41,12 +46,19 @@ export const getCurrentWeek = (startOfTermDate) => {
 };
 
 const parseTime = (timeString) => {
-  let [hour, min] = timeString.trim().match(/\d+/g);
+  if (!timeString || typeof timeString !== 'string') return null;
+
+  const matches = timeString.trim().match(/\d+/g);
+  if (!matches || matches.length === 0) return null;
+
+  let [hour, min] = matches;
   let isPM = timeString.toLowerCase().includes('pm');
   hour = parseInt(hour, 10);
+  if (Number.isNaN(hour)) return null;
 
   if (isPM && hour !== 12) hour += 12;
   if (!isPM && hour === 12) hour = 0;
 
-  return { hour, min: min ? parseInt(min, 10) : 0 };
+  const parsedMin = min ? parseInt(min, 10) : 0;
+  return { hour, min: Number.isNaN(parsedMin) ? 0 : parsedMin };
 };

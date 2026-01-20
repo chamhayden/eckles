@@ -19,8 +19,39 @@ import { Context, useContext } from '../../context';
 import makePage from '../../component/makePage';
 import config from '../../config';
 
+const getLectureStaffNames = (lecture) => {
+  if (!lecture) return [];
+  const staffValue = typeof lecture.staff === 'function' ? lecture.staff() : lecture.staff;
+  if (!staffValue) return [];
+  if (Array.isArray(staffValue)) {
+    return staffValue
+      .map((staff) => (typeof staff === 'string' ? staff : staff?.name))
+      .filter(Boolean);
+  }
+  return [];
+};
+
+const getRowStaffNames = (row) => {
+  if (!row?.content_lectures || typeof row.content_lectures !== 'function') {
+    return '';
+  }
+  const lectures = row.content_lectures();
+  const lectureList = Array.isArray(lectures) ? lectures : lectures ? [lectures] : [];
+  return lectureList.flatMap((lecture) => getLectureStaffNames(lecture)).join(', ');
+};
+
 const TimetableLectures = () => {
   const { getters } = useContext(Context);
+  const sortedLectures = [...getters.content.schedule_lectures].sort((a, b) => {
+    const weekA = Number(a.week().week);
+    const weekB = Number(b.week().week);
+    if (Number.isNaN(weekA) || Number.isNaN(weekB)) {
+      return String(a.week().week).localeCompare(String(b.week().week), undefined, {
+        numeric: true,
+      });
+    }
+    return weekA - weekB;
+  });
   return (
     <>
       <TableContainer
@@ -69,7 +100,7 @@ const TimetableLectures = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {getters.content.schedule_lectures.map((row, rowKey) => (
+            {sortedLectures.map((row, rowKey) => (
               <TableRow
                 key={rowKey}
                 sx={{
@@ -100,8 +131,7 @@ const TimetableLectures = () => {
                 </TableCell>
                 {!isTinyMobileWidth() && (
                   <TableCell align="left" sx={{ fontWeight: 500 }}>
-                    {row.content_lectures &&
-                      row.content_lectures().map((cl) => cl.staff().map((s) => s.name))}
+                    {getRowStaffNames(row)}
                   </TableCell>
                 )}
                 {getters.loggedIn && isDesktopWidth() && (

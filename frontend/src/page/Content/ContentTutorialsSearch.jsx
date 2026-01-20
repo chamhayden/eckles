@@ -3,6 +3,7 @@ import { Context, useContext } from '../../context';
 import TutLecContentCard from '../../component/TutLecContentCard';
 import TutLecContentListItem from '../../component/TutLecContentListItem';
 import makePage from '../../component/makePage';
+import THUMBNAIL_URL from '../../asset/thumbnail.jpg';
 import {
   Box,
   Button,
@@ -65,7 +66,7 @@ const ContentTutorialsSearch = () => {
           marginBottom: '20px',
         }}
       >
-        <Stack alignItems="center" direction="row" flexWrap="wrap" gap={1.5}>
+        <Stack direction="row" flexWrap="wrap" gap={1.5}>
           <FormControl sx={{ flex: 2, minWidth: '250px' }}>
             <OutlinedInput
               placeholder="Search tutorials..."
@@ -194,7 +195,7 @@ const ContentTutorialsSearch = () => {
           }}
         >
           <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
-            🔍 Filter Tutorials
+            Filter Tutorials
           </Typography>
           <Stack spacing={3}>
             <FormControl fullWidth>
@@ -267,8 +268,8 @@ const ContentTutorialsSearch = () => {
               >
                 Filter Options
               </Typography>
+              {/* TODO ALIGHEN CHECKBOX AND LABEL BETTER */}
               <FormControlLabel
-                sx={{ mr: 0 }}
                 control={
                   <Checkbox
                     checked={tempFilters.showPastWeeks}
@@ -281,6 +282,9 @@ const ContentTutorialsSearch = () => {
                   />
                 }
                 label="Show past weeks"
+                componentsProps={{
+                  typography: { sx: { lineHeight: 1, margin: 0 } },
+                }}
               />
             </Box>
             <Stack direction="row" justifyContent="flex-end" spacing={2} sx={{ mt: 2 }}>
@@ -390,11 +394,7 @@ const ContentTutorialsSearch = () => {
                       topicName={tutorial.topic().name}
                       live={''}
                       lecture={false}
-                      thumbnail={
-                        tutorial.thumbnail && tutorial.thumbnail.length > 0
-                          ? tutorial.thumbnail[0]
-                          : null
-                      }
+                      thumbnail={THUMBNAIL_URL}
                     />
                   ))}
                 </Box>
@@ -416,11 +416,7 @@ const ContentTutorialsSearch = () => {
                       topicName={tutorial.topic().name}
                       live={''}
                       lecture={false}
-                      thumbnail={
-                        tutorial.thumbnail && tutorial.thumbnail.length > 0
-                          ? tutorial.thumbnail[0]
-                          : null
-                      }
+                      thumbnail={THUMBNAIL_URL}
                     />
                   ))}
                 </Box>
