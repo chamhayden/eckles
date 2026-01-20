@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import ContentCards from '../../component/ContentCards';
 import makePage from '../../component/makePage';
@@ -10,9 +10,11 @@ import { apiCall } from '../../util/api';
 import LectureInfoPanel from './component/LectureInfoPanel';
 import LectureRating from './component/LectureRating';
 import LectureVideo from './component/LectureVideo';
+import CourseRoadmap from '../../component/CourseRoadMap/CourseRoadmap';
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import UndoIcon from '@mui/icons-material/Undo';
+import { terms } from '../../config';
 const buildRelatedLectures = (lecture, allLectures, term) => {
   const relatedLectures = [
     ...(lecture.lectures_prereq ? lecture.lectures_prereq() : []).map((l) => ({
@@ -35,6 +37,8 @@ const buildRelatedLectures = (lecture, allLectures, term) => {
         labelBackground: 'rgba(87, 242, 26, 0.4)',
       })),
   ];
+
+  lecture.lectures_prereq && console.log('lectures_prereq', lecture.lectures_prereq());
 
   return relatedLectures.map((lec) => ({
     title: lec.name,
@@ -68,6 +72,35 @@ const buildRelatedTutes = (lecture, term) => {
   }));
 };
 
+const buildPrerequisiteTree = (lecture, term) => {
+  if (!lecture || !lecture.lectures_prereq) {
+    return [];
+  }
+
+  const rootKey = lecture.key;
+  const coursesById = new Map();
+  const visitLecture = (lec) => {
+    if (!lec || !lec.key || coursesById.has(lec.key)) {
+      return;
+    }
+
+    const prereqs = lec.lectures_prereq ? lec.lectures_prereq() : [];
+    coursesById.set(lec.key, {
+      id: lec.key,
+      title: lec.name,
+      linkUrl: `./${lec.key}`,
+      duration: lec.duration_mins ?? lec.duration,
+      status: lec.key === rootKey ? 'in-progress' : 'completed',
+      prerequisites: prereqs.map((prereq) => prereq?.key).filter(Boolean),
+    });
+
+    prereqs.forEach(visitLecture);
+  };
+
+  visitLecture(lecture);
+  return [...coursesById.values()];
+};
+
 const RelatedContent = ({ relatedLectures, relatedTutes }) => (
   <>
     {relatedLectures.length > 0 && (
@@ -90,9 +123,40 @@ const RelatedContent = ({ relatedLectures, relatedTutes }) => (
   </>
 );
 
+const Prerequisites = ({ term, lecture, onNavigate }) => {
+  const prereqs = lecture.lectures_prereq ? lecture.lectures_prereq() : [];
+  const courses = React.useMemo(() => buildPrerequisiteTree(lecture, term), [lecture, term]);
+  if (prereqs.length === 0 || courses.length === 0) {
+    return null;
+  }
+
+  return (
+    <>
+      {/* Divider */}
+      <Box sx={{ pt: 2, mt: 8, borderTop: '1px solid', borderColor: 'divider' }} />
+      <Typography variant="h4">Prerequisite Lectures</Typography>
+      <Box sx={{ width: '100%', height: 420, mt: 2 }}>
+        <CourseRoadmap
+          courses={courses}
+          config={{
+            nodeWidth: 200,
+            horizontalSpacing: 70,
+            verticalSpacing: 160,
+            showLegend: false,
+            showControls: false,
+          }}
+          onCourseClick={(course) => {
+            if (course?.linkUrl) {
+              onNavigate?.(`${course.linkUrl}`);
+            }
+          }}
+        />
+      </Box>
+    </>
+  );
+};
 const ContentLecturesSingle = ({}) => {
   const { getters, setters } = useContext(Context);
-  const navigate = useNavigate();
   const [lecture, setLecture] = React.useState(null);
   const [relatedLectures, setRelatedLectures] = React.useState([]);
   const [relatedTutes, setRelatedTutes] = React.useState([]);
@@ -171,10 +235,21 @@ const ContentLecturesSingle = ({}) => {
           <LectureInfoPanel lecture={lecture} term={getters.term} />
         </Box>
       </Box>
+      <Prerequisites
+        term={getters.term}
+        lecture={lecture}
+        onNavigate={(url) => {
+          if (url) {
+            window.open(url, '_blank', 'noopener,noreferrer');
+          }
+        }}
+      />
       <RelatedContent relatedLectures={relatedLectures} relatedTutes={relatedTutes} />
     </>
   );
 };
+
+
 
 export default makePage(ContentLecturesSingle, {
   loginRequired: true,

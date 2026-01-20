@@ -162,12 +162,5 @@ export const getSecondaryNavList = (term) => {
       Icon: BadgeIcon,
       description: 'Staff',
     },
-    {
-      title: 'Demo Course Roadmap',
-      loginRequired: true,
-      route: '/course-roadmap-demo',
-      Icon: BadgeIcon,
-      description: 'Demo Course Roadmap',
-    },
   ];
 };

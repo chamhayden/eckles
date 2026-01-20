@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import CourseRoadmap from '../component/CourseRoadMap/CourseRoadmap';
+import CourseRoadmap from './CourseRoadmap';
 
-import makePage from '../component/makePage';
 // ============ demo data ============
 const sampleCourses = [
   { id: 'html', title: 'HTML Basics', prerequisites: [], status: 'completed', totalMinute: 15 },
@@ -168,7 +167,3 @@ function App() {
   );
 }
 
-export default makePage(App, {
-  loginRequired: false,
-  title: 'CourseDetailModal',
-});

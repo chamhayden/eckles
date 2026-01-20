@@ -12,7 +12,8 @@ import {
 import '@xyflow/react/dist/style.css';
 
 const CourseNode = ({ data, selected }) => {
-  const { title, status = 'available', onClick, totalMinute } = data;
+  const { title, status = 'available', onClick, totalMinute, duration } = data;
+  const displayDuration = totalMinute ?? duration;
 
   const statusConfig = {
     locked: {
@@ -30,8 +31,8 @@ const CourseNode = ({ data, selected }) => {
       opacity: 1,
     },
     'in-progress': {
-      bg: 'linear-gradient(145deg, #1da0cfff 0%, #1da0cfff 100%)',
-      border: '#167da2ff',
+      bg: 'linear-gradient(145deg, #4158D0 0%, #3a4cbb 100%)',
+      border: '#1735c9ff',
       cursor: 'pointer',
       opacity: 1,
     },
@@ -88,7 +89,7 @@ const CourseNode = ({ data, selected }) => {
         >
           {title}
         </div>
-        {totalMinute !== undefined && (
+        {displayDuration !== undefined && (
           <div
             style={{
               color: 'rgba(255,255,255,0.6)',
@@ -98,7 +99,7 @@ const CourseNode = ({ data, selected }) => {
               fontWeight: 500,
             }}
           >
-            {totalMinute} Minutes
+            {displayDuration} Minutes
           </div>
         )}
       </div>
@@ -144,7 +145,7 @@ const Legend = () => (
     </div>
     {[
       { label: 'completed', color: '#2ed573' },
-      { label: 'in-progress', color: '#1da0cfff' },
+      { label: 'in-progress', color: '#7b5cc9ff' },
       { label: 'available', color: '#4158D0' },
       { label: 'locked', color: '#3d3d60ff' },
     ].map(({ label, color }) => (
