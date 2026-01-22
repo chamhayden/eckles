@@ -3,7 +3,6 @@ import { Context, useContext } from '../../context';
 import TutLecContentCard from '../../component/TutLecContentCard';
 import TutLecContentListItem from '../../component/TutLecContentListItem';
 import makePage from '../../component/makePage';
-import THUMBNAIL_URL from '../../asset/thumbnail.jpg';
 import {
   Box,
   Button,
@@ -394,7 +393,7 @@ const ContentTutorialsSearch = () => {
                       topicName={tutorial.topic().name}
                       live={''}
                       lecture={false}
-                      thumbnail={THUMBNAIL_URL}
+                      thumbnail={tutorial.thumbnail}
                     />
                   ))}
                 </Box>
@@ -416,7 +415,7 @@ const ContentTutorialsSearch = () => {
                       topicName={tutorial.topic().name}
                       live={''}
                       lecture={false}
-                      thumbnail={THUMBNAIL_URL}
+                      thumbnail={tutorial.thumbnail}
                     />
                   ))}
                 </Box>

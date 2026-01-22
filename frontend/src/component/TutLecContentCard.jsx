@@ -100,7 +100,7 @@ export default function TutLecContentCard({
         >
           <Stack direction="row" alignItems="flex-start" justifyContent="space-between" gap={2}>
             <Avatar
-              src={thumbnail ? thumbnail : `https://picsum.photos/id/${hash}/200`}
+              src={thumbnail ? thumbnail.url : `https://picsum.photos/id/${hash}/200`}
               alt={name}
               sx={{
                 width: 100,
