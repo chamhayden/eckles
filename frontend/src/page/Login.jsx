@@ -125,26 +125,14 @@ const styles = {
   logo: {
     zIndex: 10,
     position: 'absolute',
-    right: '-36%',
+    right: '-10%',
     bottom: '-10%',
     width: '100%',
-    maxWidth: '250px',
+    maxWidth: '100px',
     marginBottom: '24px',
     transition: 'transform 0.3s ease',
     '&:hover': {
       transform: 'scale(1.05)',
-    },
-    [theme.breakpoints.down('md')]: {
-      maxWidth: '150px',
-      top: '-11%',
-      bottom: 'auto',
-      right: '-9%',
-    },
-    [theme.breakpoints.down('sm')]: {
-      maxWidth: '150px',
-      top: '-11%',
-      bottom: 'auto',
-      right: '-9%',
     }
   },
   cloud: {
@@ -156,21 +144,7 @@ const styles = {
     maxWidth: '120px',
     marginBottom: '24px',
     opacity: 0.8,
-    animation: '$cloudDrift 6s ease-in-out infinite',
-    [theme.breakpoints.down('md')]: {
-      maxWidth: '50px',
-      animation: '$cloudDrift3 6s ease-in-out infinite',
-      left: 'auto',
-      right: '-3%',
-      top: '-10%',
-    },
-    [theme.breakpoints.down('sm')]: {
-      maxWidth: '50px',
-      animation: '$cloudDrift3 6s ease-in-out infinite',
-      left: 'auto',
-      right: '-3%',
-      top: '-10%',
-    },
+    animation: '$cloudDrift 6s ease-in-out infinite'
   },
   cloud2: {
     zIndex: 0,
