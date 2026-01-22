@@ -125,7 +125,7 @@ const styles = {
   logo: {
     zIndex: 10,
     position: 'absolute',
-    right: '-10%',
+    right: '-20%',
     bottom: '-10%',
     width: '100%',
     maxWidth: '100px',
