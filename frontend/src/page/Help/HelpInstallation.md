@@ -1,84 +1,173 @@
+# Course Setup Guide
 Setup locally for COMP6080 is remarkably simple. You simply require the installation of a **web browser**, along with **any text editor**, and the **NodeJS interpreter**. Please complete Steps (1) before term, and Steps (2) before week 3.
 
----
-
-##### Step 1.1: Web Browser and Editor
+# Step 1: Web Browser and Editor
 
 If you don't already have these installed, we recommend you download:
 
-- [Google Chrome](https://www.google.com/intl/en_au/chrome/) (browser)
-- [VSCode](https://code.visualstudio.com/download) (or any alternative on older or slower machines)
+- Google Chrome (browser)
+- VSCode (or any alternative on older or slower machines)
 
----
+# Step 2: Install NVM and Node 24
 
-##### Step 2.1: Install Node (includes NPM) version v18.19.0 (though any version of Node 18.X is fine)
+We use NVM (Node Version Manager) to install and manage Node.js versions. NVM allows you to easily switch between different Node versions, which is helpful when working on multiple projects.
 
-NodeJS can be installed on **Windows**, **MacOS**, and **Linux** by downloading it via the [NodeJS website](https://nodejs.org/en/download/). NPM is automatically installed alongside NodeJS.
+> **Note for CSE vLab users:**  
+> You can skip the installation steps and jump directly to **vLab** at the end of Step 2.
 
-![NodeJS download page](help-nodejs-site.png)
+## Step 2.1:  Install NVM
 
-However, because you're a computer scientist, we'd recommend you install it via command line to get comfortable with the process. The results are virtually the same:
+### How to Install NVM on Windows
 
-###### **Windows** command-line install
+The official nvm tool primarily supports Linux and macOS. But there's a similar tool created by coreybutler to provide an nvm experience in Windows called [nvm-windows](https://github.com/coreybutler/nvm-windows).
 
-Whilst you can install NodeJS onto Windows natively, we recommend installing it via the Windows Subsystem for Linux. Simply open up a WSL terminal and run the following commands:
+`nvm-windows` provides a management utility for managing Node.js versions in Windows. Here's how to install it:
 
-```
-sudo apt update
-sudo apt install nodejs
-```
+#### 1. Click on "Download Now"
 
-If you haven't installed WSL or haven't heard of it before: WSL is a way to install a linux command prompt on windows, open that command prompt like a program, and interact with it the exact same way you would if you were on a linux machine. It's a very helpful tool for windows-based unix developers.
+In the [nvm-windows repository Readme](https://github.com/coreybutler/nvm-windows#readme), click on "Download Now!":
 
-[This guide by Microsoft](https://docs.microsoft.com/en-us/windows/wsl/install-win10) shows you how to install WSL, and we would recommend choosing Ubuntu 20.04 as the version of linux you install with. Once it's installed you can interact with it in a very similar way to what you would with a command line on vlab.
+![download](download.png)
 
-###### **MacOS** command-line install
+This will open a page showing different NVM releases.
 
-If you haven't already, install [homebrew](https://brew.sh). Then open a terminal and run:
 
-```
-brew install node
-```
 
-###### **Linux** command-line install
+#### 2. Install the .exe file of the latest release
 
-Open a terminal, and run:
+In the latest release, you'll find different assets. Click on the **nvm-setup.exe** asset which is the installation file for the tool:
 
-```
-sudo apt update
-sudo apt install nodejs
-```
+![exe](exe.png)
 
----
 
-##### Step 2.2: Install Yarn
 
-In the world of Javascript development, an alternative to NPM called **yarn** is sometimes used.
+#### 3. Complete the Installation Wizard
 
-To install **yarn** on Windows (WSL) or Linux, open a terminal and run:
+Open the file that you have downloaded, and complete the installation wizard.
 
-```
-sudo npm i -g yarn
+When done, you can confirm that nvm has been installed by running:
+
+```bash
+nvm --version
 ```
 
-To install **yarn** on MacOS, open a terminal and run:
+If nvm was installed correctly, this command will show you the nvm version installed.
 
+
+
+###  How to Install NVM on Linux and Mac
+
+Since Linux and Mac have some similarities (they are both UNIX-based OSes), you can install nvm on them in similar ways.
+
+#### 1. Run the nvm installer
+
+Open a terminal and run the following command to install NVM:
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+# or
+
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 ```
-brew install yarn
+
+#### 2: Reload Your Shell Configuration
+
+After installation, run one of the following commands (depending on your shell):
+
+**For Bash users:**
+
+```bash
+source ~/.bashrc
 ```
 
----
+**For Zsh users (macOS default):**
 
-##### Step 2.3: Test out the interpreter
+```bash
+source ~/.zshrc
+```
 
-You can run the NodeJS interpreter in repl mode. This is a good way to try out if you install NodeJS correctly. It's very similar to running **python3** in repl mode.
+Alternatively, you can simply close your terminal window and open a new one.
 
-Simply open a terminal and enter `node` into the terminal and press enter. After this, you should be able to enter any nodejs compatible statement and retrieve the output. Examples of things you could enter are:
+#### 3: Verify Installation
 
-- `console.log('hello world')` - prints hello world, returns nothing
-- `3 + 4` - returns 7
-- `const a = 5` - assigns 5 to a variable, returns nothing
+Run the following command to check if NVM was installed successfully:
 
-You can press CTRL+D to exit repl mode.
+```bash
+nvm --version
+```
 
-![Node REPL](help-repl.png)
+If you see a version number (e.g., `0.40.3`), the installation was successful!
+
+
+
+## Step 2.2:  Installing Node 24
+
+Once NVM is installed, you can easily install Node.js.
+
+#### 1. Install Node.js 24
+
+In your terminal (or Command Prompt/PowerShell), run:
+
+```bash
+nvm install 24
+```
+
+This will automatically download and install the latest Node.js 24.x version.
+
+#### 2. Set as Default Version
+
+After installation, set Node.js 24 as your active version:
+
+```bash
+nvm use 24
+```
+
+To make this version the permanent default (used every time you open a terminal):
+
+##### **Windows:** The Windows version automatically remembers the last version you used.
+
+##### **  macOS / Linux:**
+
+```bash
+nvm alias default 24
+```
+
+#### 3. Verify Node.js Installation
+
+To confirm everything is set up correctly, run:
+
+```bash
+node --version
+```
+
+You should see output like `v24.x.x`.
+
+## Step 2.3: Running Node in the Terminal
+
+You can run the Node.js interpreter in REPL (Read-Eval-Print Loop) mode. This is a good way to verify that Node.js is installed correctly and to experiment with JavaScript. It works similarly to running `python3` in REPL mode.
+
+Simply open a terminal and type `node` then press Enter. You should see a prompt that looks like `>`. You can now enter any JavaScript statement and see the output.
+
+Examples of things you could try:
+
+- `console.log('Hello COMP6080')` – prints **Hello COMP6080**, returns undefined
+- `3 + 4` – returns 7
+- `const a = 5` – assigns 5 to a variable, returns undefined
+- `a * 2` – returns 10
+
+Press **Ctrl+D** (or **Ctrl+C** twice) to exit REPL mode.
+
+![local-mac](local-mac.png)
+
+# vLab
+
+If you have a CSE account, you can set up Node 24 on vLab by simply running:
+
+```bash
+~cs6080/nodesetup
+```
+
+This will configure Node 24 for the current term. **No further installation required** — you can skip directly to using Node.
+
+![vlab](cselab.png)
