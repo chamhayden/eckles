@@ -249,7 +249,7 @@ const PokemonCatchController = forwardRef(function PokemonCatchController(_, ref
               src="https://www.gstatic.com/videogames/pokemon/pokeball.svg"
             />
 
-            <div style={styles.hint}>Gotcha!!! Hope you’re having an amzing day❤️ ~～</div>
+            <div style={styles.hint}>Gotcha!!! Hope you’re having an amazing day❤️ ~～</div>
           </div>
         </div>
       )}
