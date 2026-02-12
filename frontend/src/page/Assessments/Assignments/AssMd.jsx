@@ -630,28 +630,27 @@ Your assignment will be hand-marked by tutor(s) in the course according to the c
 
 #### 6.2. Responsiveness (10%)
  * Features implemented in a mobile responsive way that work on screens as small as 400px wide, 700px high
- * Responsive design will contribute up to one quarter of the marks of this section
+ * You will be marked based on your design considerations for layout, and different devices ie. mobile/tablet/desktop
 
 #### 6.3. UI/UX (10%)
  * Your application is usable and easy to navigate. No obvious usability issues or confusing layouts/flows.
- * Your application makes intelligent use of UI/UX principles and patterns discussed in the UI/UX lectures.
- * Describe any attempts you've made to improve the UI/UX in \`UIUX.md\`. This section will ONLY be marked on things described in that file.
-
+ * Your application makes intelligent use of standard UI/UX principles, WCAG 2.1 and patterns discussed in the UI/UX lectures.
+ * Describe any attempts you've made to improve the UI/UX in \`UIUX.md\`. This section will be marked referencing things described in that file.
+ 
 #### 6.4. Code Style (10%)
  * Your code is clean, well commented, with well-named variables, and well laid out as highlighted in the course style guide.
  * Code follows common ReactJS patterns that have been discussed in lectures and as highlighted in the course style guide.
 
-#### 6.5. Linted Code (5%)
- * Submitted code is completely \`eslint\` compliant based on provided eslint configuration file. There are no partial marks.
+#### 6.5. Linted Code & Typescript compliant (5%)
+ * Submitted code is completely \`eslint\` and \`tsc\` compliant based on provided eslint configuration file. There are no partial marks.
 
 #### 6.6. Testing (5%)
- * 60% of the marks(3/5) received from complying with requirements in the task in relation to **component testing**
- * 40% of the marks(2/5) received from complying with requirements in the task in relation to **ui testing**
- * Describe your approach to testing in \`TESTING.md\`. This section will ONLY be marked on things described in that file.
+ * 80% of the marks received from complying with requirements in the task in relation to **ui testing**
+ * You must test an alternative path, and describe your approach to testing in \`TESTING.md\`.
 
 #### 6.7. Accessibility (5%)
  * Your application follows standard accessibility lessons covered in lectures.
- * Describe any attempts you've made to improve the Accessibility in \`A11Y.md\`. This section will ONLY be marked on things described in that file.
+ * Describe any attempts you've made to improve the Accessibility in \`A11Y.md\`. This section will be marked referencing things described in that file.
 
 #### 6.8 Deployment (5%)
  * You need to follow the instructions given in \`deployment.md\` to deploy your web app onto Vercel.
