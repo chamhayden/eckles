@@ -38,7 +38,12 @@ const LectureVideo = ({ lecture }) => (
         <div
           style={{
             textAlign: 'center',
-            margin: '100px 20px',
+            width: '100%',
+            aspectRatio: '16 / 9',
+            margin: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             fontSize: '2em',
             color: '#fff',
           }}
