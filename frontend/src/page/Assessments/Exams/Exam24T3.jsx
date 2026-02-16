@@ -235,7 +235,7 @@ const CourseOutline24T1 = () => {
             A sample exam paper can be found{' '}
             <a
               target="_blank"
-              href="https://gitlab.cse.unsw.edu.au/undergraduate-courses/COMP6080/exam-sample-spec"
+              href="https://gitlab.cse.unsw.edu.au/coursework/COMP6080/exam-sample-spec"
             >
               here
             </a>

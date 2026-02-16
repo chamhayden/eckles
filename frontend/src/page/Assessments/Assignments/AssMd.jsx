@@ -309,7 +309,7 @@ This will start up a second HTTP server where if you navigate to \`http://localh
 
 You are prohibited from modifying the backend. No work needs to be done on the backend. It's provided to you simply to power your frontend.
 
-The backend server can be cloned by running \`git clone git@gitlab.cse.unsw.edu.au:undergraduate-courses/COMP6080/[term]/ass3-backend.git\` where [term] is the current term (e.g. 24T3). After you clone this repo, you must run \`npm install\` in the project once.
+The backend server can be cloned by running \`git clone git@gitlab.cse.unsw.edu.au:coursework/COMP6080/[term]/ass3-backend.git\` where [term] is the current term (e.g. 24T3). After you clone this repo, you must run \`npm install\` in the project once.
 
 To run the backend server, simply run \`npm start\` in the backend project. This will start the backend.
 
