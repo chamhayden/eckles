@@ -169,5 +169,6 @@ a:active {
 @supports (scrollbar-color: auto) {
   * {
     scrollbar-color: #9F9F9F transparent;
+    scrollbar-width: thin;
   }
 }
