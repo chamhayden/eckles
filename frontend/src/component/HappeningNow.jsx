@@ -1,17 +1,22 @@
 import * as React from 'react';
-import { Box, Typography, Button, Card, CardContent } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 
-function LiveSession({ title, sessions, getDetails }) {
+function LiveSession({ title, sessions, getDetails, isLast }) {
   if (sessions.length === 0) return null;
 
   return (
-    <>
+    <Box
+      sx={{
+        paddingBottom: isLast ? 0 : '16px',
+        marginBottom: isLast ? 0 : '16px',
+        borderBottom: isLast ? 'none' : '1px solid rgba(59, 130, 246, 0.2)',
+      }}
+    >
       <Typography
         variant="h6"
         fontWeight="bold"
         gutterBottom
         sx={{
-          color: 'white',
           display: 'flex',
           alignItems: 'center',
           gap: 1,
@@ -22,9 +27,14 @@ function LiveSession({ title, sessions, getDetails }) {
       {sessions.map((session, index) => {
         const { time, location, callUrl, className } = getDetails(session);
 
-        const content = (
-          <>
-            <Typography variant="body1" sx={{ color: 'white', lineHeight: 1.8 }}>
+        return (
+          <Box
+            key={index}
+            sx={{
+              marginBottom: index < sessions.length - 1 ? '12px' : 0,
+            }}
+          >
+            <Typography variant="body1" sx={{ color: '#374151', lineHeight: 1.8 }}>
               <strong>Time:</strong> {time} {location && `| `}
               {location && <strong>Location:</strong>} {location}
               {className && ` | `}
@@ -37,21 +47,18 @@ function LiveSession({ title, sessions, getDetails }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
-                  width: '100%',
-                  marginTop: '12px',
-                  backgroundColor: '#059669',
+                  marginTop: '10px',
+                  backgroundColor: '#3b82f6',
                   color: 'white',
                   fontWeight: 600,
                   borderRadius: '8px',
-                  padding: '10px',
+                  padding: '10px 20px',
                   textTransform: 'none',
-                  fontSize: '1rem',
-                  boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.3)',
+                  fontSize: '0.95rem',
+                  boxShadow: '0 2px 4px rgba(59, 130, 246, 0.3)',
                   '&:hover': {
-                    backgroundColor: '#047857',
-                    color: 'white',
-                    transform: 'translateY(-2px)',
-                    boxShadow: '0 6px 12px -2px rgb(0 0 0 / 0.3)',
+                    backgroundColor: '#2563eb',
+                    boxShadow: '0 4px 8px rgba(59, 130, 246, 0.4)',
                   },
                   transition: 'all 0.2s ease',
                 }}
@@ -59,42 +66,10 @@ function LiveSession({ title, sessions, getDetails }) {
                 {callUrl.includes('http') ? '🎥 Join Online Session' : callUrl}
               </Button>
             )}
-          </>
-        );
-
-        return sessions.length > 1 ? (
-          <Card
-            key={index}
-            sx={{
-              marginBottom: '15px',
-              background:
-                'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)',
-              backdropFilter: 'blur(10px)',
-              border: '2px solid rgba(255, 255, 255, 0.3)',
-              borderRadius: '12px',
-              boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.2)',
-            }}
-          >
-            <CardContent>{content}</CardContent>
-          </Card>
-        ) : (
-          <Box
-            key={index}
-            sx={{
-              marginBottom: '12px',
-              padding: '16px',
-              borderRadius: '12px',
-              background:
-                'linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)',
-              backdropFilter: 'blur(10px)',
-              border: '2px solid rgba(255, 255, 255, 0.3)',
-            }}
-          >
-            {content}
           </Box>
         );
       })}
-    </>
+    </Box>
   );
 }
 
@@ -104,21 +79,29 @@ export default function HappeningNow({ ongoingLectures, ongoingHelpSessions, ong
 
   if (!hasLiveSessions) return null;
 
+  const sections = [
+    { key: 'lectures', data: ongoingLectures },
+    { key: 'helpSessions', data: ongoingHelpSessions },
+    { key: 'tutorials', data: ongoingTutorials },
+  ];
+  const lastNonEmptyIndex = sections.map(s => s.data.length > 0).lastIndexOf(true);
+
   return (
     <Box
       sx={{
         width: '100%',
-        borderRadius: '16px',
-        padding: '20px',
+        borderRadius: '12px',
+        padding: '24px',
         margin: '16px 0',
-        background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-        boxShadow: '0 10px 25px -5px rgba(16, 185, 129, 0.4)',
-        border: '2px solid rgba(255, 255, 255, 0.2)',
+        backgroundColor: '#eff6ff',
+        border: '1px solid #bfdbfe',
+        boxShadow: '0 2px 8px rgba(59, 130, 246, 0.1)',
       }}
     >
       <LiveSession
         title="Lecture"
         sessions={ongoingLectures}
+        isLast={lastNonEmptyIndex === 0}
         getDetails={(lecture) => ({
           time: lecture.time,
           location: lecture.location,
@@ -128,6 +111,7 @@ export default function HappeningNow({ ongoingLectures, ongoingHelpSessions, ong
       <LiveSession
         title="Help Session"
         sessions={ongoingHelpSessions}
+        isLast={lastNonEmptyIndex === 1}
         getDetails={(session) => ({
           time: session.times,
           callUrl: session.call_url_h,
@@ -136,6 +120,7 @@ export default function HappeningNow({ ongoingLectures, ongoingHelpSessions, ong
       <LiveSession
         title="Tutorial"
         sessions={ongoingTutorials}
+        isLast={lastNonEmptyIndex === 2}
         getDetails={(tutorial) => {
           const match = tutorial.times.match(/\((.*?)\)$/);
           const timeWithoutClass = tutorial.times.replace(/\(.*?\)$/, '').trim();
