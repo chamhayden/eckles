@@ -49,16 +49,20 @@ function LiveSession({ title, sessions, getDetails, isLast }) {
                 sx={{
                   marginTop: '10px',
                   backgroundColor: '#3b82f6',
-                  color: 'white',
+                  color: '#fff',
                   fontWeight: 600,
                   borderRadius: '8px',
                   padding: '10px 20px',
                   textTransform: 'none',
                   fontSize: '0.95rem',
                   boxShadow: '0 2px 4px rgba(59, 130, 246, 0.3)',
+                  '&:visited': {
+                    color: '#fff',
+                  },
                   '&:hover': {
                     backgroundColor: '#2563eb',
                     boxShadow: '0 4px 8px rgba(59, 130, 246, 0.4)',
+                    color: '#fff',
                   },
                   transition: 'all 0.2s ease',
                 }}
