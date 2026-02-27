@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { Context, useContext } from '../../context';
 import TutLecContentCard from '../../component/TutLecContentCard';
 import TutLecContentListItem from '../../component/TutLecContentListItem';
@@ -30,7 +30,21 @@ import { useSearchFilters, filterLectures, MODAL_STYLES } from '../../util/conte
 const ContentLecturesSearch = () => {
   const { getters } = useContext(Context);
   const { content_lectures, weeks, topics, meta } = getters.content;
+  const term = getters.term;
   const currentWeek = getCurrentWeek(meta[0].value);
+  const getLectureStudyStatus = useCallback(
+    (lectureKey) => {
+      if (typeof window === 'undefined') {
+        return null;
+      }
+      try {
+        return window.localStorage.getItem(`lecture-study-status:${term}:${lectureKey}`);
+      } catch (error) {
+        return null;
+      }
+    },
+    [term]
+  );
 
   const {
     searchQuery,
@@ -486,6 +500,7 @@ const ContentLecturesSearch = () => {
                       topicName={lecture.topic().name}
                       live={lecture.status}
                       lecture={true}
+                      studyStatus={getLectureStudyStatus(lecture.key)}
                       thumbnail={
                         lecture.thumbnail && lecture.thumbnail.length > 0
                           ? lecture.thumbnail[0].url

@@ -31,6 +31,7 @@ export default function TutLecContentCard({
   live,
   lecture,
   thumbnail,
+  studyStatus,
 }) {
   const getRelevanceChip = (relevance) => {
     if (lecture) {
@@ -68,6 +69,8 @@ export default function TutLecContentCard({
   const cardLink = lecture
     ? `/NOW/content/lectures/${contentKey}`
     : `/NOW/content/tutorials/${contentKey}`;
+  const isCompleted = studyStatus !== 'incomplete';
+  const studyStatusLabel = isCompleted ? 'Completed' : 'Not Completed';
 
   return (
     <Link to={cardLink} style={{ textDecoration: 'none' }}>
@@ -161,6 +164,13 @@ export default function TutLecContentCard({
               <Chip label={topic} size="small" />
               <Chip label={fullWeek} size="small" />
               <Chip color={relevanceChip.color} label={relevanceChip.label} size="small" />
+              {lecture && (
+                <Chip
+                  color={isCompleted ? 'success' : 'default'}
+                  label={studyStatusLabel}
+                  size="small"
+                />
+              )}
               {isLive && <Chip color="secondary" label={'Live'} size="small" />}
             </Stack>
           </Stack>
