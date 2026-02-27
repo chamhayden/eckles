@@ -8,6 +8,45 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 
 const LectureInfoPanel = ({ lecture, term }) => {
+  const storageKey = `lecture-study-status:${term}:${lecture.key}`;
+  const [isCompleted, setIsCompleted] = React.useState(true);
+  const [hasLoadedStatus, setHasLoadedStatus] = React.useState(false);
+
+  React.useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    try {
+      const saved = window.localStorage.getItem(storageKey);
+      if (saved === 'completed') {
+        setIsCompleted(true);
+      }
+      if (saved === 'incomplete') {
+        setIsCompleted(false);
+      }
+    } catch (error) {
+      setIsCompleted(true);
+    }
+    setHasLoadedStatus(true);
+  }, [storageKey]);
+
+  React.useEffect(() => {
+    if (!hasLoadedStatus) {
+      return;
+    }
+    if (typeof window === 'undefined') {
+      return;
+    }
+    try {
+      window.localStorage.setItem(storageKey, isCompleted ? 'completed' : 'incomplete');
+    } catch (error) {
+      // Ignore storage failures (e.g., private mode or quota exceeded).
+    }
+  }, [storageKey, isCompleted, hasLoadedStatus]);
+
+  const handleToggleStatus = () => {
+    setIsCompleted((prev) => !prev);
+  };
   const authorNames = lecture
     .staff()
     .map((s) => s.name)
@@ -52,6 +91,29 @@ const LectureInfoPanel = ({ lecture, term }) => {
         </Link>
         {' • '}
         {authorNames}
+      </Typography>
+
+      <Typography variant="body1" color="text" sx={{ mt: 2, lineHeight: 1.6, maxWidth: '80ch' }}>
+        <Typography component="span" fontWeight={700}>
+          StudyStatus:{' '}
+        </Typography>
+        <Button
+          onClick={handleToggleStatus}
+          variant="text"
+          size="small"
+          aria-pressed={isCompleted}
+          sx={{
+            p: 0,
+            minWidth: 0,
+            minHeight: 'auto',
+            lineHeight: 'inherit',
+            fontSize: 'inherit',
+            textTransform: 'none',
+            verticalAlign: 'baseline',
+          }}
+        >
+          {isCompleted ? 'Completed' : 'Not Completed'}
+        </Button>
       </Typography>
 
       <Typography variant="body1" color="text" sx={{ mt: 2, lineHeight: 1.6, maxWidth: '80ch' }}>
