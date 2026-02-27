@@ -147,21 +147,28 @@ a:active {
 
 /* Custom scrollbar styling */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
 }
 
+::-webkit-scrollbar-corner, 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
+  background: #9F9F9F;
   border-radius: 10px;
   transition: background 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
+  background: #6F6F6F;
+}
+
+@supports (scrollbar-color: auto) {
+  * {
+    scrollbar-color: #9F9F9F transparent;
+    scrollbar-width: thin;
+  }
 }
