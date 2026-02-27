@@ -69,7 +69,7 @@ export default function TutLecContentCard({
   const cardLink = lecture
     ? `/NOW/content/lectures/${contentKey}`
     : `/NOW/content/tutorials/${contentKey}`;
-  const isCompleted = studyStatus !== 'incomplete';
+  const isCompleted = studyStatus === 'completed';
   const studyStatusLabel = isCompleted ? 'Completed' : 'Not Completed';
 
   return (

@@ -9,7 +9,7 @@ import ContactPageIcon from '@mui/icons-material/ContactPage';
 
 const LectureInfoPanel = ({ lecture, term }) => {
   const storageKey = `lecture-study-status:${term}:${lecture.key}`;
-  const [isCompleted, setIsCompleted] = React.useState(true);
+  const [isCompleted, setIsCompleted] = React.useState(false);
   const [hasLoadedStatus, setHasLoadedStatus] = React.useState(false);
 
   React.useEffect(() => {
@@ -93,28 +93,7 @@ const LectureInfoPanel = ({ lecture, term }) => {
         {authorNames}
       </Typography>
 
-      <Typography variant="body1" color="text" sx={{ mt: 2, lineHeight: 1.6, maxWidth: '80ch' }}>
-        <Typography component="span" fontWeight={700}>
-          StudyStatus:{' '}
-        </Typography>
-        <Button
-          onClick={handleToggleStatus}
-          variant="text"
-          size="small"
-          aria-pressed={isCompleted}
-          sx={{
-            p: 0,
-            minWidth: 0,
-            minHeight: 'auto',
-            lineHeight: 'inherit',
-            fontSize: 'inherit',
-            textTransform: 'none',
-            verticalAlign: 'baseline',
-          }}
-        >
-          {isCompleted ? 'Completed' : 'Not Completed'}
-        </Button>
-      </Typography>
+   
 
       <Typography variant="body1" color="text" sx={{ mt: 2, lineHeight: 1.6, maxWidth: '80ch' }}>
         <Typography component="span" fontWeight={700}>
@@ -136,6 +115,7 @@ const LectureInfoPanel = ({ lecture, term }) => {
         </Typography>
       )}
 
+
       {/* Pills */}
       <Box sx={{ display: 'flex', gap: 1.25, mt: 1.5, flexWrap: 'wrap' }}>
         <Chip label={TimeStr} size="small" variant="outlined" color="secondary" />
@@ -146,6 +126,30 @@ const LectureInfoPanel = ({ lecture, term }) => {
           color={hasSlides ? 'error' : 'default'}
         />
       </Box>
+
+
+         <Typography variant="body1" color="text" sx={{ mt: 2, lineHeight: 1.6, maxWidth: '80ch' }}>
+        <Typography component="span" fontWeight={700}>
+          Study Status:{' '}
+        </Typography>
+        <Button
+          onClick={handleToggleStatus}
+          variant="contained"
+          size="small"
+          aria-pressed={isCompleted}
+          sx={{
+            padding: '1px 7px',
+            borderRadius: '2px',
+            textTransform: 'none',
+            backgroundColor: isCompleted ? 'success.main' : 'error.main',
+            '&:hover': {
+              backgroundColor: isCompleted ? 'success.dark' : 'error.dark',
+            },
+          }}
+        >
+          {isCompleted ? ' ✓ Completed' : ' Mark as Completed'}
+        </Button>
+      </Typography>
 
       {/* Divider */}
       <Box sx={{ my: 2, borderTop: '1px solid', borderColor: 'divider' }} />
