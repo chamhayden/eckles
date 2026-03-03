@@ -189,6 +189,20 @@ export const getTutorialRelevanceOptions = (selectedRelevance) => {
   return RELEVANCE_MAPPINGS.tutorials[selectedRelevance] || RELEVANCE_MAPPINGS.tutorials.workHard;
 };
 
+const resolveJoinValue = (value) => (typeof value === 'function' ? value() : value);
+
+const getTopicName = (item) => {
+  if (!item) return null;
+  const topicValue = resolveJoinValue(item.topic);
+  if (!topicValue) return null;
+  if (Array.isArray(topicValue)) {
+    const firstTopic = topicValue[0];
+    if (!firstTopic) return null;
+    return typeof firstTopic === 'string' ? firstTopic : firstTopic?.name ?? null;
+  }
+  return typeof topicValue === 'string' ? topicValue : topicValue?.name ?? null;
+};
+
 // Generic filtering function for lectures
 export const filterLectures = (lectures, filters, searchQuery, selectedWeek, currentWeek) => {
   const relevanceOptions = getLectureRelevanceOptions(
@@ -211,8 +225,8 @@ export const filterLectures = (lectures, filters, searchQuery, selectedWeek, cur
     })();
 
     // Topic filtering
-    const topicMatch =
-      filters.selectedTopic === 'All' || lecture.topic().name === filters.selectedTopic;
+    const topicName = getTopicName(lecture);
+    const topicMatch = filters.selectedTopic === 'All' || topicName === filters.selectedTopic;
 
     // Relevance filtering
     const relevanceMatch = relevanceOptions.includes(lecture.relevance);
@@ -243,8 +257,8 @@ export const filterTutorials = (tutorials, filters, searchQuery, selectedWeek, c
     })();
 
     // Topic filtering
-    const topicMatch =
-      filters.selectedTopic === 'All' || tutorial.topic().name === filters.selectedTopic;
+    const topicName = getTopicName(tutorial);
+    const topicMatch = filters.selectedTopic === 'All' || topicName === filters.selectedTopic;
 
     // Relevance filtering
     const relevanceMatch = relevanceOptions.includes(tutorial.importance);
