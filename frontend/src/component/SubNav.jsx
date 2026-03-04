@@ -28,7 +28,7 @@ const SubNav = ({ menu, baseUrl, sidebarOpen }) => {
           minWidth: '400px',
           position: 'fixed',
           top: 60,
-          zIndex: 0,
+          zIndex: 10,
           left: getters.sidebarOpen ? '230px' : 0,
           right: 0,
           borderRadius: 0,
