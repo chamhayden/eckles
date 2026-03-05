@@ -155,7 +155,9 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
             </Typography>
           </Box>
 
-          <List>
+          <List sx={{
+            padding: '0px 8px 0px 8px'
+          }}>
             {primaryNav.map(({ external, title, route, Icon, children, loginRequired }, key) => {
               if (!getters.loggedIn && loginRequired) {
                 return <span key={key}></span>;
@@ -170,7 +172,7 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
                     onClick={clickFn}
                     selected={boldIfPage(route)}
                     sx={{
-                      margin: '2px 8px',
+                      margin: '2px 0px',
                       padding: '2px 26px 2px 16px',
                       borderRadius: '8px',
                       transition: 'all 0.2s ease',
@@ -308,7 +310,9 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
               }}
             />
           )}
-          <List>
+          <List sx={{
+            padding: '0px 8px 0px 8px'
+          }}>
             {getSecondaryNavList(getters.term).map(
               ({ external, title, Icon, route, loginRequired }, key) => {
                 if (!getters.loggedIn && loginRequired) {
@@ -321,7 +325,7 @@ export default function ClippedDrawer({ children, drawerWidth, sidebarOpen, setS
                     onClick={() => redirect(getUrl(route, external))}
                     selected={boldIfPage(route)}
                     sx={{
-                      margin: '2px 8px',
+                      margin: '2px 0px',
                       padding: '2px 26px 2px 26px',
                       borderRadius: '8px',
                       transition: 'all 0.2s ease',
