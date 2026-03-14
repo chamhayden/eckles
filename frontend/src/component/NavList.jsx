@@ -16,8 +16,8 @@ import StyleIcon from '@mui/icons-material/Style';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import PaletteIcon from '@mui/icons-material/Palette';
-import BadgeIcon from  '@mui/icons-material/Badge';
-import GradeIcon from  '@mui/icons-material/Grade';
+import BadgeIcon from '@mui/icons-material/Badge';
+import GradeIcon from '@mui/icons-material/Grade';
 
 export const getPrimaryNavList = (term) => {
   return [
@@ -30,7 +30,7 @@ export const getPrimaryNavList = (term) => {
     },
     {
       title: 'Forum',
-      route: 'https://discourse02.cse.unsw.edu.au/25T3/COMP6080',
+      route: 'https://discourse02.cse.unsw.edu.au/26T1/COMP6080',
       external: true,
       loginRequired: true,
       Icon: ForumIcon,
@@ -109,21 +109,21 @@ export const getPrimaryNavList = (term) => {
           Icon: PaletteIcon,
           description: 'View our style guide for different languages in the course',
         },
-      ]
+      ],
     },
   ];
 };
 
 export const getSecondaryNavList = (term) => {
   return [
-    {
+    /*{
       title: 'Feedback',
       loginRequired: true,
       route: 'https://docs.google.com/forms/d/e/1FAIpQLScTvTvH1Hm64hLefcMoZrhRzuyxcnZUw6ekOjHTF23cD8eweg/viewform',
       external: true,
       Icon: HearingIcon,
       description: 'Provide feedback to course staff if you have any comments to share',
-    },
+    },*/
     {
       title: 'Content Request',
       loginRequired: true,
@@ -132,14 +132,14 @@ export const getSecondaryNavList = (term) => {
       Icon: HearingIcon,
       description: 'Make content requests',
     },
-    
+
     {
       title: 'Source Code',
       loginRequired: true,
       route: 'https://github.com/chamhayden/eckles',
       external: true,
       Icon: CodeIcon,
-      description: 'View the source code for this platform you\'re using',
+      description: "View the source code for this platform you're using",
     },
     {
       title: 'Grades',
@@ -163,4 +163,4 @@ export const getSecondaryNavList = (term) => {
       description: 'Staff',
     },
   ];
-}
+};

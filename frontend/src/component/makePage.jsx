@@ -24,10 +24,9 @@ const makePage = (Component, options) => {
     React.useEffect(() => {
       if (cookies.eckles_loggedin && getters.term !== '') {
         setters.setLoggedIn(cookies.eckles_loggedin);
-        apiCall('istutor', { term: getters.term }, 'POST')
-          .then(result => {
-            setters.setIsTutor(result.value)
-          });
+        apiCall('istutor', { term: getters.term }, 'POST').then((result) => {
+          setters.setIsTutor(result.value);
+        });
       }
     }, [cookies, getters.term]);
 
@@ -35,10 +34,10 @@ const makePage = (Component, options) => {
       if (options.loginRequired && !cookies.eckles_loggedin) {
         window.location.href = `${config.BASE_NAME}login`;
       }
-      
+
       if (getters.term && getters.validTerms.includes(getters.term)) {
         loadContent(getters.term, getters.loggedIn)
-          .then(content => {
+          .then((content) => {
             setters.setContent(content);
             setters.setLoaded(true);
           })
@@ -55,6 +54,6 @@ const makePage = (Component, options) => {
       </>
     );
   };
-}
+};
 
 export default makePage;

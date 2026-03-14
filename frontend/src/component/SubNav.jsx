@@ -17,27 +17,61 @@ const SubNav = ({ menu, baseUrl, sidebarOpen }) => {
   const { getters } = useContext(Context);
 
   React.useEffect(() => {
-    setValue(menu.map(m => `/${getters.term}${baseUrl}/${m.subRoute}`).indexOf(pathname))
+    setValue(menu.map((m) => `/${getters.term}${baseUrl}/${m.subRoute}`).indexOf(pathname));
   }, [pathname, getters.term]);
 
   return (
     <Box sx={{ pb: 7 }} ref={ref}>
       <CssBaseline />
-      <Paper sx={{ minWidth: '400px', position: 'fixed', top: 61, zIndex: 0, left: getters.sidebarOpen ? '230px' : 0, right: 0 }} elevation={3}>
+      <Paper
+        sx={{
+          minWidth: '400px',
+          position: 'fixed',
+          top: 60,
+          zIndex: 10,
+          left: getters.sidebarOpen ? '230px' : 0,
+          right: 0,
+          borderRadius: 0,
+          borderBottom: '1px solid',
+          borderColor: 'divider',
+          backdropFilter: 'blur(10px)',
+        }}
+        elevation={0}
+      >
         <BottomNavigation
           showLabels
           value={value}
           onChange={(event, newValue) => {
             setValue(newValue);
           }}
+          sx={{
+            backgroundColor: 'transparent',
+            '& .MuiBottomNavigationAction-root': {
+              transition: 'all 0.3s ease',
+              borderRadius: '8px',
+              margin: '4px',
+              '&:hover': {
+                backgroundColor: 'rgba(37, 99, 235, 0.08)',
+              },
+              '&.Mui-selected': {
+                color: 'primary.main',
+                fontWeight: 600,
+              },
+            },
+          }}
         >
           {menu.map(({ title, icon, subRoute }, key) => (
-            <BottomNavigationAction key={key} label={title} icon={icon} onClick={() => navigate(`/${getters.term}${baseUrl}/${subRoute}`)} />
+            <BottomNavigationAction
+              key={key}
+              label={title}
+              icon={icon}
+              onClick={() => navigate(`/${getters.term}${baseUrl}/${subRoute}`)}
+            />
           ))}
         </BottomNavigation>
       </Paper>
     </Box>
   );
-}
+};
 
 export default SubNav;

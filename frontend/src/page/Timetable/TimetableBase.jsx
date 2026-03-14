@@ -11,7 +11,7 @@ import { Outlet } from 'react-router-dom';
 import SubNavWrapper from '../../component/SubNavWrapper';
 import makePage from '../../component/makePage';
 
-const Timetable = ({ }) => {
+const Timetable = ({}) => {
   const menu = [
     {
       title: 'Lectures',

@@ -2,7 +2,7 @@ const Airtable = require('airtable');
 
 const config = require('./config');
 
-
+// ??? from frontend???
 const { joinSchema } = require('../../frontend/src/config');
 
 const tables = Object.keys(joinSchema);
@@ -34,7 +34,7 @@ const generateContent = async (term) => {
   Object.keys(joinSchema).forEach(key => {
     if (joinSchema[key].public) {
       objPartial[key] = JSON.parse(JSON.stringify(obj[key])); // I hate this method
-      for (const recordkey of Object.keys(objPartial[key])) {
+      for (const recordkey of Object.keys(objPartial[key])) { // ughhhhhhh
         for (const cellkey of Object.keys(objPartial[key][recordkey])) {
           if (cellkey.endsWith('_h')) {
             objPartial[key][recordkey][cellkey] = '';

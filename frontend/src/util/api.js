@@ -9,12 +9,11 @@ export const apiCall = (path, data, type, callback) => {
         'Content-Type': 'application/json',
       },
       body: type !== 'GET' ? JSON.stringify(data) : undefined,
-    })
-    .then(response => {
+    }).then((response) => {
       if (response.status === 200) {
         return response.json().then(resolve);
       } else if (response.status === 400) {
-        return response.json().then(obj => {
+        return response.json().then((obj) => {
           if (callback) {
             callback(obj.err);
           }
@@ -25,4 +24,4 @@ export const apiCall = (path, data, type, callback) => {
       }
     });
   });
-}
+};

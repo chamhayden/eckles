@@ -46,39 +46,44 @@ const getContent = shortTermHold('content', async (term) => {
 });
 
 const getForum = shortTermHold('forum', async (term) => {
-  const edCourseNumber = config.TERMS[term].ED_COURSE_NUMBER;
-  const discourseAPI = new Discourse("https://discourse02.cse.unsw.edu.au/25T3/COMP6080", {
-    "Api-Key": config.TERMS[term].DISCOURSE_API_KEY,
-    "Api-Username": config.TERMS[term].DISCOURSE_API_USERNAME,
-  });
-
-  const category = await getAnnouncementCategory(discourseAPI);
-  if (category === undefined) {
-    throw new SettingsError('Announcement category not found in Discourse');
-  }
-  const categoryTopics = await discourseAPI.listCategoryTopics({ id: category.id, slug: 'announcements' });
-
-  const promises = [];
-
-  const output = [];
-
-  for (const topic of categoryTopics.topic_list.topics) {
-    const p = discourseAPI.getTopic({ id: topic.id.toString() }).then((x) => {
-      output.push(x);
+  let notices = [];
+  try {
+    const edCourseNumber = config.TERMS[term].ED_COURSE_NUMBER;
+    const discourseAPI = new Discourse(`https://discourse02.cse.unsw.edu.au/${term}/COMP6080`, {
+      "Api-Key": config.TERMS[term].DISCOURSE_API_KEY,
+      "Api-Username": config.TERMS[term].DISCOURSE_API_USERNAME,
     });
-    promises.push(p);
-  }
-
-  await Promise.all(promises);
-
-  if (output.length > 0) {
-    notices = output.filter(t => (t.visible && t['post_stream']['posts'].length > 0)).map(t => ({
-      url: `https://discourse02.cse.unsw.edu.au/${term}/COMP6080/t/${t.id}`,
-      title: t.title,
-      document: t['post_stream']['posts'][0].cooked,
-      created_at: t.created_at,
-    }));
-    notices.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  
+    const category = await getAnnouncementCategory(discourseAPI);
+    if (category === undefined) {
+      throw new SettingsError('Announcement category not found in Discourse');
+    }
+    const categoryTopics = await discourseAPI.listCategoryTopics({ id: category.id, slug: 'announcements' });
+  
+    const promises = [];
+  
+    const output = [];
+  
+    for (const topic of categoryTopics.topic_list.topics) {
+      const p = discourseAPI.getTopic({ id: topic.id.toString() }).then((x) => {
+        output.push(x);
+      });
+      promises.push(p);
+    }
+  
+    await Promise.all(promises);
+  
+    if (output.length > 0) {
+      notices = output.filter(t => (t.visible && t['post_stream']['posts'].length > 0)).map(t => ({
+        url: `https://discourse02.cse.unsw.edu.au/${term}/COMP6080/t/${t.id}`,
+        title: t.title,
+        document: t['post_stream']['posts'][0].cooked,
+        created_at: t.created_at,
+      }));
+      notices.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    }
+  } catch (err) {
+    
   }
   return notices;
 });
@@ -92,7 +97,7 @@ const getAnnouncementCategory = async (discourseAPI) => {
 }
 
 const getGroups = shortTermHold('groups', async (term) => {
-  const { stdout } = shell.exec(`rm -rf /tmp/gl && git clone git@nw-syd-gitlab.cseunsw.tech:COMP6080/${term}/STAFF/administration.git /tmp/gl && cd /tmp/gl && cat groups.csv`)
+  const { stdout } = shell.exec(`rm -rf /tmp/gl && git clone git@gitlab.cse.unsw.edu.au:coursework/COMP6080/${term}/STAFF/administration.git /tmp/gl && cd /tmp/gl && cat groups.csv`)
   const groupLink = {};
   stdout.split('\n').forEach(line => {
     const innerLine = line.split(',');
@@ -307,12 +312,12 @@ app.get('/gitlabredir/:term/:repo/:path?', async (req, res) => {
     if (repo === 'ass2') newRepo = config.TERMS[term].ASS_MAP[1];
     if (repo === 'ass3') newRepo = config.TERMS[term].ASS_MAP[2];
     if (repo === 'ass4') newRepo = config.TERMS[term].ASS_MAP[3];
-    repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/students/z${zid}/${newRepo}`
+    repoPath = `https://gitlab.cse.unsw.edu.au/coursework/COMP6080/${term}/students/z${zid}/${newRepo}`
     if (isTutor(zid, term)) {
-      repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/STAFF/repos/${newRepo}`
+      repoPath = `https://gitlab.cse.unsw.edu.au/coursework/COMP6080/${term}/STAFF/repos/${newRepo}`
     } else if (['ass4'].includes(repo)) {
       const group = (await getGroups(term))[zid];
-      repoPath = `https://nw-syd-gitlab.cseunsw.tech/COMP6080/${term}/groups/${group}/${newRepo}`
+      repoPath = `https://gitlab.cse.unsw.edu.au/coursework/COMP6080/${term}/groups/${group}/${newRepo}`
     }
     if (path) {
       repoPath += `/-/tree/master/${path}`
@@ -387,39 +392,128 @@ app.get('/api/gradesearch', (req, res) => {
     return [field, value, maximum];
   }
 
-  const avoid = [
-    'ClassKey',
-    'StudentID',
-    'Name',
-    'Program',
-    'Plans',
-    'tut',
-    'Login',
-    'SpecialFlags',
-    'Comment',
-    'ASS1',
-    'ASS2',
-    'ASS3',
-    'ASS4',
-    'EXAM',
-    'ass1_remaining_space',
-    'ass2_remaining_space',
-    'ass3_remaining_space',
-    'ass4_remaining_space',
-    'ass1_bonus_adjust',
-    'ass2_bonus_adjust',
-    'ass3_bonus_adjust',
-    'ass4_bonus_adjust',
-    'exam_raw',
-    'test1',
-    'test2',
+  const includeMain = [
+    'ass1',
+    'ass2',
+    'ass3',
+    'ass4',
+    'exam',
+    'final',
+    'PASSED_HURDLE',
+    'PASSED_COURSE',
   ];
+  const includeAss1 = [
+    'ass1_q1',
+    'ass1_q2',
+    'ass1_q3',
+    'ass1_other_penalty',
+    'ass1_git_penalty',
+    'ass1_git_score',
+    'ass1_before_penalty',
+    'ass1_git_score_comments',
+    'ass1_tutor_who_marked',
+    'ass1_tutor_who_marked_email',
+    'ass1_q1_comments',
+    'ass1_q2_comments',
+    'ass1_q3_comments',
+  ];
+  const includeAss2 = [
+    'ass2_compliance',
+    'ass2_code_quality_comments',
+    'ass2_code_quality',
+    'ass2_git_score',
+    'ass2_git_penalty',
+    'ass2_other_penalty',
+    'ass2_before_penalty',
+    'ass2_git_score_comments',
+    'ass2_tutor_who_marked',
+    'ass2_tutor_who_marked_email',
+  ];
+  const includeAss3 = [
+    'ass3_git_score',
+    'ass3_git_penalty',
+    'ass3_other_penalty',
+    'ass3_compliance_m1',
+    'ass3_compliance_m2',
+    'ass3_compliance_m3',
+    'ass3_compliance_m4',
+    'ass3_compliance_m5',
+    'ass3_compliance_m6',
+    'ass3_compliance_m7',
+    'ass3_compliance_m1_comments',
+    'ass3_compliance_m2_comments',
+    'ass3_compliance_m2_raw_comments',
+    'ass3_compliance_m3_comments',
+    'ass3_compliance_m4_comments',
+    'ass3_compliance_m5_comments',
+    'ass3_compliance_m6_comments',
+    'ass3_compliance_m6_raw_comments',
+    'ass3_compliance_m7_comments',
+    'ass3_bonus_comments',
+    'ass3_bonus',
+    'ass3_mobile_responsive',
+    'ass3_code_style_comments',
+    'ass3_code_style',
+    'ass3_usability_accessibility',
+    'ass3_comments_milestones',
+    'ass3_mobile_responsive_comments',
+    'ass3_usability_accessibility_comments',
+    'ass3_comments_codequal',
+    'ass3_tutor_who_marked',
+    'ass3_other_penalty_comments',
+    'ass3_tutor_who_marked_email',
+    'ass3_before_penalty',
+    'ass3_git_score_comments',
+  ];
+  const includeAss4 = [
+    'ass4_before_penalty',
+    'ass4_git_score',
+    'ass4_git_penalty',
+    'ass4_other_penalty_deduction',
+    'ass4_compliance_m1',
+    'ass4_compliance_m2',
+    'ass4_compliance_m3',
+    'ass4_compliance_m4',
+    'ass4_compliance_m5',
+    'ass4_compliance_m6',
+    'ass4_compliance_m1_comments',
+    'ass4_compliance_m2_comments',
+    'ass4_compliance_m3_comments',
+    'ass4_compliance_m4_comments',
+    'ass4_compliance_m5_comments',
+    'ass4_compliance_m6_comments',
+    'ass4_mobile_responsive',
+    'ass4_mobile_responsive_comments',
+    'ass4_deployment',
+    'ass4_linting_comments',
+    'ass4_linting',
+    'ass4_testing',
+    'ass4_bonus',
+    'ass4_bonus_comments',
+    'ass4_code_style',
+    'ass4_code_style_comments',
+    'ass4_usability_accessibility',
+    'ass4_deployment_comments',
+    'ass4_usability_accessibility_comments',
+    'ass4_testing_comments',
+    'ass4_comments_bonus',
+    'ass4_tutor_who_marked',
+    'ass4_tutor_who_marked_email',
+    'ass4_git_score_comments',
+    'ass4_other_penalty_comments',
+  ];
+
   let eachLine = shellresult.trim().split('\n')
   eachLine.sort();
   const results = eachLine.map(splitOnFirstSpace);
-  const filteredResults = results.filter(r => !avoid.includes(r[0]));
 
-  res.json(filteredResults)
+  res.json({
+    main: results.filter(r => includeMain.includes(r[0])),
+    ass1: results.filter(r => includeAss1.includes(r[0])),
+    ass2: results.filter(r => includeAss2.includes(r[0])),
+    ass3: results.filter(r => includeAss3.includes(r[0])),
+    ass4: results.filter(r => includeAss4.includes(r[0])),
+  })
 
 });
 
@@ -431,8 +525,8 @@ app.get('/api/:term/rating/:lectureslug', needValidZid(async (_, zid, req) => {
   const { term, lectureslug } = req.params;
   const data = await getRating(term, zid, lectureslug);
   return {
-    rating: data.rating,
-    comment: data.comment,
+    rating: data ? data.rating : null,
+    comment: data ? data.comment : null,
   };
 }));
 
