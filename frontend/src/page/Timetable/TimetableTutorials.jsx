@@ -60,7 +60,14 @@ const TimetableTutorials = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {getters.content.schedule_tutorials.map((row, rowKey) => (
+            {[...getters.content.schedule_tutorials]
+              .sort((a, b) => {
+                const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                const dayDiff = dayOrder.indexOf(a.day) - dayOrder.indexOf(b.day);
+                if (dayDiff !== 0) return dayDiff;
+                return a.times.localeCompare(b.times);
+              })
+              .map((row, rowKey) => (
               <TableRow
                 key={rowKey}
                 sx={{
