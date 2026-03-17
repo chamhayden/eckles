@@ -1,4 +1,6 @@
 const Airtable = require('airtable');
+const fs = require('fs');
+const path = require('path');
 
 const config = require('./config');
 
@@ -6,6 +8,45 @@ const config = require('./config');
 const { joinSchema } = require('../../frontend/src/config');
 
 const tables = Object.keys(joinSchema);
+
+const RATINGS_FILE = path.join(__dirname, '../data/lecture_ratings.json');
+const RATINGS_BACKUP_DIR = path.join(__dirname, '../data/ratings_backups');
+
+// Ensure data directories exist
+if (!fs.existsSync(path.join(__dirname, '../data'))) {
+  fs.mkdirSync(path.join(__dirname, '../data'), { recursive: true });
+}
+if (!fs.existsSync(RATINGS_BACKUP_DIR)) {
+  fs.mkdirSync(RATINGS_BACKUP_DIR, { recursive: true });
+}
+
+// Initialize ratings file if it doesn't exist
+if (!fs.existsSync(RATINGS_FILE)) {
+  fs.writeFileSync(RATINGS_FILE, JSON.stringify({}), 'utf8');
+}
+
+// Load ratings into memory
+let ratingsCache = JSON.parse(fs.readFileSync(RATINGS_FILE, 'utf8'));
+
+// Helper to persist ratings to disk
+const saveRatings = () => {
+  fs.writeFileSync(RATINGS_FILE, JSON.stringify(ratingsCache, null, 2), 'utf8');
+};
+
+// Backup ratings daily
+const backupRatings = () => {
+  const timestamp = new Date().toISOString().split('T')[0];
+  const backupFile = path.join(RATINGS_BACKUP_DIR, `ratings_${timestamp}.json`);
+  if (!fs.existsSync(backupFile)) {
+    fs.copyFileSync(RATINGS_FILE, backupFile);
+    console.log(`Ratings backed up to ${backupFile}`);
+  }
+};
+
+// Run backup daily (every 24 hours)
+setInterval(backupRatings, 24 * 60 * 60 * 1000);
+// Also backup immediately on startup
+backupRatings();
 
 const generateContent = async (term) => {
   const basename = config.TERMS[term].AIRTABLE_BASE;
@@ -52,64 +93,33 @@ const generateContent = async (term) => {
 };
 
 const updateRating = async (term, zid, slug, rating, comment) => {
-  const basename = config.TERMS[term].AIRTABLE_BASE;
-  const base = new Airtable({ apiKey: config.TERMS[term].AIRTABLE_API_KEY }).base(basename);
   try {
-    const existingRecords = await base('lectures_vote')
-      .select({
-        filterByFormula: `AND({zid} = '${zid}', {lecture_slug} = '${slug}')`
-      })
-      .firstPage();
-
-    if (existingRecords.length > 0) {
-      // Update existing record
-      await base('lectures_vote').update([
-        {
-          "id": existingRecords[0].id,
-          "fields": {
-            "rating": rating,
-            "comment": comment,
-          }
-        }
-      ]);
-    } else {
-      // Create a new record
-      await base('lectures_vote').create([
-        {
-          "fields": {
-            "zid": zid,
-            "lecture_slug": slug,
-            "rating": rating,
-            "comment": comment,
-          }
-        }
-      ]);
-    }
+    const key = `${term}:${zid}:${slug}`;
+    ratingsCache[key] = {
+      term,
+      zid,
+      slug,
+      rating,
+      comment,
+      updated_at: new Date().toISOString(),
+    };
+    saveRatings();
   } catch (err) {
     console.error("Error updating/creating rating:", err);
   }
 }
 
 const getRating = async (term, zid, slug) => {
-  const basename = config.TERMS[term].AIRTABLE_BASE;
-  const base = new Airtable({ apiKey: config.TERMS[term].AIRTABLE_API_KEY }).base(basename);
   try {
-    const records = await base('lectures_vote')
-      .select({
-        filterByFormula: `AND({zid} = '${zid}', {lecture_slug} = '${slug}')`
-      })
-      .firstPage();
-
-    if (records.length > 0) {
-      const rating = records[0].fields.rating;
-      const comment = records[0].fields.comment;
+    const key = `${term}:${zid}:${slug}`;
+    const data = ratingsCache[key];
+    if (data) {
       return {
-        rating,
-        comment,
-      }
-    } else {
-      return null;
+        rating: data.rating,
+        comment: data.comment,
+      };
     }
+    return null;
   } catch (err) {
     console.error("Error getting rating:", err);
     return null;

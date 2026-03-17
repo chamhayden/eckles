@@ -33,7 +33,7 @@ const shortTermHold = (key, fn) => {
       let value = myCache.get(key);
       if (value == undefined) {
         value = await fn(term);
-        myCache.set(key, value, 60*30);
+        myCache.set(key, value, 60*60*24);
       }
       // done();
       return value;
@@ -535,6 +535,19 @@ app.post('/api/:term/rating', needValidZid(async (_, zid, req) => {
   const { rating, lectureslug, comment } = req.body;
   await updateRating(term, zid, lectureslug, rating, comment)
   return {};
+}));
+
+app.post('/api/admin/refresh-cache', needValidZid(async (term, zid) => {
+  if (!isTutor(zid, term)) {
+    throw new Error('Unauthorized: Only tutors can refresh cache');
+  }
+  
+  myCache.flushAll();
+  
+  return { 
+    success: true, 
+    message: 'Cache cleared. Next request will fetch fresh data from Airtable.' 
+  };
 }));
 
 app.use(express.static(path.join(__dirname, '../../frontend/build')))
