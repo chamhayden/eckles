@@ -49,7 +49,7 @@ const getForum = shortTermHold('forum', async (term) => {
   let notices = [];
   try {
     const edCourseNumber = config.TERMS[term].ED_COURSE_NUMBER;
-    const discourseAPI = new Discourse("https://discourse02.cse.unsw.edu.au/25T3/COMP6080", {
+    const discourseAPI = new Discourse(`https://discourse02.cse.unsw.edu.au/${term}/COMP6080`, {
       "Api-Key": config.TERMS[term].DISCOURSE_API_KEY,
       "Api-Username": config.TERMS[term].DISCOURSE_API_USERNAME,
     });
@@ -97,7 +97,7 @@ const getAnnouncementCategory = async (discourseAPI) => {
 }
 
 const getGroups = shortTermHold('groups', async (term) => {
-  const { stdout } = shell.exec(`rm -rf /tmp/gl && git clone git@gitlab.cse.unsw.edu.au:undergraduate-courses/COMP6080/${term}/STAFF/administration.git /tmp/gl && cd /tmp/gl && cat groups.csv`)
+  const { stdout } = shell.exec(`rm -rf /tmp/gl && git clone git@gitlab.cse.unsw.edu.au:coursework/COMP6080/${term}/STAFF/administration.git /tmp/gl && cd /tmp/gl && cat groups.csv`)
   const groupLink = {};
   stdout.split('\n').forEach(line => {
     const innerLine = line.split(',');
@@ -312,12 +312,12 @@ app.get('/gitlabredir/:term/:repo/:path?', async (req, res) => {
     if (repo === 'ass2') newRepo = config.TERMS[term].ASS_MAP[1];
     if (repo === 'ass3') newRepo = config.TERMS[term].ASS_MAP[2];
     if (repo === 'ass4') newRepo = config.TERMS[term].ASS_MAP[3];
-    repoPath = `https://gitlab.cse.unsw.edu.au/undergraduate-courses/COMP6080/${term}/students/z${zid}/${newRepo}`
+    repoPath = `https://gitlab.cse.unsw.edu.au/coursework/COMP6080/${term}/students/z${zid}/${newRepo}`
     if (isTutor(zid, term)) {
-      repoPath = `https://gitlab.cse.unsw.edu.au/undergraduate-courses/COMP6080/${term}/STAFF/repos/${newRepo}`
+      repoPath = `https://gitlab.cse.unsw.edu.au/coursework/COMP6080/${term}/STAFF/repos/${newRepo}`
     } else if (['ass4'].includes(repo)) {
       const group = (await getGroups(term))[zid];
-      repoPath = `https://gitlab.cse.unsw.edu.au/undergraduate-courses/COMP6080/${term}/groups/${group}/${newRepo}`
+      repoPath = `https://gitlab.cse.unsw.edu.au/coursework/COMP6080/${term}/groups/${group}/${newRepo}`
     }
     if (path) {
       repoPath += `/-/tree/master/${path}`

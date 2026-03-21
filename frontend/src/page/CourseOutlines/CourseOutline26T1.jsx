@@ -249,7 +249,7 @@ const CourseOutline26T1 = () => {
       </Typography>
       <Typography variant="body1" gutterBottom>
         We've compiled{' '}
-        <a href="https://gitlab.cse.unsw.edu.au/undergraduate-courses/COMP6080/21T3/main-content/-/blob/master/FAQ.md">
+        <a href="https://gitlab.cse.unsw.edu.au/coursework/COMP6080/21T3/main-content/-/blob/master/FAQ.md">
           an FAQ
         </a>{' '}
         to answer these questions. If you still have further questions or comments, we'd encourage

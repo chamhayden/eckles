@@ -309,7 +309,7 @@ This will start up a second HTTP server where if you navigate to \`http://localh
 
 You are prohibited from modifying the backend. No work needs to be done on the backend. It's provided to you simply to power your frontend.
 
-The backend server can be cloned by running \`git clone git@gitlab.cse.unsw.edu.au:undergraduate-courses/COMP6080/[term]/ass3-backend.git\` where [term] is the current term (e.g. 24T3). After you clone this repo, you must run \`npm install\` in the project once.
+The backend server can be cloned by running \`git clone git@gitlab.cse.unsw.edu.au:coursework/COMP6080/[term]/ass3-backend.git\` where [term] is the current term (e.g. 24T3). After you clone this repo, you must run \`npm install\` in the project once.
 
 To run the backend server, simply run \`npm start\` in the backend project. This will start the backend.
 
@@ -429,10 +429,12 @@ Your assignment will be hand-marked by tutor(s) in the course according to the c
 
 Please note: When we test your UI we will use a pre-loaded database JSON that already has threads and users and watches added to it. 
 
-#### 5.1. Compliance to task requirements (70%)
- * Each milestone specified a particular % of overall assignment (summing up to 70%). Implement those components as required to receive the marks.
+#### 5.1a. Compliance to task requirements (manual) (60%)
+ * Each milestone specified a particular % of overall assignment (summing up to 60%). Implement those components as required to receive the marks.
  * You **MUST** update the \`progress.csv\` file in the root folder of this repository as you complete things partially or fully. The valid values are "NO", "PARTIAL", and "YES". Updating this is necessary so that your tutor knows what to focus on and what to avoid - giving them the best understanding of your work and provide you with marks you have earned. Failure to correctly fill in this file will result in a 5% penalty.
 
+#### 5.1b. Compliance to task requirements (automark) (10%)
+ * All of the milestones will be assessed by running an automarker on your codebase where behaviour is checked using IDs you have embedded into the assignment based on the spec.
 #### 5.2. Mobile Responsiveness (15%)
  * Your application is usable for desktop sizes generally, tablet sizes generally, and mobile sizes generally (down to 400px wide, 700px high).
 
@@ -441,10 +443,9 @@ Please note: When we test your UI we will use a pre-loaded database JSON that al
  * Code follows common patterns that have been discussed in lectures and as highlighted in the course style guide.
  * If you do not complete at least 50% of the assignment, your code quality mark will be scaled down to some degree based on the limited contributions.
       
-#### 5.4. Usability & Accessibility (5%)
+#### 5.4. Usability (5%)
  * Your application is usable and easy to navigate. No obvious usability issues or confusing layouts/flows.
- * Your application follows standard accessibility guidelines, such as use of alt tags, and colours that aren't inaccessible.
- * Describe any attempts you've made to improve the usability/accessibility in \`usability.md\`
+ * Describe any attempts you've made to improve the usability in \`usability.md\`
       
 #### 5.5. Bonus Marks (5%)
  * An extra 5% of the assignment can be attained via bonus marks, meaning a maximum mark of 105/100. Any bonus marks that extend your ass2 mark above 100% will bleed into other assignment marks, but cannot contribute outside of the 75% of the course that is allocated for assignment marks
