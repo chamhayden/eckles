@@ -504,7 +504,7 @@ It is your responsibiltiy to ensure that your code can run successfully when clo
 
 ### 9. Late Submission Policy
 
-No late submission are accepted.
+Late submissions are accepted up to 4 days (96 hours) after the due date. The late penalty is 5% per day. The first 5% penalty will begin applying 1 minute after the initial deadline.
 `;
 
 export const ass4a = `
@@ -724,5 +724,4 @@ You can run a dryrun to sanity check your code runs basically by:
 
 ### 10. Late Submission Policy
 
-No late submission are accepted.
-`;
+Late submissions are accepted up to 4 days (96 hours) after the due date. The late penalty is 5% per day. The first 5% penalty will begin applying 1 minute after the initial deadline.`;
