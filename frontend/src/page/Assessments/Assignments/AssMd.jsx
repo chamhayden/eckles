@@ -445,7 +445,8 @@ Please note: When we test your UI we will use a pre-loaded database JSON that al
       
 #### 5.4. Usability (5%)
  * Your application is usable and easy to navigate. No obvious usability issues or confusing layouts/flows.
- * Describe any attempts you've made to improve the usability in \`usability.md\`
+ * Your application follows standard accessibility guidelines, such as use of alt tags, and colours that aren't inaccessible.
+ * Describe any attempts you've made to improve the usability/accessibility in \`usability.md\`
       
 #### 5.5. Bonus Marks (5%)
  * An extra 5% of the assignment can be attained via bonus marks, meaning a maximum mark of 105/100. Any bonus marks that extend your ass2 mark above 100% will bleed into other assignment marks, but cannot contribute outside of the 75% of the course that is allocated for assignment marks
