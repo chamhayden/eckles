@@ -586,9 +586,10 @@ Failure to include all of the relevant packages required to run your assignment 
 
 #### 3.2. The Backend (provided)
 
-You are **PROHIBITED** from modifying the backend unless it's specifically required in deployment.md (in your repo). No extra work needs to be done on the backend. It's provided to you simply to power your frontend.
+You are **PROHIBITED** from modifying the backend unless it's specifically required in deployment.md. No extra work needs to be done on the backend. It's provided to you simply to power your frontend.
 
-The backend server exists in your individual repository. After you clone this repo, you will note that there's a [\`.nvmrc\`](.nvmrc) file inside the backend directory, it's strongly recommended to run \`nvm use\` to use the specified node.js version to avoid potential issues for running the server, then you must run \`npm install\` in \`backend\` directory once.
+The backend server can be cloned by running git clone git@gitlab.cse.unsw.edu.au:coursework/COMP6080/[term]/ass4-backend/presto-backend.git where [term] is the current term (e.g. 24T3). After you clone this repo, you must run npm install in the project once.
+After you clone this repo, you will note that there's a [\`.nvmrc\`](.nvmrc) file inside the backend directory, it's strongly recommended to run \`nvm use\` to use the specified node.js version to avoid potential issues for running the server, then you must run \`npm install\` in \`backend\` directory once.
 
 To run the backend server, simply run \`nvm use\` each time you reopen your repo, then \`npm start\` in the \`backend\` directory. This will start the backend.
 
