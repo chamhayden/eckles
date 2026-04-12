@@ -470,6 +470,7 @@ app.get('/api/gradesearch', (req, res) => {
     'ass3_tutor_who_marked_email',
     'ass3_before_penalty',
     'ass3_git_score_comments',
+    'ass3_automark',
   ];
   const includeAss4 = [
     'ass4_before_penalty',
