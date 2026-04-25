@@ -320,7 +320,7 @@ const CourseOutline26T1 = () => {
             <li>Stationery</li>
             <li>Chargers and extension boards
               <ul>
-                <li>While we will try to accomodate to the best of our abilities, access to power outlets may be limited. If you bring an extension board, please keep it in your bag until it is necessary</li>
+                <li>While we will try to accomodate to the best of our abilities, access to power outlets may be limited. <b>If you bring an extension board, please keep it in your bag until it is necessary</b></li>
               </ul>
             </li>
           </ul>
