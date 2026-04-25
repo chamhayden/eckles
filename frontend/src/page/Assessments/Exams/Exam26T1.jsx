@@ -58,7 +58,7 @@ const CourseOutline26T1 = () => {
         2. Date, Time, and Duration
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The final exam will be a 3 hour exam. The exam will run in TBD.
+        The final exam will be a 3 hour exam. See infomation given by the UNSW CSE Exam team for time and location.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         Only submissions made during your exam time window will be counted as valid.
@@ -72,8 +72,8 @@ const CourseOutline26T1 = () => {
       <Typography variant="body1" component="div" gutterBottom>
         The exam will be very similar to assignment 4, with the following simplified criteria:
         <ul>
-          <li>80%: Providing the features and functionality required</li>
-          <li>20%: Ensuring mobile responsiveness on desktop, tablet, mobile</li>
+          <li>80%: Providing the features and functionality required in a desktop viewport</li>
+          <li>20%: Ensuring functionality in other viewport sizes, i.e. tablet, mobile</li>
         </ul>
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
@@ -81,14 +81,14 @@ const CourseOutline26T1 = () => {
         <ul>
           <li>Be substantially less work than ass4</li>
           <li>
-            Not be assessed in terms of linting & code design & accessibility & ui/ux - we will not
-            look at your source code
+            Not be assessed in terms of linting & code design & accessibility & ui/ux - <i>we will not
+            look at your source code when marking</i>
           </li>
           <li>Will not have a backend attached (local storage will be used instead)</li>
         </ul>
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        You are allowed to your code code from other assessments in the exam (or in the case of
+        You are allowed to use your code from other assessments in the exam (or in the case of
         assignment 4, your group's code).
       </Typography>
       <Typography variant="h5" component="div" style={{ marginTop: '20px', marginBottom: '10px' }}>
@@ -120,9 +120,8 @@ const CourseOutline26T1 = () => {
             resources, with a few exceptions.
             <ul>
               <li>
-                You are prohibited from seeking help from other students during the exam. Any
-                communications (physical, digital) after you or another person has started the exam
-                time is not allowed.
+                You may only seek assistance from Invigilators or Course Staff via Discourse during the exam.
+                All other forms of communication are strictly prohibited once the exam has commenced.
               </li>
               <li>
                 You cannot use code generation tools such as LLMs, including but not limited to,
@@ -131,13 +130,34 @@ const CourseOutline26T1 = () => {
                 The only two exceptions are:
                 <ul>
                   <li>
-                    The immediate google AI results summary that come from entering a query into
-                    google search
+                    The immediate AI results summary that comes from entering a query into
+                    a search engine
                   </li>
                   <li>
-                    Single-line autocompletion (e.g. variable name suggestions etc). This differs
+                    Non-AI powered single-line autocompletion tools(e.g. variable name suggestions etc). This differs
                     from some of the newer auto-complete functionality in tools like cursor that
                     will suggest multiple lines of code that it can generate
+
+                    Examples of this include: Linters, IntelliSense style auto complete extensions, Auto Imports etc.
+                  </li>
+                </ul>
+            </li>
+              <li>More specific examples on what is <b>strictly prohibited</b>:
+                <ul>
+                  <li>
+                    Any AI webpages such as ChatGPT, Gemini, DeepSeek, Perplexity, etc. You cannot have these pages open during the exam.
+                  </li>
+                  <li>
+                    Any AI chats or conversations. You cannot have any conversations with any AI during the exam. This includes any search engine AI Overview chats, any chatbots, Dev Tools AI assist etc.
+                  </li>
+                  <li>
+                    Any AI agents such as Cursor, Copilot agents etc.
+                  </li>
+                  <li>
+                    Any AI inline chats, suggestions and features such as with Claude, Copilot etc.
+                  </li>
+                  <li>
+                    Any AI powered ide integrated browser features.
                   </li>
                 </ul>
               </li>
@@ -150,12 +170,11 @@ const CourseOutline26T1 = () => {
           </li>
           <li>
             Do not place your exam work in any location, including file sharing services such as
-            Dropbox or GitHub, accessible to any other person. Ensure during the exam no other
-            person in your household can access your work.
+            Dropbox or GitHub, accessible to any other person. Ensure during the exam that no other
+            person can access your work.
           </li>
           <li>
-            Your zpass should not be disclosed to any other person. If you have disclosed your zpass
-            , you should change it immediately.
+            Your zpass should not be disclosed to any other person. If you have disclosed your zpass, you should change it immediately.
           </li>
         </ul>
       </Typography>
@@ -166,8 +185,13 @@ const CourseOutline26T1 = () => {
         </b>
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        If you have questions or clarifications needed during the exam, please ask the invigilator.
-        Do NOT email or MS Teams any course staff during teh exam.
+        If you have any questions or clarifications about the exam during the exam, please ask in the forum.
+        For any other questions(feeling sick etc.), please ask the invigilator.
+        <br/><br/>
+        Do NOT email or MS Teams any course staff during the exam. ONLY the discourse forum will be monitored by course staff.
+        <br/>
+        Clarifications made during the exam will be outlined in a Change Log at the top of the exam paper page. After
+        each clarification, invigilators will notify students to refresh the exam paper page.
       </Typography>
       <Typography variant="h5" component="div" style={{ marginTop: '20px', marginBottom: '10px' }}>
         6. Git Commit Requirements
@@ -178,6 +202,18 @@ const CourseOutline26T1 = () => {
           <li>Make commits no more than 100 lines of code</li>
           <li>Have meaningful commit names</li>
         </ul>
+        Exceptions to the 100 line commit requirement are made for initial setup files (e.g.,
+        package.json) and when running lint. However, the commit message must explicitly reflect
+        this. Example:
+        <ul>
+          <li>Commit over 100 lines: Initial React app setup</li>
+        </ul>
+        If you have other specific circumstances (like adding large configuration files or
+        dependencies), similarly explain these in your commit message. Ensure the message clearly
+        conveys the reason for the exception.
+        <strong>The commit must not contain other code</strong> for these exceptions to be valid.
+        Reasons such as adding new functionality, components, or other code-related changes are not
+        accepted. Excepted commits must not contain such changes.
       </Typography>
       <Typography variant="h6" component="div" gutterBottom>
         Hurdle Requirements
@@ -208,6 +244,12 @@ const CourseOutline26T1 = () => {
             practical elements of the course.
           </li>
           <li>
+            An exam submission repo will be released to each student before the exam.
+            <ul>
+              <li>You are free to push any files you want to that repo before the exam begins.</li>
+            </ul>
+          </li>
+          <li>
             A sample exam paper can be found{' '}
             <a
               target="_blank"
@@ -226,8 +268,81 @@ const CourseOutline26T1 = () => {
               </li>
             </ul>
           </li>
+          <li>
+            Ensure you will have access to GitLab during the exam (double check your GitLab tokens aren't expiring)
+          </li>
+          <li>
+            Ensure you have access to the Discourse forum and know how to ask questions on it.
+          </li>
+          <li>
+            Ensure your node versions are up to date and you are able to set up a
+            React App locally or on vlab that runs with `npm run dev` or `yarn dev`
+            prior to the start of the exam.
+          </li>
+          <li>
+            Ensure you understand how to disable any IDE/browser AI tooling you own
+            and that all of your AI tools are disabled prior to the start of the exam
+          </li>
         </ul>
       </Typography>
+      <Typography variant="h5" component="div" style={{ marginTop: '20px', marginBottom: '10px' }}>
+        9. In-Person Exam Rules
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+          This is a BYOD (bring your own device) exam and as such <b>it is expected that students will bring their own devices to complete the exam</b>.  
+          <br/>
+          <b><br/>Required Items</b>
+          <ul>
+          <li>A laptop to complete the exam</li>
+          <li>A pen/pencil to sign the declaration of identity.
+            <ul>
+            <li>Writing materials will <strong>NOT</strong> be provided.</li>
+            </ul>
+          </li>
+          <li>A valid UNSW Student ID card.
+            <ul>
+            <li>You must present a valid UNSW Student ID card. No other forms of identification will be accepted.</li>
+            <li>If your card is expired or missing:
+              <ul>
+                <li>Obtain a replacement from The Nucleus: Student Hub</li>
+                <li>Hours: Weekdays, 10am–5pm</li>
+                <li>New cards require an appointment</li>
+              </ul>
+            </li>
+          </ul>
+          </li>
+          </ul>
+          <b>Allowed Items</b>
+          <ul>
+            <li>An external keyboard and/or mouse</li>
+            <li>1 additional monitor (e.g. iPad used as a second screen). Small or non-visible devices (e.g. phones) are not permitted as monitors.</li>
+            <li>Paper notes</li>
+            <li>Stationery</li>
+            <li>Chargers and extension boards
+              <ul>
+                <li>While we will try to accomodate to the best of our abilities, access to power outlets may be limited. If you bring an extension board, please keep it in your bag until it is necessary</li>
+              </ul>
+            </li>
+          </ul>
+          <b>Prohibited Items</b>
+          <ul>
+          <li>Mobile phones are not permitted, they:
+            <ul>
+              <li>Must be switched off or on silent</li>
+              <li>Must not be accessed during the exam</li>
+            </ul>
+          </li>
+          <li>Electronic watches (e.g. smartwatches) are not allowed.</li>
+          <li>Any electronic devices not explictly allowed are strictly prohibited. If you require an exception please seek special consideration</li>
+          <li>You may not wear hats, sunglasses, or anything else that hides your appearance during the exam. With the exception of masks and religious headwear. If you are wearing a mask or religious headwear, you may be asked to remove it so your identity can be confirmed. If this is required it will be done in the least intrusive way possible.</li>
+          <li>You may not use earphones, or earpods, or wear anything that covers your ears during the exam.</li>
+          </ul>
+          <b>Other</b>
+          <ul>
+          <li>All device screens must be clearly visible to invigilators at all times.</li>
+          <li>If you are unsure about whether a device is allowed, you must seek approval in advance (via Discourse). Any unauthorised electronic devices will be confiscated or rejected.</li>
+          </ul>
+     </Typography>
     </>
   );
 };
