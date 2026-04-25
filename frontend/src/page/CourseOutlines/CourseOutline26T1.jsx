@@ -49,15 +49,6 @@ const CourseOutline26T1 = () => {
       </Typography>
 
       <Typography variant="body1" gutterBottom>
-        Find information relating COVID-19 and this offering{' '}
-        <a href="https://www.covid-19.unsw.edu.au/safe-return-campus-faqs" target="_blank">
-          here
-        </a>{' '}
-        and{' '}
-        <a href="https://edtech.eng.unsw.edu.au/c19mess/comms.html" target="_blank">
-          here
-        </a>
-        .
         <table>
           <tbody>
             <tr>
@@ -77,7 +68,7 @@ const CourseOutline26T1 = () => {
                 <strong>Convenor</strong>
               </td>
               <td>
-                <Link to={link('staff/hayden-smith')}>Hayden Smith</Link>
+                Hayden Smith
               </td>
             </tr>
             <tr>
@@ -85,7 +76,7 @@ const CourseOutline26T1 = () => {
                 <strong>Admin</strong>
               </td>
               <td>
-                <Link to={link('staff/hayden-smith')}>Hayden Smith</Link>
+                Hayden Smith
               </td>
             </tr>
             <tr>
@@ -164,9 +155,9 @@ const CourseOutline26T1 = () => {
       </Typography>
       <Typography variant="body1" gutterBottom>
         Postgraduate students will need to familiarise themselves with git, specifically, if not
-        already confident, check out the <Link to={link('help/resources')}>resources here</Link>. We
+        already confident, check out the <Link to={link('help/resources/htmlcss')}>resources here</Link>. We
         have also{' '}
-        <a target="_blank" href={`${config.BASE_URL}/gitlabredir/${getters.term}/gitintro`}>
+        <a target="_blank" href={`${config.BASE_URL}/gitlabredir/${getters.term}/git-intro`}>
           provided a git-intro exercise
         </a>{' '}
         that we encourage everyone who hasn't completed COMP1531 to complete prior to the beginning
@@ -246,14 +237,6 @@ const CourseOutline26T1 = () => {
         from the course, such as typescript or more complex state managers (redux, mobx). Often when
         topics are omitted it's because they aren't <em>fundamental</em>knowledge in the limited
         weeks this course is offered in.
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        We've compiled{' '}
-        <a href="https://gitlab.cse.unsw.edu.au/coursework/COMP6080/21T3/main-content/-/blob/master/FAQ.md">
-          an FAQ
-        </a>{' '}
-        to answer these questions. If you still have further questions or comments, we'd encourage
-        you to use the forum linked in the sidebar.
       </Typography>
       <Typography variant="body1" gutterBottom>
         Students with prerequisite knowledge in this course should understand that this is an
