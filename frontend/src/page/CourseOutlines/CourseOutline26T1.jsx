@@ -367,20 +367,17 @@ const CourseOutline26T1 = () => {
         4.6. Final Exam
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        There will be a centrally timetabled final exam which will in your UNSW exam timetable. The
-        exam may contain a mixture of multiple choice questions, short answer questions, and
-        programming exercises. More specific details of the exam will be provided through the
-        course.
+        There will be a centrally timetabled final exam in your UNSW exam timetable.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         If you cannot attend the final exam because of illness or misadventure, then you must submit
         a Special Consideration request, with documentation, through MyUNSW within 72 hours of the
-        start of the exam exam. If your request is reasonable, then you will be awarded a
+        start of the exam. If your request is reasonable, then you will have the opportunity to take a
         Supplementary Exam. No supplementary exams will be provided for students who score marks 49
         or below on grounds of being "close" to a pass.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        Information on the final exam can be found in the link in the sidebar.
+        More information on the final exam can be found in the link in the sidebar.
       </Typography>
 
       <Divider sx={{ mb: 3, mt: 3 }} />
