@@ -61,7 +61,8 @@ export default function TutLecContentCard({
     }
   };
 
-  const isLive = live === '🔴 NEW';
+  const isZoomLink = live && live.startsWith('https://') && live.toLowerCase().includes('zoom');
+  const isLive = live === '🔴 NEW' || isZoomLink;
   const relevanceChip = getRelevanceChip(relevance);
   const fullWeek = 'Week ' + week;
   const topic = topicEmoji + ' ' + topicName;
@@ -72,8 +73,7 @@ export default function TutLecContentCard({
   const isCompleted = studyStatus === 'completed';
   const studyStatusLabel = isCompleted ? 'Completed' : 'Not Completed';
 
-  return (
-    <Link to={cardLink} style={{ textDecoration: 'none' }}>
+  const cardContent = (
       <Card
         sx={{
           display: 'flex',
@@ -176,6 +176,19 @@ export default function TutLecContentCard({
           </Stack>
         </CardContent>
       </Card>
+  );
+
+  if (isZoomLink) {
+    return (
+      <a href={live} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+        {cardContent}
+      </a>
+    );
+  }
+
+  return (
+    <Link to={cardLink} style={{ textDecoration: 'none' }}>
+      {cardContent}
     </Link>
   );
 }
