@@ -397,10 +397,10 @@ app.get('/api/gradesearch', (req, res) => {
     'ass2',
     'ass3',
     'ass4',
-    //'exam',
-    //'final',
-    //'PASSED_HURDLE',
-    //'PASSED_COURSE',
+    'exam',
+    'final',
+    'PASSED_HURDLE',
+    'PASSED_COURSE',
   ];
   const includeAss1 = [
     'ass1_q1',
