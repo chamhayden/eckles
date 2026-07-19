@@ -9,6 +9,7 @@ import Exam24T3 from './Exams/Exam24T3';
 import Exam25T1 from './Exams/Exam25T1';
 import Exam25T3 from './Exams/Exam25T3';
 import Exam26T1 from './Exams/Exam26T1';
+import Exam26T3 from './Exams/Exam26T3';
 import makePage from '../../component/makePage';
 import { Context, useContext } from '../../context';
 import { apiCall } from '../../util/api';
@@ -43,6 +44,8 @@ const AssessmentsExam = () => {
     Component = <Exam25T3 />;
   } else if (getters.term === '26T1') {
     Component = <Exam26T1 />;
+  } else if (getters.term === '26T3') {
+    Component = <Exam26T3 />;
   }
 
   return (

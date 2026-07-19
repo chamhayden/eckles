@@ -25,6 +25,7 @@ import CourseOutline24T3 from './CourseOutlines/CourseOutline24T3';
 import CourseOutline25T1 from './CourseOutlines/CourseOutline25T1';
 import CourseOutline25T3 from './CourseOutlines/CourseOutline25T3';
 import CourseOutline26T1 from './CourseOutlines/CourseOutline26T1';
+import CourseOutline26T3 from './CourseOutlines/CourseOutline26T3';
 
 import { Context, useContext } from '../context';
 
@@ -48,6 +49,8 @@ const CourseOutline = () => {
     return <CourseOutline25T3 />;
   } else if (getters.term === '26T1') {
     return <CourseOutline26T1 />;
+  } else if (getters.term === '26T3') {
+    return <CourseOutline26T3 />;
   } else {
     return <>This is a sample course outline!</>;
   }
