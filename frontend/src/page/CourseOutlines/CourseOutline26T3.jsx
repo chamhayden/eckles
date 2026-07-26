@@ -120,12 +120,7 @@ const CourseOutline26T3 = () => {
       </Typography>
       <Typography variant="body1" gutterBottom>
         This course has a heavy emphasis on industry voices, and as such a number of lectures will
-        be given by current front-end developers from industry. These lectures primarily come from
-        employees at{' '}
-        <a href="https://canva.com/" target="_blank">
-          Canva
-        </a>
-        , a Sydney-based technology company that does a lot of work with front-end technologies.
+        be given by current front-end developers from industry.
       </Typography>
       <Typography variant="body1" gutterBottom>
         COMP6080 is a challenging course. Front-end development is unlike most things you've
@@ -171,23 +166,11 @@ const CourseOutline26T3 = () => {
       </Typography>
       <Typography variant="body1" gutterBottom>
         <ol>
-          <li>
-            CLO1 : Able to apply Javascript semantics to design, construct, test and debug programs
-            holistically{' '}
-          </li>
-          <li>CLO2 : Construct programs for web-front end with HTML, CSS, and DOM manipulation</li>
-          <li>
-            CLO3 : Use Javascript and CSS frameworks to allow more efficient integration of existing
-            code and components into a final product
-          </li>
-          <li>
-            CLO4 : Build stable applications that utilise concurrent programming through use of
-            Javascript's asynchronous programming techniques
-          </li>
-          <li>
-            CLO5 : Design and build interfaces that focus on best user experience and accessible
-            design practices
-          </li>
+          <li>CLO1: Understand and analyse attributes, tradeoffs, and technical details of varied web-based frameworks and delivery methods</li>
+          <li>CL02: Understand, analyse, structure, and critique front-ends build in combinations of HTML, CSS, Javascript, and their associated frameworks.</li>
+          <li>CL03: Critically test, analyse, and inquire with developed front-ends in order to provide genuine improvement in performance or compliance</li>
+          <li>CL04: Develop and analyse frameworks to test and verify correctness of front-end systems</li>
+          <li>CL05: Understand and implement changes to front-end systems based on business and user needs, including application of best practices</li>
         </ol>
       </Typography>
 
@@ -345,24 +328,121 @@ const CourseOutline26T3 = () => {
         <Link to={link('timetable/help-sessions')}>here</Link>.
       </Typography>
       <Typography variant="h6" component="div" gutterBottom sx={{ mt: 4 }}>
-        4.4. Assignments
+        4.4. Programming Assignment
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        There will be a series of assignments which will run through the teaching period from weeks
-        1-10 and contributes to <strong>80%</strong> of the overall course mark.
+        The first assignment is a programming assignment assessing your knowledge of HTML and CSS.
+      </Typography>
+      <Typography variant="h6" component="div" gutterBottom sx={{ mt: 4 }}>
+        4.5. In-class quizzes
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        Assignments will be the platform you have to study and learn the material in substantially
-        more depth. Your assignments will be completed via gitlab.
+        During the term students will complete 50 minute long quizzes on 4 occasions. The first quiz is worth 0 marks and is a practice.
+        The exact timing of quizzes will depend on the day of your tutorial.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        The intention is that the third assignment will be completed in a pair. You are able to opt
-        out of this and work alone (at your own expense!). You can choose your pair, otherwise we
-        will assign you a partner. You can pair up with any student in the course.
+        All quiz questions will be 2-7 mark short answer questions.
       </Typography>
+
       <Typography variant="body1" component="div" gutterBottom>
-        Information on assignments can be found in the links in section 5 (Assessment).
+        <TableContainer component={Paper} sx={{ minWidth: 250, maxWidth: 4500 }}>
+          <Table aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Week</TableCell>
+                <TableCell>Mon</TableCell>
+                <TableCell>Tue</TableCell>
+                <TableCell>Wed</TableCell>
+                <TableCell>Thu</TableCell>
+                <TableCell>Fri</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>1</TableCell>
+                <TableCell>Lesson 1</TableCell>
+                <TableCell>Lesson 1</TableCell>
+                <TableCell>Lesson 1</TableCell>
+                <TableCell>Lesson 1</TableCell>
+                <TableCell>Lesson 1</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>2</TableCell>
+                <TableCell><span style={{color: 'red', fontWeight: 'bold'}}>Quiz 0 (0%)</span></TableCell>
+                <TableCell><span style={{color: 'red', fontWeight: 'bold'}}>Quiz 0 (0%)</span></TableCell>
+                <TableCell><span style={{color: 'red', fontWeight: 'bold'}}>Quiz 0 (0%)</span></TableCell>
+                <TableCell><span style={{color: 'red', fontWeight: 'bold'}}>Quiz 0 (0%)</span></TableCell>
+                <TableCell><span style={{color: 'red', fontWeight: 'bold'}}>Quiz 0 (0%)</span></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>3</TableCell>
+                <TableCell>Lesson 2</TableCell>
+                <TableCell>Lesson 2</TableCell>
+                <TableCell>Lesson 2</TableCell>
+                <TableCell>Lesson 2</TableCell>
+                <TableCell>Lesson 2</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>4</TableCell>
+                <TableCell>Lesson 3</TableCell>
+                <TableCell>Lesson 3</TableCell>
+                <TableCell>Lesson 3</TableCell>
+                <TableCell><span style={{color: 'blue', fontWeight: 'bold'}}>Quiz 1 (15%)</span></TableCell>
+                <TableCell><span style={{color: 'blue', fontWeight: 'bold'}}>Quiz 1 (15%)</span></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>5</TableCell>
+                <TableCell><span style={{color: 'blue', fontWeight: 'bold'}}>Quiz 1 (15%)</span></TableCell>
+                <TableCell><span style={{color: 'blue', fontWeight: 'bold'}}>Quiz 1 (15%)</span></TableCell>
+                <TableCell><span style={{color: 'blue', fontWeight: 'bold'}}>Quiz 1 (15%)</span></TableCell>
+                <TableCell>Lesson 3</TableCell>
+                <TableCell>Lesson 3</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>6</TableCell>
+                <TableCell>-</TableCell>
+                <TableCell>-</TableCell>
+                <TableCell>-</TableCell>
+                <TableCell>-</TableCell>
+                <TableCell>-</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>7</TableCell>
+                <TableCell>Lesson 4</TableCell>
+                <TableCell>Lesson 4</TableCell>
+                <TableCell><span style={{color: 'green', fontWeight: 'bold'}}>Quiz 2 (15%)</span></TableCell>
+                <TableCell><span style={{color: 'green', fontWeight: 'bold'}}>Quiz 2 (15%)</span></TableCell>
+                <TableCell><span style={{color: 'green', fontWeight: 'bold'}}>Quiz 2 (15%)</span></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>8</TableCell>
+                <TableCell><span style={{color: 'green', fontWeight: 'bold'}}>Quiz 2 (15%)</span></TableCell>
+                <TableCell><span style={{color: 'green', fontWeight: 'bold'}}>Quiz 2 (15%)</span></TableCell>
+                <TableCell>Lesson 4</TableCell>
+                <TableCell>Lesson 4</TableCell>
+                <TableCell>Lesson 4</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>9</TableCell>
+                <TableCell>Lesson 5</TableCell>
+                <TableCell><span style={{color: 'orange', fontWeight: 'bold'}}>Quiz 3 (15%)</span></TableCell>
+                <TableCell><span style={{color: 'orange', fontWeight: 'bold'}}>Quiz 3 (15%)</span></TableCell>
+                <TableCell><span style={{color: 'orange', fontWeight: 'bold'}}>Quiz 3 (15%)</span></TableCell>
+                <TableCell><span style={{color: 'orange', fontWeight: 'bold'}}>Quiz 3 (15%)</span></TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>10</TableCell>
+                <TableCell><span style={{color: 'orange', fontWeight: 'bold'}}>Quiz 3 (15%)</span></TableCell>
+                <TableCell>Lesson 5</TableCell>
+                <TableCell>Lesson 5</TableCell>
+                <TableCell>Lesson 5</TableCell>
+                <TableCell>Lesson 5</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Typography>
+      
       <Typography variant="h6" component="div" gutterBottom sx={{ mt: 4 }}>
         4.6. Final Exam
       </Typography>
@@ -399,15 +479,15 @@ const CourseOutline26T3 = () => {
           <TableBody>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">
-                Ass 1
+                Programming
               </TableCell>
-              <TableCell>15%</TableCell>
+              <TableCell>20%</TableCell>
               <TableCell>Week 3, Monday</TableCell>
               <TableCell>Individual</TableCell>
               <TableCell>
                 <Button
                   variant="contained"
-                  onClick={() => redirect('assessments/assignments/ass1')}
+                  onClick={() => redirect('assessments/assignments/programming')}
                 >
                   View
                 </Button>
@@ -417,45 +497,13 @@ const CourseOutline26T3 = () => {
               <TableCell component="th" scope="row">
                 Ass 2
               </TableCell>
-              <TableCell>5%</TableCell>
-              <TableCell>Week 4, Monday</TableCell>
+              <TableCell>45%</TableCell>
+              <TableCell>Throughout term</TableCell>
               <TableCell>Individual</TableCell>
               <TableCell>
                 <Button
                   variant="contained"
-                  onClick={() => redirect('assessments/assignments/ass2')}
-                >
-                  View
-                </Button>
-              </TableCell>
-            </TableRow>
-            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-              <TableCell component="th" scope="row">
-                Ass 3
-              </TableCell>
-              <TableCell>30%</TableCell>
-              <TableCell>Week 7, Monday</TableCell>
-              <TableCell>Individual</TableCell>
-              <TableCell>
-                <Button
-                  variant="contained"
-                  onClick={() => redirect('assessments/assignments/ass3')}
-                >
-                  View
-                </Button>
-              </TableCell>
-            </TableRow>
-            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-              <TableCell component="th" scope="row">
-                Ass 4
-              </TableCell>
-              <TableCell>30%</TableCell>
-              <TableCell>Week 10, Monday</TableCell>
-              <TableCell>Pair (see below)</TableCell>
-              <TableCell>
-                <Button
-                  variant="contained"
-                  onClick={() => redirect('assessments/assignments/ass4')}
+                  onClick={() => redirect('assessments/assignments/quizzes')}
                 >
                   View
                 </Button>
@@ -465,7 +513,7 @@ const CourseOutline26T3 = () => {
               <TableCell component="th" scope="row">
                 Exam
               </TableCell>
-              <TableCell>20%</TableCell>
+              <TableCell>35%</TableCell>
               <TableCell>Exam Period</TableCell>
               <TableCell>Individual</TableCell>
               <TableCell>
@@ -479,23 +527,6 @@ const CourseOutline26T3 = () => {
       </TableContainer>
 
       <br />
-
-      <Typography variant="body1" component="div" gutterBottom>
-        For pair assignments, you complete them a pair of your choice. If you don't have a pair, we
-        will find one for you. You can also choose to work alone (this is something we arguably
-        should not offer, but we do because we know there are exceptional circumstances), but we
-        strongly do not recommend this as the workload is much higher for an individual. If the
-        workload is a concern, work as a pair (how it's designed).
-      </Typography>
-      <Typography variant="body1" component="div" gutterBottom>
-        Nominations for your pair (or to work alone) must be complete by the end of week 5.
-        Information about this will be distributed in weekly notices.
-      </Typography>
-      <Typography variant="body1" component="div" gutterBottom>
-        Pairs will be <b>required</b> to contribute regularly to gitlab and in reasonably equal
-        contributions as we still assess contributions individually (there is no blanket group mark
-        assigned). Failure to do so may result in a loss of marks.
-      </Typography>
 
       <Divider sx={{ mb: 3, mt: 3 }} />
 
@@ -771,15 +802,15 @@ const CourseOutline26T3 = () => {
         9. Course Evaluation and Development
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        This course is evaluated each session using the MyExperience system.
-      </Typography>
-      <Typography variant="body1" component="div" gutterBottom>
-        This is being addressed during 26T3.
+        Changes during 26T3 include:
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         <ul>
-          <li>Addition of automarking in third assignment</li>
-          <li>Improved marking feedback and consistency</li>
+          <li>Shifts from code production assessment to offline theory assessment, emphasising understanding, analysis, and human-centred frontend skills.</li>
+          <li>AI becomes central to learning, with students taught to use AI tools for building, analysing, and independent learning.</li>
+          <li>Assessments change to three supervised tutorial tests (45%) and a closed-book theory exam (35%), reducing marking complexity.</li>
+          <li>Course content expands into native apps, user testing, business thinking, security, cloud services, and product-focused frontend development.</li>
+          <li>Course operations refocus lectures and tutorials around AI-assisted construction, critique, testing, and deeper software understanding.</li>
         </ul>
       </Typography>
     </>
