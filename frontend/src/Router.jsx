@@ -16,7 +16,9 @@ import ContentLecturesSingle from './page/Content/ContentLecturesSingle';
 import ContentLecturesSearch from './page/Content/ContentLecturesSearch';
 import ContentTutorialsSingle from './page/Content/ContentTutorialsSingle';
 import ContentTutorialsSearch from './page/Content/ContentTutorialsSearch';
+import ContentOldAssignments from './page/Content/ContentOldAssignments';
 import AssessmentsAssignments from './page/Assessments/AssessmentsAssignments';
+import AssessmentsQuizzes from './page/Assessments/AssessmentsQuizzes';
 import AssessmentsExam from './page/Assessments/AssessmentsExam';
 import StyleBase from './page/Style/StyleBase';
 import StyleHtml from './page/Style/StyleHtml';
@@ -66,11 +68,15 @@ const Router = () => {
             <Route path="search" element={<ContentTutorialsSearch />} />
             <Route path=":tutid" element={<ContentTutorialsSingle />} />
           </Route>
+          <Route path="old-assignments" element={<ContentOldAssignments />}>
+            <Route path=":ass" element={<ContentOldAssignments />} />
+          </Route>
         </Route>
         <Route path="assessments" element={<AssessmentsBase />}>
           <Route path="assignments" element={<AssessmentsAssignments />}>
             <Route path=":ass" element={<AssessmentsAssignments />} />
           </Route>
+          <Route path="quizzes" element={<AssessmentsQuizzes />} />
           <Route path="exam" element={<AssessmentsExam />} />
         </Route>
         <Route path="help" element={<HelpBase />}>

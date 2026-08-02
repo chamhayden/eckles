@@ -8,6 +8,11 @@ config.terms = config.DEV
   : ['26T3', '26T1', '25T3', '25T1', '24T3', '24T1', 'sample'];
 config.DEFAULT_TERM = '26T3'; //config.DEV ? 'sample' : '24T1';
 
+// Terms that no longer run ass2/ass3/ass4. For these, those specs are archived
+// under Content > Old Assignments, and the assessments are Assignment 1,
+// Quizzes, and the Exam.
+config.ARCHIVED_ASSIGNMENT_TERMS = ['26T3'];
+
 config.joinSchema = {
   meta: {
     public: true,

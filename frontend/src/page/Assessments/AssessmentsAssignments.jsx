@@ -17,16 +17,28 @@ import makePage from '../../component/makePage';
 import config from '../../config';
 import { apiCall } from '../../util/api';
 
+// Sections dropped from the spec for terms that no longer track git commits.
+const OMITTED_SECTIONS = ['Git Commit Requirements'];
+
 const AssessmentsAssignments = ({}) => {
   const { getters, setters } = useContext(Context);
   const [groupInfo, setGroupInfo] = React.useState(null);
+  const singleAssignment = config.ARCHIVED_ASSIGNMENT_TERMS.includes(getters.term);
   React.useEffect(() => {
+    if (singleAssignment) {
+      return;
+    }
     apiCall(`${getters.term}/groupinfo`, {}, 'GET').then((data) => {
       setGroupInfo(data);
     });
-  }, []);
+  }, [singleAssignment]);
 
   const params = useParams();
+
+  if (singleAssignment) {
+    return <AssPrint mda={ass1a} mdb={ass1b} assNumber={1} startWeek={1} omit={OMITTED_SECTIONS} />;
+  }
+
   const menu = [
     {
       title: 'Ass1',

@@ -18,8 +18,13 @@ import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import PaletteIcon from '@mui/icons-material/Palette';
 import BadgeIcon from '@mui/icons-material/Badge';
 import GradeIcon from '@mui/icons-material/Grade';
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
+import QuizIcon from '@mui/icons-material/Quiz';
+
+import config from '../config';
 
 export const getPrimaryNavList = (term) => {
+  const archivedAssignments = config.ARCHIVED_ASSIGNMENT_TERMS.includes(term);
   return [
     {
       title: 'Course Outline',
@@ -63,6 +68,17 @@ export const getPrimaryNavList = (term) => {
           Icon: SchoolIcon,
           description: 'View tutorial content, questions, and videos',
         },
+        ...(archivedAssignments
+          ? [
+              {
+                title: 'Old Assignments',
+                route: '/content/old-assignments',
+                loginRequired: true,
+                Icon: HistoryEduIcon,
+                description: 'View the specs for assignments run in previous terms',
+              },
+            ]
+          : []),
       ],
     },
     {
@@ -70,20 +86,41 @@ export const getPrimaryNavList = (term) => {
       loginRequired: true,
       Icon: ConstructionIcon,
       description: '',
-      children: [
-        {
-          title: 'Assignments',
-          route: '/assessments/assignments',
-          Icon: WorkIcon,
-          description: 'View major programing assignments provided in the course',
-        },
-        {
-          title: 'Exam',
-          route: '/assessments/exam',
-          Icon: BiotechIcon,
-          description: 'View information about the final exam in the course',
-        },
-      ],
+      children: archivedAssignments
+        ? [
+            {
+              title: 'Assignment 1',
+              route: '/assessments/assignments',
+              Icon: WorkIcon,
+              description: 'View the programming assignment provided in the course',
+            },
+            {
+              title: 'Quizzes',
+              route: '/assessments/quizzes',
+              Icon: QuizIcon,
+              description: 'View information about the in-class quizzes in the course',
+            },
+            {
+              title: 'Exam',
+              route: '/assessments/exam',
+              Icon: BiotechIcon,
+              description: 'View information about the final exam in the course',
+            },
+          ]
+        : [
+            {
+              title: 'Assignments',
+              route: '/assessments/assignments',
+              Icon: WorkIcon,
+              description: 'View major programing assignments provided in the course',
+            },
+            {
+              title: 'Exam',
+              route: '/assessments/exam',
+              Icon: BiotechIcon,
+              description: 'View information about the final exam in the course',
+            },
+          ],
     },
     {
       title: 'More Help',

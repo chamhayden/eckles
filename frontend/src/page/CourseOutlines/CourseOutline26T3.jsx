@@ -487,7 +487,7 @@ const CourseOutline26T3 = () => {
               <TableCell>
                 <Button
                   variant="contained"
-                  onClick={() => redirect('assessments/assignments/programming')}
+                  onClick={() => redirect('assessments/assignments')}
                 >
                   View
                 </Button>
@@ -495,7 +495,7 @@ const CourseOutline26T3 = () => {
             </TableRow>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row">
-                Ass 2
+                Quizzes
               </TableCell>
               <TableCell>45%</TableCell>
               <TableCell>Throughout term</TableCell>
@@ -503,7 +503,7 @@ const CourseOutline26T3 = () => {
               <TableCell>
                 <Button
                   variant="contained"
-                  onClick={() => redirect('assessments/assignments/quizzes')}
+                  onClick={() => redirect('assessments/quizzes')}
                 >
                   View
                 </Button>
