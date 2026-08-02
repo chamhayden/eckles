@@ -85,23 +85,21 @@ const LectureInfoPanel = ({ lecture, term }) => {
 
       {/* Meta line */}
       <Typography variant="body2" color="text.secondary">
-        {lecture.topic().area().name} •{' '}
-        <Link to={`/${term}/content/lectures/topic#${lecture.topic().name}`}>
-          {lecture.topic().name}
+        {lecture.topic()?.area()?.name} •{' '}
+        <Link to={`/${term}/content/lectures/topic#${lecture.topic()?.name}`}>
+          {lecture.topic()?.name}
         </Link>
         {' • '}
         {authorNames}
       </Typography>
-
-   
 
       <Typography variant="body1" color="text" sx={{ mt: 2, lineHeight: 1.6, maxWidth: '80ch' }}>
         <Typography component="span" fontWeight={700}>
           Deadline:{' '}
         </Typography>
         Should watch no later than end of{' '}
-        <Link to={`/${term}/content/lectures/week#${lecture.week().week}`}>
-          week {lecture.week().week}
+        <Link to={`/${term}/content/lectures/week#${lecture.week()?.week}`}>
+          week {lecture.week()?.week}
         </Link>
       </Typography>
 
@@ -115,7 +113,6 @@ const LectureInfoPanel = ({ lecture, term }) => {
         </Typography>
       )}
 
-
       {/* Pills */}
       <Box sx={{ display: 'flex', gap: 1.25, mt: 1.5, flexWrap: 'wrap' }}>
         <Chip label={TimeStr} size="small" variant="outlined" color="secondary" />
@@ -127,8 +124,7 @@ const LectureInfoPanel = ({ lecture, term }) => {
         />
       </Box>
 
-
-         <Typography variant="body1" color="text" sx={{ mt: 2, lineHeight: 1.6, maxWidth: '80ch' }}>
+      <Typography variant="body1" color="text" sx={{ mt: 2, lineHeight: 1.6, maxWidth: '80ch' }}>
         <Typography component="span" fontWeight={700}>
           Study Status:{' '}
         </Typography>

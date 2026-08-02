@@ -330,7 +330,7 @@ const ContentTutorialsSearch = () => {
       <Box sx={{ mt: 3 }}>
         {weeks.map((weekObj) => {
           const tutorialsForWeek = filteredTutorials.filter(
-            (tutorial) => tutorial.week().week === weekObj.week
+            (tutorial) => tutorial.week()?.week === weekObj.week
           );
 
           if (tutorialsForWeek.length === 0) return null;
@@ -388,9 +388,9 @@ const ContentTutorialsSearch = () => {
                       name={tutorial.name}
                       duration_mins={tutorial.duration}
                       relevance={tutorial.importance.split(' ')[1]}
-                      week={tutorial.week().week}
-                      topicEmoji={tutorial.topic().emoji}
-                      topicName={tutorial.topic().name}
+                      week={tutorial.week()?.week}
+                      topicEmoji={tutorial.topic()?.emoji}
+                      topicName={tutorial.topic()?.name}
                       live={''}
                       lecture={false}
                       thumbnail={tutorial.thumbnail}
@@ -410,9 +410,9 @@ const ContentTutorialsSearch = () => {
                       name={tutorial.name}
                       duration_mins={tutorial.duration}
                       relevance={tutorial.importance.split(' ')[1]}
-                      week={tutorial.week().week}
-                      topicEmoji={tutorial.topic().emoji}
-                      topicName={tutorial.topic().name}
+                      week={tutorial.week()?.week}
+                      topicEmoji={tutorial.topic()?.emoji}
+                      topicName={tutorial.topic()?.name}
                       live={''}
                       lecture={false}
                       thumbnail={tutorial.thumbnail}

@@ -52,8 +52,8 @@ const buildRelatedLectures = (lecture, allLectures, term) => {
       .map((s) => s.name)
       .join(', '),
     weektopic: `${
-      lec.week().week === 11 ? 'Extra' : 'Week ' + lec.week().week
-    } ${lec.topic().emoji} - ${lec.topic().name}`,
+      lec.week()?.week === 11 ? 'Extra' : 'Week ' + lec.week()?.week
+    } ${lec.topic()?.emoji} - ${lec.topic()?.name}`,
     duration: lec.duration_mins,
     label: lec.label,
     labelBackground: lec.labelBackground,
@@ -248,8 +248,6 @@ const ContentLecturesSingle = ({}) => {
     </>
   );
 };
-
-
 
 export default makePage(ContentLecturesSingle, {
   loginRequired: true,

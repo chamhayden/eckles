@@ -15,18 +15,18 @@ export const generateContent = (getters, by) => {
   const boxName =
     by === 'week'
       ? (grouping) => `Week ${grouping.week}`
-      : (grouping) => `${grouping.emoji} ${grouping.area().name}: ${grouping.name}`;
+      : (grouping) => `${grouping.emoji} ${grouping.area()?.name}: ${grouping.name}`;
   const boxKey = by === 'week' ? (grouping) => grouping.week : (grouping) => grouping.name;
   const secondColumnValue =
     by === 'week'
-      ? (tutorial) => (tutorial.topic ? `${tutorial.topic().emoji} ${tutorial.topic().name}` : '')
-      : (tutorial) => `📅 ${tutorial.week().week === 11 ? 'Extra' : tutorial.week().week}`;
+      ? (tutorial) => (tutorial.topic ? `${tutorial.topic().emoji} ${tutorial.topic()?.name}` : '')
+      : (tutorial) => `📅 ${tutorial.week()?.week === 11 ? 'Extra' : tutorial.week()?.week}`;
   const outerList =
     by === 'week'
       ? getters.content.weeks.filter((w) => w.week != 6 && w.week <= 10)
       : getters.content.topics.filter((t) => t.name !== 'Admin');
   const secondColumnAnchor =
-    by === 'week' ? (tutorial) => tutorial.topic().name : (tutorial) => tutorial.week().week;
+    by === 'week' ? (tutorial) => tutorial.topic()?.name : (tutorial) => tutorial.week()?.week;
 
   const boxes = [];
   outerList.forEach((grouping) => {
@@ -95,7 +95,7 @@ export const generateContent = (getters, by) => {
       topic.content_tutorials().forEach(tutorial => {
         table.push([
           { value: tutorial.name, },
-          { value: tutorial.week().week, },
+          { value: tutorial.week()?.week, },
           { value: tutorial.duration, },
           { value: tutorial.stream, },
           { value: tutorial.importance, },
@@ -123,7 +123,7 @@ export const generateContent = (getters, by) => {
       week.content_tutorials().forEach(tutorial => {
         table.push([
           { value: tutorial.name, },
-          { value: tutorial.topic ? `${tutorial.topic().emoji} ${tutorial.topic().name}` : '', },
+          { value: tutorial.topic ? `${tutorial.topic().emoji} ${tutorial.topic()?.name}` : '', },
           { value: tutorial.duration, },
           { value: tutorial.stream, },
           { value: tutorial.importance, },

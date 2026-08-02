@@ -18,13 +18,13 @@ const TutorialInfoPanel = ({ tutorial, term }) => {
       }}
     >
       <Typography variant="h4" sx={{ fontWeight: 800, lineHeight: 1.15, marginBottom: 0 }}>
-        {tutorial.topic().emoji} {tutorial.key}
+        {tutorial.topic()?.emoji} {tutorial.key}
       </Typography>
 
       <Typography variant="body2" color="text.secondary">
-        {tutorial.topic().area().name} •{' '}
-        <Link to={`/${term}/content/lectures/topic#${tutorial.topic().name}`}>
-          {tutorial.topic().name}
+        {tutorial.topic()?.area()?.name} •{' '}
+        <Link to={`/${term}/content/lectures/topic#${tutorial.topic()?.name}`}>
+          {tutorial.topic()?.name}
         </Link>
       </Typography>
 

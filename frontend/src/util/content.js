@@ -13,9 +13,10 @@ const joinContent = (content) => {
     for (const recordKey in content[table]) {
       newContent[table].push(content[table][recordKey]);
     }
+    const tableJoins = joinSchema[table] ? joinSchema[table]['joins'] : {};
     for (const row of newContent[table]) {
       for (const cellKey in row) {
-        const joinInfo = joinSchema[table]['joins'][cellKey];
+        const joinInfo = tableJoins[cellKey];
         if (joinInfo) {
           const [otherTable, atomic] = joinInfo;
           row[cellKey] = ((thisCell, otherTable, atomic) => {
@@ -28,6 +29,14 @@ const joinContent = (content) => {
             };
           })(row[cellKey], otherTable, atomic);
         }
+      }
+      // Airtable omits empty fields from a record entirely, so a row that never filled in a
+      // join has no key for it at all. Stub the accessor in anyway, so callers can always
+      // call e.g. lecture.week() instead of tripping over "week is not a function".
+      for (const cellKey in tableJoins) {
+        if (typeof row[cellKey] === 'function') continue;
+        const [, atomic] = tableJoins[cellKey];
+        row[cellKey] = atomic ? () => undefined : () => [];
       }
     }
   }
@@ -198,9 +207,9 @@ const getTopicName = (item) => {
   if (Array.isArray(topicValue)) {
     const firstTopic = topicValue[0];
     if (!firstTopic) return null;
-    return typeof firstTopic === 'string' ? firstTopic : firstTopic?.name ?? null;
+    return typeof firstTopic === 'string' ? firstTopic : (firstTopic?.name ?? null);
   }
-  return typeof topicValue === 'string' ? topicValue : topicValue?.name ?? null;
+  return typeof topicValue === 'string' ? topicValue : (topicValue?.name ?? null);
 };
 
 // Generic filtering function for lectures
@@ -217,7 +226,7 @@ export const filterLectures = (lectures, filters, searchQuery, selectedWeek, cur
       : false;
 
     // Week filtering
-    const lectureWeek = lecture.week().week;
+    const lectureWeek = lecture.week()?.week;
     const weekMatch = (() => {
       if (selectedWeek !== 'All') return lectureWeek === selectedWeek;
       if (filters.showPastWeeks) return true;
@@ -249,7 +258,7 @@ export const filterTutorials = (tutorials, filters, searchQuery, selectedWeek, c
       : false;
 
     // Week filtering
-    const tutorialWeek = tutorial.week().week;
+    const tutorialWeek = tutorial.week()?.week;
     const weekMatch = (() => {
       if (selectedWeek !== 'All') return tutorialWeek === selectedWeek;
       if (filters.showPastWeeks) return true;

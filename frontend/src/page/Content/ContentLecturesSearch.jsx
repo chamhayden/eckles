@@ -410,7 +410,7 @@ const ContentLecturesSearch = () => {
       <Box sx={{ mt: 3 }}>
         {weeks.map((weekObj) => {
           const lecturesForWeek = filteredLectures.filter(
-            (lecture) => lecture.week().week === weekObj.week
+            (lecture) => lecture.week()?.week === weekObj.week
           );
 
           if (lecturesForWeek.length === 0) return null;
@@ -468,9 +468,9 @@ const ContentLecturesSearch = () => {
                       name={lecture.name}
                       duration_mins={lecture.duration_mins}
                       relevance={lecture.relevance}
-                      week={lecture.week().week}
-                      topicEmoji={lecture.topic().emoji}
-                      topicName={lecture.topic().name}
+                      week={lecture.week()?.week}
+                      topicEmoji={lecture.topic()?.emoji}
+                      topicName={lecture.topic()?.name}
                       live={lecture.status}
                       lecture={true}
                       thumbnail={
@@ -495,9 +495,9 @@ const ContentLecturesSearch = () => {
                       name={lecture.name}
                       duration_mins={lecture.duration_mins}
                       relevance={lecture.relevance}
-                      week={lecture.week().week}
-                      topicEmoji={lecture.topic().emoji}
-                      topicName={lecture.topic().name}
+                      week={lecture.week()?.week}
+                      topicEmoji={lecture.topic()?.emoji}
+                      topicName={lecture.topic()?.name}
                       live={lecture.status}
                       lecture={true}
                       studyStatus={getLectureStudyStatus(lecture.key)}

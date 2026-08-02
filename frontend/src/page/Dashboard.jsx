@@ -27,7 +27,7 @@ const Dashboard = ({}) => {
 
     const currentWeek = getCurrentWeek(meta[0].value);
     const weeklyLectures = schedule_lectures.filter(
-      (schedule_lectures) => schedule_lectures.week().week === currentWeek
+      (schedule_lectures) => schedule_lectures.week()?.week === currentWeek
     );
 
     const weeklyHelpSessions = schedule_help_sessions.filter(

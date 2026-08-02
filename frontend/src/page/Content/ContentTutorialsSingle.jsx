@@ -16,14 +16,14 @@ const buildRelatedTutorials = (tutorial, allTutorials, term) => {
     return [];
   }
 
-  const topicName = tutorial.topic ? tutorial.topic().name : null;
-  const weekNumber = tutorial.week ? tutorial.week().week : null;
+  const topicName = tutorial.topic?.()?.name ?? null;
+  const weekNumber = tutorial.week?.()?.week ?? null;
 
   const sameTopic = topicName
-    ? allTutorials.filter((t) => t.key !== tutorial.key && t.topic && t.topic().name === topicName)
+    ? allTutorials.filter((t) => t.key !== tutorial.key && t.topic?.()?.name === topicName)
     : [];
   const sameWeek = weekNumber
-    ? allTutorials.filter((t) => t.key !== tutorial.key && t.week && t.week().week === weekNumber)
+    ? allTutorials.filter((t) => t.key !== tutorial.key && t.week?.()?.week === weekNumber)
     : [];
 
   const related = [...sameTopic, ...sameWeek].filter(
@@ -34,8 +34,8 @@ const buildRelatedTutorials = (tutorial, allTutorials, term) => {
   const list = relatedWithVideo.slice(0, 6);
 
   return list.map((item) => {
-    const topic = item.topic ? item.topic() : null;
-    const week = item.week ? item.week().week : null;
+    const topic = item.topic?.() ?? null;
+    const week = item.week?.()?.week ?? null;
     const weekLabel =
       week === null || week === undefined ? '' : week === 11 ? 'Extra' : `Week ${week}`;
     const weekTopic =

@@ -52,7 +52,7 @@ const calculateSessions = (schedule_array) => {
   if (curr_week === 0) return [];
   let sessions = schedule_array.filter((session) => weekday[today.getDay()] === session.day);
   if (sessions.length > 0 && typeof sessions[0].week === 'function') {
-    sessions = sessions.filter((session) => session.week().week === curr_week);
+    sessions = sessions.filter((session) => session.week()?.week === curr_week);
   }
   return sessions;
 };
