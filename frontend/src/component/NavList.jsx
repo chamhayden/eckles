@@ -35,7 +35,7 @@ export const getPrimaryNavList = (term) => {
     },
     {
       title: 'Forum',
-      route: 'https://discourse02.cse.unsw.edu.au/26T1/COMP6080',
+      route: 'https://discourse03.cse.unsw.edu.au/26T3/COMP6080/',
       external: true,
       loginRequired: true,
       Icon: ForumIcon,
