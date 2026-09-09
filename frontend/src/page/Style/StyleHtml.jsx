@@ -83,6 +83,9 @@ const StyleHtml = ({}) => {
         <li>
           <a href="#html-commented-code">1.14. Remove blocks of commented out code</a>
         </li>
+        <li>
+          <a href="#html-header-hierachy">1.15. Follow Header Hierachy</a>
+        </li>
       </ul>
 
       <HR />
@@ -848,6 +851,56 @@ to the next row when the viewport's width gets small enough -->
   <h1>Hello!</h1>
   <p>I have gained sentience</p>
 </article>
+`,
+        ]}
+      />
+
+      <HR />
+      <H5 id="html-header-hierachy">{emoji} 1.15. Follow Header Hierachy</H5>
+      <Body>
+        Follow proper header hierachy and don't skip heading levels when opening headers. Headers
+        should be chosen based on their logical outline and semantic meaning, not for their default
+        styling. Screen readers and page accessibility benefit from being able to skip between
+        same-levelled headers and following subheading hierachies to outline pages. When closing
+        subsections, it is okay to skip back up to open a new subsection. See the{' '}
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/Heading_Elements"
+          target="_blank"
+        >
+          MDM documentation
+        </a>{' '}
+        and <a href="https://www.w3.org/WAI/tutorials/page-structure/headings/">W3</a> for more
+        information.
+      </Body>
+      <Example
+        lang="html"
+        bads={[
+          `<h1>Heading level 1</h1>
+<h3>Heading level 3</h3>
+<h4>Heading level 4</h4>
+`,
+        ]}
+        goods={[
+          `
+<h1>Heading level 1</h1>
+<h2>Heading level 2</h2>
+<h3>Heading level 3</h3>
+            `,
+
+          `
+<h1>Commonwealth Countries</h1>
+
+<h2>Australia</h2>
+<h3>New South Wales</h3>
+<h4>Sydney</h4>
+<h4>Bathurst</h4>
+
+<!-- It's okay to jump from <h4> to <h2> because we are closing off <h2>Australia</h2>  -->
+
+<h2>New Zealand</h2>
+<h3>Auckland</h3>
+
+<h2>Singapore</h2>
 `,
         ]}
       />
