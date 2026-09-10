@@ -13,6 +13,7 @@ import AssPrint from '../../component/AssPrint';
 import { ass1a, ass1b, ass2a, ass2b, ass3a, ass3b, ass4a, ass4b } from './Assignments/AssMd';
 
 import SubNavWrapper from '../../component/SubNavWrapper';
+import { SpecConElsSummary, SpecConElsExtensions } from '../../component/SpecConEls';
 import makePage from '../../component/makePage';
 import config from '../../config';
 import { apiCall } from '../../util/api';
@@ -36,7 +37,22 @@ const AssessmentsAssignments = ({}) => {
   const params = useParams();
 
   if (singleAssignment) {
-    return <AssPrint mda={ass1a} mdb={ass1b} assNumber={1} startWeek={1} omit={OMITTED_SECTIONS} />;
+    return (
+      <AssPrint
+        mda={ass1a}
+        mdb={ass1b}
+        assNumber={1}
+        startWeek={1}
+        omit={OMITTED_SECTIONS}
+        extraSections={(sectionNumber) => (
+          <>
+            <h3>{sectionNumber}. Special Consideration & ELS</h3>
+            <SpecConElsSummary />
+            <SpecConElsExtensions />
+          </>
+        )}
+      />
+    );
   }
 
   const menu = [

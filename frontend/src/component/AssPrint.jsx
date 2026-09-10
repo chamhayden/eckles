@@ -3,10 +3,10 @@ import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import { Context, useContext } from '../context';
-import { omitSections, renumberSections } from '../util/markdown';
+import { nextSectionNumber, omitSections, renumberSections } from '../util/markdown';
 import config from '../config';
 
-const AssPrint = ({ mda, mdb, assNumber, startWeek, omit, alwaysReleased }) => {
+const AssPrint = ({ mda, mdb, assNumber, startWeek, omit, alwaysReleased, extraSections }) => {
   const { getters } = useContext(Context);
   const readyFromWeek = (week) => {
     const weeks = getters.content?.weeks ?? [];
@@ -63,6 +63,9 @@ const AssPrint = ({ mda, mdb, assNumber, startWeek, omit, alwaysReleased }) => {
         </>
       )}
       <Markdown remarkPlugins={[remarkGfm]}>{bottomMd}</Markdown>
+      {/* Terms can tack extra sections onto the end of the spec, picking up the
+          section numbering where the markdown left off. */}
+      {extraSections && extraSections(nextSectionNumber(bottomMd))}
       <marquee>
         Another surprise &lt;marquee&gt; just to remind you that you're a cool cucumber 🥒{' '}
       </marquee>

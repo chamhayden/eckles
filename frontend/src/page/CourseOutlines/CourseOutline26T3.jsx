@@ -309,6 +309,11 @@ const CourseOutline26T3 = () => {
         to your final mark.
       </Typography>
       <Typography variant="body1" gutterBottom>
+        Four of your tutorials are given over to an in-class quiz (see 4.5 below). That leaves{' '}
+        <strong>6 non-test weeks</strong>, and it is in those weeks that your tutor will cover
+        teaching content.
+      </Typography>
+      <Typography variant="body1" gutterBottom>
         Tutorials will be run mostly in person, but sometimes over MS teams.
       </Typography>
 
@@ -337,11 +342,23 @@ const CourseOutline26T3 = () => {
         4.5. In-class quizzes
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        During the term students will complete 50 minute long quizzes on 4 occasions. The first quiz is worth 0 marks and is a practice.
-        The exact timing of quizzes will depend on the day of your tutorial.
+        During the term students will complete 45 minute long quizzes on 4 occasions, each starting
+        at 5 past the hour. The first quiz is worth 0 marks and is a practice. The exact timing of
+        quizzes will depend on the day of your tutorial.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        All quiz questions will be 2-7 mark short answer questions.
+        Quizzes are supervised in-class by your tutor. You complete them on your own device, in your
+        tutorial room, on a public website, with your tutor able to see your screen at all times.
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        All quiz questions are theory questions, requiring a short answer response, and will be
+        worth 2-7 marks each.
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        Depending on your tutorial and week your quiz may be at a different time. The first quiz of the week varies throughout term.
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        Full details are on the <Link to={link('assessments/quizzes')}>quizzes page</Link>.
       </Typography>
 
       <Typography variant="body1" component="div" gutterBottom>

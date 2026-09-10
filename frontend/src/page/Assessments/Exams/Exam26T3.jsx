@@ -20,7 +20,10 @@ const Exam26T3 = () => {
   return (
     <>
       <Typography variant="body" component="div" gutterBottom>
-        <b>COMP6080 is an closed-book, invigilated, hurdle-based in-person exam completed at UNSW.</b>
+        <b>
+          COMP6080 is a closed-book, invigilated, hurdle-based CSE exam, completed in person on the
+          CSE lab machines.
+        </b>
         <br />
         <br />
       </Typography>
@@ -54,15 +57,26 @@ const Exam26T3 = () => {
       <Typography variant="body1" component="div" gutterBottom>
         The exam will be of identical nature to the quizzes, just longer in length.
       </Typography>
+      <Typography variant="h5" component="div" style={{ marginTop: '20px', marginBottom: '10px' }}>
+        4. Platform to complete exam
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        This is <b>not</b> a BYOD exam. You will sit the exam in a CSE lab, on the CSE lab machines,
+        under invigilation. You do not need to bring a laptop.
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        Because the exam is closed-book, you may not access any notes, external websites, or AI
+        tooling during the exam.
+      </Typography>
       <Typography variant="h5" component="div" gutterBottom>
-        4. Hurdle Requirements
+        5. Hurdle Requirements
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         This exam has a hurdle component - which means if you don't achieve a <i>scaled</i> pass
         mark then you will not pass the course.
       </Typography>
       <Typography variant="h5" component="div" style={{ marginTop: '20px', marginBottom: '10px' }}>
-        5. Preparation
+        6. Preparation
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
         To prepare for the exam, please complete all exercises, old assignments, and the sample quiz.
