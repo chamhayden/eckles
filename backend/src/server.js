@@ -27,13 +27,16 @@ const myCache = new NodeCache();
 let builtData = {};
 Object.keys(config.TERMS).map(term => builtData[term] = { public: null, full: null, forum: [], groups: {} });
 
+// The cache key must include the term - otherwise whichever term is requested first
+// fills the cache and every other term is served that same data for the next 24 hours.
 const shortTermHold = (key, fn) => {
   return async (term) => {
-    // lock.acquire(key, async (done) => {
-      let value = myCache.get(key);
+    const cacheKey = `${key}:${term}`;
+    // lock.acquire(cacheKey, async (done) => {
+      let value = myCache.get(cacheKey);
       if (value == undefined) {
         value = await fn(term);
-        myCache.set(key, value, 60*60*24);
+        myCache.set(cacheKey, value, 60*60*24);
       }
       // done();
       return value;
