@@ -40,7 +40,20 @@ const AssessmentsQuizzes = ({}) => {
         Quizzes are supervised by your tutor, in person, in your tutorial room. You complete the
         quiz on your own device, on a public website.
       </p>
+      <p>
+        <b>
+          The use of AI tools, and the use of the internet in general, is prohibited during quizzes.
+        </b>{' '}
+        The only website you may have open is the quiz website itself.
+      </p>
       <ul>
+        <li>
+          You must not access any AI tool (e.g. ChatGPT, Claude, Copilot), search engine,
+          documentation, messaging app, or any other website or external material during the quiz.
+        </li>
+        <li>
+          Doing so is academic misconduct and will be treated as such.
+        </li>
         <li>
           Your tutor supervises the room to ensure nobody is accessing external materials during the
           quiz.

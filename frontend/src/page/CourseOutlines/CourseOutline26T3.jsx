@@ -351,6 +351,14 @@ const CourseOutline26T3 = () => {
         tutorial room, on a public website, with your tutor able to see your screen at all times.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
+        <strong>
+          During quizzes, the use of AI tools and the use of the internet in general is prohibited.
+        </strong>{' '}
+        The only website you may have open is the quiz website itself. Accessing any AI tool (e.g.
+        ChatGPT, Claude, Copilot), search engine, documentation, messaging app, or any other website
+        or external material during a quiz is academic misconduct.
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
         All quiz questions are theory questions, requiring a short answer response, and will be
         worth 2-7 marks each.
       </Typography>
@@ -543,7 +551,23 @@ const CourseOutline26T3 = () => {
         </Table>
       </TableContainer>
 
-      <br />
+      <Typography variant="h6" component="div" gutterBottom sx={{ mt: 4 }}>
+        5.1. Use of AI in assessment
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        <strong>The use of AI tools in any assessment in this course is prohibited.</strong> This
+        applies to the programming assignment, all quizzes, and the final exam. While AI tools are
+        used as part of learning in lectures and tutorials, all work you submit for assessment must
+        be entirely your own. Using generative AI tools (e.g. ChatGPT, Claude, Copilot, Gemini) to
+        produce or assist with assessed work is academic misconduct and will be treated as such.
+      </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        <strong>
+          During quizzes, the use of AI tools and the use of the internet in general is prohibited.
+        </strong>{' '}
+        See section 4.5 and the <Link to={link('assessments/quizzes')}>quizzes page</Link> for more
+        details.
+      </Typography>
 
       <Divider sx={{ mb: 3, mt: 3 }} />
 
