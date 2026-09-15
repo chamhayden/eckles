@@ -59,5 +59,25 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://cgi.cse.unsw.edu.au/~cs6080"
+  "homepage": "https://cgi.cse.unsw.edu.au/~cs6080",
+  "overrides": {
+    "@pmmmwh/react-refresh-webpack-plugin": {
+      "shell-quote": "1.9.0"
+    },
+    "launch-editor": {
+      "shell-quote": "1.9.0"
+    },
+    "react-dev-utils": {
+      "shell-quote": "1.9.0"
+    },
+    "react-scripts": {
+      "shell-quote": "1.9.0"
+    },
+    "shell-quote": {
+      "shell-quote": "1.9.0"
+    },
+    "webpack-dev-server": {
+      "shell-quote": "1.9.0"
+    }
+  }
 }
