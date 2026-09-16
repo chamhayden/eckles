@@ -869,8 +869,11 @@ to the next row when the viewport's width gets small enough -->
         >
           MDM documentation
         </a>{' '}
-        and <a href="https://www.w3.org/WAI/tutorials/page-structure/headings/">W3</a> for more
-        information.
+        and{' '}
+        <a href="https://www.w3.org/WAI/tutorials/page-structure/headings/" target="_blank">
+          W3
+        </a>{' '}
+        for more information.
       </Body>
       <Example
         lang="html"
