@@ -42,6 +42,14 @@ export const getPrimaryNavList = (term) => {
       description: 'Post questions and get answers about course or content queries',
     },
     {
+      title: 'Quiz Site',
+      route: 'https://cgi.cse.unsw.edu.au/~cs6080/nous/',
+      external: true,
+      loginRequired: true,
+      Icon: QuizIcon,
+      description: 'Complete the in-class quizzes for the course',
+    },
+    {
       title: 'Timetable',
       route: '/timetable',
       loginRequired: false,
