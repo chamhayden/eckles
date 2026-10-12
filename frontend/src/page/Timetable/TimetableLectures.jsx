@@ -15,7 +15,7 @@ import makePage from '../../component/makePage';
 // same column.
 const COLUMNS = [
   { key: 'mon-tue', title: 'Lecture 1', match: ['mon', 'tue'] },
-  { key: 'wed-thu', title: 'Lecture 2', match: ['wed', 'thu'] },
+  { key: 'wed-fri', title: 'Lecture 2', match: ['wed', 'thu', 'fri'] },
 ];
 
 const DAY_ORDER = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
