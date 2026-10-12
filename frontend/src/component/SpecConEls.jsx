@@ -88,7 +88,8 @@ export const SpecConElsQuizzes = () => (
     <h4>If you can't make any of the scheduled windows</h4>
     <p>
       We do not run additional quiz sittings outside of that window. If you are unable to make any
-      of the scheduled windows for a quiz, then at the end of the course we will take an estimate of
+      of the scheduled windows for a quiz, you must notify the lecturer in charge. Then, for that
+      particular quiz, at the end of the course we will take an estimate of
       what you would have scored on that quiz, based on your performance in the final exam.
     </p>
   </>
