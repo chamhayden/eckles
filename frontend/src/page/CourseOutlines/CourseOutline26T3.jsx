@@ -441,8 +441,8 @@ const CourseOutline26T3 = () => {
               </TableRow>
               <TableRow>
                 <TableCell>8</TableCell>
-                <TableCell>Lesson 4</TableCell>
                 <TableCell><span style={{color: 'green', fontWeight: 'bold'}}>Quiz 2 (15%)</span></TableCell>
+                <TableCell>Lesson 4</TableCell>
                 <TableCell>Lesson 4</TableCell>
                 <TableCell>Lesson 4</TableCell>
                 <TableCell>Lesson 4</TableCell>
