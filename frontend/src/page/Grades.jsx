@@ -177,6 +177,9 @@ const Grades = () => {
                     fullWidth
                     value={zid}
                     onChange={(e) => setZid(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') getGrades();
+                    }}
                     placeholder="Enter student zID (e.g., 5555555)"
                     variant="outlined"
                     InputProps={{

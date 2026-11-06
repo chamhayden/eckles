@@ -52,7 +52,8 @@ const getForum = shortTermHold('forum', async (term) => {
   let notices = [];
   try {
     const edCourseNumber = config.TERMS[term].ED_COURSE_NUMBER;
-    const discourseAPI = new Discourse(`https://discourse02.cse.unsw.edu.au/${term}/COMP6080`, {
+    const discourseUrl = config.TERMS[term].DISCOURSE_URL || `https://discourse02.cse.unsw.edu.au/${term}/COMP6080`;
+    const discourseAPI = new Discourse(discourseUrl, {
       "Api-Key": config.TERMS[term].DISCOURSE_API_KEY,
       "Api-Username": config.TERMS[term].DISCOURSE_API_USERNAME,
     });
@@ -78,7 +79,7 @@ const getForum = shortTermHold('forum', async (term) => {
   
     if (output.length > 0) {
       notices = output.filter(t => (t.visible && t['post_stream']['posts'].length > 0)).map(t => ({
-        url: `https://discourse02.cse.unsw.edu.au/${term}/COMP6080/t/${t.id}`,
+        url: `${discourseUrl}/t/${t.id}`,
         title: t.title,
         document: t['post_stream']['posts'][0].cooked,
         created_at: t.created_at,
