@@ -59,7 +59,14 @@ export const loadContent = (term, loggedIn = false) => {
 };
 
 // Get Youtube code from URL
-export const getYoutubeCodeFromUrl = (code) => code.slice(code.length - 11);
+// Handles watch?v=, youtu.be/, /live/, /embed/, /shorts/ and trailing query strings (e.g. ?si=...)
+export const getYoutubeCodeFromUrl = (code) => {
+  const url = code.trim();
+  const match =
+    url.match(/[?&]v=([A-Za-z0-9_-]{11})/) ||
+    url.match(/(?:youtu\.be|\/live|\/embed|\/shorts|\/v)\/([A-Za-z0-9_-]{11})/);
+  return match ? match[1] : url.slice(url.length - 11);
+};
 
 // Relevance options
 export const RELEVANCE = {
