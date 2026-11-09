@@ -42,13 +42,19 @@ const Grades = () => {
   const [zid, setZid] = React.useState('');
 
   const getGrades = () => {
-    apiCall(`gradesearch?term=${getters.term}&searchZid=${zid}`, {}, 'GET').then((data) => {
-      setGrades(data);
-    });
+    apiCall(`gradesearch?term=${getters.term}&searchZid=${zid}`, {}, 'GET')
+      .then((data) => {
+        setGrades(data);
+      })
+      .catch((err) => {
+        console.log('Error loading grades', err);
+      });
   };
   React.useEffect(() => {
-    getGrades();
-  }, []);
+    if (getters.term) {
+      getGrades();
+    }
+  }, [getters.term]);
 
   const renderGradeTable = (title, data, emoji) => (
     <Card

@@ -68,6 +68,9 @@ const Exam26T3 = () => {
         Because the exam is closed-book, you may not access any notes, external websites, or AI
         tooling during the exam.
       </Typography>
+      <Typography variant="body1" component="div" gutterBottom>
+        You may bring into the exam one double sided hand-written set of notes on A4 pages.
+      </Typography>
       <Typography variant="h5" component="div" gutterBottom>
         5. Hurdle Requirements
       </Typography>

@@ -352,6 +352,7 @@ app.get('/api/gradesearch', (req, res) => {
 
   if (!Object.keys(config.TERMS).includes(term)) {
     res.status(400).send({ err: 'Bad term' });
+    return;
   }
 
   let giverc = '~/.giverc';
@@ -360,7 +361,8 @@ app.get('/api/gradesearch', (req, res) => {
   }
 
   if (isTutor(zid, term) && searchZid) {
-    zid = searchZid;
+    // sms_show only accepts bare numeric zIDs, not "z1234567"
+    zid = searchZid.trim().replace(/^z/i, '');
   }
 
   let shellresult = '';
